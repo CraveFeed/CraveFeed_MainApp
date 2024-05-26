@@ -2,4 +2,13 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --backgroundColor : #06141D;
+  --cardBackGroundColor : #1B2730;
+  --mainTextColor : #FFFFFF;
+  --dimTextColor : #4C5965;
+  --lightButton : #28343E;
+  --darkButton : #1B2730;
+  --darkButtonBorder : #26333D;
+  --highlightedText : #1C75AB;
 }
