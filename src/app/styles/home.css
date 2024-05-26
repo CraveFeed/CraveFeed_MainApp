@@ -1,0 +1,76 @@
+/* xs: '480px',
+sm: '576px',
+md: '768px',
+lg: '992px',
+xl: '1200px',
+xxl: '1600px', */
+
+
+:root{
+        --backgroundColor: #051017;
+        --cardBackGroundColor: #1B2730;
+        --mainTextColor: #ffffff;
+        --subMainTxtColor : rgb(137, 135, 135);
+        --dimTextColor: #4C5965;
+        --lightButton: #28343E;
+        --darkButton: #1B2730;
+        --darkButtonBorder: #26333D;
+        --highlightedText: #29a7f6;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+    background-color: green;
+}
+
+.logo{
+    color: var(--highlightedText);
+}
+
+.input{
+    background-color: var(--cardBackGroundColor);
+    border: none;
+    border-radius: 8px;
+}
+
+.input::placeholder {
+    color : var(--subMainTxtColor);
+}
+
+.mobile-hidden {
+    display: visible;
+}
+
+.mobile-visible {
+    display: none;
+}
+
+.extra-small-mobile{
+    display: none;
+}
+
+/* RESPONSIVE */
+
+ /* ************* NAVBAR ********************* */
+
+@media screen and (max-width: 835px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    .mobile-visible {
+        display:flex;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    .mobile-visible {
+        display: none;
+    }
+    .extra-small-mobile {
+        display: flex;
+    }
+}

@@ -19,15 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          <ConfigProvider theme={{
-            token : {
-              colorPrimary : "#06141D"
-            }
-          }}>
-            {children}
-          </ConfigProvider>
-        </StoreProvider>
+        <ConfigProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </ConfigProvider>
         </body>
     </html>
   );
