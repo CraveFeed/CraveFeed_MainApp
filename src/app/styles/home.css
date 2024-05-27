@@ -9,8 +9,8 @@ xxl: '1600px', */
 :root{
         --backgroundColor: #051017;
         --cardBackGroundColor: #1B2730;
-        --mainTextColor: #ffffff;
-        --subMainTxtColor : rgb(137, 135, 135);
+        --mainTextColor: #c7c7c7;
+        --subMainTxtColor : #55616b;
         --dimTextColor: #4C5965;
         --lightButton: #28343E;
         --darkButton: #1B2730;
