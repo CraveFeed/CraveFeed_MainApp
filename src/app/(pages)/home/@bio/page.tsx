@@ -58,27 +58,26 @@ export default function Bio() {
           />
           <div style={{ marginTop : "-190px" , zIndex : "4"}}>
               <Flex align="center" justify="center" style={{ width : "100%"}}>
-                  <Avatar size={85} src={avatar.src} style={{border : "none" , backgroundColor: "white", position: "relative" }}/>
+                  <Avatar className="bio-profile-pic" src={avatar.src} style={{border : "none" , backgroundColor: "white", position: "relative" }}/>
               </Flex>
               <Space direction="vertical" style={{backgroundColor: "#1B2730"  , zIndex : "3" , border : "none" , paddingInline: "15px" , margin : "0px" , width : "100%"}}>
                   <Flex align="center" justify="center" vertical>
-                          <Button style={{ backgroundColor : "#1B2730" , border : "none" , fontWeight : "bold" , fontSize : "21px" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
-                          <Button style={{ backgroundColor : "#1B2730" , border : "none" , fontSize : "17px" , color : "#55616b"}}>@vibhorphalke</Button>
-                          <Paragraph style={{ fontSize : "16px" , color : "#adacac" }}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                          <Button className="follower-title" style={{ backgroundColor : "#1B2730" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                          <Button className="follower-text" style={{ backgroundColor : "#1B2730" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                          <Paragraph className="bio-description" style={{ color : "#adacac" }}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
                   </Flex>
               </Space>
               <Flex align="center" justify="center" style={{ borderBlock : "1px solid #28343E" , marginInline : "5px"}} >
-                <Space split={<Divider type="vertical" style={{ backgroundColor : "#4C5965" , marginTop : "13px" , height : "50px"}}/>} style={{ width : "100%" , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingInline : "50px" , paddingBottom : "10px"}}>
-                    <Flex align="center" justify="center" vertical style={{}}>
-                        <Typography.Title level={3} style={{ color : "#c7c7c7"}}>6005</Typography.Title>
-                        <Typography.Text style={{ marginTop : "-15px" , fontSize : "bolder" , fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
+                <Space className="follower-space-padding" split={<Divider type="vertical" style={{ backgroundColor : "#4C5965" , marginTop : "13px" , height : "50px"}}/>} style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
+                    <Flex align="center" justify="center" vertical>
+                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>6005</Typography.Title>
+                        <Typography.Text className="follower-text" style={{ marginTop : "-15px" , fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                     </Flex>
                     <Flex vertical align="center" justify="center">
-                        <Typography.Title level={3} style={{ padding : "0px" , color : "#c7c7c7"}}>5000</Typography.Title>
-                        <Typography.Text style={{ marginTop : "-15px" , color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
+                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>5000</Typography.Title>
+                        <Typography.Text className="follower-text" style={{ marginTop : "-15px" , color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                     </Flex>
                 </Space>
-
               </Flex>
               <Flex align="center" justify="center" style={{ marginBlock : "10px"}}>
                   <Button style={{ backgroundColor : "#1B2730" , border : "none" , fontSize : "16px" , color : "#2091d7" , fontWeight : "bolder"}}>My Profile</Button>
