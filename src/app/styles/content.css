@@ -9,6 +9,7 @@ xxl: '1600px', */
 :root {
     --backgroundColor: #051017;
     --cardBackGroundColor: #1B2730;
+    --secondaryCardButtonBackground : #28343E;
     --mainTextColor: #c7c7c7;
     --subMainTxtColor: #55616b;
     --dimTextColor: #4C5965;
@@ -18,3 +19,27 @@ xxl: '1600px', */
     --highlightedText: #29a7f6;
 }
 
+.input {
+    background-color: var(--secondaryCardButtonBackground);
+    border: none;
+    border-radius: 15px;
+}
+
+.input::placeholder {
+    color: var(--mainTextColor);
+}
+
+.input:hover {
+    background-color: #3a444d;
+    color: var(--mainTextColor);
+}
+
+.upload-buttons{
+    background-color: var(--secondaryCardButtonBackground);
+    color: var(--mainTextColor);
+    padding-inline: 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 2px solid #3f474f;
+    height: 36px;
+}
