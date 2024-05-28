@@ -1,0 +1,20 @@
+/* xs: '480px',
+sm: '576px',
+md: '768px',
+lg: '992px',
+xl: '1200px',
+xxl: '1600px', */
+
+
+:root {
+    --backgroundColor: #051017;
+    --cardBackGroundColor: #1B2730;
+    --mainTextColor: #c7c7c7;
+    --subMainTxtColor: #55616b;
+    --dimTextColor: #4C5965;
+    --lightButton: #28343E;
+    --darkButton: #1B2730;
+    --darkButtonBorder: #26333D;
+    --highlightedText: #29a7f6;
+}
+
