@@ -43,3 +43,8 @@ xxl: '1600px', */
     border: 2px solid #3f474f;
     height: 36px;
 }
+
+.likes_comments{
+    font-size: 16px;
+    border-radius: 50%;
+}
