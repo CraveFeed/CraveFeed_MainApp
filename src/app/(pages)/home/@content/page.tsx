@@ -1,7 +1,11 @@
 "use client"
 
 import React from "react";
-import { Avatar, Card , Space , Flex , Input, Button, Typography } from "antd";
+import { useState } from "react";
+import type { MenuProps } from "antd";
+import { Comment } from "@ant-design/compatible";
+import { Tooltip, List } from 'antd';
+import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
@@ -14,6 +18,8 @@ import foodPost4 from "../../../assets/food_post4.jpeg"
 import profilePic2 from "../../../assets/profilePic2.jpg"
 import profilePic3 from "../../../assets/lavelisProPic.jpg"
 import profilePic4 from "../../../assets/profilePic4.jpg"
+import { FacebookShare , WhatsappShare } from 'react-share-kit';
+import {Drawer} from 'antd';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
@@ -22,9 +28,98 @@ const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
 );
 
+const { TextArea } = Input;
+const Editor = () => (
+<>
+    <Form.Item>
+    <TextArea rows={4} />
+    </Form.Item>
+    <Form.Item>
+    <Button type="primary">
+        Add Comment
+    </Button>
+    </Form.Item>
+</>
+);
+
 export default function Content(){
 
-    const router = useRouter();
+    const [showComments ,setShowComments] = useState<boolean>(false);
+    const [ addComment , setAddComment ] = useState<boolean>(false);
+    const [ id , setId ] = useState<number>();
+
+
+    const data = [
+        {
+            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
+            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+            avatar: profilePic3.src,
+            content: (
+            <p>
+                We supply a series of design principles, practical patterns and high quality design
+                resources (Sketch and Axure), to help people create their product prototypes beautifully and
+                efficiently.
+            </p>
+            ),
+            datetime: (
+            <Tooltip title="2016-11-22 11:22:33">
+                <span>8 hours ago</span>
+            </Tooltip>
+            ),
+        },
+        {
+            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
+            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+            avatar: startship.src,
+            content: (
+            <p>
+                We supply a series of design principles, practical patterns and high quality design
+                resources (Sketch and Axure), to help people create their product prototypes beautifully and
+                efficiently.
+            </p>
+            ),
+            datetime: (
+            <Tooltip title="2016-11-22 10:22:33">
+                <span>9 hours ago</span>
+            </Tooltip>
+            ),
+        },
+        ];
+
+// Comments array
+
+    const items: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
+                    <FacebookShare
+                        windowHeight={20}
+                        url={"https://nextjs.org/"}
+                        title={'Share your views on what else should I try CraveFeed'}
+                        hashtag={'#cravefeed'}
+                        className="share-button"
+                    >
+                    </FacebookShare>
+                </Space>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+            <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
+                    <WhatsappShare
+                        windowHeight={20}
+                        url={"https://nextjs.org/"}
+                        title={'Share your views on what else should I try on CraveFeed'}
+                        className="share-button"
+                    >
+                    </WhatsappShare>
+                </Space>
+            ),
+        },
+    ];
+
     const postData = [
         {
             id: 1,
@@ -87,9 +182,9 @@ export default function Content(){
                 </Flex>
                 <Flex align="center" justify="start" style={{ paddingLeft : "7%"}}>
                     <Space size="large">
-                        <Button className="upload-buttons"><RestFilled style={{ fontSize : "19px" , color : "greenyellow"}}/>Share Food</Button>
-                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "yellow"}}/> Share Recipe</Button>
-                        <Button className="upload-buttons"><PlusCircleFilled style={{marginTop : "1px" , fontSize : "19px" , color : "coral"}}/>Create Post</Button>
+                        <Button className="upload-buttons"><RestFilled style={{ fontSize : "19px" , color : "#20D997"}}/>Share Food</Button>
+                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
+                        <Button className="upload-buttons"><PlusCircleFilled style={{marginTop : "1px" , fontSize : "19px" , color : "#FF6B6B"}}/>Create Post</Button>
                     </Space>
                 </Flex>
             </Card>
@@ -100,13 +195,13 @@ export default function Content(){
                 style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
                 >
                 <Flex gap={6} align="center" justify="space-between">
-                    <Flex gap={12}>
-                        <Avatar src={item.profilePeopleSrc} size={60} style={{ marginTop : "10px"}} />
+                    <Flex gap={3}>
+                        <Avatar src={item.profilePeopleSrc} className="post_profile_pic" />
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title level={2} style={{ marginTop: '7px', color: '#D5DEE1' }}>{item.name}</Typography.Title>
-                                <Typography.Text style={{ marginTop: '15px', color: '#6D7B88' }}>{item.time}</Typography.Text>
+                                <Typography.Title className="post-name" level={2}>{item.name}</Typography.Title>
+                                <Typography.Text className="post_time">{item.time}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>
@@ -115,11 +210,11 @@ export default function Content(){
                             </Flex>
                         </Flex>
                     </Flex>
-                        <Button style={{ borderRadius : "20px" , height : "45px" , width : "100px"}}>Follow</Button>
+                        <Button className="post_follow_btn">Follow</Button>
                 </Flex>
                 <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
-                    <Typography.Paragraph style={{ fontWeight: 'bolder', fontSize: '18px', color: '#C6D0D2' }}>
-                    {item.content}
+                    <Typography.Paragraph className="post_description">
+                        {item.content}
                     </Typography.Paragraph>
                 </Flex>
                 <Flex wrap style={{ marginInline: '25%' }}>
@@ -129,39 +224,73 @@ export default function Content(){
                     cover={<Image src={item.postImage} style={{ borderRadius: '30px' }} />}
                     ></Card>
                 </Flex>
-                <Flex align="center" justify="space-between">
+                <Flex className="likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
-                        <HeartFilled className="likes_comments" style={{ color : "white" , border : "8px solid #c70700" , backgroundColor : "#c70700" , zIndex : "3" }}/>
-                        <RestFilled className="likes_comments" style={{ color : "white" , border : "8px solid #4681f4" , backgroundColor : "#4681f4" , zIndex : "2" , marginLeft : "-10px"}}/>
-                        <Statistic valueStyle={{ fontSize : "19px" , color : "white" , marginTop : "3px"}} value={item.likeCount} formatter={formatter} />
+                        <HeartFilled className="likes_comments_heart"/>
+                        <RestFilled className="likes_comments_comment" />
+                        <Statistic valueStyle={{ fontSize : "16px" , color : "white" , marginTop : "6px"}} value={item.likeCount} formatter={formatter} />
                     </Flex>
-                    <Typography.Text style={{ fontSize : "17px" , color : "#5D6A77"}}>44 Comments</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
                 </Flex>
-                <Flex gap={20} align="center" justify="space-between" style={{ marginTop : "30px" , paddingInline : "90px" , marginBottom : "20px"}}>
-                    <Button style={{ height : "50px", borderRadius : "15px" , width : "200px" , backgroundColor : "#28343E" , border : "none"}}>
+                <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
+                    <Button className="post-action-button">
                         <Space size="small">
-                            <HeartFilled style={{ fontSize : "22px" , color : "#FEFEFE" }}/>
-                            <Typography.Text style={{ fontSize : "19px" , color : "#C6D0D2" }}>Like</Typography.Text>
+                            <HeartFilled className="post-action-button-icon"/>
+                            <Typography.Text className="post-action-button-text">Like</Typography.Text>
                         </Space>
                     </Button>
-                    <Button style={{ height : "50px", borderRadius : "15px" , width : "200px" , backgroundColor : "#28343E" , border : "none"}}>
+                    <Button className="post-action-button">
                         <Space size="small">
-                            <PullRequestOutlined style={{ fontSize : "22px" , color : "#FEFEFE" }}/>
-                            <Typography.Text style={{ fontSize : "19px" , color : "#C6D0D2" }}>Repost</Typography.Text>
+                            <PullRequestOutlined className="post-action-button-icon"/>
+                            <Typography.Text className="post-action-button-text">Repost</Typography.Text>
                         </Space>
                     </Button>
-                    <Button style={{ height : "50px", borderRadius : "15px" , width : "200px" , backgroundColor : "#28343E" , border : "none"}}>
-                        <Space size="small">
-                            <MessageFilled style={{ fontSize : "22px" , color : "#FEFEFE" }}/>
-                            <Typography.Text style={{ fontSize : "19px" , color : "#C6D0D2"}}>Comment</Typography.Text>
+                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
+                        <Space size="small" >
+                            <MessageFilled className="post-action-button-icon"/>
+                            <Typography.Text className="post-action-button-text">Comment</Typography.Text>
                         </Space>
                     </Button>
-                    <Button style={{ height : "50px", borderRadius : "15px" , width : "60px" , backgroundColor : "#1B2730" , border : "3px solid #3a4349"}}>
+                    <Button className="post-upload-button">
                         <Space size="small">
-                            <UploadOutlined style={{ fontSize : "22px" , color : "#FEFEFE" }}/>
+                            <Dropdown menu={{ items }}>
+                                <UploadOutlined className="post-upload-button-icon"/>
+                            </Dropdown>
                         </Space>
                     </Button>
                 </Flex>
+                {/* // Comments */}
+                {showComments && id == item.id && (
+                    <List
+                        className="comment-list"
+                        header={ <span style={{ color : "#4991FD"}}>{data.length} comments</span>}
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={item => (
+                        <li>
+                            <Comment
+                                style={{ backgroundColor : "#1B2730" , color : "white"}}
+                                actions={item.actions}
+                                author={item.author}
+                                avatar={item.avatar}
+                                content={item.content}
+                                // datetime={item.datetime}
+                            />
+                        </li>
+                        )}
+                    />
+                )}
+
+                    <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
+                        <Comment
+                            style={{ backgroundColor : "#1B2730" , color : "white"}}
+                            avatar={<Avatar src={avatar.src} alt="Han Solo" />}
+                            content={
+                            <Editor
+                            />
+                            }
+                        />
+                    </Modal>
             </Card>
             ))}
         </Flex>

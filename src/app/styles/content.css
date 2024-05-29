@@ -44,7 +44,204 @@ xxl: '1600px', */
     height: 36px;
 }
 
+/* Name description follow button */
+
+.post_profile_pic{
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.post-name{
+    margin-top: 7px;
+    color: #D5DEE1 !important;
+}
+
+.post_time{
+    margin-top: 19px;
+    color: #6D7B88;
+}
+
+.post_description{
+    font-weight: bolder;
+    font-size: 18px;
+    color : #C6D0D2;
+}
+
+.post_follow_btn{
+    border-radius: 20px;
+    height : 40px;
+    width: 100px;
+}
+
 .likes_comments{
+}
+
+.likes_comments_heart{
+    color: white;
+    border: 8px solid #c70700;
+    background-color: #c70700;
+    margin-left: -10px;
     font-size: 16px;
     border-radius: 50%;
+    z-index: 2;
+}
+
+
+.likes_comments_comment{
+    color: white;
+    border: 8px solid #4681f4;
+    background-color: #4681f4;
+    margin-left: -10px;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.comment-count{
+    font-size: 17px;
+    color: #5D6A77;
+}
+
+/* fontSize : "17px",
+color : "#5D6A77" */
+
+ /* Action Buttons  */
+
+.post-upload-button{
+    height: 50px;
+    width: 60px;
+    border-radius: 15px;
+    background-color: #1B2730;
+    border: 3px solid #3a4349;
+
+}
+
+.post-upload-button-icon{
+    font-size: 22px;
+    color: #FEFEFE;
+}
+
+.post-upload-button:hover .post-upload-button-icon {
+    color: #686868;
+    border: none;
+}
+
+.post-action-button-mainDiv{
+    margin-top: 30px;
+    padding-inline: 90px;
+    margin-bottom: 20px;
+}
+ 
+ /* Like and Comment Count section  */
+
+.post-action-button{
+    height: 45px;
+    width: 200px;
+    border-radius: 15px;
+    background-color: #28343E;
+    border: none;
+}
+
+.post-action-button-icon{
+    font-size: 22px;
+    color: #FEFEFE;
+}
+
+.post-action-button:hover .post-action-button-icon{
+    color: #4a4a4a;
+}
+
+.post-action-button-text{
+    font-size: 19px;
+    color: #C6D0D2;
+}
+
+@media screen and (max-width: 1300px) {
+    .post-action-button-mainDiv {
+        margin-top: 10px;
+        padding-inline: 15px;
+        margin-bottom: 20px;
+    }
+
+    .post-action-button-icon {
+        font-size: 16px;
+    }
+    
+    .post-action-button-text {
+        font-size: 14px;
+    }
+
+    .post-action-button {
+        height: 35px;
+    }
+
+    .post-upload-button {
+        height: 35px;
+        width: 47px;
+        border: 2px solid #3a4349;
+    }
+
+    .post-upload-button-icon {
+        font-size: 16px;
+        color: #FEFEFE;
+    }
+
+    .likes_comments{
+        margin-top: 5px;
+    }
+
+    .likes_comments_heart {
+        border: 3px solid #c70700;
+        font-size: 16px;
+        height: 23px;
+        border-radius: 50%;
+    }
+
+
+    .likes_comments_comment {
+        border: 3px solid #4681f4;
+        font-size: 16px;
+        height: 23px;
+        border-radius: 50%;
+    }
+
+    .comment-count {
+        font-size: 14px;
+        color: #5D6A77;
+        cursor: pointer !important;
+    }
+
+    .post-name {
+        margin-top: 15px;
+        font-size: 23px !important;
+    }
+
+    .post_time {
+        font-size: 12px;
+        margin-top: 22px;
+        color: #6D7B88;
+    }
+
+    .post_description {
+        font-weight: bolder;
+        font-size: 16px;
+        color: #C6D0D2;
+    }
+
+    .post_follow_btn {
+        border-radius: 20px;
+        height: 30px;
+        width: 70px;
+    }
+
+    .post_profile_pic {
+        margin-top: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.custom-modal .ant-modal-content {
+    margin-top: 30px;
+    background-color: #1B2730;
 }
