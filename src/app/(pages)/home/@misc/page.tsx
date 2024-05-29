@@ -1,31 +1,43 @@
 "use client"
 
 import { Flex, Typography , Menu , List } from "antd";
-import "../../../styles/misc.css"
-import { HomeFilled , CompassFilled , FireFilled , LogoutOutlined } from "@ant-design/icons"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "../../../styles/misc.css";
+import { HomeFilled , CompassFilled , FireFilled , LogoutOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 
-export default function misc() {
+export default function Misc() {
 
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
+    const router = useRouter();
+
     const items = [
-    {
-        key: 1,
-        icon: <HomeFilled style={{ fontSize : "18px"}} />,
-        label: "Home"    
-    },
-    {
-        key: 2,
-        icon: <CompassFilled style={{ fontSize : "18px"}} />,
-        label: "Explore"
-    },
-    {
-        key: 3,
-        icon: <FireFilled style={{ fontSize : "18px"}} />,
-        label: "For You"
-    },
-    ]
+        {
+            key: 1,
+            icon: <HomeFilled style={{ fontSize : "18px"}} />,
+            label: "Home",   
+            route: "/home"
+        },
+        {
+            key: 2,
+            icon: <CompassFilled style={{ fontSize : "18px"}} />,
+            label: "Explore",
+            route: "/home/explore"
+        },
+        {
+            key: 3,
+            icon: <FireFilled style={{ fontSize : "18px"}} />,
+            label: "For You",
+            route: "/home/hot_on_location"
+        },
+    ];
+
+    useEffect(() => {
+        const path = window.location.pathname;
+        const index = items.findIndex(item => item.route === path);
+        setSelectedIndex(index !== -1 ? index : 0);
+    }, []);
 
     const handleMenuClick = (index: number) => {
         setSelectedIndex(index);
@@ -33,16 +45,17 @@ export default function misc() {
     }
 
     const data = [
-    {
-        id : 1,
-        description: 'Life is better with a slice of Kaju Katli.',
-        name: { last: 'Bikaner' },
-    },
-    {
-        id : 2,
-        description: 'Kaju Katli: Because calories don’t count during festivals.',
-        name: { last: 'Lallu Sweets' },
-    }];
+        {
+            id: 1,
+            description: 'Life is better with a slice of Kaju Katli.',
+            name: { last: 'Bikaner' },
+        },
+        {
+            id: 2,
+            description: 'Kaju Katli: Because calories don’t count during festivals.',
+            name: { last: 'Lallu Sweets' },
+        }
+    ];
 
     return(
         <>
@@ -53,16 +66,16 @@ export default function misc() {
                 className="menu-bar"
                 selectedKeys={[String(selectedIndex + 1)]}
             >
-                {items?.map(item => (
-                <Menu.Item 
+            {items?.map((item, index) => (
+                <Menu.Item
                     key={item.key}
                     icon={item.icon}
-                    onClick={() => handleMenuClick(item.key - 1)}
-                    style={{ color: selectedIndex === item.key - 1 ? "black" : "ghostwhite" }}
-                    >
+                    onClick={() => { handleMenuClick(index); router.push(item.route); }}
+                    style={{ color: selectedIndex === index ? "black" : "ghostwhite" }}
+                >
                     {item.label}
                 </Menu.Item>
-                ))}
+            ))}
             </Menu>
 
             <Flex vertical style={{ border : "2px solid #1B2730" , padding : "10px" , marginTop : "20px" , borderRadius : "20px" , height : "auto"}}>
