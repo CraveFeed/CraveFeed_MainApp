@@ -1,0 +1,8 @@
+.trend_description{
+}
+
+@media screen and (max-width : 1300px) {
+    .trend_description{
+        font-size: 12px !important;
+    }
+}
