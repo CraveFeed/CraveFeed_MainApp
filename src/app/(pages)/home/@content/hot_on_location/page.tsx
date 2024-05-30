@@ -1,14 +1,14 @@
 "use client"
 
 import React from "react";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
-import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal } from "antd";
+import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal , Menu , FloatButton } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
-import { RestFilled , ReadFilled , PlusCircleFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
+import { RestFilled , ReadFilled , PlusCircleFilled , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled , PlusOutlined } from "@ant-design/icons";
 import avatar from "../../../../assets/avatar.jpg";
 import elonPost from "../../../../assets/elon_food_post.jpeg"
 import startship from "../../../../assets/starship.jpeg"
@@ -19,7 +19,9 @@ import profilePic2 from "../../../../assets/profilePic2.jpg"
 import profilePic3 from "../../../../assets/lavelisProPic.jpg"
 import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
+import {Drawer} from 'antd';
 import CountUp from 'react-countup';
+import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
 
 const formatter: StatisticProps['formatter'] = (value) => (
@@ -40,11 +42,14 @@ const Editor = () => (
 </>
 );
 
-export default function ContentHot(){
+export default function Content(){
 
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [ id , setId ] = useState<number>();
+
+    const router = useRouter();    
 
 
     const data = [
@@ -121,7 +126,7 @@ export default function ContentHot(){
     const postData = [
         {
             id: 1,
-            name: 'Elon Musk Ki Ma Ka',
+            name: 'Elon Musk',
             time: 'Few minutes ago',
             tag: 'Business',
             content: 'Ice cream is an amazing invention',
@@ -159,6 +164,38 @@ export default function ContentHot(){
         },
     ];
 
+    const MenuItems = [
+        {
+            key: 1,
+            icon: <HomeFilled className="nav-buttons-icons" />,
+            label: <span className="nav-buttons-text">Home</span>,   
+            route: "/home"
+        },
+        {
+            key: 2,
+            icon: <CompassFilled  className="nav-buttons-icons"/>,
+            label: <span className="nav-buttons-text">Explore</span>,
+            route: "/home/explore"
+        },
+        {
+            key: 3,
+            icon: <FireFilled className="nav-buttons-icons"/>,
+            label: <span className="nav-buttons-text">For You</span>,
+            route: "/home/hot_on_location"
+        },
+    ];
+
+    useEffect(() => {
+        const path = window.location.pathname;
+        const index = MenuItems.findIndex(item => item.route === path);
+        setSelectedIndex(index !== -1 ? index : 0);
+    }, []);
+
+    const handleMenuClick = (index: number) => {
+        setSelectedIndex(index);
+        console.log(selectedIndex);
+    }
+
     return (
         <Flex 
             vertical 
@@ -173,7 +210,7 @@ export default function ContentHot(){
                 scrollbarWidth: "none",
                 msOverflowStyle: "none"
             }}>
-            <Card style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
+            <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
                     <Avatar size={60} style={{ marginRight : "20px"}} src={avatar.src}/>
                     <Input className="input" placeholder="Basic usage"/>;
@@ -186,11 +223,32 @@ export default function ContentHot(){
                     </Space>
                 </Flex>
             </Card>
+            <Menu
+                style={{backgroundColor : "#1B2730" , padding : "20px" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
+                mode="horizontal"
+                defaultSelectedKeys={['1']}
+                className="menu-bar home-mobile"
+                selectedKeys={[String(selectedIndex + 1)]}
+            >
+            {MenuItems?.map((item, index) => (
+                <Menu.Item
+                    key={item.key}
+                    icon={item.icon}
+                    onClick={() => { handleMenuClick(index); router.push(item.route); }}
+                    style={{ color : "ghostwhite" }} 
+                    // : selectedIndex === index ? "black" :
+                >
+                    {item.label}
+                </Menu.Item>
+            ))}
+            </Menu>
+            <FloatButton icon={<PlusOutlined />} className="home-mobile" />
             {postData.map((item) => (
                 <Card
                 key={item.id}
                 bodyStyle={{ padding: 0 }}
                 style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
+                className="card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
                     <Flex gap={3}>
@@ -203,8 +261,8 @@ export default function ContentHot(){
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
-                                <Tag onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
+                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
+                                <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
                     </Flex>
@@ -226,7 +284,7 @@ export default function ContentHot(){
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
                         <RestFilled className="likes_comments_comment" />
-                        <Statistic valueStyle={{ fontSize : "16px" , color : "white" , marginTop : "6px"}} value={item.likeCount} formatter={formatter} />
+                        <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
                 </Flex>

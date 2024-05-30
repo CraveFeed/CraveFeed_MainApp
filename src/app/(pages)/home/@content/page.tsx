@@ -1,14 +1,14 @@
 "use client"
 
 import React from "react";
-import { useState } from "react";
+import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
-import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal , Menu } from "antd";
+import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
-import { RestFilled , ReadFilled , PlusCircleFilled , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
+import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../assets/avatar.jpg";
 import elonPost from "../../../assets/elon_food_post.jpeg"
 import startship from "../../../assets/starship.jpeg"
@@ -19,7 +19,6 @@ import profilePic2 from "../../../assets/profilePic2.jpg"
 import profilePic3 from "../../../assets/lavelisProPic.jpg"
 import profilePic4 from "../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
-import {Drawer} from 'antd';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
@@ -51,21 +50,21 @@ export default function Content(){
 
     const router = useRouter();    
 
-
+    
     const data = [
         {
             actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: profilePic3.src,
             content: (
-            <p>
+                <p>
                 We supply a series of design principles, practical patterns and high quality design
                 resources (Sketch and Axure), to help people create their product prototypes beautifully and
                 efficiently.
             </p>
             ),
             datetime: (
-            <Tooltip title="2016-11-22 11:22:33">
+                <Tooltip title="2016-11-22 11:22:33">
                 <span>8 hours ago</span>
             </Tooltip>
             ),
@@ -75,22 +74,22 @@ export default function Content(){
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: startship.src,
             content: (
-            <p>
+                <p>
                 We supply a series of design principles, practical patterns and high quality design
                 resources (Sketch and Axure), to help people create their product prototypes beautifully and
                 efficiently.
             </p>
             ),
             datetime: (
-            <Tooltip title="2016-11-22 10:22:33">
+                <Tooltip title="2016-11-22 10:22:33">
                 <span>9 hours ago</span>
             </Tooltip>
             ),
         },
-        ];
-
-// Comments array
-
+    ];
+    
+    // Comments array
+    
     const items: MenuProps['items'] = [
         {
             key: '1',
@@ -102,7 +101,7 @@ export default function Content(){
                         title={'Share your views on what else should I try CraveFeed'}
                         hashtag={'#cravefeed'}
                         className="share-button"
-                    >
+                        >
                     </FacebookShare>
                 </Space>
             ),
@@ -110,19 +109,19 @@ export default function Content(){
         {
             key: '2',
             label: (
-            <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
+                <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <WhatsappShare
                         windowHeight={20}
                         url={"https://nextjs.org/"}
                         title={'Share your views on what else should I try on CraveFeed'}
                         className="share-button"
-                    >
+                        >
                     </WhatsappShare>
                 </Space>
             ),
         },
     ];
-
+    
     const postData = [
         {
             id: 1,
@@ -163,27 +162,32 @@ export default function Content(){
             likeCount : 12
         },
     ];
-
+    
     const MenuItems = [
         {
             key: 1,
-            icon: <HomeFilled style={{ fontSize : "18px"}} />,
-            label: "Home",   
+            icon: <HomeFilled className="nav-buttons-icons" />,
+            label: <span className="nav-buttons-text">Home</span>,   
             route: "/home"
         },
         {
             key: 2,
-            icon: <CompassFilled style={{ fontSize : "18px"}} />,
-            label: "Explore",
+            icon: <CompassFilled  className="nav-buttons-icons"/>,
+            label: <span className="nav-buttons-text">Explore</span>,
             route: "/home/explore"
         },
         {
             key: 3,
-            icon: <FireFilled style={{ fontSize : "18px"}} />,
-            label: "For You",
+            icon: <FireFilled className="nav-buttons-icons"/>,
+            label: <span className="nav-buttons-text">For You</span>,
             route: "/home/hot_on_location"
         },
     ];
+    useEffect(() => {
+        const path = window.location.pathname;
+        const index = MenuItems.findIndex(item => item.route === path);
+        setSelectedIndex(index !== -1 ? index : 0);
+    }, []);
 
     const handleMenuClick = (index: number) => {
         setSelectedIndex(index);
@@ -236,6 +240,7 @@ export default function Content(){
                 </Menu.Item>
             ))}
             </Menu>
+            <FloatButton icon={<PlusOutlined />} className="home-mobile" />
             {postData.map((item) => (
                 <Card
                 key={item.id}
@@ -254,8 +259,8 @@ export default function Content(){
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
-                                <Tag onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
+                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
+                                <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
                     </Flex>
@@ -277,7 +282,7 @@ export default function Content(){
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
                         <RestFilled className="likes_comments_comment" />
-                        <Statistic valueStyle={{ fontSize : "16px" , color : "white" , marginTop : "6px"}} value={item.likeCount} formatter={formatter} />
+                        <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
                 </Flex>
