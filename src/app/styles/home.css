@@ -9,8 +9,8 @@ xxl: '1600px', */
 :root{
         --backgroundColor: #051017;
         --cardBackGroundColor: #1B2730;
-        --mainTextColor: #ffffff;
-        --subMainTxtColor : rgb(137, 135, 135);
+        --mainTextColor: #c7c7c7;
+        --subMainTxtColor : #55616b;
         --dimTextColor: #4C5965;
         --lightButton: #28343E;
         --darkButton: #1B2730;
@@ -72,5 +72,131 @@ xxl: '1600px', */
     }
     .extra-small-mobile {
         display: flex;
+    }
+}
+
+ /* ***************************** bio ********************************************* */
+
+.suggested-mobile-title {
+    font-size: 21px !important;
+}
+
+.suggested-mobile-text {
+    font-size: 16px !important;
+}
+
+.suggested-avatar{
+    height: 50px !important; 
+    width: 50px !important;
+}
+
+.suggested-button{
+
+}
+
+.suggested-parent-Flex{
+    padding-inline: 15px !important;
+}
+
+@media screen and (max-width: 1830px) {
+    .suggested-mobile-title {
+            font-size: 15px !important;
+            max-width: 80px !important;
+        }
+
+    .suggested-mobile-text {
+        font-size: 12px !important;
+        max-width: 80px !important;
+    }
+}
+
+@media screen and (max-width: 1340px) {
+    .suggested-mobile-title {
+        font-size: 15px !important;
+        max-width: 80px !important;
+    }
+
+    .suggested-mobile-text {
+        font-size: 12px !important;
+        max-width: 80px !important;
+    }
+
+    .suggested-avatar {
+        height: 30px !important;
+        width: 30px !important;
+    }
+
+    .suggested-button{
+        width: 55px;
+        font-size: 9px;
+    }
+
+    .suggested-parent-Flex {
+        padding-inline: 5px !important;
+    }
+}
+ 
+/* Bio */
+
+.follower-title{
+    font-size: 24px !important;
+}
+
+.follower-text {
+    font-size: 14px !important;
+}
+
+.bio-description{
+    font-size: 16px;
+}
+
+.follower-space-padding{
+    padding-inline: 50px;
+}
+
+.bio-profile-pic{
+    height: 85px;
+    width:  85px;
+}
+
+@media screen and (max-width: 1400px) {
+    .follower-title {
+        font-size: 18px !important;
+        padding-bottom: 6px;
+    }
+
+    .follower-text {
+        font-size: 10px !important;
+    }
+    .follower-space-padding {
+        padding-inline: 20px;
+    }
+
+    .bio-profile-pic {
+        height: 55px;
+        width: 55px;
+        margin-top: 40px;
+    }
+
+    .bio-description {
+        font-size: 12px;
+    }
+}
+
+.home-desktop{
+    display: visible;
+}
+
+.home-mobile {
+    display: none;
+}
+
+@media screen and (max-width : 1000px) {
+    .home-desktop{
+        display: none;
+    }
+
+    .home-mobile {
+        display: block;
     }
 }
