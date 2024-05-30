@@ -182,3 +182,21 @@ xxl: '1600px', */
         font-size: 12px;
     }
 }
+
+.home-desktop{
+    display: visible;
+}
+
+.home-mobile {
+    display: none;
+}
+
+@media screen and (max-width : 1000px) {
+    .home-desktop{
+        display: none;
+    }
+
+    .home-mobile {
+        display: block;
+    }
+}

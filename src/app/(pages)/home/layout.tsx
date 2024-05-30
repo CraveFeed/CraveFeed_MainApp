@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout , Row, Col } from 'antd';
+import { Layout , Row, Col , Flex , Space} from 'antd';
 import Navbar from '@/app/Components/Navbar';
 import "../../styles/home.css";
 import { ReactNode } from 'react';
@@ -25,8 +25,8 @@ export default function HomeLayout({
       <Header style={{ display: 'flex', alignItems: 'center', backgroundColor: "#051017", color: "white", padding: "10px", paddingTop: "10px" }}>
         <Navbar />
       </Header>
-      <Content style={{ backgroundColor: "#051017" , padding : "20px" }}>
-        <Row gutter={16}>
+      <Content className='home-desktop' style={{ backgroundColor: "#051017" , padding : "20px" }}>
+        <Row  gutter={16}>
             <Col span={5}>
                 {bio}
             </Col>
@@ -38,6 +38,20 @@ export default function HomeLayout({
             </Col>
         </Row>
       </Content>
+        
+        <Content className='home-mobile' style={{ backgroundColor: "#051017" , paddingTop : "10px" , border : "2px solid red"}}>
+          <Flex vertical justify='center'align='center' style={{ border : "2px solid red"}}>
+              {/* <Space >
+                  {misc}
+                  <></>
+              </Space> */}
+              <Space >
+                  {content}
+              </Space>
+          </Flex>
+        </Content>
+
+
     </Layout>
   );
 }

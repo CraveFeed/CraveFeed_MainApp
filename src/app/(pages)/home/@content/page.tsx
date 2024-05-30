@@ -5,10 +5,10 @@ import { useState } from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
-import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal } from "antd";
+import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
-import { RestFilled , ReadFilled , PlusCircleFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
+import { RestFilled , ReadFilled , PlusCircleFilled , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../assets/avatar.jpg";
 import elonPost from "../../../assets/elon_food_post.jpeg"
 import startship from "../../../assets/starship.jpeg"
@@ -46,7 +46,10 @@ export default function Content(){
 
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [ id , setId ] = useState<number>();
+
+    const router = useRouter();    
 
 
     const data = [
@@ -161,6 +164,32 @@ export default function Content(){
         },
     ];
 
+    const MenuItems = [
+        {
+            key: 1,
+            icon: <HomeFilled style={{ fontSize : "18px"}} />,
+            label: "Home",   
+            route: "/home"
+        },
+        {
+            key: 2,
+            icon: <CompassFilled style={{ fontSize : "18px"}} />,
+            label: "Explore",
+            route: "/home/explore"
+        },
+        {
+            key: 3,
+            icon: <FireFilled style={{ fontSize : "18px"}} />,
+            label: "For You",
+            route: "/home/hot_on_location"
+        },
+    ];
+
+    const handleMenuClick = (index: number) => {
+        setSelectedIndex(index);
+        console.log(selectedIndex);
+    }
+
     return (
         <Flex 
             vertical 
@@ -175,7 +204,7 @@ export default function Content(){
                 scrollbarWidth: "none",
                 msOverflowStyle: "none"
             }}>
-            <Card style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
+            <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
                     <Avatar size={60} style={{ marginRight : "20px"}} src={avatar.src}/>
                     <Input className="input" placeholder="Basic usage"/>;
@@ -188,11 +217,31 @@ export default function Content(){
                     </Space>
                 </Flex>
             </Card>
+            <Menu
+                style={{backgroundColor : "#1B2730" , padding : "20px" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
+                mode="horizontal"
+                defaultSelectedKeys={['1']}
+                className="menu-bar home-mobile"
+                selectedKeys={[String(selectedIndex + 1)]}
+            >
+            {MenuItems?.map((item, index) => (
+                <Menu.Item
+                    key={item.key}
+                    icon={item.icon}
+                    onClick={() => { handleMenuClick(index); router.push(item.route); }}
+                    style={{ color : "ghostwhite" }} 
+                    // : selectedIndex === index ? "black" :
+                >
+                    {item.label}
+                </Menu.Item>
+            ))}
+            </Menu>
             {postData.map((item) => (
                 <Card
                 key={item.id}
                 bodyStyle={{ padding: 0 }}
                 style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
+                className="card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
                     <Flex gap={3}>

@@ -245,3 +245,27 @@ color : "#5D6A77" */
     margin-top: 30px;
     background-color: #1B2730;
 }
+
+
+        /* Mobile responsive */
+.card-container {
+    width: 100%;
+    /* max-width: 300px; */
+    margin: 0 auto;
+}
+
+@media screen and (max-width : 1000px) {
+    .card-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width : 500px) {
+    .card-container {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
