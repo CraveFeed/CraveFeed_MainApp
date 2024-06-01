@@ -10,8 +10,10 @@ import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../../assets/avatar.jpg";
-import elonPost from "../../../../assets/elon_food_post.jpeg"
-import startship from "../../../../assets/starship.jpeg"
+// import elonPost from "../../../../assets/elon_food_post.jpeg"
+// import startship from "../../../../assets/starship.jpeg"
+import evrest from "../../../../assets/everestspices_logo.jpeg"
+import foodPost1 from "../../../../assets/everest_post.jpeg"
 import foodPost2 from "../../../../assets/food_post2.jpeg"
 import foodPost3 from "../../../../assets/food_post3.jpeg"
 import foodPost4 from "../../../../assets/food_post4.jpeg"
@@ -73,7 +75,7 @@ export default function Content(){
         {
             actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            avatar: startship.src,
+            avatar: evrest.src,
             content: (
             <p>
                 We supply a series of design principles, practical patterns and high quality design
@@ -126,13 +128,13 @@ export default function Content(){
     const postData = [
         {
             id: 1,
-            name: 'Elon Musk',
-            time: 'Few minutes ago',
+            name: 'Everest Masala',
+            time: '3 weeks ago',
             tag: 'Business',
-            content: 'Ice cream is an amazing invention',
+            content: 'Taste Me best mummy or \'Everest\'',
             location : "",
-            profilePeopleSrc: startship.src,
-            postImage: elonPost.src,
+            profilePeopleSrc: evrest.src,
+            postImage: foodPost1.src,
             likeCount : 112893
         },
         {
