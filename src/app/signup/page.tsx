@@ -196,6 +196,32 @@ export default function SignUp() {
     )}
   />
       </div>
+      <div >
+      <Select
+    mode="multiple"
+    style={{ width: '100%' }}
+    placeholder="Main Ingredient"
+  
+    options={options}
+    optionRender={(option) => (
+      <Space>
+        {option.data.desc}
+      </Space>
+    )}
+  />
+      <Select
+    mode="multiple"
+    style={{ width: '100%' }}
+    placeholder="Main Ingredient"
+    
+    options={options}
+    optionRender={(option) => (
+      <Space>
+        {option.data.desc}
+      </Space>
+    )}
+  />
+      </div>
      </Card>
     </Space>
     </Card>
