@@ -5,6 +5,10 @@
     margin-top: 25px;
     background-color: #1B2730;
     border:none;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
 }
 
 .heading-signup
@@ -24,5 +28,22 @@
     justify-content: center;
     justify-items: center;
     border-radius: 50% ;
+}
+/* .card-child1{
+    width: 1200px; 
+}
+.card-child2{
+    width: 1200px; 
+} */
+
+.align-first{
+    display: flex;
+   justify-content: space-around;
+}
+
+@media(max-width: 480px){
+    .align-first{
+        display: block;
+    }
 }
 
