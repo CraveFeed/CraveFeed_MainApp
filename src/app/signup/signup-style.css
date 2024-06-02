@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+.card-parent{
+    width:90%;
+    margin:auto;
+    margin-top: 25px;
+    background-color: #1B2730;
+    border:none;
+}
+
+.heading-signup
+{   
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: "Dancing Script", cursive;
+    font-size: 60px;
+    font-weight: bold;
+    color:wheat;
+}
+
+.avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 50% ;
+}
+
