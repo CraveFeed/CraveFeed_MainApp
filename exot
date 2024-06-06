@@ -1,0 +1,33 @@
+[33m247e012[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'CraveFeed:main' into main
+[33mc8f73dc[m Merge pull request #5 from CraveFeed/revert-4-harshit/login
+[33m8c2737f[m Revert "Harshit/login"
+[33ma35244e[m Merge pull request #4 from harshit340/harshit/login
+[33m1b7732a[m done with signup
+[33m4a6edc3[m hello
+[33m659e71b[m done with signin
+[33m72ee74d[m starting again
+[33mf665f34[m Merge branch 'main' of https://github.com/Vibgitcode27/CraveFeed_MainApp_Fork2
+[33m20e966e[m docker image now builds application instead pd running it in development mode
+[33m31e0e79[m hello
+[33m7a0e1e9[m working on sign
+[33m33d201a[m signin done
+[33m9db13ca[m Merge pull request #3 from Vibgitcode27/main
+[33m0f5fe77[m Merge branch 'Litomatoma:main' into main
+[33m9b5b6a9[m added docker file
+[33mf3ac30d[m Merge pull request #2 from Vibgitcode27/main
+[33mfd8fc19[m /home , /home/explore , /home/hot_on_location pages are ready and responsive
+[33m1707fce[m home page is responsive till 350px width
+[33m6d77622[m added /home , /home/explore , /home/hot_on_location routes
+[33mad868ce[m added page switch menu and Trends section
+[33m2c14679[m post cards are now responsive till 1000px ,  added view comments and add comments front-end and logic
+[33mb4b66a5[m completed post card working on making it responsive
+[33md4e4052[m completed create post section and now working on post section
+[33maf21d6a[m share food section in content route
+[33m9f0dec5[m bio section is made responsive
+[33ma8cfaf9[m added bio section
+[33mb46fe99[m added parallel routing and stated working on home page design
+[33m23893e1[m Merge pull request #1 from Vibgitcode27/main
+[33m02b1bf5[m added responsive navbar to home page
+[33mf3ca247[m configured Ant Design and @redux/toolkit
+[33mb058c83[m initialized next project
+[33m1b9a385[m Initial commit from Create Next App
