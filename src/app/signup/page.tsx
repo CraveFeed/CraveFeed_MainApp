@@ -4,8 +4,11 @@ import React from 'react'
 import "../signup/signup.css"
 import { CgProfile } from "react-icons/cg";
 import { AiFillProfile } from "react-icons/ai";
+import profilelogo from "../assets/Profilelogo.png"
+import Securitylogo from "../assets/Securitylogo.png"
 
 import { options, sweetenerOptions, fatOilOptions, seasoningOptions } from '../Components/MainIngredient'
+import { ProfileOutlined, SecurityScanOutlined } from '@ant-design/icons';
 export default function Signup() {
   const [current, setCurrent] = React.useState(0)
   const [choices, newChoices] = React.useState(null);
@@ -35,18 +38,13 @@ export default function Signup() {
   ]
   return (
     <>
-      {/* <header className='header-style'>
-        <span style={{ padding: "30px 0 0 60px", fontSize: "20px", color: "white" }}>LOGO-SPACE</span>
-        <div style={{ padding: "30px 60px 0 0" }}>
-          <Button type='primary' style={{ padding: "5px 20px 5px 20px" }}><span>SignUp</span></Button>
-        </div>
-      </header> */}
+    
       <div className='main-align'>
 
         <div className='left-part'>
           <div className='left-inside'>
             <div style={{ fontSize: "40px", paddingBottom: "50px" }}>
-              <span >CraveFeed</span></div>
+              <span style={{color:"white"}}>CraveFeed</span></div>
             <Steps direction="vertical" style={{ color: "white" }} className="custom-steps" onChange={setCurrent} current={current}>
               <Steps.Step title="Personal Info" className='steps'></Steps.Step>
               <Steps.Step title="Choices" className='steps'></Steps.Step>
@@ -55,9 +53,9 @@ export default function Signup() {
             </Steps></div>
         </div>
         <div >
-          <Card style={{ width: 900, padding: "30px 30px 30px 30px" }} className='Card-left'>
+          <Card style={{ width: 900, padding: "50px 60px 50px 60px" }} className='Card-left'>
             <span className='Sign-in'>SIGN IN</span>
-            <Card style={{ padding: "0 60px 60px 60px" }}>
+            <Card style={{ padding: "0 60px 60px 60px" ,backgroundColor:" #051017",}} className='hello'>
               {forms[current]}
             </Card>
           </Card>
@@ -74,17 +72,17 @@ export default function Signup() {
   function Profileinfo({ onFinish, initialValues }) {
     return (
       <>
-        <div style={{ color: "black", fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}>Profile Information</div>
+        <div style={{color:"white",fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}><ProfileOutlined style={{paddingRight:"10px"}}/>Profile Information</div>
         <Form onFinish={onFinish} initialValues={initialValues}>
 
           <Form.Item label="First Name" name={"First name"} rules={[{ required: true }]}>
-            <Input></Input>
+            <Input style={{backgroundColor:"#051017",color:"white"}}></Input>
           </Form.Item>
           <Form.Item label="Last Name" name={"Last name"} rules={[{ required: true }]}>
-            <Input></Input>
+            <Input style={{backgroundColor:"#051017",color:"white"}}></Input>
           </Form.Item>
           <Form.Item label="E-mail" name={"email"} rules={[{ required: true }]}>
-            <Input></Input>
+            <Input style={{backgroundColor:"#051017",color:"white"}}></Input>
           </Form.Item>
           <div className='button-align'>
             <Button className='button-inner' type='primary' htmlType='submit'>Next</Button></div>
@@ -96,27 +94,27 @@ export default function Signup() {
   function Choices({ onFinish, initialValues }) {
     return (
       <>
-        <div style={{ color: "black", fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}>Choices</div>
+        <div style={{ color:"white", fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}><ProfileOutlined style={{paddingRight:"10px"}}/>Choices</div>
         <Form onFinish={onFinish} initialValues={initialValues}>
-          <span>Profile Info</span>
+         
           <Form.Item label="Nick-Name" name={"NickName"} rules={[{ required: false }]}>
-            <Input></Input>
+            <Input style={{backgroundColor:"#051017",color:"white"}}></Input>
           </Form.Item>
 
-          <Form.Item
+          <Form.Item 
             name="Main Ingredient"
             label="Main Ingredient"
             rules={[{ required: false, message: 'Please input Intro' }]}
           >
             <Select
               mode="multiple"
-              style={{ width: '100%' }}
+              style={{ width: '100%' ,backgroundColor:"black"}}
               placeholder="Main Ingredient"
-
+ 
               options={options}
               optionRender={(option) => (
-                <Space>
-                  <span style={{ color: "black" }}>{option.data.desc}</span>
+                <Space >
+                  <span style={{ color: "black"}}>{option.data.desc}</span>
                 </Space>
               )}
             /></Form.Item>
@@ -126,9 +124,9 @@ export default function Signup() {
             label="Sweetner"
             rules={[{ required: false, message: 'Please input Intro' }]}
           >
-            <Select
+            <Select style={{backgroundColor:"#051017",color:"white",width: '100%' }}
               mode="multiple"
-              style={{ width: '100%' }}
+              
               placeholder="Sweeteners"
 
               options={sweetenerOptions}
@@ -168,6 +166,7 @@ export default function Signup() {
               placeholder="Seasoning"
 
               options={seasoningOptions}
+             
               optionRender={(option) => (
                 <Space >
                   <span style={{ color: "black" }}>{option.data.desc}</span>
@@ -190,7 +189,7 @@ export default function Signup() {
               options={options}
               optionRender={(option) => (
                 <Space>
-                  {option.data.desc}
+                  <span style={{ color: "black" }}>{option.data.desc}</span>
                 </Space>
               )}
             /></Form.Item>
@@ -203,13 +202,13 @@ export default function Signup() {
   function Security({ onFinish, initialValues }) {
     return (
       <>
-        <div style={{ color: "black", fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}>Security</div>
+        <div style={{ color:"white", fontSize: "25px", paddingBottom: "40px", paddingTop: "30px", fontWeight: "600" }}><SecurityScanOutlined style={{paddingRight:"10px"}} />Security</div>
         <Form onFinish={onFinish} initialValues={initialValues}>
           <Form.Item label="Password" name={"First name"} rules={[{ required: true }]}>
-            <Input.Password />
+            <Input.Password style={{backgroundColor:"#051017",color:"white"}} />
           </Form.Item>
           <Form.Item label="Confirmed" name={"Last name"} rules={[{ required: true }]}>
-            <Input.Password />
+            <Input.Password style={{backgroundColor:"#051017",color:"white"}} />
           </Form.Item>
 
           <div className='button-align'>
@@ -223,8 +222,10 @@ export default function Signup() {
       <>
 
         <Form >
-          <span style={{ color: "black" ,fontSize:"15px",fontWeight:700}}>Thank you for Registering </span>
-          <span style={{ color: "black" ,fontSize:"15px"}}>lets explore the world of Food with CraveFeed</span>
+          <div className='finish-page'>
+          <span style={{ color: "white" ,fontSize:"15px",fontWeight:700, paddingRight:"10px"}}>Thank you for Registering </span>
+          <span style={{ color: "white" ,fontSize:"15px"}}>lets explore the world of Food with CraveFeed</span>
+          </div>
           <div className='button-align'>
             <Button className='button-inner' type='primary' htmlType='submit'>Explore</Button></div>
         </Form></>
