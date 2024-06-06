@@ -1,0 +1,127 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.header-style {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.Card-left {
+    background-color: #051017;
+    border: none;
+    color: aliceblue;
+    padding-left: 70px;
+
+
+
+}
+
+.left-part {
+
+    padding-left: 90px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 120px;
+
+}
+
+
+.left-inside {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.Sign-in {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color : white
+}
+
+.button-align {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.button-inner {
+    padding: 20px 40px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.custom-steps .ant-steps-item-title {
+    color: white !important;
+    font-size: 20px;
+}
+
+.ant-form-item-label>label {
+    color: #ffffff !important;
+}
+
+.hello {
+    border: none;
+}
+
+.finish-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding-top: 20px;
+
+}
+
+.horizontal-steps .ant-steps-item-wait .ant-steps-item-title {
+    color: coral !important;
+}
+
+.horizontal-steps .ant-steps-item-process .ant-steps-item-title{
+    color: whitesmoke !important;
+}
+
+.horizontal-steps .ant-steps-item-finish .ant-steps-item-title {
+    color: whitesmoke !important;
+}
+
+.horizontal-steps .ant-steps-item-wait .ant-steps-item-tail::after {
+    background-color: coral !important;
+    border-color: aliceblue !important;
+}
+
+.horizontal-steps .ant-steps-item-finish .ant-steps-item-title::after {
+    background-color: #18bc83 !important;
+    color: #dfd6dd !important;
+}
+
+.horizontal-steps .ant-steps-item-wait .ant-steps-item-title::after {
+    background-color: #4f4f4f !important;
+}
+
+.horizontal-steps .ant-steps-item-process .ant-steps-item-title::after {
+    background-color: #4f4f4f !important;
+}
+
+.horizontal-steps .ant-steps-item-wait .ant-steps-item-icon{
+    color: coral !important;
+}
+
+.horizontal-steps .ant-steps-item-process .ant-steps-item-icon {
+    color: whitesmoke !important;
+}
+
+.horizontal-steps .ant-steps-item-finish .ant-steps-item-icon{
+    color: whitesmoke !important;
+}
