@@ -1,8 +1,9 @@
 import "../styles/profile.css"
-import coverImage from "../assets/everestspices_logo.jpeg"
-import coverImage2 from "../assets/everest_post.jpeg"
+import coverImage from "../assets/avatar.jpg"
+import coverImage2 from "../assets/starship.jpeg"
 import { Card , Flex , Col ,Row , Image, Avatar , Modal , Space , Button , Typography , Divider} from "antd"
 import { useState } from "react"
+import PostSkeleton from "./PostSkeleton"
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -16,10 +17,11 @@ export default function ProfileComponent(){
     };
 
     const innerCardStyle = {
-        transform: "scaleY(0.37)",
+        transform: "scaleY(0.34)",
         transformOrigin: "top", 
         margin : "0px",
         padding : "0px",
+        height : "70vh" ,
         backgroundColor: "transparent",
     };
 
@@ -30,7 +32,7 @@ export default function ProfileComponent(){
                 <p></p>
             </Col>
             <Col span={20}>
-                <Card style={{ backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid gray" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
+                <Card style={{ backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
                     <Card
                         hoverable={true}
                         style={innerCardStyle}
@@ -41,7 +43,7 @@ export default function ProfileComponent(){
                     <div style={{ marginTop : "-400px" , zIndex : "4"}}>
                         <Space style={{ width : "100%", paddingLeft : "10px" , display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
-                            <Avatar draggable={true} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , width : "150px" , height : "150px" }}/>
+                            <Avatar draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , width : "150px" , height : "150px" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
                                 <Button className="follower-title" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
                                 <Space direction="vertical">
@@ -70,11 +72,14 @@ export default function ProfileComponent(){
                         </Space>
                     </div>
                 </Card>
-                <Flex align="center" justify="space-between" style={{ border : "2px solid red" , paddingInline : "30px"}}>
-                    <Button>Posts</Button>
-                    <Button>Followers</Button>
-                    <Button>Following</Button>
+                <Flex align="center" justify="space-between" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Posts</Button>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Followers</Button>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Following</Button>
                 </Flex>
+                <div>
+                    <Followers/>
+                </div>
             </Col>
             <Col span={2}>
                 <p></p>
@@ -96,5 +101,58 @@ export default function ProfileComponent(){
                 />
             </Modal>
         </Card>
+    )
+}
+
+function Followers(){
+
+        const fetchedProfile = [
+        {
+            name : "Ivanka James",
+            username : "@ivankajames",
+            img : coverImage
+        },
+        {
+            name : "Big Bundah Girl",
+            username : "@bigBgirl",
+            img : coverImage 
+        },
+        {
+            name : "GlizzyGobbler",
+            username : "@GZperiod",
+            img : coverImage
+        },
+        {
+            name : "Tiny Weenie",
+            username : "@teeniweeni",
+            img : coverImage    
+        },
+        {
+            name : "Bob Loader",
+            username : "@BLnigger",
+            img : coverImage
+        },
+        {
+            name : "Dee Snuts",
+            username : "@DjNutter",
+            img : coverImage
+        }
+    ]
+
+    return(
+        <div>
+            {fetchedProfile.map((value, index) => (
+                <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
+                    <Space>
+                        <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "8vh" , height : "8vh" }}/>
+                        <Flex vertical>
+                            <Typography.Text style={{ fontSize : "24px" , color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
+                            <Typography.Text style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                        </Flex>
+                    </Space>
+                    <Button>Remove</Button>
+                </Flex>
+            ))}
+        </div>   
     )
 }
