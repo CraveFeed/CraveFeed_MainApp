@@ -245,7 +245,7 @@ export default function PostSkeleton(){
                         renderItem={item => (
                         <li>
                             <Comment
-                                style={{ backgroundColor : "#1B2730" , color : "white"}}
+                                style={{ backgroundColor : "transparent" , color : "white"}}
                                 actions={item.actions}
                                 author={item.author}
                                 avatar={item.avatar}

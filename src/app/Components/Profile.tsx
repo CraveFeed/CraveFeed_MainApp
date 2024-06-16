@@ -1,16 +1,18 @@
 import "../styles/profile.css"
 import coverImage from "../assets/avatar.jpg"
-import coverImage2 from "../assets/starship.jpeg"
+import coverImage2 from "../assets/lavelisProPic.jpg"
 import { Card , Flex , Col ,Row , Image, Avatar , Modal , Space , Button , Typography , Divider} from "antd"
 import { useState } from "react"
 import PostSkeleton from "./PostSkeleton"
+import EditProfile from "./EditProfile"
 
 const { Title, Paragraph, Text } = Typography;
 
 export default function ProfileComponent(){
 
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
-
+    const [editProfile , setEditProfile] = useState<boolean>(false)
+    const [active , setActive] = useState<string>("POSTS")
     const imageStyle = {
         width: "100%", // Decrease the width to 50% of the original
         borderRadius: "20px",
@@ -27,12 +29,9 @@ export default function ProfileComponent(){
 
     return(
         <Card style={{ backgroundColor : "#051017" , border : "none"}}>
-            <Row>
-            <Col span={2}>
-                <p></p>
-            </Col>
-            <Col span={20}>
-                <Card style={{ backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
+            
+            <Flex vertical align="center" justify="center">
+                <Card style={{ width : "52vw" , backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
                     <Card
                         hoverable={true}
                         style={innerCardStyle}
@@ -45,12 +44,12 @@ export default function ProfileComponent(){
                             <Space>
                             <Avatar draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , width : "150px" , height : "150px" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
-                                <Button className="follower-title" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Button style={{ backgroundColor : "transparent" , fontSize : "24px" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
                                 <Space direction="vertical">
-                                    <Button className="follower-text" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                                    <Button style={{ backgroundColor : "transparent" , fontSize : "14px" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
                                 </Space>
                                 <Flex align="center" justify="center" style={{ marginLeft : "-45px"}} >
-                                    <Space className="follower-space-padding" style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
+                                    <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
                                             <Typography.Text style={{ color : "white" , margin : "10px" , fontSize : "16px" , fontWeight : "bolder"}}>10</Typography.Text>
                                             <Typography.Text style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
@@ -65,26 +64,24 @@ export default function ProfileComponent(){
                                         </Flex>
                                     </Space>
                                 </Flex>
-                                <Paragraph className="bio-description" style={{ color : "#adacac"}}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                                <Paragraph style={{ color : "#adacac" , fontSize : "16px" , marginLeft : "-20px"}}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
                             </Flex>
                             </Space>
-                            <Button style={{ backgroundColor : "transparent" , color : "#c7c7c7" , width : "6.5vw" , height : "4vh" , borderRadius : "20px"}}>Edit Profile</Button>
+                            <Button onClick={() => {setEditProfile(true)}} style={{ backgroundColor : "transparent" , color : "#c7c7c7" , width : "6.5vw" , height : "4vh" , borderRadius : "20px"}}>Edit Profile</Button>
                         </Space>
                     </div>
                 </Card>
-                <Flex align="center" justify="space-between" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Posts</Button>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Followers</Button>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}}>Following</Button>
+                <Flex align="center" justify="space-between" style={{width : "51vw" , backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("POSTS")}}>Posts</Button>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("FOLLOWERS")}}>Followers</Button>
+                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>
                 </Flex>
-                <div>
-                    <Followers/>
+                <div style={{ width : "51vw"}}>
+                    {active === "POSTS" && <PostSkeleton/>}
+                    {active === "FOLLOWERS" && <Followers/>}
+                    {active === "FOLLOWING" && <Following/>}
                 </div>
-            </Col>
-            <Col span={2}>
-                <p></p>
-            </Col>
-            </Row>
+            </Flex>
             
             <Modal 
                 footer={null} 
@@ -93,7 +90,7 @@ export default function ProfileComponent(){
                 onCancel={() => { setViewProfileState(false) }} 
                 style={{ background: "transparent", padding: 0, margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                 width="auto"
-            >
+                >
                 <Image 
                     src={coverImage.src} 
                     preview={true}
@@ -115,7 +112,7 @@ function Followers(){
         {
             name : "Big Bundah Girl",
             username : "@bigBgirl",
-            img : coverImage 
+            img : coverImage2 
         },
         {
             name : "GlizzyGobbler",
@@ -138,9 +135,59 @@ function Followers(){
             img : coverImage
         }
     ]
+    
+    return(
+        <div style={{
+            height: "60vh",
+            overflowY: "scroll",
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none"
+        }}>
+            {fetchedProfile.map((value, index) => (
+                <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
+                    <Space>
+                        <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "8vh" , height : "8vh" }}/>
+                        <Flex vertical>
+                            <Typography.Text style={{ fontSize : "24px" , color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
+                            <Typography.Text style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                        </Flex>
+                    </Space>
+                    <Button>Remove</Button>
+                </Flex>
+            ))}
+        </div>   
+    )
+}
+
+function Following(){
+
+        const fetchedProfile = [
+        {
+            name : "Ivanka James",
+            username : "@ivankajames",
+            img : coverImage
+        },
+        {
+            name : "Big Bundah Girl",
+            username : "@bigBgirl",
+            img : coverImage2 
+        },
+        {
+            name : "GlizzyGobbler",
+            username : "@GZperiod",
+            img : coverImage
+        },
+    ]
 
     return(
-        <div>
+        <div style={{
+            height: "60vh",
+            overflowY: "scroll",
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none"
+        }}>
             {fetchedProfile.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
