@@ -156,3 +156,29 @@ color : "#5D6A77" */
     color: gray;
     /* Change this to your desired placeholder color */
 }
+
+/* Responsive Design */
+
+.profile-name{
+    font-size: 1.4vw;
+}
+
+.profile-username{
+    font-size: 0.7vw;
+}
+
+.profile-bio{
+    font-size: 0.9vw;
+}
+
+.profile-profilePic {
+    width: 8.7vw;
+    height: 8.7vw;
+}
+
+.profile-editProfile{
+    background-color: transparent;
+    color: #c7c7c7;
+    width: 6.4vw;
+    height: "4vh";
+}

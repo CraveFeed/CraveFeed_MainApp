@@ -105,7 +105,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
                 <TextArea
                     className="profile-custom-textarea"
                     style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }}
-                    placeholder="Controlled autosize"
+                    placeholder="Your bio"
                     autoSize={{ minRows: 3, maxRows: 5 }}
                 />
                 <Radio.Group name="radiogroup" defaultValue={1} style={{ display : "flex" , alignContent : "center" , justifyContent : "center"}}>

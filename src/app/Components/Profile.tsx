@@ -1,7 +1,7 @@
 import "../styles/profile.css"
 import coverImage from "../assets/avatar.jpg"
 import coverImage2 from "../assets/lavelisProPic.jpg"
-import { Card , Flex , Col ,Row , Image, Avatar , Modal , Space , Button , Typography , Divider} from "antd"
+import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
 import { useState } from "react"
 import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
@@ -41,11 +41,11 @@ export default function ProfileComponent(){
                     <div style={{ marginTop :"-55px"}}>
                         <Space style={{ width : "100%", paddingLeft : "10px" , display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
-                            <Avatar draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , width : "150px" , height : "150px" }}/>
+                            <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
-                                <Button style={{ backgroundColor : "transparent" , fontSize : "24px" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Button className="profile-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
                                 <Space direction="vertical">
-                                    <Button style={{ backgroundColor : "transparent" , fontSize : "14px" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
                                 </Space>
                                 <Flex align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
@@ -63,10 +63,10 @@ export default function ProfileComponent(){
                                         </Flex>
                                     </Space>
                                 </Flex>
-                                <Paragraph style={{ color : "#adacac" , fontSize : "16px" , marginLeft : "-20px"}}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                                <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
                             </Flex>
                             </Space>
-                            <Button onClick={() => {setEditProfile(true)}} style={{ backgroundColor : "transparent" , color : "#c7c7c7" , width : "6.5vw" , height : "4vh" , borderRadius : "20px"}}>Edit Profile</Button>
+                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
                         </Space>
                     </div>
                 </Card>
