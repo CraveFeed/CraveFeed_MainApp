@@ -149,3 +149,10 @@ color : "#5D6A77" */
     color: white !important;
     margin-top: 4px !important;
 }
+
+
+.profile-custom-input::placeholder,
+.profile-custom-textarea::placeholder {
+    color: gray;
+    /* Change this to your desired placeholder color */
+}

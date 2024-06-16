@@ -14,22 +14,21 @@ export default function ProfileComponent(){
     const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
     const imageStyle = {
-        width: "100%", // Decrease the width to 50% of the original
+        height : "30vh" ,
+        marginBottom : "10px",
+        width: "100%",
         borderRadius: "20px",
     };
 
     const innerCardStyle = {
-        transform: "scaleY(0.34)",
-        transformOrigin: "top", 
+        height : "auto",
         margin : "0px",
         padding : "0px",
-        height : "70vh" ,
-        backgroundColor: "transparent",
+        backgroundColor: "transparent" ,
     };
 
     return(
         <Card style={{ backgroundColor : "#051017" , border : "none"}}>
-            
             <Flex vertical align="center" justify="center">
                 <Card style={{ width : "52vw" , backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
                     <Card
@@ -39,7 +38,7 @@ export default function ProfileComponent(){
                         bordered={false}
                         bodyStyle={{ padding: 0}}
                     />
-                    <div style={{ marginTop : "-400px" , zIndex : "4"}}>
+                    <div style={{ marginTop :"-55px"}}>
                         <Space style={{ width : "100%", paddingLeft : "10px" , display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
                             <Avatar draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , width : "150px" , height : "150px" }}/>
@@ -48,7 +47,7 @@ export default function ProfileComponent(){
                                 <Space direction="vertical">
                                     <Button style={{ backgroundColor : "transparent" , fontSize : "14px" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
                                 </Space>
-                                <Flex align="center" justify="center" style={{ marginLeft : "-45px"}} >
+                                <Flex align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
                                             <Typography.Text style={{ color : "white" , margin : "10px" , fontSize : "16px" , fontWeight : "bolder"}}>10</Typography.Text>
@@ -82,7 +81,7 @@ export default function ProfileComponent(){
                     {active === "FOLLOWING" && <Following/>}
                 </div>
             </Flex>
-            
+            <EditProfile editProfile={editProfile} setEditProfile={setEditProfile}/>
             <Modal 
                 footer={null} 
                 bodyStyle={{ padding: 0 }} 

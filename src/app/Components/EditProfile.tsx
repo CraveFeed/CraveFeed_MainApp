@@ -52,8 +52,8 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
 
   const uploadButton = (
     <button style={{ border: 0, background: 'none' }} type="button">
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
+      {loading ? <LoadingOutlined style={{color : "white"}} /> : <PlusOutlined style={{color : "white"}} />}
+      <div style={{ marginTop: 8 , color : "whitesmoke" , fontSize : "12px" }}>Upload Cover Image</div>
     </button>
   );
 
@@ -63,40 +63,57 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
       bodyStyle={{ padding: 0 }}
       open={editProfile}
       onCancel={() => setEditProfile(false)}
-      style={{ background: 'transparent', padding: 0, margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      style={{ background: 'transparent', display : "flex" , alignContent : "center" , justifyContent : "center"  , padding: 0, margin: 0,  alignItems: 'center' }}
+      className='custom-modal'
       width="auto"
     >
-        <Flex>
-            <Typography.Title>Edit Profile</Typography.Title>
-    
-            <Button>Save</Button>
-        </Flex>
-        <Flex align='center' justify='center'>
-             <Upload
-                name="avatar"
-                listType="picture-circle"
-                className="avatar-uploader"
-                showUploadList={false}
-                action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-            >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-            </Upload>
-        </Flex>
-        <Space direction='vertical'>
-            <Avatar src={avatar.src}></Avatar>
-            <Input size="large" placeholder="Name" />
-            <Input size="large" placeholder="Email" />
-            <TextArea
-                placeholder="Controlled autosize"
-                autoSize={{ minRows: 3, maxRows: 5 }}
+        <div style={{ backgroundColor : "#1B2730" }}>
+            <Flex align='center' justify='space-between'>
+                <Typography.Title style={{ color : "#c7c7c7" }}>Edit Profile</Typography.Title>
+                <Button style={{ width : "5vw" , border : "none" , borderRadius : "15px" , color : "#c7c7c7" , backgroundColor : "#051017"}}>Save</Button>
+            </Flex>
+            <Flex align='center' justify='center'>
+                <Upload
+                    name="avatar"
+                    listType="picture-circle"
+                    className="avatar-uploader"
+                    showUploadList={false}
+                    action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                    beforeUpload={beforeUpload}
+                    onChange={handleChange}
+                    >
+                    {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                </Upload>
+            </Flex>
+            <Space direction='vertical' style={{ width : "20vw"}}>
+                <Flex>
+                    <Upload
+                        name="avatar"
+                        style={{ width : "2px" , height : "2px" }}
+                        listType="picture-circle"
+                        className="avatar-uploader"
+                        showUploadList={false}
+                        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                        beforeUpload={beforeUpload}
+                        onChange={handleChange}
+                        >
+                        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : <Avatar src={avatar.src} style={{ width : "7vh" , height : "7vh"}}></Avatar>}
+                    </Upload>
+                </Flex>
+                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }} size="large" placeholder="Name" />
+                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }} size="large" placeholder="Email" />
+                <TextArea
+                    className="profile-custom-textarea"
+                    style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }}
+                    placeholder="Controlled autosize"
+                    autoSize={{ minRows: 3, maxRows: 5 }}
                 />
-            <Radio.Group name="radiogroup" defaultValue={1}>
-                <Radio value={1}>Personal</Radio>
-                <Radio value={2}>Business</Radio>
-            </Radio.Group>
-        </Space>
+                <Radio.Group name="radiogroup" defaultValue={1} style={{ display : "flex" , alignContent : "center" , justifyContent : "center"}}>
+                    <Radio style={{ color : "white" }} value={1}>Personal</Radio>
+                    <Radio style={{ color : "white" }} value={2}>Business</Radio>
+                </Radio.Group>
+            </Space>
+        </div>
     </Modal>
   );
 };
