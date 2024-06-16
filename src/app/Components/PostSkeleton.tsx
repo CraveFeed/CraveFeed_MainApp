@@ -168,28 +168,28 @@ export default function PostSkeleton(){
                 key={item.id}
                 bodyStyle={{ padding: 0 }}
                 style={{width: '100%', backgroundColor: 'transparent', border: '1px solid #3f474f', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
-                className="card-container"
+                className="profile-card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
                     <Flex gap={3}>
-                        <Avatar src={item.profilePeopleSrc} className="post_profile_pic" />
+                        <Avatar src={item.profilePeopleSrc} className="profile_profile_pic" />
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title className="post-name" level={2}>{item.name}</Typography.Title>
-                                <Typography.Text className="post_time">{item.time}</Typography.Text>
+                                <Typography.Title className="profile-name" level={2}>{item.name}</Typography.Title>
+                                <Typography.Text className="profile_time">{item.time}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
-                                <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
+                                {item.tag && (<Tag className="profile-user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
+                                <Tag className="profile-user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
                     </Flex>
-                        <Button className="post_follow_btn">Follow</Button>
+                        <Button className="profile_follow_btn">Follow</Button>
                 </Flex>
                 <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
-                    <Typography.Paragraph className="post_description">
+                    <Typography.Paragraph className="profile_description">
                         {item.content}
                     </Typography.Paragraph>
                 </Flex>
@@ -200,37 +200,37 @@ export default function PostSkeleton(){
                     cover={<Image src={item.postImage} style={{ borderRadius: '30px' }} />}
                     ></Card>
                 </Flex>
-                <Flex className="likes_comments" align="center" justify="space-between">
+                <Flex className="profile-likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
-                        <HeartFilled className="likes_comments_heart"/>
-                        <RestFilled className="likes_comments_comment" />
-                        <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
+                        <HeartFilled className="profile-likes_comments_heart"/>
+                        <RestFilled className="profile-likes_comments_comment" />
+                        <Statistic className="profile-custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
+                    <Typography.Text className="profile-comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
                 </Flex>
-                <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
-                    <Button className="post-action-button">
+                <Flex gap={20} className="profile-action-button-mainDiv" align="center" justify="space-between">
+                    <Button className="profile-action-button">
                         <Space size="small">
-                            <HeartFilled className="post-action-button-icon"/>
-                            <Typography.Text className="post-action-button-text">Like</Typography.Text>
+                            <HeartFilled className="profile-action-button-icon"/>
+                            <Typography.Text className="profile-action-button-text">Like</Typography.Text>
                         </Space>
                     </Button>
-                    <Button className="post-action-button">
+                    <Button className="profile-action-button">
                         <Space size="small">
-                            <PullRequestOutlined className="post-action-button-icon"/>
-                            <Typography.Text className="post-action-button-text">Repost</Typography.Text>
+                            <PullRequestOutlined className="profile-action-button-icon"/>
+                            <Typography.Text className="profile-action-button-text">Repost</Typography.Text>
                         </Space>
                     </Button>
-                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
+                    <Button onClick={() => { setAddComment(true)}} className="profile-action-button">
                         <Space size="small" >
-                            <MessageFilled className="post-action-button-icon"/>
-                            <Typography.Text className="post-action-button-text">Comment</Typography.Text>
+                            <MessageFilled className="profile-action-button-icon"/>
+                            <Typography.Text className="profile-action-button-text">Comment</Typography.Text>
                         </Space>
                     </Button>
-                    <Button className="post-upload-button">
+                    <Button className="profile-upload-button">
                         <Space size="small">
                             <Dropdown menu={{ items }}>
-                                <UploadOutlined className="post-upload-button-icon"/>
+                                <UploadOutlined className="profile-upload-button-icon"/>
                             </Dropdown>
                         </Space>
                     </Button>
@@ -238,7 +238,7 @@ export default function PostSkeleton(){
                 {/* // Comments */}
                 {showComments && id == item.id && (
                     <List
-                        className="comment-list"
+                        className="profile-comment-list"
                         header={ <span style={{ color : "#4991FD"}}>{data.length} comments</span>}
                         itemLayout="horizontal"
                         dataSource={data}

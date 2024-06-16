@@ -30,7 +30,7 @@ export default function ProfileComponent(){
     return(
         <Card style={{ backgroundColor : "#051017" , border : "none"}}>
             <Flex vertical align="center" justify="center">
-                <Card style={{ width : "52vw" , backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
+                <Card className="profile-bio-card" style={{ backgroundColor : "#051017" , border : "none" , margin : "0px" , paddingBottom : "10px" , borderBottom : "1px solid #4a4c4c" , borderRadius : "0px"}} bodyStyle={{ padding: 0}}>
                     <Card
                         hoverable={true}
                         style={innerCardStyle}
@@ -39,27 +39,27 @@ export default function ProfileComponent(){
                         bodyStyle={{ padding: 0}}
                     />
                     <div style={{ marginTop :"-55px"}}>
-                        <Space style={{ width : "100%", paddingLeft : "10px" , display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
+                        <Space className="profile-bio_avatar-div" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
                             <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
-                                <Button className="profile-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
                                 <Space direction="vertical">
                                     <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
                                 </Space>
-                                <Flex align="center" justify="center">
+                                <Flex className="profile-pff-mainDiv" align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text style={{ color : "white" , margin : "10px" , fontSize : "16px" , fontWeight : "bolder"}}>10</Typography.Text>
-                                            <Typography.Text style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>10</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text style={{ color : "white" , margin : "10px" , fontSize : "16px" , fontWeight : "bolder"}}>6005</Typography.Text>
-                                            <Typography.Text style={{ fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>6005</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text style={{ color : "white" , margin : "10px" , fontSize : "16px" , fontWeight : "bolder"}}>5000</Typography.Text>
-                                            <Typography.Text style={{ color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>5000</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                                         </Flex>
                                     </Space>
                                 </Flex>
@@ -70,12 +70,12 @@ export default function ProfileComponent(){
                         </Space>
                     </div>
                 </Card>
-                <Flex align="center" justify="space-between" style={{width : "51vw" , backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("POSTS")}}>Posts</Button>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("FOLLOWERS")}}>Followers</Button>
-                    <Button style={{ background : "transparent" , width : "10vw" , borderRadius : "10px" , height : "4vh" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>
+                <Flex align="center" justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
+                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("POSTS")}}>Posts</Button>
+                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWERS")}}>Followers</Button>
+                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>
                 </Flex>
-                <div style={{ width : "51vw"}}>
+                <div className="profile-widthDiv">
                     {active === "POSTS" && <PostSkeleton/>}
                     {active === "FOLLOWERS" && <Followers/>}
                     {active === "FOLLOWING" && <Following/>}
