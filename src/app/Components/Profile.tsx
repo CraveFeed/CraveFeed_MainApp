@@ -41,7 +41,7 @@ export default function ProfileComponent(){
                     <div className="bio-div-above_500px-responsive"  style={{ marginTop :"-55px"}}>
                         <Space className="profile-bio_avatar-div" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
-                            <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
+                            <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , cursor : "pointer" , backgroundColor: "white" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
                                 <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
                                 <Space direction="vertical">
@@ -74,7 +74,7 @@ export default function ProfileComponent(){
                         <Space className="profile-bio_avatar-div-500px" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space direction="vertical">
                             <Flex align="center" justify="center" style={{ width : "350px" }}>
-                                <Avatar className="profile-profilePic-500px" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
+                                <Avatar className="profile-profilePic-500px" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , cursor : "pointer"}}/>
                             </Flex>
                             <Flex align="center" justify="center" vertical style={{width : "100%"}}>
                                 <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
@@ -124,7 +124,8 @@ export default function ProfileComponent(){
                 bodyStyle={{ padding: 0 }} 
                 open={viewProfileImage} 
                 onCancel={() => { setViewProfileState(false) }} 
-                style={{ background: "transparent", padding: 0, margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                style={{  padding: 0, margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                className="profile-avatar-view-modal"
                 width="auto"
                 >
                 <Image 
@@ -185,11 +186,11 @@ function Followers(){
                     <Space>
                         <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "8vh" , height : "8vh" }}/>
                         <Flex vertical>
-                            <Typography.Text style={{ fontSize : "24px" , color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
-                            <Typography.Text style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
-                    <Button>Remove</Button>
+                    <Button className="profile-ff-button">Remove</Button>
                 </Flex>
             ))}
         </div>   
@@ -227,13 +228,13 @@ function Following(){
             {fetchedProfile.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "8vh" , height : "8vh" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img.src} style={{position : "relative"}}/>
                         <Flex vertical>
-                            <Typography.Text style={{ fontSize : "24px" , color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
-                            <Typography.Text style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
-                    <Button>Remove</Button>
+                    <Button className="profile-ff-button">Remove</Button>
                 </Flex>
             ))}
         </div>   

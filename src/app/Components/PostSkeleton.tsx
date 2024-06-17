@@ -150,15 +150,6 @@ export default function PostSkeleton(){
             postImage: foodPost3.src ,
             likeCount : 1341
         },
-        {
-            id: 4,
-            name: 'Vedant Samaiya(Modi ka Parivar)',
-            time: '5 mon ago',
-            content: 'Gujarati people to food cuisine',
-            profilePeopleSrc: profilePic4.src,
-            postImage: foodPost4.src ,
-            likeCount : 12
-        },
     ];
 
     return(
@@ -257,7 +248,7 @@ export default function PostSkeleton(){
                     />
                 )}
 
-                    <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
+                    <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="profile-custom-modal">
                         <Comment
                             style={{ backgroundColor : "#1B2730" , color : "white"}}
                             avatar={<Avatar src={avatar.src} alt="Han Solo" />}

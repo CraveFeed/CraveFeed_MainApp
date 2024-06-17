@@ -64,7 +64,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
       open={editProfile}
       onCancel={() => setEditProfile(false)}
       style={{ background: 'transparent', display : "flex" , alignContent : "center" , justifyContent : "center"  , padding: 0, margin: 0,  alignItems: 'center' }}
-      className='custom-modal'
+      className='profile-edit-modal'
       width="auto"
     >
         <div style={{ backgroundColor : "#1B2730" }}>
