@@ -1,0 +1,739 @@
+/* :root {
+    --backgroundColor: #051017;
+    --cardBackGroundColor: #1B2730;
+    --secondaryCardButtonBackground: #28343E;
+    --mainTextColor: #c7c7c7;
+    --subMainTxtColor: #55616b;
+    --dimTextColor: #4C5965;
+    --lightButton: #28343E;
+    --darkButton: #1B2730;
+    --darkButtonBorder: #26333D;
+    --highlightedText: #29a7f6;
+} */
+
+/* Name description follow button */
+
+.profile-custom-modal .ant-modal-content {
+    margin-top: 30px;
+    background-color: #1B2730;
+}
+
+.profile-card-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.profile-custom-statistic .ant-statistic-content {
+    font-size: 18px !important;
+    color: white !important;
+    margin-top: 4px !important;
+}
+
+/* Responsive Design */
+
+.bio-div-500px-responsive{
+    display: none;
+}
+
+.profile-bio-name{
+    font-size: 26px;
+}
+
+.profile-username{
+    font-size: 16px;
+}
+
+.profile-bio{
+    font-size: 18px;
+}
+
+.profile-profilePic {
+    width: 160px;
+    height: 160px;
+}
+
+.profile-avatar-view-modal .ant-modal-content{
+    background-color: #1B2730;
+}
+
+
+.profile-editProfile{
+    background-color: transparent;
+    color: #c7c7c7;
+    width: 140px;
+    height: "4vh";
+}
+
+.profile-bio-card{
+    width: 1000px;
+}
+
+.profile-toggle-button-mainDiv{
+    width: 1000px;
+    padding-inline: 30px;
+}
+
+.profile-toggle-button{
+    width: 240px;
+    height: 40px;
+}
+
+
+/***************** PROFILE POST *****************/
+
+.profile_profile_pic {
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.profile-name {
+    margin-top: 7px;
+    color: #D5DEE1 !important;
+}
+
+.profile_time {
+    margin-top: 19px;
+    color: #6D7B88;
+}
+
+.profile_description {
+    font-weight: bolder;
+    font-size: 18px;
+    color: #C6D0D2;
+}
+
+.profile_follow_btn {
+    border-radius: 20px;
+    height: 40px;
+    width: 100px;
+}
+
+
+
+.profile-likes_comments {}
+
+.profile-likes_comments_heart {
+    color: white;
+    border: 8px solid #c70700;
+    background-color: #c70700;
+    margin-left: -10px;
+    font-size: 16px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+
+.profile-likes_comments_comment {
+    color: white;
+    border: 8px solid #4681f4;
+    background-color: #4681f4;
+    margin-left: -10px;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.profile-comment-count {
+    font-size: 17px;
+    color: #5D6A77;
+}
+
+/* fontSize : "17px",
+color : "#5D6A77" */
+
+/* Action Buttons  */
+
+
+.profile-upload-button {
+    height: 50px;
+    width: 60px;
+    border-radius: 15px;
+    background-color: #1B2730;
+    border: 3px solid #3a4349;
+    
+}
+
+.profile-upload-button-icon {
+    font-size: 22px;
+    color: #FEFEFE;
+}
+
+.profile-upload-button:hover .profile-upload-button-icon {
+    color: #686868;
+}
+
+.profile-action-button-mainDiv {
+    margin-top: 30px;
+    padding-inline: 90px;
+    margin-bottom: 20px;
+}
+
+/* Like and Comment Count section  */
+
+.profile-action-button {
+    height: 45px;
+    width: 200px;
+    border-radius: 15px;
+    background-color: #28343E;
+    border: none;
+}
+
+.profile-action-button-icon {
+    font-size: 22px;
+    color: #FEFEFE;
+}
+
+.profile-action-button:hover .profile-action-button-icon {
+    color: #4a4a4a;
+}
+
+.profile-action-button-text {
+    font-size: 19px;
+    color: #C6D0D2;
+}
+
+.profile-widthDiv{
+    width: 1000px;
+}
+
+/* *********** NEW ****************** */
+.profile-pff-mainDiv{
+    
+}
+
+.profile-bold-text{
+    font-size: 16px;
+}
+
+.profile-plain-text{
+    
+}
+
+.profile-bio_avatar-div{
+    width: 100%;
+    padding-left: 10px;
+}
+
+/*  ******************* FOLLOWERS - FOLLOWING *****************************  */
+
+.profile-ff-name{
+    font-size: 24px;
+}
+
+.profile-ff-avatar{
+    height: 70px;
+    width: 70px;
+}
+
+.profile-ff-button{
+    border: none;
+    color: #051017;
+    border-radius: 20px;
+    background-color: rgb(253, 112, 119);
+}
+
+/* ********************** Edit Modal *********************************** */
+
+.edit-profile-flex{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-profile-save-btn-500px-div{
+    display: none;
+}
+
+.profile-custom-input::placeholder,
+.profile-custom-textarea::placeholder {
+    color: gray !important;
+}
+
+.profile-custom-textarea textarea::placeholder {
+    color: gray !important;
+}
+
+.profile-radio-btn .ant-radio-checked .ant-radio-inner{
+    border-color: #fd7077;
+    background-color: #fd7077;
+    /* Color for the border of the radio button */
+}
+
+.profile-edit-modal .ant-modal-content{
+    background-color: #1B2730;
+    border-radius: 30px;
+    border: 2px solid #fd7077;
+}
+
+
+.profile-edit-modal-mainDiv{
+    width: 400px;
+}
+
+.ant-input-textarea-show-count-suffix {
+    color: #ffcc00 !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@media screen and (max-width : 1350px) {
+    
+    .profile-widthDiv{
+        width: 700px;
+    }
+    
+    .profile-user-tags {
+        font-size: 7px;
+        height: 17px;
+        border-radius: 10px;
+    }
+
+    .profile-card-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .profile_profile_pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-name {
+        margin-top: 7px;
+        font-size: 21px !important;
+        color: #D5DEE1 !important;
+    }
+
+    .profile_time {
+        margin-top: 12px;
+        font-size: 12px !important;
+    }
+
+    .profile_description {
+        font-size: 15px;
+    }
+
+    .profile_follow_btn {
+        border-radius: 20px;
+        height: 30px;
+        width: 80px;
+    }
+
+
+    .profile-upload-button {
+        height: 32px;
+        width: 60px;
+        border-radius: 15px;
+        background-color: #1B2730;
+        border: 3px solid #3a4349;
+
+    }
+
+    .profile-upload-button-icon {
+        font-size: 16px;
+        color: #FEFEFE;
+    }
+
+    .profile-upload-button:hover .profile-upload-button-icon {
+        color: #686868;
+        border: none;
+    }
+
+    .profile-action-button-text {
+        font-size: 14px;
+        color: #C6D0D2;
+    }
+
+    .profile-action-button {
+        height: 32px;
+    }
+
+    .profile-likes_comments_heart {
+        border: 6px solid #c70700;
+        font-size: 12px;
+        height: 25px;
+        border-radius: 50%;
+    }
+
+    .profile-action-button-icon {
+        font-size: 16px;
+        color: #FEFEFE;
+    }
+    .profile-likes_comments_comment {
+        border: 6px solid #4681f4;
+        font-size: 12px;
+        height: 25px;
+        border-radius: 50%;
+    }
+
+    .profile-comment-count {
+        font-size: 14px;
+        color: #5D6A77;
+    }
+    
+    .profile-custom-statistic .ant-statistic-content {
+        font-size: 14px !important;
+        color: white !important;
+        margin-top: 2px !important;
+    }
+
+    .profile-action-button-mainDiv {
+        margin-top: 10px;
+        padding-inline: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* **************** BIO ****************** */
+    .profile-bio-name{
+        font-size: 26px;
+    }
+
+    .profile-username{
+        font-size: 16px;
+    }
+
+    .profile-bio{
+        font-size: 18px;
+    }
+
+    .profile-profilePic {
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile-editProfile{
+        background-color: transparent;
+        color: #c7c7c7;
+        width: 140px;
+        height: "4vh";
+    }
+
+    .profile-bio-card{
+        width: 700px;
+    }
+
+    .profile-toggle-button-mainDiv{
+        width: 700px;
+    }
+
+    .profile-toggle-button{
+        width: 170px;
+        height: 35px;
+    }
+ }
+
+@media screen and (max-width : 700px) {
+
+    .profile-widthDiv{
+        width: 500px;
+    }
+
+    .profile_follow_btn {
+        width: 60px;
+        height: 22px;
+        margin-top: -20px;
+        font-size: 11px;
+        border-radius: 20px;
+    }
+
+    /* **************** BIO ****************** */
+    .profile-bio-name{
+        font-size: 26px;
+    }
+
+    .profile-username{
+        font-size: 16px;
+    }
+
+    .profile-bio{
+        font-size: 18px;
+    }
+
+    .profile-profilePic {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+
+    .profile-editProfile{
+        background-color: transparent;
+        color: #c7c7c7;
+        font-size: 12px;
+        width: 100px;
+        height: 27px;
+        margin-bottom: 70px;
+    }
+
+    .profile-bio-card{
+        width: 500px;
+    }
+
+    .profile-toggle-button-mainDiv{
+        width: 500px;
+    }
+
+    .profile-toggle-button{
+        width: 120px;
+        height: 30px;
+    }
+
+    .profile-bold-text{
+        font-size: 12px;
+    }
+
+    .profile-plain-text{
+        font-size: 11px;
+    }
+
+    .profile-bio_avatar-div{
+        margin-top: -70px !important;
+    }
+}
+
+
+@media screen and (max-width : 500px) {
+
+    .profile-user-tags {
+        font-size: 5px;
+        height: 16px;
+        border-radius: 10px;
+    }
+
+    .profile-widthDiv {
+        width: 350px;
+    }
+
+    .profile_profile_pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-name {
+        margin-top: 7px;
+        padding-bottom: 4px;
+        font-size: 12px !important;
+        color: #D5DEE1 !important;
+    }
+
+    .profile_time {
+        margin-top: 10px;
+        font-size: 10px !important;
+    }
+
+    .profile_description {
+        font-size: 10px;
+    }
+
+    .profile_follow_btn {
+        width: 60px;
+        height: 20px;
+        margin-top: -20px;
+        font-size: 10px;
+        border-radius: 20px;
+    }
+
+    .profile-action-button-mainDiv {
+        margin-top: 10px;
+        padding-inline: 0px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    
+    
+    .profile-action-button-text {
+        font-size: 8.5px;
+    }
+    
+    .profile-action-button-icon {
+        font-size: 8.5px;
+    }
+    
+    .profile-action-button {
+        height: 30px;
+    }
+    
+    
+    .profile-upload-button-icon {
+        font-size: 12px;
+    }
+    
+    .profile-upload-button {
+        height: 30px;
+        width: 47px;
+        padding-right: 10px;
+    }
+    .profile-likes_comments_heart {
+        border: 4px solid #c70700;
+        font-size: 10px;
+        height: 18px;
+        border-radius: 50%;
+    }
+
+
+    .profile-likes_comments_comment {
+        border: 4px solid #4681f4;
+        font-size: 12px;
+        height: 18px;
+        border-radius: 50%;
+    }
+
+    .profile-comment-count {
+        margin-top: 18px;
+        font-size: 11px;
+        color: #5D6A77;
+    }
+
+    .profile-custom-statistic .ant-statistic-content {
+        font-size: 12px !important;
+        color: white !important;
+        margin-top: 0px !important;
+    }
+
+    /* ************* BIO **************** */
+
+    .profile-bio-name{
+        font-size: 24px;
+    }
+
+    .profile-username{
+        font-size: 15px;
+    }
+
+    .profile-bio{
+        font-size: 18px;
+    }
+
+    .profile-profilePic-500px{
+        width: 90px;
+        height: 90px;
+        margin-top: -30px;
+    }
+
+    .profile-editProfile{
+        background-color: transparent;
+        color: #c7c7c7;
+        font-size: 12px;
+        width: 100px;
+        height: 27px;
+        margin-bottom: 10px;
+    }
+
+    .profile-bio-card{
+        width: 350px;
+    }
+
+    .profile-toggle-button-mainDiv{
+        width: 350px;
+        padding-inline: 10px;
+    }
+
+    .profile-toggle-button{
+        width: 100px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    .profile-bold-text{
+        font-size: 16px;
+    }
+
+    .profile-plain-text{
+        font-size: 15px;
+    }
+
+    .bio-div-above_500px-responsive{
+        display: none;
+    }
+
+    .bio-div-500px-responsive {
+        display: block;
+    }
+
+    .profile-ff-name{
+        font-size: 18px;
+    }
+
+    .profile-ff-avatar{
+        height: 50px;
+        width: 50px;
+    }
+
+    .profile-ff-button{
+        border: none;
+        color: #051017;
+        border-radius: 20px;
+        font-size: 12px;
+        height: 25px;
+        background-color: rgb(253, 112, 119);
+    }
+
+    /* ************* EDIT MODAL *************** */
+
+    .profile-edit-modal {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        background-color: #1B2730 !important;
+    }
+
+    .profile-edit-modal-mainDiv {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .profile-edit-modal-mainDiv > div {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .profile-custom-input, .profile-custom-textarea {
+        margin-inline: 10px !important;
+    }
+
+    .profile-edit-modal .ant-upload.ant-upload-select-picture-card {
+        width: 100px;
+    }
+
+    .edit-profile-title{
+        font-size: 30px !important;
+    }
+
+    .edit-profile-save-btn{
+        display: none;
+    }
+
+    .edit-profile-save-btn-500px-div{
+        display:flex;
+        margin-top: 20px;
+    }
+
+    .ant-modal-close {
+        color: white;
+        font-size: 20px;
+    }
+
+    .edit-profile-flex{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction:column;
+    }
+
+    .edit-profile-save-btn-500px{
+        border-radius: 20px;
+        border : none;
+        width: 100px;
+        color: whitesmoke;
+        background-color: #051017;
+    }
+}
