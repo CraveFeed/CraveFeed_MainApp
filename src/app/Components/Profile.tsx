@@ -38,7 +38,7 @@ export default function ProfileComponent(){
                         bordered={false}
                         bodyStyle={{ padding: 0}}
                     />
-                    <div style={{ marginTop :"-55px"}}>
+                    <div className="bio-div-above_500px-responsive"  style={{ marginTop :"-55px"}}>
                         <Space className="profile-bio_avatar-div" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
                             <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
@@ -69,8 +69,45 @@ export default function ProfileComponent(){
                             <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
                         </Space>
                     </div>
+
+                    <div className="bio-div-500px-responsive">
+                        <Space className="profile-bio_avatar-div-500px" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
+                            <Space direction="vertical">
+                            <Flex align="center" justify="center" style={{ width : "350px" }}>
+                                <Avatar className="profile-profilePic-500px" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" }}/>
+                            </Flex>
+                            <Flex align="center" justify="center" vertical style={{width : "100%"}}>
+                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Space direction="vertical">
+                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                                </Space>
+                                <Flex className="profile-pff-mainDiv-500px" align="center" justify="center">
+                                    <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
+                                        <Flex align="center" justify="center">
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>10</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
+                                        </Flex>
+                                        <Flex align="center" justify="center">
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>6005</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
+                                        </Flex>
+                                        <Flex align="center" justify="center">
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>5000</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
+                                        </Flex>
+                                    </Space>
+                                </Flex>
+                                <Paragraph className="profile-bio" style={{ color : "#adacac" , textAlign : "center" }}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                            </Flex>
+                            </Space>
+                        </Space>
+                        <Flex align="center" justify="center">
+                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
+                        </Flex>
+                    </div>
+
                 </Card>
-                <Flex align="center" justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px" , paddingInline : "30px"}}>
+                <Flex align="center" justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px"}}>
                     <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("POSTS")}}>Posts</Button>
                     <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWERS")}}>Followers</Button>
                     <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>

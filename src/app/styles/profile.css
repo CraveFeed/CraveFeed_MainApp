@@ -38,6 +38,10 @@
 
 /* Responsive Design */
 
+.bio-div-500px-responsive{
+    display: none;
+}
+
 .profile-bio-name{
     font-size: 26px;
 }
@@ -68,6 +72,7 @@
 
 .profile-toggle-button-mainDiv{
     width: 1000px;
+    padding-inline: 30px;
 }
 
 .profile-toggle-button{
@@ -528,21 +533,21 @@ color : "#5D6A77" */
     /* ************* BIO **************** */
 
     .profile-bio-name{
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .profile-username{
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .profile-bio{
         font-size: 18px;
     }
 
-    .profile-profilePic {
-        width: 100px;
-        height: 100px;
-        margin-top: -50px;
+    .profile-profilePic-500px{
+        width: 90px;
+        height: 90px;
+        margin-top: -30px;
     }
 
     .profile-editProfile{
@@ -551,7 +556,7 @@ color : "#5D6A77" */
         font-size: 12px;
         width: 100px;
         height: 27px;
-        margin-bottom: 70px;
+        margin-bottom: 10px;
     }
 
     .profile-bio-card{
@@ -560,22 +565,30 @@ color : "#5D6A77" */
 
     .profile-toggle-button-mainDiv{
         width: 350px;
+        padding-inline: 10px;
     }
 
     .profile-toggle-button{
-        width: 120px;
-        height: 30px;
-    }
-
-    .profile-bold-text{
-        font-size: 12px;
-    }
-
-    .profile-plain-text{
+        width: 100px;
+        height: 25px;
         font-size: 11px;
     }
 
-    .profile-bio_avatar-div{
-        margin-top: -70px !important;
+    .profile-bold-text{
+        font-size: 16px;
+    }
+
+    .profile-plain-text{
+        font-size: 15px;
+    }
+
+    .bio-div-above_500px-responsive{
+        display: none;
+    }
+
+    .bio-div-500px-responsive {
+        display: block;
+    }
+    .profile-bio_avatar-div-500px{
     }
 }
