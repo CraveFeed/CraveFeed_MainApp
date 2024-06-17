@@ -184,7 +184,7 @@ function Followers(){
             {fetchedProfile.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "8vh" , height : "8vh" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img.src} style={{position : "relative" }}/>
                         <Flex vertical>
                             <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
                             <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
