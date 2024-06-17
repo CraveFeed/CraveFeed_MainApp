@@ -4,6 +4,7 @@ import avatar from "../assets/avatar.jpg"
 import type { GetProp, UploadProps } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography , message , Flex , Upload, Avatar , Input , Space , Radio} from 'antd';
+import "../styles/profile.css"
 
 const { TextArea } = Input;
 
@@ -18,6 +19,10 @@ const getBase64 = (img: FileType, callback: (url: string) => void) => {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result as string));
   reader.readAsDataURL(img);
+};
+
+const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  console.log('Change:', e.target.value);
 };
 
 const beforeUpload = (file: FileType) => {
@@ -67,10 +72,10 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
       className='profile-edit-modal'
       width="auto"
     >
-        <div style={{ backgroundColor : "#1B2730" }}>
-            <Flex align='center' justify='space-between'>
-                <Typography.Title style={{ color : "#c7c7c7" }}>Edit Profile</Typography.Title>
-                <Button style={{ width : "5vw" , border : "none" , borderRadius : "15px" , color : "#c7c7c7" , backgroundColor : "#051017"}}>Save</Button>
+        <div className='profile-edit-modal-mainDiv' style={{ backgroundColor : "#1B2730" }}>
+            <Flex className='edit-profile-flex'>
+                <Typography.Title className='edit-profile-title' style={{ color : "#c7c7c7" }}>Edit Profile</Typography.Title>
+                <Button className='edit-profile-save-btn' style={{ width : "5vw" , border : "none" , borderRadius : "15px" , color : "#c7c7c7" , backgroundColor : "#051017"}}>Save</Button>
             </Flex>
             <Flex align='center' justify='center'>
                 <Upload
@@ -85,7 +90,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
                     {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                 </Upload>
             </Flex>
-            <Space direction='vertical' style={{ width : "20vw"}}>
+            <Space direction='vertical' style={{ display : "flex" , alignContent : "center" , justifyContent  : "center" , alignItems : "flex-start" }}>
                 <Flex>
                     <Upload
                         name="avatar"
@@ -100,19 +105,29 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
                         {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : <Avatar src={avatar.src} style={{ width : "7vh" , height : "7vh"}}></Avatar>}
                     </Upload>
                 </Flex>
-                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }} size="large" placeholder="Name" />
-                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }} size="large" placeholder="Email" />
-                <TextArea
-                    className="profile-custom-textarea"
-                    style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" }}
-                    placeholder="Your bio"
-                    autoSize={{ minRows: 3, maxRows: 5 }}
+                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px" }} size="large" placeholder="Name" />
+                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px"}} size="large" placeholder="Email" />
+                <TextArea 
+                  showCount
+                  maxLength={200}
+                  onChange={onChange}
+                  placeholder="Your bio"
+                  className="profile-custom-textarea"
+                  style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px"}}
                 />
-                <Radio.Group name="radiogroup" defaultValue={1} style={{ display : "flex" , alignContent : "center" , justifyContent : "center"}}>
-                    <Radio style={{ color : "white" }} value={1}>Personal</Radio>
-                    <Radio style={{ color : "white" }} value={2}>Business</Radio>
-                </Radio.Group>
+                <Flex align='center' justify='center' style={{ width : "400px"}}>
+                  <Radio.Group name="radiogroup" defaultValue={1} style={{ display : "flex" , alignContent : "center" , justifyContent : "center"}}>
+                      <Radio className='profile-radio-btn' style={{ color : "white" }} value={1}>Personal</Radio>
+                      <Radio className='profile-radio-btn' style={{ color : "white" }} value={2}>Business</Radio>
+                  </Radio.Group>
+                </Flex>
             </Space>
+            <Flex className='edit-profile-save-btn-500px-div' align='center' justify='center'>
+              <Space size="large">
+                  <Button className='edit-profile-save-btn-500px'>Save</Button>
+                  <Button className='edit-profile-save-btn-500px' onClick={() => setEditProfile(false)}>Close</Button>
+              </Space>
+            </Flex>
         </div>
     </Modal>
   );

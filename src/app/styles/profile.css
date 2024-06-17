@@ -30,12 +30,6 @@
     margin-top: 4px !important;
 }
 
-
-.profile-custom-input::placeholder,
-.profile-custom-textarea::placeholder {
-    color: gray;
-}
-
 /* Responsive Design */
 
 .bio-div-500px-responsive{
@@ -241,11 +235,49 @@ color : "#5D6A77" */
 
 /* ********************** Edit Modal *********************************** */
 
+.edit-profile-flex{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-profile-save-btn-500px-div{
+    display: none;
+}
+
+.profile-custom-input::placeholder,
+.profile-custom-textarea::placeholder {
+    color: gray !important;
+}
+
+.profile-custom-textarea textarea::placeholder {
+    color: gray !important;
+}
+
+.profile-radio-btn .ant-radio-checked .ant-radio-inner{
+    border-color: #fd7077;
+    background-color: #fd7077;
+    /* Color for the border of the radio button */
+}
+
 .profile-edit-modal .ant-modal-content{
     background-color: #1B2730;
     border-radius: 30px;
-    border: 2px solid rgb(253, 112, 119);
+    border: 2px solid #fd7077;
 }
+
+
+.profile-edit-modal-mainDiv{
+    width: 400px;
+}
+
+.ant-input-textarea-show-count-suffix {
+    color: #ffcc00 !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 @media screen and (max-width : 1350px) {
     
     .profile-widthDiv{
@@ -636,5 +668,72 @@ color : "#5D6A77" */
         font-size: 12px;
         height: 25px;
         background-color: rgb(253, 112, 119);
+    }
+
+    /* ************* EDIT MODAL *************** */
+
+    .profile-edit-modal {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        background-color: #1B2730 !important;
+    }
+
+    .profile-edit-modal-mainDiv {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .profile-edit-modal-mainDiv > div {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .profile-custom-input, .profile-custom-textarea {
+        margin-inline: 10px !important;
+    }
+
+    .profile-edit-modal .ant-upload.ant-upload-select-picture-card {
+        width: 100px;
+    }
+
+    .edit-profile-title{
+        font-size: 30px !important;
+    }
+
+    .edit-profile-save-btn{
+        display: none;
+    }
+
+    .edit-profile-save-btn-500px-div{
+        display:flex;
+        margin-top: 20px;
+    }
+
+    .ant-modal-close {
+        color: white;
+        font-size: 20px;
+    }
+
+    .edit-profile-flex{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction:column;
+    }
+
+    .edit-profile-save-btn-500px{
+        border-radius: 20px;
+        border : none;
+        width: 100px;
+        color: whitesmoke;
+        background-color: #051017;
     }
 }
