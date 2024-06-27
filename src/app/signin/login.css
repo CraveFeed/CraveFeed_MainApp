@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+*{
+    color:white;
+}
+body{
+    background-color: #051017;
+}
+
+.Login-card{
+   background-color: rgba(0, 0, 0, 0.194);
+   border:none;
+   border: solid 0.1px rgba(255, 255, 255, 0.216);
+   border-radius: 30px;
+   
+   margin:70px 0 0 0;
+   width: 600px;
+   height: 500px;
+   padding:30px 90px 30px 90px;
+   
+}
+
+.header-style{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.main-style{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 20px;
+   justify-content: space-evenly;
+    
+}   
+
+
+
+.heading-style{
+    font-size: 90px;
+    font-family: "Dancing Script", cursive;
+    color:wheat;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+
+@media(max-width: 769px){
+    
+
+    .heading-style{
+        font-size: 80px;
+        font-family: "Dancing Script", cursive;
+    }
+    .main-style{
+        display:flex;
+        justify-content: space-evenly;
+    }
+    
+}
+
+
+@media(max-width: 480px){
+    .Login-card{
+    border: none;
+    width: auto;
+    height: 600px;    
+    }
+ 
+   .create-new{
+  font-size: 10px;
+   }  
+}
+
+.button-google{
+    display: flex;
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    cursor: pointer;
+    background-color:#051017 ;
+    color:white;
+  }
+  
+  
+
+  
