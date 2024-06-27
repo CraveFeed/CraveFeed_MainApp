@@ -1,6 +1,8 @@
 "use client"
 
 import React from "react";
+import { useAppDispatch , useAppSelector } from "@/lib/hooks";
+import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
@@ -28,32 +30,16 @@ const formatter: StatisticProps['formatter'] = (value) => (
 );
 
 const { TextArea } = Input;
-const Editor = () => (
-<>
-    <Form.Item>
-    <TextArea rows={4} />
-    </Form.Item>
-    <Form.Item>
-    <Button type="primary">
-        Add Comment
-    </Button>
-    </Form.Item>
-</>
-);
 
 export default function Content(){
-
+    
+    const [commentContent , setCommentContent ] = useState<string>("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [ id , setId ] = useState<number>();
-
-    const router = useRouter();    
-
-    
-    const data = [
-        {
-            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
+    const [data, setData] = useState([
+                {
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: profilePic3.src,
             content: (
@@ -70,7 +56,6 @@ export default function Content(){
             ),
         },
         {
-            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: startship.src,
             content: (
@@ -86,7 +71,43 @@ export default function Content(){
             </Tooltip>
             ),
         },
-    ];
+    ]);
+    const dispatch = useAppDispatch();
+    // add Comment State
+    const content = useAppSelector(state => state.addComment.content);
+    const router = useRouter();    
+    
+    const Editor = () => (
+        <>
+        <Form.Item>
+        <TextArea rows={4} value={commentContent} onChange={(e) => { setCommentContent(e.target.value)}} />
+        </Form.Item>
+        <Form.Item>
+        <Button type="primary" onClick={() => {
+            dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
+            let newComment = {
+                author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+                avatar: profilePic3.src,
+                content: (
+                    <p>
+                        {commentContent}
+                    </p>
+                ),
+                datetime: (
+                    <Tooltip title="2016-11-22 11:22:33">
+                        <span>8 hours ago</span>
+                    </Tooltip>
+                ),    
+            };
+            setData(prevData => [...prevData, newComment]);
+            setAddComment(false);
+        }}>
+            Add Comment
+        </Button>
+        </Form.Item>
+    </>
+    );
+    
     
     // Comments array
     
@@ -284,7 +305,7 @@ export default function Content(){
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>{data.length} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="post-action-button">
@@ -300,7 +321,7 @@ export default function Content(){
                         </Space>
                     </Button>
                     <Button onClick={() => { setAddComment(true)}} className="post-action-button">
-                        <Space size="small" >
+                        <Space size="small" onClick={() => {}} >
                             <MessageFilled className="post-action-button-icon"/>
                             <Typography.Text className="post-action-button-text">Comment</Typography.Text>
                         </Space>
@@ -324,7 +345,6 @@ export default function Content(){
                         <li>
                             <Comment
                                 style={{ backgroundColor : "#1B2730" , color : "white"}}
-                                actions={item.actions}
                                 author={item.author}
                                 avatar={item.avatar}
                                 content={item.content}

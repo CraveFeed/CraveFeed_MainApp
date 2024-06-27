@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counter/counterSlice";
 import postReducer from "./features/services/testThunk";
 import getBioReducer from "./features/services/getBio";
+import { addCommentSlice } from "./features/services/addComment";
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       counter: counterReducer,
       post: postReducer,
       getBio: getBioReducer,
+      addComment: addCommentSlice.reducer,
     },
   });
 };
