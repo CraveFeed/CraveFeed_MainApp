@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface PostState {
@@ -30,17 +29,7 @@ export const fetchPost = createAsyncThunk("post/fetchPost", async () => {
 export const postSlice = createSlice({
   name: "counter",
   initialState,
-  reducers: {
-    // increment: (state) => {
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPost.pending, (state) => {
       state.status = "loading";

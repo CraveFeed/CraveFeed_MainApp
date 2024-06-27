@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { fetchPost } from "@/lib/features/thunk/thunk";
+import { fetchPost } from "@/lib/features/services/testThunk";
 import { increment , decrement , incrementByAmount } from "@/lib/features/counter/counterSlice";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 
