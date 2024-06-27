@@ -124,6 +124,26 @@ body {
     color: whitesmoke !important;
 }
 
+.custom-password-input .ant-input-affix-wrapper {
+    background-color: #051017;
+    color: white;
+  }
+  
+  .custom-password-input .ant-input-affix-wrapper .ant-input-suffix {
+    color: white;
+  }
+  
+  .custom-password-input .ant-input-affix-wrapper .ant-input-suffix .anticon-eye {
+    color: white;
+  }
+  
+  .custom-password-input .ant-input-affix-wrapper .ant-input-suffix .anticon-eye-invisible {
+    color: white;
+  }
+  
+  
+
+
 /* Media Queries */
 
 
