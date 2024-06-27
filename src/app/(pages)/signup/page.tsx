@@ -2,8 +2,11 @@
 import React from 'react';
 import "../../styles/signup.css";
 import { Avatar, Button, Card, Form, Input, Select, Space, Steps } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons'
+import { CloseOutlined } from '@ant-design/icons';
 import { UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined } from '@ant-design/icons';
 import { options, sweetenerOptions, fatOilOptions, seasoningOptions } from '../../Components/InputValues';
+
 
 export default function Signup() {
   const [current, setCurrent] = React.useState(0);
@@ -61,11 +64,11 @@ export default function Signup() {
         <div className='Sign-in'>SIGN UP</div>
         <div className="horizontal-steps">
           <Steps onChange={setCurrent} current={current}>
-            <Steps.Step disabled={isStepDisabled(0)} title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
-            <Steps.Step disabled={isStepDisabled(1)}  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(2)} title={<span>Choices</span>} icon={<SolutionOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(3)} title={<span>Security</span>} icon={<SecurityScanOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(4)} title={<span>Explore</span>} icon={<SmileOutlined style={{color:"white"}}/>} />
+            <Steps.Step /* disabled={isStepDisabled(0)} */ title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
+            <Steps.Step /* disabled={isStepDisabled(1)} */  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
+            <Steps.Step /* disabled={isStepDisabled(2)} */ title={<span>Choices</span>} icon={<SolutionOutlined style={{color:"white"}} />} />
+            <Steps.Step /* disabled={isStepDisabled(3)} */ title={<span>Security</span>} icon={<SecurityScanOutlined style={{color:"white"}} />} />
+            <Steps.Step /* disabled={isStepDisabled(4)} */ title={<span>Explore</span>} icon={<SmileOutlined style={{color:"white"}}/>} />
           </Steps>
         </div>
         <Card className='main-card'>
@@ -121,44 +124,52 @@ export default function Signup() {
   }
 
   function Choices({ onFinish, initialValues, goPrevious }) {
+    const CustomRemoveIcon = () => <CloseOutlined style={{ color: 'white' }} />;
+    const CustomClearIcon = () => (
+      <CloseCircleOutlined style={{ color: 'white' }} />
+    );
     return (
       <>
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "30px", fontWeight: "600" }}><ProfileOutlined style={{ paddingRight: "10px" }} />Choices</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
-          <Form.Item name="Main Ingredient" label="Main Ingredient" rules={[{ required: true, message: 'Please input your choice' }]} className='style-choices'>
-            <Select mode="multiple"  placeholder="Main Ingredient" options={options} optionRender={(option) => (
-              <Space>
-                <span style={{ color: "black" }}>{option.data.desc}</span>
+          <Form.Item name="Main Ingredient" label="Main Ingredient" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select   mode="multiple"  placeholder="Main Ingredient" options={options} optionRender={(option) => (
+              <Space style={{color:"white" }}>
+                <span >{option.data.desc}</span>
+               
               </Space>
-            )} />
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
-          <Form.Item name="Sweetner" label="Sweetner" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select mode="multiple"  placeholder="Sweeteners" options={sweetenerOptions} optionRender={(option) => (
-              <Space>
-                <span style={{ color: "black" }}>{option.data.desc}</span>
+
+         {/*  Sweeteners */}  
+
+          <Form.Item  name="Sweetner" label="Sweetner" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  mode="multiple"  placeholder="Sweeteners" options={sweetenerOptions} optionRender={(option) => (
+              <Space >
+                <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
-            )} />
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
           <Form.Item name="Fat/Oil" label="Fat/Oil" rules={[{ required: true, message: 'Please input your choice' }]}>
             <Select mode="multiple"  placeholder="Fat/Oil" options={fatOilOptions} optionRender={(option) => (
               <Space>
-                <span style={{ color: "black" }}>{option.data.desc}</span>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
-            )} />
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Seasoning" label="Seasoning" rules={[{ required: true, message: 'Please input your choice' }]}>
             <Select mode="multiple"  placeholder="Seasoning" options={seasoningOptions} optionRender={(option) => (
               <Space>
-                <span style={{ color: "black" }}>{option.data.desc}</span>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
-            )} />
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Allergence" label="Allergence" rules={[{ required: true, message: 'Please input your choice' }]}>
             <Select mode="multiple" placeholder="Allergence" options={options} optionRender={(option) => (
               <Space>
-                <span style={{ color: "black" }}>{option.data.desc}</span>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
-            )} />
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <div className='button-align'>
             <Button className='button-inner' type='primary' onClick={goPrevious} style={{ marginRight: '8px' }}>Previous</Button>

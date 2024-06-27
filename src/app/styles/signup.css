@@ -82,6 +82,10 @@ body {
     width:20rem;
 }
 
+.choice-style{
+    background-color: #051017;
+}
+
 .horizontal-steps .ant-steps-item-wait .ant-steps-item-title {
     color: white !important;
 }
@@ -140,6 +144,30 @@ body {
   .custom-password-input .ant-input-affix-wrapper .ant-input-suffix .anticon-eye-invisible {
     color: white;
   }
+
+  .custom-select .ant-select-selector {
+    background-color: #00090f !important; /* Change to your desired background color */
+  }
+  .custom-select .ant-select-selection-item {
+    background-color: #00090f !important; /* Change to your desired background color */
+  }
+
+.custom-dropdown .ant-select-item {
+  background-color: #051018af !important;
+  border:0.5px solid black !important;
+   /* Change to your desired dropdown item background color */
+}
+.custom-dropdown {
+    background-color: black; /* Example background color */
+  }
+
+
+.custom-selected-label {
+    color: white;
+     /* Change to your desired selected label color */
+  }
+
+
   
   
 
