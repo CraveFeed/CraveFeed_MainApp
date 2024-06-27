@@ -1,16 +1,35 @@
 "use client"
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Avatar , Image, Flex, Button, Space} from "antd";
 import { Typography, Divider } from 'antd';
-
 const { Title, Paragraph, Text } = Typography;
 import coverImage from "../../../assets/coverImage.jpeg";
 import avatar from "../../../assets/avatar.jpg"
 import tiger from "../../../assets/wallpaperflare.ico"
 import background from "../../../assets/coverImage.jpeg"
+import { useAppDispatch , useAppSelector } from "@/lib/hooks";
+import { getBioState } from "@/lib/features/services/getBio";
+
 
 export default function Bio() {
+  
+  // useEffect(() => {
+  //   dispatch(getBioState());
+  // },[])
+
+  const dispatch = useAppDispatch();
+  
+  const bio = useAppSelector(state => state.getBio.bio);
+  const username = useAppSelector(state => state.getBio.username);
+  const firstName = useAppSelector(state => state.getBio.firstName);
+  const lastname = useAppSelector(state => state.getBio.lastname);
+  const noOfFollowers = useAppSelector(state => state.getBio.noOfFollowers);
+  const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing);
+  // const Avatar = useAppSelector(state => state.getBio.Avatar);
+  const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
+
+
   const imageStyle = {
     width: "100%", // Decrease the width to 50% of the original
     borderRadius: "20px",
@@ -34,7 +53,7 @@ export default function Bio() {
   };
 
   const innerCardStyle = {
-    transform: "scaleY(0.6)", // Shrink vertically
+    transform: "scaleY(0.6)",
     transformOrigin: "top",
     margin : "0px",
     padding : "0px",
@@ -62,19 +81,19 @@ export default function Bio() {
               </Flex>
               <Space direction="vertical" style={{backgroundColor: "#1B2730"  , zIndex : "3" , border : "none" , paddingInline: "15px" , margin : "0px" , width : "100%"}}>
                   <Flex align="center" justify="center" vertical>
-                          <Button className="follower-title" style={{ backgroundColor : "#1B2730" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
-                          <Button className="follower-text" style={{ backgroundColor : "#1B2730" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
-                          <Paragraph className="bio-description" style={{ color : "#adacac" }}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                          <Button className="follower-title" style={{ backgroundColor : "#1B2730" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>{firstName} {lastname}</Button>
+                          <Button className="follower-text" style={{ backgroundColor : "#1B2730" , border : "none" , color : "#55616b"}}>{username}</Button>
+                          <Paragraph className="bio-description" style={{ color : "#adacac" }}>{bio}</Paragraph>
                   </Flex>
               </Space>
               <Flex align="center" justify="center" style={{ borderBlock : "1px solid #28343E" , marginInline : "5px"}} >
                 <Space className="follower-space-padding" split={<Divider type="vertical" style={{ backgroundColor : "#4C5965" , marginTop : "13px" , height : "50px"}}/>} style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                     <Flex align="center" justify="center" vertical>
-                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>6005</Typography.Title>
+                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>{noOfFollowing}</Typography.Title>
                         <Typography.Text className="follower-text" style={{ marginTop : "-15px" , fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                     </Flex>
                     <Flex vertical align="center" justify="center">
-                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>5000</Typography.Title>
+                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>{noOfFollowers}</Typography.Title>
                         <Typography.Text className="follower-text" style={{ marginTop : "-15px" , color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                     </Flex>
                 </Space>

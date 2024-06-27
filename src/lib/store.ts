@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counter/counterSlice";
+import postReducer from "./features/services/testThunk";
+import getBioReducer from "./features/services/getBio";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       counter: counterReducer,
+      post: postReducer,
+      getBio: getBioReducer,
     },
   });
 };
