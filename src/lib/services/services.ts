@@ -13,8 +13,8 @@ const fetchBio = async (id: string): Promise<object> => {
     username: "@vibhorphalke",
     firstName: "Vibhor",
     lastname: "Phalke",
-    noOfFollowers: "sum(followers)",
-    noOfFollowing: "sum(following)",
+    noOfFollowers: "5000",
+    noOfFollowing: "12",
     Avatar: "Avatar S3 hosted url",
   };
 
