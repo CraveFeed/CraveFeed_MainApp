@@ -6,6 +6,7 @@ import { CloseCircleOutlined } from '@ant-design/icons'
 import { CloseOutlined } from '@ant-design/icons';
 import { UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined } from '@ant-design/icons';
 import { options, sweetenerOptions, fatOilOptions, seasoningOptions } from '../../Components/InputValues';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 
 export default function Signup() {
@@ -61,14 +62,14 @@ export default function Signup() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '30px' }}>
       <div className='main-align'>
-        <div className='Sign-in'>SIGN UP</div>
+        <div className='Sign-in'>Sign Up</div>
         <div className="horizontal-steps">
           <Steps onChange={setCurrent} current={current}>
-            <Steps.Step /* disabled={isStepDisabled(0)} */ title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
-            <Steps.Step /* disabled={isStepDisabled(1)} */  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
-            <Steps.Step /* disabled={isStepDisabled(2)} */ title={<span>Choices</span>} icon={<SolutionOutlined style={{color:"white"}} />} />
-            <Steps.Step /* disabled={isStepDisabled(3)} */ title={<span>Security</span>} icon={<SecurityScanOutlined style={{color:"white"}} />} />
-            <Steps.Step /* disabled={isStepDisabled(4)} */ title={<span>Explore</span>} icon={<SmileOutlined style={{color:"white"}}/>} />
+            <Steps.Step disabled={isStepDisabled(0)} title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
+            <Steps.Step disabled={isStepDisabled(1)}  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
+            <Steps.Step disabled={isStepDisabled(2)} title={<span>Choices</span>} icon={<SolutionOutlined style={{color:"white"}} />} />
+            <Steps.Step disabled={isStepDisabled(3)} title={<span>Security</span>} icon={<SecurityScanOutlined style={{color:"white"}} />} />
+            <Steps.Step disabled={isStepDisabled(4)} title={<span>Explore</span>} icon={<SmileOutlined style={{color:"white"}}/>} />
           </Steps>
         </div>
         <Card className='main-card'>
@@ -86,7 +87,7 @@ export default function Signup() {
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "40px", fontWeight: "600" }}><ProfileOutlined style={{ paddingRight: "10px" }} />Profile Information</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
           <Form.Item label="First Name" name={"First name"} rules={[{ required: true }]}>
-            <Input style={{ backgroundColor: "#051017", color: "white" }} />
+            <Input  style={{ backgroundColor: "#051017", color: "white" }} />
           </Form.Item>
           <Form.Item label="Last Name" name={"Last name"} rules={[{ required: true }]}>
             <Input style={{ backgroundColor: "#051017", color: "white" }} />
@@ -181,15 +182,22 @@ export default function Signup() {
   }
 
   function Security({ onFinish, initialValues, goPrevious }) {
+    const CustomEyeIcon = ({ visible, onClick }) => {
+      return visible ? <EyeOutlined onClick={onClick} /> : <EyeInvisibleOutlined onClick={onClick} />;
+    };
     return (
       <>
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "40px", fontWeight: "600" }}><SecurityScanOutlined style={{ paddingRight: "10px" }} />Security</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
           <Form.Item label="Password" name={"password"} rules={[{ required: true }]} >
-            <Input.Password className="custom-password-input" style={{ backgroundColor: "#051017", color: "white" }} />
+            <Input.Password  style={{ backgroundColor: "#051017", color: "white" }}   iconRender={(visible) => (
+              <CustomEyeIcon visible={visible} onClick={() => setPasswordVisible(!passwordVisible)} />
+            )} />
           </Form.Item>
           <Form.Item label="Confirmed" name={"confirmed"} rules={[{ required: true }]}>
-            <Input.Password className="custom-password-input" style={{ backgroundColor: "#051017", color: "white" }} />
+            <Input.Password  style={{ backgroundColor: "#051017", color: "white" }}  iconRender={(visible) => (
+              <CustomEyeIcon visible={visible} onClick={() => setPasswordVisible(!passwordVisible)} />
+            )}/>
           </Form.Item>
           <div className='button-align'>
             <Button className='button-inner' type='primary' onClick={goPrevious} style={{ marginRight: '8px' }}>Previous</Button>
