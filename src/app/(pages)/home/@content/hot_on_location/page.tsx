@@ -46,6 +46,7 @@ export default function Content(){
 
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
+    const [liked , setLiked] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [ id , setId ] = useState<number>();
 
@@ -290,10 +291,19 @@ export default function Content(){
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="post-action-button">
-                        <Space size="small">
-                            <HeartFilled className="post-action-button-icon"/>
-                            <Typography.Text className="post-action-button-text">Like</Typography.Text>
-                        </Space>
+                        <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
+                            <div className="post-action-button-likeBg">
+                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`} onClick={() => {
+                                    if(liked){
+                                        setLiked(false)
+                                    } 
+                                    else {
+                                        setLiked(true)
+                                    }}}>
+                                </div>
+                            </div>
+                            <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>
+                        </Flex>
                     </Button>
                     <Button className="post-action-button">
                         <Space size="small">
@@ -336,7 +346,6 @@ export default function Content(){
                         )}
                     />
                 )}
-
                     <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
                         <Comment
                             style={{ backgroundColor : "#1B2730" , color : "white"}}
