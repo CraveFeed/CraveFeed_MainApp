@@ -25,7 +25,7 @@ const initialState: getBioState = {
 
 export const getBioState = createAsyncThunk("bio/getBio", async () => {
   try {
-    const response = await axios.get("https://localhost:3000//getBio/2");
+    const response = await axios.get("https://localhost:3000/getBio/2");
     return response.data;
   } catch (error) {
     return (error as Error).message;
