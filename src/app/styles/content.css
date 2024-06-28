@@ -76,9 +76,6 @@ xxl: '1600px', */
     width: 100px;
 }
 
-.likes_comments{
-}
-
 .likes_comments_heart{
     color: white;
     border: 8px solid #c70700;
@@ -192,7 +189,7 @@ color : "#5D6A77" */
 }
 
 .post-action-button:hover .post-action-button-icon{
-    color: #4a4a4a;
+    color: #639094;
 }
 
 .post-action-button:hover {

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import avatar from "../assets/avatar.jpg"
 import type { GetProp, UploadProps } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '@/lib/hooks';
+import { editProfileCall } from '@/lib/features/services/getProfile';
 import { Button, Modal, Typography , message , Flex , Upload, Avatar , Input , Space , Radio} from 'antd';
 import "../styles/profile.css"
 
@@ -21,9 +23,6 @@ const getBase64 = (img: FileType, callback: (url: string) => void) => {
   reader.readAsDataURL(img);
 };
 
-const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  console.log('Change:', e.target.value);
-};
 
 const beforeUpload = (file: FileType) => {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -38,9 +37,20 @@ const beforeUpload = (file: FileType) => {
 };
 
 const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }) => {
-
+  
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+  const [bio, setBio] = useState<string>("");
+  const [ firstname , setfirstname] = useState<string>("");
+  const [lastname, setlastname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  
+  const dispatch = useAppDispatch();
+  
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setBio(e.target.value);
+    console.log('Change:', e.target.value);
+  };
 
   const handleChange: UploadProps['onChange'] = (info) => {
     if (info.file.status === 'uploading') {
@@ -75,7 +85,10 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
         <div className='profile-edit-modal-mainDiv' style={{ backgroundColor : "#1B2730" }}>
             <Flex className='edit-profile-flex'>
                 <Typography.Title className='edit-profile-title' style={{ color : "#c7c7c7" }}>Edit Profile</Typography.Title>
-                <Button className='edit-profile-save-btn' style={{ width : "5vw" , border : "none" , borderRadius : "15px" , color : "#c7c7c7" , backgroundColor : "#051017"}}>Save</Button>
+                <Button className='edit-profile-save-btn' style={{ width : "5vw" , border : "none" , borderRadius : "15px" , color : "#c7c7c7" , backgroundColor : "#051017"}} onClick={() => {
+                    setEditProfile(false)
+                    dispatch(editProfileCall({ userId: "2", bio: bio, firstname: firstname, lastname: lastname, tag: 'Personal' }))
+                    }}>Save</Button>
             </Flex>
             <Flex align='center' justify='center'>
                 <Upload
@@ -105,8 +118,9 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
                         {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : <Avatar src={avatar.src} style={{ width : "7vh" , height : "7vh"}}></Avatar>}
                     </Upload>
                 </Flex>
-                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px" }} size="large" placeholder="Name" />
-                <Input className="profile-custom-input" style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px"}} size="large" placeholder="Email" />
+                <Input className="profile-custom-input" onChange={(e) => { setfirstname(e.target.value)}} style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px" }} size="large" placeholder="First Name" />
+                <Input className="profile-custom-input" onChange={(e) => { setlastname(e.target.value)}} style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px" }} size="large" placeholder="Last Name" />
+                <Input className="profile-custom-input" onChange={(e) => { setEmail(e.target.value)}} style={{ backgroundColor: "#051017", color: "whitesmoke", border: "none" , width : "400px"}} size="large" placeholder="Email" />
                 <TextArea 
                   showCount
                   maxLength={200}
@@ -124,7 +138,10 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
             </Space>
             <Flex className='edit-profile-save-btn-500px-div' align='center' justify='center'>
               <Space size="large">
-                  <Button className='edit-profile-save-btn-500px'>Save</Button>
+                  <Button className='edit-profile-save-btn-500px' onClick={() => {
+                    setEditProfile(false)
+                    dispatch(editProfileCall({ userId: "2", bio: bio, firstname: firstname, lastname: lastname, tag: 'Personal' }))
+                    }}>Save</Button>
                   <Button className='edit-profile-save-btn-500px' onClick={() => setEditProfile(false)}>Close</Button>
               </Space>
             </Flex>

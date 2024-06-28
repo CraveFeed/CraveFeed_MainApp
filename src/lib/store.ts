@@ -3,6 +3,7 @@ import counterReducer from "./features/counter/counterSlice";
 import postReducer from "./features/services/testThunk";
 import getBioReducer from "./features/services/getBio";
 import { addCommentSlice } from "./features/services/addComment";
+import { getProfileSlice } from "./features/services/getProfile";
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       post: postReducer,
       getBio: getBioReducer,
       addComment: addCommentSlice.reducer,
+      getProfile: getProfileSlice.reducer,
     },
   });
 };

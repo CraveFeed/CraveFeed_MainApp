@@ -1,18 +1,34 @@
 import "../styles/profile.css"
 import coverImage from "../assets/avatar.jpg"
 import coverImage2 from "../assets/lavelisProPic.jpg"
+import { useAppSelector , useAppDispatch } from "@/lib/hooks"
 import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
-import { useState } from "react"
+import { getProfileCall } from "@/lib/features/services/getProfile"
+import { useEffect, useState } from "react"
 import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
 
-const { Title, Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 export default function ProfileComponent(){
 
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
     const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
+    const firstName = useAppSelector((state) => state.getProfile.firstname);
+    const lastName = useAppSelector((state) => state.getProfile.lastname);
+    const noOfFollowers = useAppSelector((state) => state.getProfile.noOfFollowers);
+    const noOfFollowing = useAppSelector((state) => state.getProfile.noOfFollowing);
+    const noOfPosts = useAppSelector((state) => state.getProfile.noOfPosts);
+    const bio = useAppSelector((state) => state.getProfile.bio);
+    const username = useAppSelector((state) => state.getProfile.username);
+    
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getProfileCall())
+    },[])
+
     const imageStyle = {
         height : "30vh" ,
         marginBottom : "10px",
@@ -43,27 +59,27 @@ export default function ProfileComponent(){
                             <Space>
                             <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , cursor : "pointer" , backgroundColor: "white" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
-                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>{firstName} {lastName}</Button>
                                 <Space direction="vertical">
-                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>{username}</Button>
                                 </Space>
                                 <Flex className="profile-pff-mainDiv" align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>10</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfPosts}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>6005</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfFollowing}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>5000</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfFollowers}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                                         </Flex>
                                     </Space>
                                 </Flex>
-                                <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                                <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>{bio}</Paragraph>
                             </Flex>
                             </Space>
                             <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
@@ -77,27 +93,27 @@ export default function ProfileComponent(){
                                 <Avatar className="profile-profilePic-500px" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , backgroundColor: "white" , cursor : "pointer"}}/>
                             </Flex>
                             <Flex align="center" justify="center" vertical style={{width : "100%"}}>
-                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>Vibhor Phalke</Button>
+                                <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>{firstName} {lastName}</Button>
                                 <Space direction="vertical">
-                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>@vibhorphalke</Button>
+                                    <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>{username}</Button>
                                 </Space>
                                 <Flex className="profile-pff-mainDiv-500px" align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>10</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfPosts}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>6005</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfFollowing}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
-                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>5000</Typography.Text>
+                                            <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfFollowers}`}</Typography.Text>
                                             <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                                         </Flex>
                                     </Space>
                                 </Flex>
-                                <Paragraph className="profile-bio" style={{ color : "#adacac" , textAlign : "center" }}>Hey there! I'm Vibhor, a huge food enthusiast. </Paragraph>
+                                <Paragraph className="profile-bio" style={{ color : "#adacac" , textAlign : "center" }}>{bio}</Paragraph>
                             </Flex>
                             </Space>
                         </Space>
