@@ -14,9 +14,9 @@ import { getBioState } from "@/lib/features/services/getBio";
 
 export default function Bio() {
   
-  // useEffect(() => {
-  //   dispatch(getBioState());
-  // },[])
+  useEffect(() => {
+    dispatch(getBioState());
+  },[])
 
   const dispatch = useAppDispatch();
   

@@ -1,17 +1,17 @@
 "use client"
 
 import React from "react";
-import { useState , useEffect } from "react";
+import { useAppDispatch , useAppSelector } from "@/lib/hooks";
+import { addCommentCall } from "@/lib/features/services/addComment";
+import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
-import { Avatar, Card , Space , Flex , Input, Button, Typography,  Form,  Dropdown , Modal , Menu , FloatButton} from "antd";
+import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../../assets/avatar.jpg";
-// import elonPost from "../../../../assets/elon_food_post.jpeg"
-// import startship from "../../../../assets/starship.jpeg"
 import evrest from "../../../../assets/everestspices_logo.jpeg"
 import foodPost1 from "../../../../assets/everest_post.jpeg"
 import foodPost2 from "../../../../assets/food_post2.jpeg"
@@ -21,7 +21,6 @@ import profilePic2 from "../../../../assets/profilePic2.jpg"
 import profilePic3 from "../../../../assets/lavelisProPic.jpg"
 import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
-import {Drawer} from 'antd';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
@@ -31,68 +30,88 @@ const formatter: StatisticProps['formatter'] = (value) => (
 );
 
 const { TextArea } = Input;
-const Editor = () => (
-<>
-    <Form.Item>
-    <TextArea rows={4} />
-    </Form.Item>
-    <Form.Item>
-    <Button type="primary">
-        Add Comment
-    </Button>
-    </Form.Item>
-</>
-);
 
 export default function Content(){
-
+    
+    const [commentContent , setCommentContent ] = useState<string>("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [liked , setLiked] = useState<boolean>(false);
     const [ id , setId ] = useState<number>();
-
-    const router = useRouter();    
-
-
-    const data = [
-        {
-            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
+    const [data, setData] = useState([
+                {
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: profilePic3.src,
             content: (
-            <p>
+                <p>
                 We supply a series of design principles, practical patterns and high quality design
                 resources (Sketch and Axure), to help people create their product prototypes beautifully and
                 efficiently.
             </p>
             ),
             datetime: (
-            <Tooltip title="2016-11-22 11:22:33">
+                <Tooltip title="2016-11-22 11:22:33">
                 <span>8 hours ago</span>
             </Tooltip>
             ),
         },
         {
-            actions: [<span style={{ color : "gray"}} key="comment-list-reply-to-0">Reply to</span>],
             author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
             avatar: evrest.src,
             content: (
-            <p>
+                <p>
                 We supply a series of design principles, practical patterns and high quality design
                 resources (Sketch and Axure), to help people create their product prototypes beautifully and
                 efficiently.
             </p>
             ),
             datetime: (
-            <Tooltip title="2016-11-22 10:22:33">
+                <Tooltip title="2016-11-22 10:22:33">
                 <span>9 hours ago</span>
             </Tooltip>
             ),
         },
-        ];
-
-// Comments array
-
+    ]);
+    const dispatch = useAppDispatch();
+    // add Comment State
+    const content = useAppSelector(state => state.addComment.content);
+    const router = useRouter();    
+    
+    const Editor = () => (
+        <>
+        <Form.Item>
+        <TextArea rows={4} value={commentContent} onChange={(e) => { setCommentContent(e.target.value)}} />
+        </Form.Item>
+        <Form.Item>
+        <Button type="primary" onClick={() => {
+            dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
+            let newComment = {
+                author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+                avatar: profilePic3.src,
+                content: (
+                    <p>
+                        {commentContent}
+                    </p>
+                ),
+                datetime: (
+                    <Tooltip title="2016-11-22 11:22:33">
+                        <span>8 hours ago</span>
+                    </Tooltip>
+                ),    
+            };
+            setData(prevData => [newComment , ...prevData]);
+            setAddComment(false);
+        }}>
+            Add Comment
+        </Button>
+        </Form.Item>
+    </>
+    );
+    
+    
+    // Comments array
+    
     const items: MenuProps['items'] = [
         {
             key: '1',
@@ -104,7 +123,7 @@ export default function Content(){
                         title={'Share your views on what else should I try CraveFeed'}
                         hashtag={'#cravefeed'}
                         className="share-button"
-                    >
+                        >
                     </FacebookShare>
                 </Space>
             ),
@@ -112,19 +131,19 @@ export default function Content(){
         {
             key: '2',
             label: (
-            <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
+                <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <WhatsappShare
                         windowHeight={20}
                         url={"https://nextjs.org/"}
                         title={'Share your views on what else should I try on CraveFeed'}
                         className="share-button"
-                    >
+                        >
                     </WhatsappShare>
                 </Space>
             ),
         },
     ];
-
+    
     const postData = [
         {
             id: 1,
@@ -165,7 +184,6 @@ export default function Content(){
             likeCount : 12
         },
     ];
-
     const MenuItems = [
         {
             key: 1,
@@ -186,7 +204,6 @@ export default function Content(){
             route: "/home/hot_on_location"
         },
     ];
-
     useEffect(() => {
         const path = window.location.pathname;
         const index = MenuItems.findIndex(item => item.route === path);
@@ -238,7 +255,6 @@ export default function Content(){
                     icon={item.icon}
                     onClick={() => { handleMenuClick(index); router.push(item.route); }}
                     style={{ color : "ghostwhite" }} 
-                    // : selectedIndex === index ? "black" :
                 >
                     {item.label}
                 </Menu.Item>
@@ -288,14 +304,23 @@ export default function Content(){
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>2 comments</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>{data.length} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="post-action-button">
-                        <Space size="small">
-                            <HeartFilled className="post-action-button-icon"/>
-                            <Typography.Text className="post-action-button-text">Like</Typography.Text>
-                        </Space>
+                        <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
+                            <div className="post-action-button-likeBg">
+                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`} onClick={() => {
+                                    if(liked){
+                                        setLiked(false)
+                                    } 
+                                    else {
+                                        setLiked(true)
+                                    }}}>
+                                </div>
+                            </div>
+                            <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>
+                        </Flex>
                     </Button>
                     <Button className="post-action-button">
                         <Space size="small">
@@ -304,7 +329,7 @@ export default function Content(){
                         </Space>
                     </Button>
                     <Button onClick={() => { setAddComment(true)}} className="post-action-button">
-                        <Space size="small" >
+                        <Space size="small" onClick={() => {}} >
                             <MessageFilled className="post-action-button-icon"/>
                             <Typography.Text className="post-action-button-text">Comment</Typography.Text>
                         </Space>
@@ -328,7 +353,6 @@ export default function Content(){
                         <li>
                             <Comment
                                 style={{ backgroundColor : "#1B2730" , color : "white"}}
-                                actions={item.actions}
                                 author={item.author}
                                 avatar={item.avatar}
                                 content={item.content}

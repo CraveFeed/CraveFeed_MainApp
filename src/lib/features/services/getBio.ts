@@ -3,6 +3,7 @@ import axios from "axios";
 
 export interface getBioState {
   getBioStatus: "success" | "loading" | "failed";
+  error: string | null;
   bio: String;
   username: String;
   firstName: String;
@@ -14,6 +15,7 @@ export interface getBioState {
 
 const initialState: getBioState = {
   getBioStatus: "success",
+  error: null,
   bio: "Hey there! I'm Vibhor, a huge food enthusiast.",
   username: "@vibhorphalke",
   firstName: "Vibhor",
@@ -23,14 +25,20 @@ const initialState: getBioState = {
   Avatar: "Avatar S3 hosted url",
 };
 
-export const getBioState = createAsyncThunk("bio/getBio", async () => {
-  try {
-    const response = await axios.get("https://localhost:3000/getBio/2");
-    return response.data;
-  } catch (error) {
-    return (error as Error).message;
+export const getBioState = createAsyncThunk(
+  "bio/getBio",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("https://localhost:2000/getBio/2");
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("An unknown error occurred");
+    }
   }
-});
+);
 
 export const getBioSlice = createSlice({
   name: "counter",
@@ -42,6 +50,7 @@ export const getBioSlice = createSlice({
     });
     builder.addCase(getBioState.fulfilled, (state, action) => {
       state.getBioStatus = "success";
+      state.error = null;
       state.bio = action.payload.bio;
       state.username = action.payload.username;
       state.firstName = action.payload.firstName;
@@ -49,13 +58,13 @@ export const getBioSlice = createSlice({
       state.noOfFollowers = action.payload.noOfFollowers;
       state.noOfFollowing = action.payload.noOfFollowing;
       state.Avatar = action.payload.Avatar;
+      //  Object.assign(state, action.payload);
     });
-    builder.addCase(getBioState.rejected, (state) => {
+    builder.addCase(getBioState.rejected, (state, action) => {
       state.getBioStatus = "failed";
+      state.error = action.payload as string;
     });
   },
 });
-
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 export default getBioSlice.reducer;
