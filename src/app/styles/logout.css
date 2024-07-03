@@ -1,0 +1,11 @@
+.ant-modal .ant-modal-content{
+    background-color: #051017ee;
+    border: 2px solid #28343E;
+    color:white;
+  }
+  .ant-modal .ant-modal-close {
+    color:white;
+  }
+  .ant-modal .ant-modal-close:hover {
+    color:rgb(216, 80, 80);
+  }
