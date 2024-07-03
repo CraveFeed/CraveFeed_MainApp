@@ -46,6 +46,8 @@ xxl: '1600px', */
 
 /* Name description follow button */
 
+
+
 .post_profile_pic{
     margin: 10px;
     width: 60px;
@@ -72,9 +74,6 @@ xxl: '1600px', */
     border-radius: 20px;
     height : 40px;
     width: 100px;
-}
-
-.likes_comments{
 }
 
 .likes_comments_heart{
@@ -142,13 +141,59 @@ color : "#5D6A77" */
     border: none;
 }
 
+.post-action-button-textLike {
+    margin-top: -10px;
+    margin-left: -5px !important;
+}
+
+.post-action-button-likeBg{
+    border-radius: 50%;
+    margin-top: -10px; 
+    margin-left: -40px;  
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-action-button-like{
+    height: 5vw;
+    width: 5vw;
+    max-height: 100px; 
+    max-width: 100px;  
+    min-height: 100px; 
+    min-width: 100px;  
+    z-index: 5;
+    background: url("../assets/heart.png");
+    transform: scale(0.80);
+    /* background-size: 2320% 80%; */
+    background-position: left;
+    cursor: pointer;
+    position: absolute;
+}
+
+.post-action-button-like.liked{
+    animation: like 0.7s steps(28) forwards;
+}
+
+@keyframes like {
+    to{
+        background-position: right;
+    }
+}
+
 .post-action-button-icon{
     font-size: 22px;
     color: #FEFEFE;
 }
 
 .post-action-button:hover .post-action-button-icon{
-    color: #4a4a4a;
+    color: #639094;
+}
+
+.post-action-button:hover {
+    background-color: #051017 !important;
 }
 
 .post-action-button-text{
@@ -165,12 +210,25 @@ color : "#5D6A77" */
 }
 
 @media screen and (max-width: 1300px) {
+    
+    
+    
+    .post-action-button-like {
+        margin-top: -10px;
+        transform: scale(0.65);
+    }
+    
+    .post-action-button-textLike{
+        margin-top: -20px;
+        margin-left: -10px !important;
+    }
+
     .post-action-button-mainDiv {
         margin-top: 10px;
         padding-inline: 15px;
         margin-bottom: 20px;
     }
-
+    
     .post-action-button-icon {
         font-size: 16px;
     }
@@ -178,70 +236,70 @@ color : "#5D6A77" */
     .post-action-button-text {
         font-size: 14px;
     }
-
+    
     .post-action-button {
         height: 35px;
     }
-
+    
     .post-upload-button {
         height: 35px;
         width: 47px;
         border: 2px solid #3a4349;
     }
-
+    
     .post-upload-button-icon {
         font-size: 16px;
         color: #FEFEFE;
     }
-
+    
     .likes_comments{
         margin-top: 5px;
     }
-
+    
     .likes_comments_heart {
         border: 3px solid #c70700;
         font-size: 16px;
         height: 23px;
         border-radius: 50%;
     }
-
-
+    
+    
     .likes_comments_comment {
         border: 3px solid #4681f4;
         font-size: 16px;
         height: 23px;
         border-radius: 50%;
     }
-
+    
     .comment-count {
         font-size: 14px;
         color: #5D6A77;
         cursor: pointer !important;
     }
-
+    
     .post-name {
         margin-top: 15px;
         font-size: 23px !important;
     }
-
+    
     .post_time {
         font-size: 12px;
         margin-top: 22px;
         color: #6D7B88;
     }
-
+    
     .post_description {
         font-weight: bolder;
         font-size: 16px;
         color: #C6D0D2;
     }
-
+    
     .post_follow_btn {
         border-radius: 20px;
         height: 30px;
         width: 70px;
     }
-
+    
     .post_profile_pic {
         margin-top: 20px;
         width: 50px;
@@ -255,7 +313,7 @@ color : "#5D6A77" */
 }
 
 
-        /* Mobile responsive */
+/* Mobile responsive */
 .card-container {
     width: 100%;
     /* max-width: 300px; */
@@ -270,6 +328,18 @@ color : "#5D6A77" */
 }
 
 @media screen and (max-width : 1000px) {
+
+    .post-action-button-like {
+        margin-top: -15px;
+        margin-left: -10px;
+        transform: scale(0.50);
+    }
+    
+    .post-action-button-textLike{
+        margin-top: -20px;
+        margin-left: -15px !important;
+    }
+
     .card-container {
         width: 100%;
         max-width: 500px;
@@ -376,6 +446,19 @@ color : "#5D6A77" */
 }
 
 @media screen and (max-width : 500px) {
+
+    .post-action-button-like {
+        margin-top: -15px;
+        margin-left: -50px;
+        transform: scale(0.334);
+    }
+    
+    .post-action-button-textLike{
+        margin-top: -20px;
+        margin-left: -40px !important;
+    }
+
+
     .card-container {
         width: 100%;
         max-width: 350px;
