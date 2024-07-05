@@ -1,10 +1,11 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React from 'react'
-import {  Button, Form, Input, Modal, Space } from 'antd';
+import {  Button, Form, Input, Modal, Space  ,  Upload} from 'antd';
 import "../styles/CreatePost.css"
-
-import { EnvironmentOutlined, FileImageOutlined, GifOutlined, MehOutlined } from '@ant-design/icons';
+import "./App.css"
+import { EnvironmentOutlined, FileImageOutlined, GifOutlined, MehOutlined} from '@ant-design/icons';
 import {  PlusCircleFilled  } from "@ant-design/icons";
 import {
   DownloadOutlined,
@@ -15,14 +16,20 @@ import {
   ZoomInOutlined,
   ZoomOutOutlined,
 } from '@ant-design/icons';
+
+import { UploadOutlined } from '@ant-design/icons';
+
+
 import { Image,Typography } from 'antd';
 const { Text } = Typography;
-const src = 'https://images.unsplash.com/photo-1598214886806-c87b84b7078b?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvb2tlZCUyMGZvb2R8ZW58MHx8MHx8fDA%3D';
+
 export default function logout() {
   
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [displayImage, setDisplayImage] = React.useState('none'); 
     const [CityTag , setCityTag] = React.useState("none")
+    const [imageUrl, setImageUrl] = React.useState(null);
+    
 
       const displaytoggle = () =>{
         setDisplayImage("flex");
@@ -34,7 +41,7 @@ export default function logout() {
      
 
     const onDownload = () => {
-      fetch(src)
+      fetch(imageUrl)
         .then((response) => response.blob())
         .then((blob) => {
           const url = URL.createObjectURL(new Blob([blob]));
@@ -59,6 +66,18 @@ export default function logout() {
     const handleCancel = () => {
       setIsModalOpen(false);
     };
+    
+    //upload image 
+    const handleUpload = (file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImageUrl(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      return false; // Prevent default upload behavior
+    };
+
+   
   
     return (
         <>
@@ -88,7 +107,7 @@ export default function logout() {
              <div style={{display: displayImage , justifyContent:"center" , marginTop:"30px"}}>
           <Image
       width={300}
-      src={src}
+      src={imageUrl}
       preview={{
         toolbarRender: (
           _,
@@ -126,12 +145,15 @@ export default function logout() {
           <div style={{display:"flex" , justifyContent:"space-between", marginTop:"10px" , }}>
           <div style={{display:"flex"}}>
             
-          <FileImageOutlined onClick={displaytoggle} style={{paddingRight:"10px" ,fontSize:"18px" , color:"#29a7f6" ,cursor:"pointer"}} />
+          <Upload  beforeUpload={handleUpload}
+                showUploadList={false} >
+    <Button onClick={displaytoggle}  style={{backgroundColor:"transparent" , border:"none" , color:"#29a7f6"}} icon={<FileImageOutlined />}></Button>
+  </Upload>
           <MehOutlined style={{paddingRight:"10px" ,fontSize:"18px" , color:"#29a7f6" , cursor:"pointer"}} />
           <GifOutlined style={{paddingRight:"10px" ,fontSize:"18px" , color:"#29a7f6" ,cursor:"pointer"}}/>
           <EnvironmentOutlined onClick={Citytoggle} style={{paddingRight:"10px" ,fontSize:"18px" , color:"#29a7f6" ,cursor:"pointer"}}/>
-        {/*   <Text keyboard style={{ display:CityTag , marginRight:"20px" , marginTop:"10px"}} >Longitutde</Text>
-          <Text keyboard style={{ display:CityTag , marginRight:"20px" , marginTop:"10px"}} >Latitude</Text> */}
+          <Text keyboard style={{ display:CityTag , marginRight:"20px" , marginTop:"10px"}} >Longitutde</Text>
+          <Text keyboard style={{ display:CityTag , marginRight:"20px" , marginTop:"10px"}} >Latitude</Text>
         
           
           </div>
