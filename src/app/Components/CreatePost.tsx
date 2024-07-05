@@ -4,7 +4,6 @@
 import React from 'react'
 import {  Button, Form, Input, Modal, Space  ,  Upload} from 'antd';
 import "../styles/CreatePost.css"
-import "./App.css"
 import { EnvironmentOutlined, FileImageOutlined, GifOutlined, MehOutlined} from '@ant-design/icons';
 import {  PlusCircleFilled  } from "@ant-design/icons";
 import {
