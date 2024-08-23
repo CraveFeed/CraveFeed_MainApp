@@ -1,0 +1,28 @@
+.ant-modal .ant-modal-content{
+  background-color: #09151d;
+  border: 2px solid #28343E;
+  color:white;
+}
+.ant-modal .ant-modal-close {
+  color:white;
+}
+.ant-modal .ant-modal-close:hover {
+  color:rgb(216, 80, 80);
+}
+.custom-input::placeholder {
+  font-size: 18px;
+  color: grey; 
+  opacity: 1; 
+}
+.custom-input2::placeholder {
+  font-size: 15px;
+  color: grey; 
+  opacity: 1; 
+}
+
+.ant-typography kbd{
+  background-color: #29a7f6;
+  margin:auto;
+  color:white;
+}
+

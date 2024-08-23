@@ -24,6 +24,7 @@ import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
+import CreatePost from "../../../Components/CreatePost"
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -239,7 +240,7 @@ export default function Content(){
                     <Space size="large">
                         <Button className="upload-buttons"><RestFilled style={{ fontSize : "19px" , color : "#20D997"}}/>Share Food</Button>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                        <Button className="upload-buttons"><PlusCircleFilled style={{marginTop : "1px" , fontSize : "19px" , color : "#FF6B6B"}}/>Create Post</Button>
+                       <CreatePost/>
                     </Space>
                 </Flex>
             </Card>
