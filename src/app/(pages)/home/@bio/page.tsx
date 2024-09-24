@@ -10,6 +10,7 @@ import tiger from "../../../assets/wallpaperflare.ico"
 import background from "../../../assets/coverImage.jpeg"
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { getBioState } from "@/lib/features/services/getBio";
+import { useRouter } from "next/navigation";
 
 
 export default function Bio() {
@@ -19,19 +20,18 @@ export default function Bio() {
   },[])
 
   const dispatch = useAppDispatch();
-  
+  const router = useRouter();
   const bio = useAppSelector(state => state.getBio.bio);
   const username = useAppSelector(state => state.getBio.username);
   const firstName = useAppSelector(state => state.getBio.firstName);
   const lastname = useAppSelector(state => state.getBio.lastname);
   const noOfFollowers = useAppSelector(state => state.getBio.noOfFollowers);
-  const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing);
-  // const Avatar = useAppSelector(state => state.getBio.Avatar);
+  const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing)
   const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
 
 
   const imageStyle = {
-    width: "100%", // Decrease the width to 50% of the original
+    width: "100%",
     borderRadius: "20px",
   };
 
@@ -99,7 +99,7 @@ export default function Bio() {
                 </Space>
               </Flex>
               <Flex align="center" justify="center" style={{ marginBlock : "10px"}}>
-                  <Button style={{ backgroundColor : "#1B2730" , border : "none" , fontSize : "16px" , color : "#2091d7" , fontWeight : "bolder"}}>My Profile</Button>
+                  <Button onClick={() => { router.push("/profile")}} style={{ backgroundColor : "#1B2730" , border : "none" , fontSize : "16px" , color : "#2091d7" , fontWeight : "bolder"}}>My Profile</Button>
               </Flex>
           </div>
       </Card>
