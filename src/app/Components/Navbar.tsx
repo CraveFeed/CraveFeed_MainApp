@@ -5,7 +5,7 @@ import { Flex, Space , Input , Button , Card , Popover , Divider } from "antd"
 import type { MenuProps } from "antd";
 import { Dropdown } from 'antd';
 import { Avatar } from 'antd';
-import Logout from "../Components/logout"
+import Logout from "./Logout"
 import { FireFilled , TwitterOutlined , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled} from '@ant-design/icons';
 import "../styles/home.css"
 
