@@ -26,13 +26,12 @@ export default function Bio() {
   const firstName = useAppSelector(state => state.getBio.firstName);
   const lastname = useAppSelector(state => state.getBio.lastname);
   const noOfFollowers = useAppSelector(state => state.getBio.noOfFollowers);
-  const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing);
-  // const Avatar = useAppSelector(state => state.getBio.Avatar);
+  const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing)
   const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
 
 
   const imageStyle = {
-    width: "100%", // Decrease the width to 50% of the original
+    width: "100%",
     borderRadius: "20px",
   };
 
