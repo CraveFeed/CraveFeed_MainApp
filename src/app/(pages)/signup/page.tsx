@@ -5,9 +5,19 @@ import { Avatar, Button, Card, Form, Input, Select, Space, Steps } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons'
 import { CloseOutlined } from '@ant-design/icons';
 import { UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined } from '@ant-design/icons';
-import { options, sweetenerOptions, fatOilOptions, seasoningOptions } from '../../Components/InputValues';
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { options, sweetenerOptions, fatOilOptions, seasoningOptions,RateOptions } from '../../Components/InputValues';
 
+import {  EnvironmentOutlined } from "@ant-design/icons";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+const libraries = ["places"];
+const mapContainerStyle = {
+  width: "100%",
+  height: "400px",
+};
+const center = {
+  lat: 0,
+  lng: 0,
+};
 
 export default function Signup() {
   const [current, setCurrent] = React.useState(0);
@@ -16,6 +26,43 @@ export default function Signup() {
   const [security, newSecurity] = React.useState(null);
   const [profile, newProfile] = React.useState(null);
   const [explore, newexplore] = React.useState(null);
+  const [isMapVisible, setIsMapVisible] = React.useState(false);
+  const [latitude, setLatitude] = React.useState(null);
+  const [longitude, setLongitude] = React.useState(null);
+  const [cityName, setCityName] = React.useState("");
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyC1qpx2DBSIs5EaMIsvLYbFpYvS9Md0y-E",
+    libraries,
+  });
+
+  const handleMapClick = (event) => {
+    const lat = parseFloat(event.latLng.lat().toFixed(2));
+    const lng = parseFloat(event.latLng.lng().toFixed(2));
+    setLatitude(lat);
+    setLongitude(lng);
+
+    // Reverse geocoding to get the city name
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const addressComponents = results[0].address_components;
+        const city = addressComponents.find((component) =>
+          component.types.includes("locality")
+        );
+        setCityName(city ? city.long_name : "Unknown City");
+        setIsMapVisible(false); // Close the map modal after selecting location
+      }
+    });
+  };
+
+  const toggleMapVisibility = () => {
+    setIsMapVisible(!isMapVisible); // Toggle map visibility on button click
+  };
+  const Citytoggle = () => {
+    setShowMap(true); // Show the Google Map modal
+  };
+
 
   const onFinishLoginForm = (value) => {
     newProfile(value);
@@ -61,9 +108,9 @@ export default function Signup() {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '30px' }}>
-      <div className='main-align'>
+      <div className='main-align' >
         <div className='Sign-in'>Sign Up</div>
-        <div className="horizontal-steps">
+        <div className="horizontal-steps" style={{display:"none"}}>
           <Steps onChange={setCurrent} current={current}>
             <Steps.Step disabled={isStepDisabled(0)} title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
             <Steps.Step disabled={isStepDisabled(1)}  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
@@ -73,7 +120,7 @@ export default function Signup() {
           </Steps>
         </div>
         <Card className='main-card'>
-          <Card className="main-card-inner">
+          <Card className="main-card-inner" >
             {forms[current]}
           </Card>
         </Card>
@@ -95,6 +142,38 @@ export default function Signup() {
           <Form.Item label="E-mail" name={"email"} rules={[{ required: true }]}>
             <Input style={{ backgroundColor: "#051017", color: "white" }} />
           </Form.Item>
+          <Form.Item label="Location" name="location">
+          <div>
+      <Button
+        icon={<EnvironmentOutlined />}
+        style={{ backgroundColor: "#051017", color: "white", width: "100%" }}
+        onClick={toggleMapVisibility}
+      >
+        {cityName || "Select your location"}
+      </Button>
+
+      {isMapVisible && isLoaded && (
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={10}
+          center={{ lat: 22.3511, lng: 78.6677 }}
+          onClick={handleMapClick}
+        >
+          {latitude && longitude && (
+            <Marker position={{ lat: latitude, lng: longitude }} />
+          )}
+        </GoogleMap>
+      )}
+
+      {latitude && longitude && (
+        <div style={{ marginTop: "10px", color: "white" }}>
+          Selected Location: {cityName} (Lat: {latitude}, Lon: {longitude})
+        </div>
+      )}
+    </div>
+        </Form.Item>
+
+        
           <div className='button-align'>
           
             <Button className='button-inner' type='primary' htmlType='submit'>Next</Button>
@@ -112,7 +191,7 @@ export default function Signup() {
             <UserOutlined style={{ paddingRight: "10px" }} />Choose Avatar
           </div>
           <Avatar size={{ xs: 84, sm: 82, md: 80, lg: 84, xl: 100, xxl: 100 }} style={{ color: "white" }} icon={<UserOutlined />} />
-          <Form.Item label="UserName" name={"NickName"} rules={[{ required: true }]}>
+          <Form.Item label="UserName" name={"NickName"} rules={[{ required: true }]} style={{marginTop:"30px"}}>
             <Input style={{ backgroundColor: "#051017", color: "white" }} className='nickname' />
           </Form.Item>
           <div className='button-align'>
@@ -172,6 +251,37 @@ export default function Signup() {
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
+
+
+          {/* rating options */}
+
+          <div  className='ratingoptions' >
+          <Form.Item name="Spiciness" label="Spiciness"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{width:"8rem"}} mode="tags" placeholder="Spiciness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+          <Form.Item name="Sweetness" label="Sweetness" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{width:"8rem"}} mode="tags" placeholder="Sweetness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+          <Form.Item name="Sourness" label="Sourness" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{width:"8rem"}} mode="tags" placeholder="Sourness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+
+          </div>
+
+          
+          
           <div className='button-align'>
             <Button className='button-inner' type='primary' onClick={goPrevious} style={{ marginRight: '8px' }}>Previous</Button>
             <Button className='button-inner' type='primary' htmlType='submit'>Next</Button>
