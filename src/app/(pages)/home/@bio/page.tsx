@@ -9,16 +9,12 @@ import avatar from "../../../assets/avatar.jpg"
 import tiger from "../../../assets/wallpaperflare.ico"
 import background from "../../../assets/coverImage.jpeg"
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
-import { getBioState } from "@/lib/features/services/getBio";
+import { fetchBioState} from "@/lib/features/services/home/getBio";
 import { useRouter } from "next/navigation";
 
 
 export default function Bio() {
   
-  useEffect(() => {
-    dispatch(getBioState());
-  },[])
-
   const dispatch = useAppDispatch();
   const router = useRouter();
   const bio = useAppSelector(state => state.getBio.bio);
@@ -28,6 +24,12 @@ export default function Bio() {
   const noOfFollowers = useAppSelector(state => state.getBio.noOfFollowers);
   const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing)
   const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
+
+  useEffect(() => {
+    dispatch(fetchBioState());
+    console.log(bio , username , firstName , lastname , noOfFollowers , noOfFollowing , getBioStatus)
+  },[])
+
 
 
   const imageStyle = {
@@ -89,11 +91,11 @@ export default function Bio() {
               <Flex align="center" justify="center" style={{ borderBlock : "1px solid #28343E" , marginInline : "5px"}} >
                 <Space className="follower-space-padding" split={<Divider type="vertical" style={{ backgroundColor : "#4C5965" , marginTop : "13px" , height : "50px"}}/>} style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                     <Flex align="center" justify="center" vertical>
-                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>{noOfFollowing}</Typography.Title>
+                        <Typography.Title className="follower-count-title" style={{ color : "#c7c7c7"}}>{noOfFollowing}</Typography.Title>
                         <Typography.Text className="follower-text" style={{ marginTop : "-15px" , fontWeight : "bolder" , color : "#5c6165" }}>Following</Typography.Text>
                     </Flex>
                     <Flex vertical align="center" justify="center">
-                        <Typography.Title className="follower-title" style={{ color : "#c7c7c7"}}>{noOfFollowers}</Typography.Title>
+                        <Typography.Title className="follower-count-title" style={{ color : "#c7c7c7"}}>{noOfFollowers}</Typography.Title>
                         <Typography.Text className="follower-text" style={{ marginTop : "-15px" , color : "#5c6165" , fontWeight : "bolder"}}>Follower</Typography.Text>
                     </Flex>
                 </Space>

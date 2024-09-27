@@ -26,9 +26,6 @@ export interface getProfileState {
   noOfPosts: Number;
   noOfFollowers: Number;
   noOfFollowing: Number;
-  //   userPosts: Posts[];
-  //   followers: followers[];
-  //   following: following[];
   userPosts: String;
   followers: String;
   following: String;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Flex, Space , Input , Button , Divider } from "antd"
 import type { MenuProps } from "antd";
 import { Dropdown } from 'antd';
-import { Avatar } from 'antd';
+import { Avatar , Drawer } from 'antd';
 import { useRouter } from "next/navigation";
 import Logout from "./Logout"
 import { FireFilled , TwitterOutlined , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
@@ -27,6 +27,14 @@ export default function Navbar(){
     const handleOpenChange = (newOpen: boolean) => {
         setOpen(newOpen);
     };    
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
 
     const items: MenuProps['items'] = [
         {
@@ -72,7 +80,7 @@ export default function Navbar(){
                             </Button>
                             </Space>
                         </Dropdown>
-                    {/* <MenuOutlined style={{ fontSize : "22px" , marginTop : "10px" }}/> */}
+                    {/* <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/> */}
                 </Space>
             </Flex>
 
@@ -94,7 +102,7 @@ export default function Navbar(){
                             </Button>
                             </Space>
                         </Dropdown>
-                    <MenuOutlined style={{ fontSize : "22px" , marginTop : "10px" }}/>
+                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/>
                 </Space>
             </Flex>
 
@@ -110,9 +118,42 @@ export default function Navbar(){
                                 <Avatar src={avatar.src} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
                             </Space>
                         </Dropdown>
-                    <MenuOutlined style={{ fontSize : "22px" , marginTop : "10px" }}/>
+                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/>
                 </Space>
             </Flex>
+
+            <Drawer
+                title={<span style={{ color: '#fff' }}>Navigate to Pages</span>}
+                onClose={onClose}
+                open={open}
+                style={{ backgroundColor: '#141414', color: '#fff' }}
+                bodyStyle={{ backgroundColor: '#141414', color: '#fff' }}
+                headerStyle={{ backgroundColor: '#000', color: '#fff' }}
+                >
+                <Space 
+                    style={{ display: "inline-block", width: "100%" }}
+                     split={<div style={{ height: "10px" }}></div>}
+                >
+                    <Button 
+                    onClick={() => { router.push("/home") }} 
+                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    >
+                    Home
+                    </Button>
+                    <Button 
+                    onClick={() => { router.push("/home/explore") }} 
+                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    >
+                    Explore
+                    </Button>
+                    <Button 
+                    onClick={() => { router.push("/home/hot_on_location") }} 
+                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    >
+                    For You
+                    </Button>
+                </Space>
+            </Drawer>
         </>
     )
 }
