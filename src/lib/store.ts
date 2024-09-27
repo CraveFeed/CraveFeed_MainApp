@@ -5,8 +5,8 @@ import getBioReducer from "./features/services/home/getBio";
 import { getHomePostSlice } from "./features/services/home/getHomePost";
 import { addCommentSlice } from "./features/services/addComment";
 import { getProfileSlice } from "./features/services/getProfile";
-import { get } from "http";
-
+import { getExplorePostSlice } from "./features/services/home/getExplorePost";
+import { getHotPostSlice } from "./features/services/home/getHotPost";
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -15,6 +15,8 @@ export const makeStore = () => {
       // Home
       getBio: getBioReducer,
       getHomePost: getHomePostSlice.reducer,
+      getExplorePost: getExplorePostSlice.reducer,
+      getHotPost: getHotPostSlice.reducer,
 
       addComment: addCommentSlice.reducer,
       getProfile: getProfileSlice.reducer,
