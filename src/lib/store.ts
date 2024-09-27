@@ -4,9 +4,10 @@ import postReducer from "./features/services/testThunk";
 import getBioReducer from "./features/services/home/getBio";
 import { getHomePostSlice } from "./features/services/home/getHomePost";
 import { addCommentSlice } from "./features/services/addComment";
-import { getProfileSlice } from "./features/services/getProfile";
+import { getProfileSlice } from "./features/services/profile/getProfile";
 import { getExplorePostSlice } from "./features/services/home/getExplorePost";
 import { getHotPostSlice } from "./features/services/home/getHotPost";
+import { getFollowerSlice } from "./features/services/profile/getFollowersAndFollowing";
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -19,7 +20,10 @@ export const makeStore = () => {
       getHotPost: getHotPostSlice.reducer,
 
       addComment: addCommentSlice.reducer,
+
+      // Profile Slice
       getProfile: getProfileSlice.reducer,
+      getFollower: getFollowerSlice.reducer,
     },
   });
 };

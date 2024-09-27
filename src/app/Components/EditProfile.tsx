@@ -4,7 +4,7 @@ import avatar from "../assets/avatar.jpg"
 import type { GetProp, UploadProps } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@/lib/hooks';
-import { editProfileCall } from '@/lib/features/services/getProfile';
+import { editProfileCall } from '@/lib/features/services/profile/getProfile';
 import { Button, Modal, Typography , message , Flex , Upload, Avatar , Input , Space , Radio} from 'antd';
 import "../styles/profile.css"
 

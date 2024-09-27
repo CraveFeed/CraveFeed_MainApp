@@ -1,34 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 interface Posts {}
 interface followers {}
 interface following {}
 
 interface editProfInput {
-  userId: String;
-  bio: String;
-  // avatar: String;
-  // coverImage: String;
-  firstname: String;
-  lastname: String;
-  tag: String;
+  userId: string;
+  bio: string;
+  firstname: string;
+  lastname: string;
+  tag: string;
 }
 
 export interface getProfileState {
   getProfileStatus: "success" | "loading" | "failed";
-  username: String;
-  bio: String;
-  avatar: String;
-  firstname: String;
-  lastname: String;
-  coverImage: String;
-  noOfPosts: Number;
-  noOfFollowers: Number;
-  noOfFollowing: Number;
-  userPosts: String;
-  followers: String;
-  following: String;
+  username: string;
+  bio: string;
+  avatar: string;
+  firstname: string;
+  lastname: string;
+  coverImage: string;
+  noOfPosts: number;
+  noOfFollowers: number;
+  noOfFollowing: number;
+  userPosts: string;
+  followers: string;
+  following: string;
 }
 
 const initialState: getProfileState = {
@@ -51,15 +48,13 @@ export const getProfileCall = createAsyncThunk(
   "bio/getBio",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://localhost:2000/getProfileInfo/2"
-      );
-      return response.data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.message);
+      const response = await fetch("http://localhost:3010/getProfileInfo");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-      return rejectWithValue("An unknown error occurred");
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
     }
   }
 );
@@ -75,24 +70,29 @@ export const editProfileCall = createAsyncThunk(
           lastname: editProfData.lastname,
         })
       );
-      const response = await axios.post(
-        "https://localhost:2000/editUserProfile",
-        {
+      const response = await fetch("http://localhost:3010/editUserProfile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           userId: editProfData.userId,
           bio: editProfData.bio,
           firstname: editProfData.firstname,
           lastname: editProfData.lastname,
           tag: editProfData.tag,
-          // coverImage: editProfData.coverImage,
-          // avatar: editProfData.avatar,
-        }
-      );
-      return response.data;
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
     } catch (error) {
       return (error as Error).message;
     }
   }
 );
+
 export const getProfileSlice = createSlice({
   name: "counter",
   initialState,
@@ -101,8 +101,6 @@ export const getProfileSlice = createSlice({
       state.bio = action.payload.bio;
       state.firstname = action.payload.firstName;
       state.lastname = action.payload.lastname;
-      // state.avatar = action.payload.avatar;
-      // state.coverImage = action.payload.coverImage;
     },
   },
   extraReducers: (builder) => {
@@ -113,7 +111,7 @@ export const getProfileSlice = createSlice({
       state.getProfileStatus = "success";
       state.bio = action.payload.bio;
       state.username = action.payload.username;
-      state.firstname = action.payload.firstName;
+      state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.noOfFollowers = action.payload.noOfFollowers;
       state.noOfFollowing = action.payload.noOfFollowing;
@@ -122,7 +120,6 @@ export const getProfileSlice = createSlice({
       state.noOfPosts = action.payload.noOfPosts;
       state.userPosts = action.payload.userPosts;
       state.followers = action.payload.followers;
-      //  Object.assign(state, action.payload);
     });
     builder.addCase(getProfileCall.rejected, (state) => {
       state.getProfileStatus = "failed";
