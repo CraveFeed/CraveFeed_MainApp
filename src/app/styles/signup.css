@@ -4,23 +4,24 @@ body {
     font-family: Arial, sans-serif;
 }
  .main-align{
-    border : 2px solid #26333D ;
-    padding : 20px ; 
-    background-color : #00090f ;
-    border-radius : 30px;
+    display: flex;
+    flex-direction: column;
  }
 .main-card { 
     border: none;
-    width:900px;
-    background-color : #00090f ; 
+    width:110%;
+    background-color : #1B2730 ; 
     color : white ; 
     border-radius : "30px"; 
-    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .main-card-inner{
-     padding:20px 90px 20px 90px;
-     background-color:#00090f ; 
+     
+     background-color:#1B2730 ; 
      border : none ;
 }
 .Sign-in {
@@ -165,8 +166,45 @@ body {
 
 .custom-selected-label {
     color: white;
+    font-size: 30px;
+    font-weight: bold;
      /* Change to your desired selected label color */
   }
+
+.ant-select-selection-search-input{
+    color:white;
+}
+
+.ratingoptions{
+    display: flex;
+    justify-content: space-between;
+    color:white;
+    
+}
+
+.ant-form-item-required{
+    font-size: 10px;
+}
+
+.ant-input{
+    width: 98%;
+    padding: 0.60rem;
+    border-radius: 4px;
+    border: 1px solid #00090f;
+    background-color: #051017;
+    color: white;
+    outline: none;
+}
+
+.ant-select {
+    width: 98%;
+    padding: 0.60rem;
+    border-radius: 4px;
+    border: 1px solid #00090f;
+    background-color: #051017;
+    color: white;
+    outline: none; 
+}
 
 
   
@@ -203,6 +241,11 @@ body {
     .button-inner {
         padding: 8px 15px;
         font-size: 14px;
+    }
+    .ratingoptions{
+        display: flex;
+        flex-direction: column;
+        
     }
 }
 

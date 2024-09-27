@@ -298,3 +298,11 @@ export const options: SelectProps['options'] = [
   { label: 'Dough', value: 'dough', desc: 'Dough' },
   { label: 'Pecans', value: 'pecans', desc: 'Pecans' },
 ];
+export const RateOptions: SelectProps['options'] = [
+  { label: '1', value: '1', desc: '1' },
+  { label: '2', value: '2', desc: '2' },
+  { label: '3', value: '3', desc: '3' },
+  { label: '4', value: '4', desc: '4' },
+  { label: '5', value: '5', desc: '5' },
+  
+];

@@ -1,44 +1,67 @@
 "use client"
-import { Button, Card, Form, Input } from 'antd'
-import React from 'react'
 import '../signin/login.css'
+import React, { useState } from "react";
 
+export default function Component() {
+  const [showPassword, setShowPassword] = useState(false);
 
-export default function page() {
   return (
-    
-   <div  className='main-style'>
-    <Card   className='Login-card '>
-     <h5 style={{color:"whitesmoke", fontSize:"20px", margin:"auto" ,textAlign:"center"}}>Welcome Back To CraveFeed</h5>
-     
-      <Form layout="vertical"style={{paddingTop:"40px"}}>
-     <Form.Item
-      
-      label={<span style={{color:'white'}}>Username</span>}
-      name="username"
-      rules={[{ required: true, message: 'Please input your username!' }]}
-    >
-      <Input style={{height:"35px",backgroundColor:"rgba(0, 0, 0, 0.194)" , color:"white" , }}/>
-    </Form.Item>
-    <Form.Item
-      label={<span style={{color:'white'}}>Password</span>}
-      name="password"
-      rules={[{ required: true, message: 'Please input your password!' }]}
-    >
-      <Input.Password style={{height:"35px",backgroundColor:"rgba(0, 0, 0, 0.194)" , color:"white"}}/>
-    </Form.Item>
-    </Form>
-    <h5 style={{textAlign:"right",cursor:"pointer"}}>Forgot Password ?</h5>
-    <div style={{display: "flex", justifyContent: "center"}}>
-    <Button style={{backgroundColor:"#051017",display:"flex" , alignItems:"center" , verticalAlign:"middle"}} > <span style={{color:"white", fontWeight:"700", padding:"10px 30px 10px 30px",letterSpacing:"5px" }}>EXPLORE</span></Button></div>
-    <div style={{paddingTop:"30px",display:"flex", justifyContent:"center"}}>
-      <span className='create-new'>Don't have an account ? <span style={{color:"blue"}}>Create one</span></span>
+    <div className="container">
+      <div className="card">
+        <div className="card-header">
+          <h1 className="card-title">Sign In</h1>
+        </div>
+        <div className="card-content">
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your Email"
+              className="input"
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <div className="input-wrapper">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your Password"
+                className="input password-input"
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+          </div>
+          <div className="remember-forgot">
+            <div className="checkbox-group" >
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember">Remember me</label>
+            </div>
+            <a href="/forgot-password" className="forgot-password">
+              Forgot password?
+            </a>
+          </div>
+        </div>
+        <div className="card-footer">
+          <button className="sign-in-button">Sign In</button>
+          <p className="signup-link">
+            Don't have an account?{" "}
+            <a href="/signup" className="link">
+              Sign Up
+            </a>
+          </p>
+         
+          
+        </div>
+      </div>
     </div>
-   </Card>
- 
-    
-  </div>
-  
- 
-  )
+  );
 }
+
