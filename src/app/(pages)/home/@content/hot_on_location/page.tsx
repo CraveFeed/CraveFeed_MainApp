@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { use } from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
@@ -24,6 +24,7 @@ import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
+import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
 import { stat } from "fs";
 
 const formatter: StatisticProps['formatter'] = (value) => (
@@ -34,6 +35,10 @@ const { TextArea } = Input;
 
 export default function Content(){
     
+    useEffect(() => {
+        dispatch(fetchHomePost());
+    },[]);
+
     const [commentContent , setCommentContent ] = useState<string>("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
@@ -346,32 +351,35 @@ export default function Content(){
                 </Flex>
                 {/* // Comments */}
                 {showComments && (id == item.id) && (
-                    <List
+                     <List
                         className="comment-list"
-                        header={ <span style={{ color : "#4991FD"}}>{item.comments.length} comments</span>}
+                        header={<span style={{ color: "#4991FD" }}>{item.comments.length} comments</span>}
                         itemLayout="horizontal"
                         dataSource={item.comments}
-                        renderItem={item => (
-                        <li>
+                        renderItem={(comment) => (
+                            <li>
                             <Comment
-                                style={{ backgroundColor : "#1B2730" , color : "white"}}
-                                author={item.author}
-                                avatar={item.avatar}
-                                content={item.content}
-                                // datetime={item.datetime}
+                                style={{ backgroundColor: "#1B2730", color: "white" }}
+                                author={<span style={{ color: "ghostwhite" }}>{comment.author}</span>}
+                                avatar={comment.avatar}
+                                content={<p>{comment.content}</p>}
+                                datetime={
+                                <span style={{ color : "gray"}} title={comment.fullDateTime}>
+                                    {comment.relativeTime}
+                                </span>
+                                }
                             />
-                        </li>
+                            </li>
                         )}
-                    />
-                )}
+                        />
+                    )}
 
                     <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
                         <Comment
                             style={{ backgroundColor : "#1B2730" , color : "white"}}
                             avatar={<Avatar src={avatar.src} alt="Han Solo" />}
                             content={
-                            <Editor
-                            />
+                            <Editor/>
                             }
                         />
                     </Modal>

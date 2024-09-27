@@ -3,10 +3,11 @@ import React from "react";
 import { Tooltip } from "antd";
 
 export interface CommentState {
-  author: React.ReactNode;
+  author: string;
   avatar: string;
-  content: React.ReactNode;
-  datetime: React.ReactNode;
+  content: string;
+  fullDateTime: string;
+  relativeTime: string;
 }
 
 export interface PostState {
@@ -31,7 +32,7 @@ const initialState: PostState[] = [
     id: 0,
     name: "Sherrr",
     time: "2 hours ago",
-    tag: "Bussiness",
+    tag: "Business",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
@@ -42,32 +43,20 @@ const initialState: PostState[] = [
     likeCount: 2210,
     comments: [
       {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
-        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        content: (
-          <p>
-            Sherrr bahi full suport
-          </p>
-        ),
-        datetime: (
-          <Tooltip title="2023-05-10 09:22:33">
-            <span>10 hours ago</span>
-          </Tooltip>
-        ),
+        author: "Supporter Sherrrr",
+        avatar:
+          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: "Sherrr bahi full suport",
+        fullDateTime: "2023-05-10 09:22:33",
+        relativeTime: "10 hours ago",
       },
-       {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Sherrr1</span></React.Fragment>,
-        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
-        content: (
-          <p>
-            Vaah Bhai
-          </p>
-        ),
-        datetime: (
-          <Tooltip title="2023-05-10 09:22:33">
-            <span>22 hours ago</span>
-          </Tooltip>
-        ),
+      {
+        author: "Sherrr1",
+        avatar:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
+        content: "Vaah Bhai",
+        fullDateTime: "2023-05-09 21:22:33",
+        relativeTime: "22 hours ago",
       },
     ],
   },
@@ -77,7 +66,7 @@ const initialState: PostState[] = [
     id: 1,
     name: "Sherrr1",
     time: "2 hours ago",
-    tag: "Bussiness",
+    tag: "Business",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
@@ -88,18 +77,12 @@ const initialState: PostState[] = [
     likeCount: 1200,
     comments: [
       {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
-        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        content: (
-          <p>
-            Sherrr bahi full suport bahi bahi
-          </p>
-        ),
-        datetime: (
-          <Tooltip title="2023-05-10 09:22:33">
-            <span>10 hours ago</span>
-          </Tooltip>
-        ),
+        author: "Supporter Sherrrr",
+        avatar:
+          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: "Sherrr bahi full suport bahi bahi",
+        fullDateTime: "2023-05-10 09:22:33",
+        relativeTime: "10 hours ago",
       },
     ],
   },
@@ -109,7 +92,7 @@ const initialState: PostState[] = [
     id: 2,
     name: "Sherrr2",
     time: "2 hours ago",
-    tag: "Bussiness",
+    tag: "Business",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
@@ -120,18 +103,12 @@ const initialState: PostState[] = [
     likeCount: 1320,
     comments: [
       {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
-        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        content: (
-          <p>
-            Hahaha
-          </p>
-        ),
-        datetime: (
-          <Tooltip title="2023-05-10 09:22:33">
-            <span>10 hours ago</span>
-          </Tooltip>
-        ),
+        author: "Supporter Sherrrr",
+        avatar:
+          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: "Hahaha",
+        fullDateTime: "2023-05-10 09:22:33",
+        relativeTime: "10 hours ago",
       },
     ],
   },
@@ -141,7 +118,7 @@ const initialState: PostState[] = [
     id: 3,
     name: "Sherrr3",
     time: "2 hours ago",
-    tag: "Bussiness",
+    tag: "Business",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
@@ -150,27 +127,11 @@ const initialState: PostState[] = [
     postImage:
       "https://media.tenor.com/B1pB8zJBiSIAAAAe/eating-cat-suspicious.png",
     likeCount: 122212,
-    comments: [
-      {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
-        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        content: (
-          <p>
-            Good Bhai
-          </p>
-        ),
-        datetime: (
-          <Tooltip title="2023-05-10 09:22:33">
-            <span>10 hours ago</span>
-          </Tooltip>
-        ),
-      },
-    ],
+    comments: [],
   },
 ];
 
-
-export const fetchHomePostState = createAsyncThunk<
+export const fetchHomePost = createAsyncThunk<
   PostState[],
   void,
   { rejectValue: string }
@@ -183,20 +144,8 @@ export const fetchHomePostState = createAsyncThunk<
     }
 
     const data = await response.json();
-  
-    return data.map((post: any) => ({
-      ...post,
-      comments: post.comments.map((comment: any) => ({
-        author: <span style={{ color: "ghostwhite" }}>{comment.author}</span>,
-        avatar: comment.avatar,
-        content: <p>{comment.content}</p>,
-        datetime: (
-          <Tooltip title={comment.fullDateTime}>
-            <span>{comment.relativeTime}</span>
-          </Tooltip>
-        ),
-      })),
-    }));
+
+    return data;
   } catch (error: any) {
     return rejectWithValue(error.message || "An unknown error occurred");
   }
@@ -208,28 +157,26 @@ export const getHomePostSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomePostState.pending, (state) => {
+      .addCase(fetchHomePost.pending, (state) => {
         state.forEach((post) => (post.getPostStatus = "loading"));
       })
       .addCase(
-        fetchHomePostState.fulfilled,
+        fetchHomePost.fulfilled,
         (state, action: PayloadAction<PostState[]>) => {
           return action.payload.map((post) => ({
             ...post,
             getPostStatus: "success",
             error: null,
-            comments: [],
           }));
         }
       )
-      .addCase(fetchHomePostState.rejected, (state, action) => {
+      .addCase(fetchHomePost.rejected, (state, action) => {
         state.forEach((post) => {
           post.getPostStatus = "failed";
           post.error = action.payload ?? "An unknown error occurred";
         });
-      })
+      });
   },
 });
 
 export default getHomePostSlice.reducer;
-
