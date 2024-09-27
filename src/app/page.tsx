@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import { fetchPost } from "@/lib/features/services/testThunk";
 import { increment , decrement , incrementByAmount } from "@/lib/features/counter/counterSlice";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [input, setInput] = useState<number>(0);
   const dispatch = useAppDispatch();
   const counter = useAppSelector(state => state.counter.value);
   const post = useAppSelector(state => state.post);
+  const router = useRouter();
 
   useEffect(() => {
+    router.push("/home");
     dispatch(fetchPost());
   },[])
 

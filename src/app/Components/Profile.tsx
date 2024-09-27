@@ -3,15 +3,17 @@ import coverImage from "../assets/avatar.jpg"
 import coverImage2 from "../assets/lavelisProPic.jpg"
 import { useAppSelector , useAppDispatch } from "@/lib/hooks"
 import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
-import { getProfileCall } from "@/lib/features/services/getProfile"
+import { getProfileCall } from "@/lib/features/services/profile/getProfile"
 import { useEffect, useState } from "react"
 import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
+import { getFollowersCall , getFollowingCall } from "@/lib/features/services/profile/getFollowersAndFollowing"
 
 const { Paragraph } = Typography;
 
 export default function ProfileComponent(){
 
+    
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
     const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
@@ -24,7 +26,12 @@ export default function ProfileComponent(){
     const username = useAppSelector((state) => state.getProfile.username);
     
     const dispatch = useAppDispatch();
-
+    
+    useEffect(() => {
+        dispatch(getFollowersCall());
+        dispatch(getFollowingCall());
+    }, [dispatch]);
+    
     useEffect(() => {
         dispatch(getProfileCall())
     },[])
