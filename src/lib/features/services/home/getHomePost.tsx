@@ -42,16 +42,30 @@ const initialState: PostState[] = [
     likeCount: 2210,
     comments: [
       {
-        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Leia Organa</span></React.Fragment>,
+        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
         avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: (
           <p>
-            This post is our only hope.
+            Sherrr bahi full suport
           </p>
         ),
         datetime: (
           <Tooltip title="2023-05-10 09:22:33">
             <span>10 hours ago</span>
+          </Tooltip>
+        ),
+      },
+       {
+        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Sherrr1</span></React.Fragment>,
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
+        content: (
+          <p>
+            Vaah Bhai
+          </p>
+        ),
+        datetime: (
+          <Tooltip title="2023-05-10 09:22:33">
+            <span>22 hours ago</span>
           </Tooltip>
         ),
       },
@@ -72,7 +86,22 @@ const initialState: PostState[] = [
     postImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwpkud_BqL_JvbLUuYFUxNq2m44WfsbFpGGw&s",
     likeCount: 1200,
-    comments: [],
+    comments: [
+      {
+        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
+        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: (
+          <p>
+            Sherrr bahi full suport bahi bahi
+          </p>
+        ),
+        datetime: (
+          <Tooltip title="2023-05-10 09:22:33">
+            <span>10 hours ago</span>
+          </Tooltip>
+        ),
+      },
+    ],
   },
   {
     getPostStatus: "success",
@@ -89,7 +118,22 @@ const initialState: PostState[] = [
     postImage:
       "https://www.shutterstock.com/image-photo/relax-time-sport-fast-food-260nw-2030231213.jpg",
     likeCount: 1320,
-    comments: [],
+    comments: [
+      {
+        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
+        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: (
+          <p>
+            Hahaha
+          </p>
+        ),
+        datetime: (
+          <Tooltip title="2023-05-10 09:22:33">
+            <span>10 hours ago</span>
+          </Tooltip>
+        ),
+      },
+    ],
   },
   {
     getPostStatus: "success",
@@ -106,7 +150,22 @@ const initialState: PostState[] = [
     postImage:
       "https://media.tenor.com/B1pB8zJBiSIAAAAe/eating-cat-suspicious.png",
     likeCount: 122212,
-    comments: [],
+    comments: [
+      {
+        author: <React.Fragment><span style={{ color: "ghostwhite" }}>Supporter Sherrrr</span></React.Fragment>,
+        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+        content: (
+          <p>
+            Good Bhai
+          </p>
+        ),
+        datetime: (
+          <Tooltip title="2023-05-10 09:22:33">
+            <span>10 hours ago</span>
+          </Tooltip>
+        ),
+      },
+    ],
   },
 ];
 
@@ -142,35 +201,6 @@ export const fetchHomePostState = createAsyncThunk<
     return rejectWithValue(error.message || "An unknown error occurred");
   }
 });
-
-// export const fetchPostComments = createAsyncThunk<
-//   CommentState[],
-//   number,
-//   { rejectValue: string }
-// >("post/getComments", async (postId, { rejectWithValue }) => {
-//   try {
-//     const response = await fetch(`http://localhost:3010/getComments/${postId}`);
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     const data = await response.json();
-//     // Transform the raw data into the desired format
-//     return data.map((comment: any) => ({
-//       author: <span style={{ color: "ghostwhite" }}>{comment.author}</span>,
-//       avatar: comment.avatar,
-//       content: <p>{comment.content}</p>,
-//       datetime: (
-//         <Tooltip title={comment.fullDateTime}>
-//           <span>{comment.relativeTime}</span>
-//         </Tooltip>
-//       ),
-//     }));
-//   } catch (error: any) {
-//     return rejectWithValue(error.message || "An unknown error occurred");
-//   }
-// });
 
 export const getHomePostSlice = createSlice({
   name: "posts",

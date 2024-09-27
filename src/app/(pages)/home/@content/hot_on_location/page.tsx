@@ -12,14 +12,14 @@ import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../../assets/avatar.jpg";
-import elonPost from "../../../../assets/elon_food_post.jpeg"
-import startship from "../../../../assets/starship.jpeg"
-import foodPost2 from "../../../../assets/food_post2.jpeg"
-import foodPost3 from "../../../../assets/food_post3.jpeg"
-import foodPost4 from "../../../../assets/food_post4.jpeg"
-import profilePic2 from "../../../../assets/profilePic2.jpg"
-import profilePic3 from "../../../../assets/lavelisProPic.jpg"
-import profilePic4 from "../../../../assets/profilePic4.jpg"
+// import elonPost from "../../../../assets/elon_food_post.jpeg"
+// import startship from "../../../../assets/starship.jpeg"
+// import foodPost2 from "../../../../assets/food_post2.jpeg"
+// import foodPost3 from "../../../../assets/food_post3.jpeg"
+// import foodPost4 from "../../../../assets/food_post4.jpeg"
+// import profilePic2 from "../../../../assets/profilePic2.jpg"
+// import profilePic3 from "../../../../assets/lavelisProPic.jpg"
+// import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -40,40 +40,40 @@ export default function Content(){
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [liked , setLiked] = useState<boolean>(false);
     const [ id , setId ] = useState<number>();
-    const [data, setData] = useState([
-                {
-            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            avatar: profilePic3.src,
-            content: (
-                <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure), to help people create their product prototypes beautifully and
-                efficiently.
-            </p>
-            ),
-            datetime: (
-                <Tooltip title="2016-11-22 11:22:33">
-                <span>8 hours ago</span>
-            </Tooltip>
-            ),
-        },
-        {
-            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            avatar: startship.src,
-            content: (
-                <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure), to help people create their product prototypes beautifully and
-                efficiently.
-            </p>
-            ),
-            datetime: (
-                <Tooltip title="2016-11-22 10:22:33">
-                <span>9 hours ago</span>
-            </Tooltip>
-            ),
-        },
-    ]);
+    // const [data, setData] = useState([
+    //             {
+    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+    //         avatar: profilePic3.src,
+    //         content: (
+    //             <p>
+    //             We supply a series of design principles, practical patterns and high quality design
+    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
+    //             efficiently.
+    //         </p>
+    //         ),
+    //         datetime: (
+    //             <Tooltip title="2016-11-22 11:22:33">
+    //             <span>8 hours ago</span>
+    //         </Tooltip>
+    //         ),
+    //     },
+    //     {
+    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+    //         avatar: startship.src,
+    //         content: (
+    //             <p>
+    //             We supply a series of design principles, practical patterns and high quality design
+    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
+    //             efficiently.
+    //         </p>
+    //         ),
+    //         datetime: (
+    //             <Tooltip title="2016-11-22 10:22:33">
+    //             <span>9 hours ago</span>
+    //         </Tooltip>
+    //         ),
+    //     },
+    // ]);
     const dispatch = useAppDispatch();
     // add Comment State
     const content = useAppSelector(state => state.addComment.content);
@@ -86,23 +86,23 @@ export default function Content(){
         </Form.Item>
         <Form.Item>
         <Button type="primary" onClick={() => {
-            dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
-            let newComment = {
-                author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-                avatar: profilePic3.src,
-                content: (
-                    <p>
-                        {commentContent}
-                    </p>
-                ),
-                datetime: (
-                    <Tooltip title="2016-11-22 11:22:33">
-                        <span>8 hours ago</span>
-                    </Tooltip>
-                ),    
-            };
-            setData(prevData => [newComment , ...prevData]);
-            setAddComment(false);
+            // dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
+            // let newComment = {
+            //     author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+            //     avatar: profilePic3.src,
+            //     content: (
+            //         <p>
+            //             {commentContent}
+            //         </p>
+            //     ),
+            //     datetime: (
+            //         <Tooltip title="2016-11-22 11:22:33">
+            //             <span>8 hours ago</span>
+            //         </Tooltip>
+            //     ),    
+            // };
+            // setData(prevData => [newComment , ...prevData]);
+            // setAddComment(false);
         }}>
             Add Comment
         </Button>
@@ -110,8 +110,6 @@ export default function Content(){
     </>
     );
     
-    
-    // Comments array
     
     const items: MenuProps['items'] = [
         {
@@ -308,7 +306,7 @@ export default function Content(){
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>{data.length} comments</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.id == id){setShowComments(!showComments)}; setId(item.id)}}>{item.comments.length} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="post-action-button">
@@ -347,12 +345,12 @@ export default function Content(){
                     </Button>
                 </Flex>
                 {/* // Comments */}
-                {showComments && id == item.id && (
+                {showComments && (id == item.id) && (
                     <List
                         className="comment-list"
-                        header={ <span style={{ color : "#4991FD"}}>{data.length} comments</span>}
+                        header={ <span style={{ color : "#4991FD"}}>{item.comments.length} comments</span>}
                         itemLayout="horizontal"
-                        dataSource={data}
+                        dataSource={item.comments}
                         renderItem={item => (
                         <li>
                             <Comment
