@@ -24,7 +24,7 @@ import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
-import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
+import { fetchHotPost } from "@/lib/features/services/home/getHotPost";
 import { stat } from "fs";
 
 const formatter: StatisticProps['formatter'] = (value) => (
@@ -36,7 +36,7 @@ const { TextArea } = Input;
 export default function Content(){
     
     useEffect(() => {
-        dispatch(fetchHomePost());
+        dispatch(fetchHotPost());
     },[]);
 
     const [commentContent , setCommentContent ] = useState<string>("");
