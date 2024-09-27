@@ -24,6 +24,7 @@ import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
+import { stat } from "fs";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -143,47 +144,49 @@ export default function Content(){
             ),
         },
     ];
+
+    const postData = useAppSelector(state => state.getHomePost);
     
-    const postData = [
-        {
-            id: 1,
-            name: 'Elon Musk',
-            time: 'Few minutes ago',
-            tag: 'Business',
-            content: 'Ice cream is an amazing invention',
-            location : "",
-            profilePeopleSrc: startship.src,
-            postImage: elonPost.src,
-            likeCount : 112893
-        },
-        {
-            id: 2,
-            name: 'Maison Longan',
-            time: '2 hrs ago',
-            content: 'I love shrek pizza',
-            profilePeopleSrc: profilePic2.src,
-            postImage: foodPost2.src ,
-            likeCount : 12000
-        },
-        {
-            id: 3,
-            name: 'lavelis',
-            time: '22 hrs ago',
-            content: 'She found everything but Vietnamese food I’m in tears',
-            profilePeopleSrc: profilePic3.src,
-            postImage: foodPost3.src ,
-            likeCount : 1341
-        },
-        {
-            id: 4,
-            name: 'Vedant Samaiya(Modi ka Parivar)',
-            time: '5 mon ago',
-            content: 'Gujarati people to food cuisine',
-            profilePeopleSrc: profilePic4.src,
-            postImage: foodPost4.src ,
-            likeCount : 12
-        },
-    ];
+    // const postData = [
+    //     {
+    //         id: 1,
+    //         name: 'Elon Musk',
+    //         time: 'Few minutes ago',
+    //         tag: 'Business',
+    //         content: 'Ice cream is an amazing invention',
+    //         location : "",
+    //         profilePeopleSrc: startship.src,
+    //         postImage: elonPost.src,
+    //         likeCount : 112893
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'Maison Longan',
+    //         time: '2 hrs ago',
+    //         content: 'I love shrek pizza',
+    //         profilePeopleSrc: profilePic2.src,
+    //         postImage: foodPost2.src ,
+    //         likeCount : 12000
+    //     },
+    //     {
+    //         id: 3,
+    //         name: 'lavelis',
+    //         time: '22 hrs ago',
+    //         content: 'She found everything but Vietnamese food I’m in tears',
+    //         profilePeopleSrc: profilePic3.src,
+    //         postImage: foodPost3.src ,
+    //         likeCount : 1341
+    //     },
+    //     {
+    //         id: 4,
+    //         name: 'Vedant Samaiya(Modi ka Parivar)',
+    //         time: '5 mon ago',
+    //         content: 'Gujarati people to food cuisine',
+    //         profilePeopleSrc: profilePic4.src,
+    //         postImage: foodPost4.src ,
+    //         likeCount : 12
+    //     },
+    // ];
     
     const MenuItems = [
         {
