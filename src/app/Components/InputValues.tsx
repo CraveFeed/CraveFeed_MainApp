@@ -143,56 +143,12 @@ export const seasoningOptions: SelectProps['options'] = [
   { label: 'Satay sauce, spices', value: 'satay_sauce_spices', desc: 'Satay sauce, spices' },
 ];
 
-export const fatOilOptions: SelectProps['options'] = [
-  { label: 'Butter', value: 'butter', desc: 'Butter' },
-  { label: 'None', value: 'none', desc: 'None' },
-  { label: 'Vegetable oil', value: 'vegetable_oil', desc: 'Vegetable oil' },
-  { label: 'Olive oil', value: 'olive_oil', desc: 'Olive oil' },
-  { label: 'Caesar dressing', value: 'caesar_dressing', desc: 'Caesar dressing' },
-  { label: 'Yogurt (milk, cultures)', value: 'yogurt_milk_cultures', desc: 'Yogurt (milk, cultures)' },
-  { label: 'Sour cream', value: 'sour_cream', desc: 'Sour cream' },
-  { label: 'Bread crumbs, Parmesan cheese', value: 'bread_crumbs_parmesan_cheese', desc: 'Bread crumbs, Parmesan cheese' },
-  { label: 'Milk', value: 'milk', desc: 'Milk' },
-  { label: 'Cream cheese, sour cream', value: 'cream_cheese_sour_cream', desc: 'Cream cheese, sour cream' },
-  { label: 'Heavy cream', value: 'heavy_cream', desc: 'Heavy cream' },
-  { label: 'Yogurt', value: 'yogurt', desc: 'Yogurt' },
-  { label: 'Ghee', value: 'ghee', desc: 'Ghee' },
-  { label: 'Oil', value: 'oil', desc: 'Oil' },
-  { label: 'Cream', value: 'cream', desc: 'Cream' },
-  { label: 'Milk, Ghee', value: 'milk_ghee', desc: 'Milk, Ghee' },
-  { label: 'Cheese', value: 'cheese', desc: 'Cheese' },
-  { label: 'Sesame oil', value: 'sesame_oil', desc: 'Sesame oil' },
-  { label: 'Coconut oil', value: 'coconut_oil', desc: 'Coconut oil' },
-  { label: 'Soy sauce', value: 'soy_sauce', desc: 'Soy sauce' },
-  { label: 'Milk powder', value: 'milk_powder', desc: 'Milk powder' },
-  { label: 'Mustard', value: 'mustard', desc: 'Mustard' },
-  { label: 'Water', value: 'water', desc: 'Water' },
-  { label: 'Pancetta', value: 'pancetta', desc: 'Pancetta' },
-  { label: 'Coconut milk', value: 'coconut_milk', desc: 'Coconut milk' },
-  { label: 'Avocado', value: 'avocado', desc: 'Avocado' },
-  { label: 'Pesto sauce', value: 'pesto_sauce', desc: 'Pesto sauce' },
-  { label: 'Peanut butter', value: 'peanut_butter', desc: 'Peanut butter' },
-  { label: 'Peanut oil', value: 'peanut_oil', desc: 'Peanut oil' },
-  { label: 'Mayonnaise', value: 'mayonnaise', desc: 'Mayonnaise' },
-  { label: 'Bacon', value: 'bacon', desc: 'Bacon' },
-  { label: 'Whipped cream', value: 'whipped_cream', desc: 'Whipped cream' },
-  { label: 'Enchilada sauce', value: 'enchilada_sauce', desc: 'Enchilada sauce' },
-  { label: 'Chocolate', value: 'chocolate', desc: 'Chocolate' },
-  { label: 'Mascarpone cheese', value: 'mascarpone_cheese', desc: 'Mascarpone cheese' },
-  { label: 'Mascarpone cheese, coffee liqueur', value: 'mascarpone_cheese_coffee_liqueur', desc: 'Mascarpone cheese, coffee liqueur' },
-];
 
-export const sweetenerOptions: SelectProps['options'] = [
-  { label: 'Sugar', value: 'sugar', desc: 'Sugar' },
-  { label: 'None', value: 'none', desc: 'None' },
-  { label: 'Honey', value: 'honey', desc: 'Honey' },
-  { label: 'Brown sugar', value: 'brown_sugar', desc: 'Brown sugar' },
-  { label: 'Mayonnaise', value: 'mayonnaise', desc: 'Mayonnaise' },
-  { label: 'Rice vinegar', value: 'rice_vinegar', desc: 'Rice vinegar' },
-  { label: 'Cocoa butter', value: 'cocoa_butter', desc: 'Cocoa butter' },
-  { label: 'Caramel', value: 'caramel', desc: 'Caramel' },
-  { label: 'Tamarind', value: 'tamarind', desc: 'Tamarind' },
-  { label: 'Marshmallows', value: 'marshmallows', desc: 'Marshmallows' },
+
+export const TypeOptions: SelectProps['options'] = [
+  { label: 'Veg', value: 'Veg', desc: 'Veg' },
+  { label: 'Non-Veg', value: 'Non-Veg', desc: 'Non-Veg' },
+  
 ];
 
 export const options: SelectProps['options'] = [

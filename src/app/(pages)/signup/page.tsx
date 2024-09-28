@@ -3,7 +3,7 @@ import React from 'react';
 import "../../styles/signup.css";
 import { Avatar, Button, Card, Form, Input, Select, Space, Steps } from 'antd';
 import { CloseCircleOutlined, CloseOutlined, EyeOutlined, UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
-import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions } from '../../Components/InputValues';
+import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions, TypeOptions } from '../../Components/InputValues';
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
@@ -139,6 +139,9 @@ export default function Signup() {
           <Form.Item name={"email"} rules={[{ required: true }]}>
             <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="E-mail" />
           </Form.Item>
+          <Form.Item name={"City"} rules={[{ required: true }]}>
+            <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="City" />
+          </Form.Item>
           <Form.Item name="location">
             <Button
               icon={<EnvironmentOutlined />}
@@ -200,45 +203,22 @@ export default function Signup() {
       <>
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "30px", fontWeight: "600" }}><ProfileOutlined style={{ paddingRight: "10px" }} />Choices</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
-          <Form.Item name="Main Ingredient" label="Main Ingredient" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Main Ingredient" options={options} optionRender={(option) => (
-              <Space style={{color:"white" }}>
-                <span >{option.data.desc}</span>
-               
-              </Space>
-            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
+        <Form.Item label={"Dish"} name={"Dish"} rules={[{ required: true }]} style={{ marginTop: "30px" }}>
+            <Input style={{ backgroundColor: "#00090f", color: "white",width:"30rem",padding:"0.60rem", border:"1px solid white" }}  />
           </Form.Item>
 
          {/*  Sweeteners */}  
 
-          <Form.Item  name="Sweetner" label="Sweetner" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Sweeteners" options={sweetenerOptions} optionRender={(option) => (
+          <Form.Item  name="Types" label="Types" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
-          <Form.Item name="Fat/Oil" label="Fat/Oil" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Fat/Oil" options={fatOilOptions} optionRender={(option) => (
-              <Space>
-                <span style={{ color: "white" }}>{option.data.desc}</span>
-              </Space>
-            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
-          </Form.Item>
-          <Form.Item name="Seasoning" label="Seasoning" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Seasoning" options={seasoningOptions} optionRender={(option) => (
-              <Space>
-                <span style={{ color: "white" }}>{option.data.desc}</span>
-              </Space>
-            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
-          </Form.Item>
-          <Form.Item name="Allergence" label="Allergence" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  mode="multiple" placeholder="Allergence" options={options} optionRender={(option) => (
-              <Space>
-                <span style={{ color: "white" }}>{option.data.desc}</span>
-              </Space>
-            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
-          </Form.Item>
+          
+          
+         
 
 
           {/* rating options */}
