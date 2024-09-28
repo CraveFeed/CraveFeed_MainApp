@@ -10,11 +10,11 @@ import { getFollowersCall , getFollowingCall } from "@/lib/features/services/pro
 
 const { Paragraph } = Typography;
 
-export default function ProfileComponent(){
+export default function ViewProfileComponent(){
 
     
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
-    const [editProfile , setEditProfile] = useState<boolean>(false)
+    // const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
     const firstName = useAppSelector((state) => state.getBio.firstname);
     const lastName = useAppSelector((state) => state.getBio.lastname);
@@ -87,7 +87,7 @@ export default function ProfileComponent(){
                                 <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>{bio}</Paragraph>
                             </Flex>
                             </Space>
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
+                            {/* <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button> */}
                         </Space>
                     </div>
 
@@ -123,7 +123,8 @@ export default function ProfileComponent(){
                             </Space>
                         </Space>
                         <Flex align="center" justify="center">
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
+                            <></>
+                            {/* <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button> */}
                         </Flex>
                     </div>
 
@@ -139,7 +140,7 @@ export default function ProfileComponent(){
                     {active === "FOLLOWING" && <Following/>}
                 </div>
             </Flex>
-            <EditProfile editProfile={editProfile} setEditProfile={setEditProfile}/>
+            {/* <EditProfile editProfile={editProfile} setEditProfile={setEditProfile}/> */}
             <Modal 
                 footer={null} 
                 bodyStyle={{ padding: 0 }} 
