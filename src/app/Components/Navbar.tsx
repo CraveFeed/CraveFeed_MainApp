@@ -6,7 +6,7 @@ import { Dropdown } from 'antd';
 import { Avatar , Drawer } from 'antd';
 import { useRouter } from "next/navigation";
 import Logout from "./Logout"
-import { FireFilled , TwitterOutlined , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
+import { FireFilled , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
 import "../styles/home.css"
 import logo from "../assets/cravefeed_logo.png"
 import { useAppSelector } from "@/lib/hooks";
@@ -23,14 +23,6 @@ export default function Navbar(){
     const lastname = useAppSelector((state) => state.getBio.lastname);
     const router = useRouter();
     const [open, setOpen] = useState(false);
-
-    const hide = () => {
-        setOpen(false);
-    };
-
-    const handleOpenChange = (newOpen: boolean) => {
-        setOpen(newOpen);
-    };    
 
     const showDrawer = () => {
         setOpen(true);
@@ -81,7 +73,7 @@ export default function Navbar(){
                                     <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
                                     <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "-5px"}} />
                             </Space>
-                            </Button>
+                                </Button>
                             </Space>
                         </Dropdown>
                 </Space>
