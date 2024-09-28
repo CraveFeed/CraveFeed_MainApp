@@ -13,11 +13,11 @@ export default function Component() {
         </div>
         <div className="card-content">
           <div className="input-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="UserName">UserName</label>
             <input
-              id="email"
-              type="email"
-              placeholder="Enter your Email"
+              id="UserName"
+              type="UserName"
+              placeholder="Enter your UserName"
               className="input"
             />
           </div>

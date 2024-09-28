@@ -1,14 +1,12 @@
-"use client"
+"use client";
 import React from 'react';
 import "../../styles/signup.css";
 import { Avatar, Button, Card, Form, Input, Select, Space, Steps } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons'
-import { CloseOutlined } from '@ant-design/icons';
-import { UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined } from '@ant-design/icons';
-import { options, sweetenerOptions, fatOilOptions, seasoningOptions,RateOptions } from '../../Components/InputValues';
-
-import {  EnvironmentOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, CloseOutlined, EyeOutlined, UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions } from '../../Components/InputValues';
+import { EnvironmentOutlined } from "@ant-design/icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "100%",
@@ -32,7 +30,7 @@ export default function Signup() {
   const [cityName, setCityName] = React.useState("");
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyC1qpx2DBSIs5EaMIsvLYbFpYvS9Md0y-E",
+    googleMapsApiKey: "AIzaSyC1qpx2DBSIsvLYbFpYvS9Md0y-E",
     libraries,
   });
 
@@ -42,7 +40,6 @@ export default function Signup() {
     setLatitude(lat);
     setLongitude(lng);
 
-    // Reverse geocoding to get the city name
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
       if (status === "OK" && results[0]) {
@@ -51,43 +48,43 @@ export default function Signup() {
           component.types.includes("locality")
         );
         setCityName(city ? city.long_name : "Unknown City");
-        setIsMapVisible(false); // Close the map modal after selecting location
+        setIsMapVisible(false);
       }
     });
   };
 
   const toggleMapVisibility = () => {
-    setIsMapVisible(!isMapVisible); // Toggle map visibility on button click
+    setIsMapVisible(!isMapVisible);
   };
-  const Citytoggle = () => {
-    setShowMap(true); // Show the Google Map modal
-  };
-
 
   const onFinishLoginForm = (value) => {
     newProfile(value);
     setCurrent(current + 1);
-  }
+  };
+
   const onFinishAvatarForm = (value) => {
     newAvatar(value);
     setCurrent(current + 1);
-  }
+  };
+
   const onFinishChoicesForm = (value) => {
     newChoices(value);
     setCurrent(current + 1);
-  }
+  };
+
   const onFinishSecurityForm = (value) => {
     newSecurity(value);
     setCurrent(current + 1);
-  }
+  };
+
   const onFinish = (value) => {
     newSecurity(value);
     setCurrent(current + 1);
-  }
-  
+  };
+
   const goPrevious = () => {
     setCurrent(current - 1);
-  }
+  };
 
   const forms = [
     <ProfileInfo onFinish={onFinishLoginForm} initialValues={profile} goPrevious={goPrevious} />,
@@ -98,29 +95,29 @@ export default function Signup() {
   ];
 
   const isStepDisabled = (step) => {
-    if (step === 0) return false; // First step always enabled
-    if (step === 1) return profile === null; // Enable only if profile is completed
-    if (step === 2) return profile === null || avatars === null; // Enable only if profile and avatar are completed
-    if (step === 3) return profile === null || avatars === null || choices === null; // Enable only if profile, avatar, and choices are completed
-    if (step === 4) return profile === null || avatars === null || choices === null || explore === null ; // Enable only if profile, avatar, and choices are completed
-    return false; // Default to false for all other steps
+    if (step === 0) return false;
+    if (step === 1) return profile === null;
+    if (step === 2) return profile === null || avatars === null;
+    if (step === 3) return profile === null || avatars === null || choices === null;
+    if (step === 4) return profile === null || avatars === null || choices === null || explore === null;
+    return false;
   };
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '30px' }}>
-      <div className='main-align' >
+      <div className='main-align' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '30px' }}>
         <div className='Sign-in'>Sign Up</div>
-        <div className="horizontal-steps" style={{display:"none"}}>
+        <div className="horizontal-steps" style={{ display: "none" }}>
           <Steps onChange={setCurrent} current={current}>
-            <Steps.Step disabled={isStepDisabled(0)} title={<span>Profile</span>} icon={<UserOutlined style={{color:"white"}}/>} />
-            <Steps.Step disabled={isStepDisabled(1)}  title={<span>Avatar</span>} icon={<UserOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(2)} title={<span>Choices</span>} icon={<SolutionOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(3)} title={<span>Security</span>} icon={<SecurityScanOutlined style={{color:"white"}} />} />
-            <Steps.Step disabled={isStepDisabled(4)} title={<span>Explore</span>} icon={<SmileOutlined style={{color:"white"}}/>} />
+            <Steps.Step disabled={isStepDisabled(0)} title={<span>Profile</span>} icon={<UserOutlined style={{ color: "white" }} />} />
+            <Steps.Step disabled={isStepDisabled(1)} title={<span>Avatar</span>} icon={<UserOutlined style={{ color: "white" }} />} />
+            <Steps.Step disabled={isStepDisabled(2)} title={<span>Choices</span>} icon={<SolutionOutlined style={{ color: "white" }} />} />
+            <Steps.Step disabled={isStepDisabled(3)} title={<span>Security</span>} icon={<SecurityScanOutlined style={{ color: "white" }} />} />
+            <Steps.Step disabled={isStepDisabled(4)} title={<span>Explore</span>} icon={<SmileOutlined style={{ color: "white" }} />} />
           </Steps>
         </div>
         <Card className='main-card'>
-          <Card className="main-card-inner" >
+          <Card className="main-card-inner">
             {forms[current]}
           </Card>
         </Card>
@@ -133,49 +130,40 @@ export default function Signup() {
       <>
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "40px", fontWeight: "600" }}><ProfileOutlined style={{ paddingRight: "10px" }} />Profile Information</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
-          <Form.Item label="First Name" name={"First name"} rules={[{ required: true }]}>
-            <Input  style={{ backgroundColor: "#051017", color: "white" }} />
+          <Form.Item name={"First name"} rules={[{ required: true }]}>
+            <Input style={{ backgroundColor: "#051017", color: "white" ,width:"20rem" }} placeholder="First Name" />
           </Form.Item>
-          <Form.Item label="Last Name" name={"Last name"} rules={[{ required: true }]}>
-            <Input style={{ backgroundColor: "#051017", color: "white" }} />
+          <Form.Item name={"Last name"} rules={[{ required: true }]}>
+            <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="Last Name" />
           </Form.Item>
-          <Form.Item label="E-mail" name={"email"} rules={[{ required: true }]}>
-            <Input style={{ backgroundColor: "#051017", color: "white" }} />
+          <Form.Item name={"email"} rules={[{ required: true }]}>
+            <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="E-mail" />
           </Form.Item>
-          <Form.Item label="Location" name="location">
-          <div>
-      <Button
-        icon={<EnvironmentOutlined />}
-        style={{ backgroundColor: "#051017", color: "white", width: "100%" }}
-        onClick={toggleMapVisibility}
-      >
-        {cityName || "Select your location"}
-      </Button>
-
-      {isMapVisible && isLoaded && (
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={10}
-          center={{ lat: 22.3511, lng: 78.6677 }}
-          onClick={handleMapClick}
-        >
-          {latitude && longitude && (
-            <Marker position={{ lat: latitude, lng: longitude }} />
-          )}
-        </GoogleMap>
-      )}
-
-      {latitude && longitude && (
-        <div style={{ marginTop: "10px", color: "white" }}>
-          Selected Location: {cityName} (Lat: {latitude}, Lon: {longitude})
-        </div>
-      )}
-    </div>
-        </Form.Item>
-
-        
+          <Form.Item name="location">
+            <Button
+              icon={<EnvironmentOutlined />}
+              style={{ backgroundColor: "#051017", color: "white", width: "100%" }}
+              onClick={toggleMapVisibility}
+            >
+              {cityName || "Select your location"}
+            </Button>
+            {isMapVisible && isLoaded && (
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={10}
+                center={{ lat: 22.3511, lng: 78.6677 }}
+                onClick={handleMapClick}
+              >
+                {latitude && longitude && <Marker position={{ lat: latitude, lng: longitude }} />}
+              </GoogleMap>
+            )}
+            {latitude && longitude && (
+              <div style={{ marginTop: "10px", color: "white" }}>
+                Selected Location: {cityName} (Lat: {latitude}, Lon: {longitude})
+              </div>
+            )}
+          </Form.Item>
           <div className='button-align'>
-          
             <Button className='button-inner' type='primary' htmlType='submit'>Next</Button>
           </div>
         </Form>
@@ -191,8 +179,8 @@ export default function Signup() {
             <UserOutlined style={{ paddingRight: "10px" }} />Choose Avatar
           </div>
           <Avatar size={{ xs: 84, sm: 82, md: 80, lg: 84, xl: 100, xxl: 100 }} style={{ color: "white" }} icon={<UserOutlined />} />
-          <Form.Item label="UserName" name={"NickName"} rules={[{ required: true }]} style={{marginTop:"30px"}}>
-            <Input style={{ backgroundColor: "#051017", color: "white" }} className='nickname' />
+          <Form.Item name={"NickName"} rules={[{ required: true }]} style={{ marginTop: "30px" }}>
+            <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="UserName" />
           </Form.Item>
           <div className='button-align'>
             <Button className='button-inner' type='primary' onClick={goPrevious} style={{ marginRight: '8px' }}>Previous</Button>
@@ -213,7 +201,7 @@ export default function Signup() {
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "30px", fontWeight: "600" }}><ProfileOutlined style={{ paddingRight: "10px" }} />Choices</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
           <Form.Item name="Main Ingredient" label="Main Ingredient" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select   mode="multiple"  placeholder="Main Ingredient" options={options} optionRender={(option) => (
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Main Ingredient" options={options} optionRender={(option) => (
               <Space style={{color:"white" }}>
                 <span >{option.data.desc}</span>
                
@@ -224,28 +212,28 @@ export default function Signup() {
          {/*  Sweeteners */}  
 
           <Form.Item  name="Sweetner" label="Sweetner" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  mode="multiple"  placeholder="Sweeteners" options={sweetenerOptions} optionRender={(option) => (
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Sweeteners" options={sweetenerOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
           <Form.Item name="Fat/Oil" label="Fat/Oil" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select mode="multiple"  placeholder="Fat/Oil" options={fatOilOptions} optionRender={(option) => (
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Fat/Oil" options={fatOilOptions} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Seasoning" label="Seasoning" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select mode="multiple"  placeholder="Seasoning" options={seasoningOptions} optionRender={(option) => (
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Seasoning" options={seasoningOptions} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Allergence" label="Allergence" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select mode="multiple" placeholder="Allergence" options={options} optionRender={(option) => (
+            <Select  mode="multiple" placeholder="Allergence" options={options} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
@@ -257,21 +245,21 @@ export default function Signup() {
 
           <div  className='ratingoptions' >
           <Form.Item name="Spiciness" label="Spiciness"  rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  style={{width:"8rem"}} mode="tags" placeholder="Spiciness" options={RateOptions} optionRender={(option) => (
+            <Select  style={{width:"6rem"}} mode="tags" placeholder="Spiciness" options={RateOptions} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Sweetness" label="Sweetness" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  style={{width:"8rem"}} mode="tags" placeholder="Sweetness" options={RateOptions} optionRender={(option) => (
+            <Select  style={{width:"6rem"}} mode="tags" placeholder="Sweetness" options={RateOptions} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
           </Form.Item>
           <Form.Item name="Sourness" label="Sourness" rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{width:"8rem"}} mode="tags" placeholder="Sourness" options={RateOptions} optionRender={(option) => (
+            <Select style={{width:"6rem"}} mode="tags" placeholder="Sourness" options={RateOptions} optionRender={(option) => (
               <Space>
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
@@ -300,12 +288,12 @@ export default function Signup() {
         <div style={{ color: "white", fontSize: "25px", paddingBottom: "40px", fontWeight: "600" }}><SecurityScanOutlined style={{ paddingRight: "10px" }} />Security</div>
         <Form layout="vertical" onFinish={onFinish} initialValues={initialValues}>
           <Form.Item label="Password" name={"password"} rules={[{ required: true }]} >
-            <Input.Password  style={{ backgroundColor: "#051017", color: "white" }}   iconRender={(visible) => (
-              <CustomEyeIcon visible={visible} onClick={() => setPasswordVisible(!passwordVisible)} />
+            <Input.Password  style={{ backgroundColor: "#051017", color: "white", width:"20rem" }}   iconRender={(visible) => (
+              <CustomEyeIcon visible={visible} onClick={() => setPasswordVisible(!passwordVisible)}  />
             )} />
           </Form.Item>
           <Form.Item label="Confirmed" name={"confirmed"} rules={[{ required: true }]}>
-            <Input.Password  style={{ backgroundColor: "#051017", color: "white" }}  iconRender={(visible) => (
+            <Input.Password  style={{ backgroundColor: "#051017", color: "white", width:"20rem" }}  iconRender={(visible) => (
               <CustomEyeIcon visible={visible} onClick={() => setPasswordVisible(!passwordVisible)} />
             )}/>
           </Form.Item>
