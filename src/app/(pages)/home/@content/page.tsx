@@ -25,6 +25,8 @@ import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
 import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
+import ShareFood from "@/app/Components/ShareFood";
+import CreatePost from "@/app/Components/CreatePost";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -50,6 +52,7 @@ export default function Content(){
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [liked , setLiked] = useState<boolean>(false);
     const [ id , setId ] = useState<number>();
+    const avatar = useAppSelector(state => state.getBio.avatar);
     // const [data, setData] = useState([
     //             {
     //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
@@ -243,14 +246,14 @@ export default function Content(){
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
-                    <Avatar size={60} style={{ marginRight : "20px"}} src={avatar.src}/>
+                    <Avatar size={60} style={{ marginRight : "20px"}} src={avatar}/>
                     <Input className="input" placeholder="Basic usage"/>;
                 </Flex>
                 <Flex align="center" justify="start" style={{ paddingLeft : "7%"}}>
                     <Space size="large">
-                        <Button className="upload-buttons"><RestFilled style={{ fontSize : "19px" , color : "#20D997"}}/>Share Food</Button>
+                        <ShareFood/>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                        <Button className="upload-buttons"><PlusCircleFilled style={{marginTop : "1px" , fontSize : "19px" , color : "#FF6B6B"}}/>Create Post</Button>
+                       <CreatePost/>
                     </Space>
                 </Flex>
             </Card>
@@ -292,7 +295,7 @@ export default function Content(){
                         </Flex>
                             <Flex>
                                 {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
-                                <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=guna`)}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
+                                <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=${item.latitude},${item.longitude}`);}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
                     </Flex>
@@ -365,11 +368,11 @@ export default function Content(){
                             <li>
                             <Comment
                                 style={{ backgroundColor: "#1B2730", color: "white" }}
-                                author={<span style={{ color: "ghostwhite" }}>{comment.author}</span>}
-                                avatar={comment.avatar}
+                                author={<span style={{ color: "ghostwhite" }}>{comment.name}</span>}
+                                avatar={comment.userAvatar}
                                 content={<p>{comment.content}</p>}
                                 datetime={
-                                <span style={{ color : "gray"}} title={comment.fullDateTime}>
+                                <span style={{ color : "gray"}} title={comment.commentTime}>
                                     {comment.relativeTime}
                                 </span>
                                 }
@@ -382,7 +385,7 @@ export default function Content(){
                     <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
                         <Comment
                             style={{ backgroundColor : "#1B2730" , color : "white"}}
-                            avatar={<Avatar src={avatar.src} alt="Han Solo" />}
+                            avatar={<Avatar src={avatar} alt="Han Solo" />}
                             content={
                             <Editor/>
                             }

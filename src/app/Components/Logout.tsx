@@ -1,12 +1,16 @@
 
-import React from 'react'
+import React, { useReducer } from 'react'
 import { Button, Modal } from 'antd';
 import "../styles/logout.css"
+import { useRouter } from 'next/navigation';
+
 
 export default function logout() {
   const[logout,clicklogout]=React.useState(false);
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-   
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+    const router = useRouter();
+  
     const loggingout = () =>{
       clicklogout(true)
     }
@@ -39,7 +43,7 @@ export default function logout() {
           <div >  <span style={{display:"flex", justifyContent:"center" , fontSize:"25px" , fontWeight:600,marginTop:"30px"}}>Leaving So Soon?</span>
             <div style={{display:"flex" , flexDirection:"column",alignItems:"center",marginTop:"50px"}}>
               <span style={{color:"gray" , fontWeight:500}}>Thank you for visiting! Logging out ensures your privacy is safeguarded.</span>
-             <Button type='primary' style={{marginTop:"20px"}} onClick={loggingout}>Logout</Button>
+             <Button type='primary' style={{marginTop:"20px"}} onClick={() => {loggingout() , router.push("/signin")}}>Logout</Button>
             </div></div>
           
             

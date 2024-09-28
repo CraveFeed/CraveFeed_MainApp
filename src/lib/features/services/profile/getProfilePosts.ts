@@ -25,6 +25,8 @@ export interface ProfilePostState {
   userId: string;
   likes: number;
   comments: CommentState[];
+  latitude: string;
+  longitude: string;
 }
 
 const initialState: ProfilePostState[] = [
@@ -63,6 +65,8 @@ const initialState: ProfilePostState[] = [
         relativeTime: "22 hours ago",
       },
     ],
+    latitude: "40.7128",
+    longitude: "74.0060",
     userId: "user1",
   },
   {
@@ -92,6 +96,8 @@ const initialState: ProfilePostState[] = [
         relativeTime: "10 hours ago",
       },
     ],
+    latitude: "40.7128",
+    longitude: "74.0060",
     userId: "user2",
   },
 ];

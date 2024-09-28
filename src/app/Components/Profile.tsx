@@ -151,7 +151,7 @@ export default function ProfileComponent(){
                 width="auto"
                 >
                 <Image 
-                    src={coverImage.src} 
+                    src={avatar} 
                     preview={true}
                     style={{ display: 'block', width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
                 />

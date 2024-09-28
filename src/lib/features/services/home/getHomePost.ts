@@ -3,10 +3,10 @@ import React from "react";
 import { Tooltip } from "antd";
 
 export interface CommentState {
-  author: string;
-  avatar: string;
+  name: string;
+  userAvatar: string;
   content: string;
-  fullDateTime: string;
+  commentTime: string;
   relativeTime: string;
 }
 
@@ -25,6 +25,8 @@ export interface PostState {
   userId: string;
   likes: number;
   comments: CommentState[];
+  longitude: string;
+  latitude: string;
 }
 
 const initialState: PostState[] = [
@@ -47,22 +49,24 @@ const initialState: PostState[] = [
     likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
-        author: "Supporter Sherrrr",
-        avatar:
+        name: "Supporter Sherrrr",
+        userAvatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport",
-        fullDateTime: "2023-05-10 09:22:33",
+        commentTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
       {
-        author: "Sherrr1",
-        avatar:
+        name: "Sherrr1",
+        userAvatar:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
         content: "Vaah Bhai",
-        fullDateTime: "2023-05-09 21:22:33",
+        commentTime: "2023-05-09 21:22:33",
         relativeTime: "22 hours ago",
       },
     ],
+    latitude: "40.7128",
+    longitude: "-74.0060",
     userId: "user1",
   },
   {
@@ -84,14 +88,16 @@ const initialState: PostState[] = [
     likes: 1200,
     comments: [
       {
-        author: "Supporter Sherrrr",
-        avatar:
+        name: "Supporter Sherrrr",
+        userAvatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport bahi bahi",
-        fullDateTime: "2023-05-10 09:22:33",
+        commentTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
     ],
+    latitude: "40.7128",
+    longitude: "-74.0060",
     userId: "user2",
   },
 ];

@@ -6,6 +6,7 @@ import { CloseCircleOutlined, CloseOutlined, EyeOutlined, UserOutlined, Solution
 import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions, TypeOptions } from '../../Components/InputValues';
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { useRouter } from 'next/navigation';
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -286,6 +287,9 @@ export default function Signup() {
     );
   }
   function Finish() {
+
+    const router = useRouter();
+
     return (
     <>
     <Form>
@@ -294,7 +298,7 @@ export default function Signup() {
     <span style={{ color: "white", fontSize: "15px" }}>lets explore the world of Food with CraveFeed</span>
     </div>
     <div className='button-align'>
-    <Button className='button-inner' type='primary' htmlType='submit'>Explore</Button>
+    <Button className='button-inner' type='primary' htmlType='submit' onClick={() => {router.push("/home")}}>Explore</Button>
     </div>
     </Form>
     </>
