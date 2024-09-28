@@ -3,14 +3,14 @@ import React from "react";
 import { Tooltip } from "antd";
 
 export interface CommentState {
-  name: string;
-  userAvatar: string;
+  author: string;
+  avatar: string;
   content: string;
-  commentTime: string;
+  fullDateTime: string;
   relativeTime: string;
 }
 
-export interface PostState {
+export interface ProfilePostState {
   getPostStatus: "success" | "loading" | "failed";
   error: string | null;
   postId: number;
@@ -25,11 +25,11 @@ export interface PostState {
   userId: string;
   likes: number;
   comments: CommentState[];
-  longitude: string;
   latitude: string;
+  longitude: string;
 }
 
-const initialState: PostState[] = [
+const initialState: ProfilePostState[] = [
   {
     getPostStatus: "success",
     error: null,
@@ -49,24 +49,24 @@ const initialState: PostState[] = [
     likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
-        name: "Supporter Sherrrr",
-        userAvatar:
+        author: "Supporter Sherrrr",
+        avatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport",
-        commentTime: "2023-05-10 09:22:33",
+        fullDateTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
       {
-        name: "Sherrr1",
-        userAvatar:
+        author: "Sherrr1",
+        avatar:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
         content: "Vaah Bhai",
-        commentTime: "2023-05-09 21:22:33",
+        fullDateTime: "2023-05-09 21:22:33",
         relativeTime: "22 hours ago",
       },
     ],
     latitude: "40.7128",
-    longitude: "-74.0060",
+    longitude: "74.0060",
     userId: "user1",
   },
   {
@@ -88,34 +88,34 @@ const initialState: PostState[] = [
     likes: 1200,
     comments: [
       {
-        name: "Supporter Sherrrr",
-        userAvatar:
+        author: "Supporter Sherrrr",
+        avatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport bahi bahi",
-        commentTime: "2023-05-10 09:22:33",
+        fullDateTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
     ],
     latitude: "40.7128",
-    longitude: "-74.0060",
+    longitude: "74.0060",
     userId: "user2",
   },
 ];
 
-export const fetchHomePost = createAsyncThunk<
-  PostState[],
+export const getProfilePost = createAsyncThunk<
+  ProfilePostState[],
   { userId: string },
   { rejectValue: string }
 >("post/getHomePosts", async ({ userId }, { rejectWithValue }) => {
   try {
     const response = await fetch(
-      "http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/getPosts",
+      "http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/getPostsById",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ id: userId }),
       }
     );
 
@@ -130,18 +130,18 @@ export const fetchHomePost = createAsyncThunk<
   }
 });
 
-export const getHomePostSlice = createSlice({
+export const getProfilePostSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomePost.pending, (state) => {
+      .addCase(getProfilePost.pending, (state) => {
         state.forEach((post) => (post.getPostStatus = "loading"));
       })
       .addCase(
-        fetchHomePost.fulfilled,
-        (state, action: PayloadAction<PostState[]>) => {
+        getProfilePost.fulfilled,
+        (state, action: PayloadAction<ProfilePostState[]>) => {
           return action.payload.map((post) => ({
             ...post,
             getPostStatus: "success",
@@ -149,7 +149,7 @@ export const getHomePostSlice = createSlice({
           }));
         }
       )
-      .addCase(fetchHomePost.rejected, (state, action) => {
+      .addCase(getProfilePost.rejected, (state, action) => {
         state.forEach((post) => {
           post.getPostStatus = "failed";
           post.error = action.payload ?? "An unknown error occurred";
@@ -158,4 +158,4 @@ export const getHomePostSlice = createSlice({
   },
 });
 
-export default getHomePostSlice.reducer;
+export default getProfilePostSlice.reducer;

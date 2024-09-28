@@ -19,14 +19,21 @@ export default function Bio() {
   const router = useRouter();
   const bio = useAppSelector(state => state.getBio.bio);
   const username = useAppSelector(state => state.getBio.username);
-  const firstName = useAppSelector(state => state.getBio.firstName);
+  const firstName = useAppSelector(state => state.getBio.firstname);
   const lastname = useAppSelector(state => state.getBio.lastname);
   const noOfFollowers = useAppSelector(state => state.getBio.noOfFollowers);
   const noOfFollowing = useAppSelector(state => state.getBio.noOfFollowing)
   const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
+  const avatar = useAppSelector(state => state.getBio.avatar);
+
+  const userId = useAppSelector(state => state.global.userId);
 
   useEffect(() => {
-    dispatch(fetchBioState());
+    if (userId) {
+      dispatch(fetchBioState({ userId }));
+    } else {
+      console.error("User ID is null");
+    }
     console.log(bio , username , firstName , lastname , noOfFollowers , noOfFollowing , getBioStatus)
   },[])
 
@@ -79,7 +86,7 @@ export default function Bio() {
           />
           <div style={{ marginTop : "-190px" , zIndex : "4"}}>
               <Flex align="center" justify="center" style={{ width : "100%"}}>
-                  <Avatar className="bio-profile-pic" src={avatar.src} style={{border : "none" , backgroundColor: "white", position: "relative" }}/>
+                  <Avatar className="bio-profile-pic" src={avatar} style={{border : "none" , backgroundColor: "white", position: "relative" }}/>
               </Flex>
               <Space direction="vertical" style={{backgroundColor: "#1B2730"  , zIndex : "3" , border : "none" , paddingInline: "15px" , margin : "0px" , width : "100%"}}>
                   <Flex align="center" justify="center" vertical>

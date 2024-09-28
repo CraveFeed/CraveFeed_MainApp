@@ -1,67 +1,75 @@
 "use client"
 import '../signin/login.css'
 import React, { useState } from "react";
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { setUserId } from '@/lib/features/services/global';
+import { useRouter } from 'next/navigation';
 
 export default function Component() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
+  const userId = useAppSelector(state => state.global.userId);
+  const router = useRouter();
+  
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch('http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/signIn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Username: username,
+          Password: password,
+        }),
+      });
+
+      const data = await response.json();
+      console.log('User ID:', data.userId);
+      await dispatch(setUserId(data.userId));
+      console.log('User ID:', data.userId);
+      router.push("/home")
+    } catch (error) {
+      console.error('Error:', error);
+      alert("Login Failed")
+    }
+  };
 
   return (
     <div className="container">
       <div className="card">
-        <div className="card-header">
-          <h1 className="card-title">Sign In</h1>
-        </div>
+        <h1 className="card-title">Sign In</h1>
         <div className="card-content">
           <div className="input-group">
             <label htmlFor="UserName">UserName</label>
             <input
               id="UserName"
-              type="UserName"
+              type="text"
               placeholder="Enter your UserName"
               className="input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="input-group">
             <label htmlFor="password">Password</label>
-            <div className="input-wrapper">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your Password"
-                className="input password-input"
-              />
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-          </div>
-          <div className="remember-forgot">
-            <div className="checkbox-group" >
-              <input type="checkbox" id="remember" />
-              <label htmlFor="remember">Remember me</label>
-            </div>
-            <a href="/forgot-password" className="forgot-password">
-              Forgot password?
-            </a>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your Password"
+              className="input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </div>
         <div className="card-footer">
-          <button className="sign-in-button">Sign In</button>
-          <p className="signup-link">
-            Don't have an account?{" "}
-            <a href="/signup" className="link">
-              Sign Up
-            </a>
-          </p>
-         
-          
+          <button className="sign-in-button" onClick={handleSignIn}>
+            Sign In
+          </button>
         </div>
       </div>
     </div>
   );
 }
-

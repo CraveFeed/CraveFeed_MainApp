@@ -1,7 +1,6 @@
 import React from "react";
-import avatar from "../assets/avatar.jpg"
 import { useState } from "react";
-import { Flex, Space , Input , Button , Divider } from "antd"
+import { Flex, Space , Input , Button , Divider , Image} from "antd"
 import type { MenuProps } from "antd";
 import { Dropdown } from 'antd';
 import { Avatar , Drawer } from 'antd';
@@ -9,6 +8,8 @@ import { useRouter } from "next/navigation";
 import Logout from "./Logout"
 import { FireFilled , TwitterOutlined , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
 import "../styles/home.css"
+import logo from "../assets/cravefeed_logo.png"
+import { useAppSelector } from "@/lib/hooks";
 
 const gridStyle: React.CSSProperties = {
   width: '25%',
@@ -16,7 +17,10 @@ const gridStyle: React.CSSProperties = {
 };
 
 export default function Navbar(){
-
+    
+    const avatar = useAppSelector((state) => state.getBio.avatar);
+    const firstname = useAppSelector((state) => state.getBio.firstname);
+    const lastname = useAppSelector((state) => state.getBio.lastname);
     const router = useRouter();
     const [open, setOpen] = useState(false);
 
@@ -55,7 +59,7 @@ export default function Navbar(){
         <>
             <Flex align="center" justify="space-between" className="mobile-hidden" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <TwitterOutlined style={{fontSize : "40px" , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "100px" , marginTop : "20px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
@@ -73,20 +77,19 @@ export default function Navbar(){
                             <BellFilled style={{ fontSize : "22px"}} />
                             <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                 <Space>
-                                    <Avatar src={avatar.src} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
-                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>Vibhor Phalke</p>
+                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
+                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
                                     <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "-5px"}} />
                             </Space>
                             </Button>
                             </Space>
                         </Dropdown>
-                    {/* <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/> */}
                 </Space>
             </Flex>
 
             <Flex align="center" justify="space-between" className="mobile-visible" style={{ width : "100%"}}>
                 <Space size="middle">
-                    <TwitterOutlined style={{fontSize : "40px" , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "80px"  , marginTop : "20px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
@@ -95,8 +98,8 @@ export default function Navbar(){
                             <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
                             <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                 <Space>
-                                    <Avatar src={avatar.src} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
-                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>Vibhor Phalke</p>
+                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
+                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
                                     <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "-5px"}} />
                             </Space>
                             </Button>
@@ -108,14 +111,14 @@ export default function Navbar(){
 
             <Flex align="center" justify="space-between" className="extra-small-mobile" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <TwitterOutlined style={{fontSize : "40px" , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "70px" , marginTop : "20px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
                 <Space size="middle"> 
                         <Dropdown menu={{ items }}>
                             <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
-                                <Avatar src={avatar.src} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
+                                <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
                             </Space>
                         </Dropdown>
                     <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/>
