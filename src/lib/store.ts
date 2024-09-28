@@ -8,6 +8,9 @@ import { getProfileSlice } from "./features/services/profile/getProfile";
 import { getExplorePostSlice } from "./features/services/home/getExplorePost";
 import { getHotPostSlice } from "./features/services/home/getHotPost";
 import { getFollowerSlice } from "./features/services/profile/getFollowersAndFollowing";
+import { globalSlice } from "./features/services/global";
+import { getProfilePostSlice } from "./features/services/profile/getProfilePosts";
+
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -20,10 +23,12 @@ export const makeStore = () => {
       getHotPost: getHotPostSlice.reducer,
 
       addComment: addCommentSlice.reducer,
+      global: globalSlice.reducer,
 
       // Profile Slice
       getProfile: getProfileSlice.reducer,
       getFollower: getFollowerSlice.reducer,
+      getProfilePost: getProfilePostSlice.reducer,
     },
   });
 };

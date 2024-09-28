@@ -22,6 +22,7 @@ import profilePic3 from "../assets/lavelisProPic.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import "../styles/profile.css";
+import { getProfilePost } from "@/lib/features/services/profile/getProfilePosts";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -44,15 +45,18 @@ const Editor = () => (
 export default function PostSkeleton(){
 
     const dispatch = useAppDispatch();
+    const userId = useAppSelector(state => state.global.userId) ?? '';
 
     useEffect(() => {
-        dispatch(fetchHotPost());
-    },[]);
+        if (userId) {
+            dispatch(getProfilePost({userId}));
+        }
+    }, [userId]);
 
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [ id , setId ] = useState<number>();
+    const [ id , setId ] = useState<string>();
 
 
     const data = [
@@ -129,7 +133,7 @@ export default function PostSkeleton(){
 
     // const postData
 
-    const postData = useAppSelector(state => state.getHomePost);
+    const postData = useAppSelector(state => state.getProfilePost);
 
     // const postData = [
     //     {
@@ -167,19 +171,19 @@ export default function PostSkeleton(){
         <>
             {postData.map((item) => (
                 <Card
-                key={item.id}
+                key={item.postId}
                 bodyStyle={{ padding: 0 }}
                 style={{width: '100%', backgroundColor: 'transparent', border: '1px solid #3f474f', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
                 className="profile-card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
                     <Flex gap={3}>
-                        <Avatar src={item.profilePeopleSrc} className="profile_profile_pic" />
+                        <Avatar src={item.userAvatar} className="profile_profile_pic" />
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
                                 <Typography.Title className="profile-name" level={2}>{item.name}</Typography.Title>
-                                <Typography.Text className="profile_time">{item.time}</Typography.Text>
+                                <Typography.Text className="profile_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>
@@ -192,23 +196,23 @@ export default function PostSkeleton(){
                 </Flex>
                 <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
                     <Typography.Paragraph className="profile_description">
-                        {item.content}
+                        {item.description}
                     </Typography.Paragraph>
                 </Flex>
                 <Flex wrap style={{ marginInline: '25%' }}>
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.postImage} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
                     ></Card>
                 </Flex>
                 <Flex className="profile-likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="profile-likes_comments_heart"/>
                         <RestFilled className="profile-likes_comments_comment" />
-                        <Statistic className="profile-custom-statistic" value={item.likeCount} formatter={formatter} />
+                        <Statistic className="profile-custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="profile-comment-count" style={{ cursor : "pointer"}} onClick={() => {if(item.id == id){setShowComments(!showComments)} setId(item.id)}}>{item.comments.length} comments</Typography.Text>
+                    <Typography.Text className="profile-comment-count" style={{ cursor : "pointer"}} onClick={() => {if(item.userId == id){setShowComments(!showComments)} setId(item.userId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="profile-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="profile-action-button">
@@ -238,7 +242,7 @@ export default function PostSkeleton(){
                     </Button>
                 </Flex>
                 {/* // Comments */}
-                {showComments && (id == item.id) && (
+                {showComments && (id == item.userId) && (
                     <List
                         className="comment-list"
                         header={<span style={{ color: "#4991FD" }}>{item.comments.length} comments</span>}

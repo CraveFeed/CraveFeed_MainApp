@@ -15,8 +15,35 @@ interface FollowerData {
 
 const initialState: FollowerState = {
   status: "idle",
-  followers: [],
-  following: [],
+  followers: [
+    {
+      name: "John Doe",
+      username: "@johndoe",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbSIbfes4K5CLLIAnBoKhAUGptxjtHQ9IKWQ&s",
+    },
+    {
+      name: "Jane Smith",
+      username: "@janesmith",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPgyKrZsZ62qhHtdx_yB4S9Eg97-2Hb1S9bw&s",
+    },
+    {
+      name: "Alice Johnson",
+      username: "@alicej",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1mU63yEwB_pIVB0bo8yoH34s2H8F3GzC-MA&s",
+    },
+  ],
+  following: [
+    {
+      name: "Bob Wilson",
+      username: "@bobwilson",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1mU63yEwB_pIVB0bo8yoH34s2H8F3GzC-MA&s",
+    },
+    {
+      name: "Emma Brown",
+      username: "@emmab",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbSIbfes4K5CLLIAnBoKhAUGptxjtHQ9IKWQ&s",
+    },
+  ],
   error: null,
 };
 

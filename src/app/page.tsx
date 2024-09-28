@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/home");
+    router.push("/signin");
     dispatch(fetchPost());
   },[])
 

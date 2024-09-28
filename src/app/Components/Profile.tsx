@@ -3,7 +3,7 @@ import coverImage from "../assets/avatar.jpg"
 import coverImage2 from "../assets/lavelisProPic.jpg"
 import { useAppSelector , useAppDispatch } from "@/lib/hooks"
 import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
-import { getProfileCall } from "@/lib/features/services/profile/getProfile"
+import { fetchBioState } from "@/lib/features/services/home/getBio"
 import { useEffect, useState } from "react"
 import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
@@ -17,24 +17,23 @@ export default function ProfileComponent(){
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
     const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
-    const firstName = useAppSelector((state) => state.getProfile.firstname);
-    const lastName = useAppSelector((state) => state.getProfile.lastname);
-    const noOfFollowers = useAppSelector((state) => state.getProfile.noOfFollowers);
-    const noOfFollowing = useAppSelector((state) => state.getProfile.noOfFollowing);
-    const noOfPosts = useAppSelector((state) => state.getProfile.noOfPosts);
-    const bio = useAppSelector((state) => state.getProfile.bio);
-    const username = useAppSelector((state) => state.getProfile.username);
+    const firstName = useAppSelector((state) => state.getBio.firstname);
+    const lastName = useAppSelector((state) => state.getBio.lastname);
+    const noOfFollowers = useAppSelector((state) => state.getBio.noOfFollowers);
+    const noOfFollowing = useAppSelector((state) => state.getBio.noOfFollowing);
+    const noOfPosts = useAppSelector((state) => state.getBio.noOfPosts);
+    const bio = useAppSelector((state) => state.getBio.bio);
+    const avatar = useAppSelector((state) => state.getBio.avatar);
+    const username = useAppSelector((state) => state.getBio.username);
     
+    const userId = useAppSelector((state) => state.global.userId);
+
     const dispatch = useAppDispatch();
-    
     useEffect(() => {
-        dispatch(getFollowersCall());
-        dispatch(getFollowingCall());
-    }, [dispatch]);
-    
-    useEffect(() => {
-        dispatch(getProfileCall())
-    },[])
+        if (userId) {
+            dispatch(fetchBioState({ userId }))
+        }
+    },[userId])
 
     const imageStyle = {
         height : "30vh" ,
@@ -64,7 +63,7 @@ export default function ProfileComponent(){
                     <div className="bio-div-above_500px-responsive"  style={{ marginTop :"-55px"}}>
                         <Space className="profile-bio_avatar-div" style={{ display : "flex" , alignContent : "center" , justifyContent : "space-between"}}>
                             <Space>
-                            <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={ coverImage.src} style={{border : "none" , cursor : "pointer" , backgroundColor: "white" }}/>
+                            <Avatar className="profile-profilePic" draggable={true} onClick={() => {setViewProfileState(true)}} src={avatar} style={{border : "none" , cursor : "pointer" , backgroundColor: "white" }}/>
                             <Flex align="start" justify="start" vertical style={{ paddingTop : "60px" , width : "100%"}}>
                                 <Button className="profile-bio-name" style={{ backgroundColor : "transparent" , border : "none" , fontWeight : "bold" , color : "#c7c7c7"}}>{firstName} {lastName}</Button>
                                 <Space direction="vertical">
@@ -163,38 +162,46 @@ export default function ProfileComponent(){
 
 function Followers(){
 
-        const fetchedProfile = [
-        {
-            name : "Ivanka James",
-            username : "@ivankajames",
-            img : coverImage
-        },
-        {
-            name : "Big Bundah Girl",
-            username : "@bigBgirl",
-            img : coverImage2 
-        },
-        {
-            name : "GlizzyGobbler",
-            username : "@GZperiod",
-            img : coverImage
-        },
-        {
-            name : "Tiny Weenie",
-            username : "@teeniweeni",
-            img : coverImage    
-        },
-        {
-            name : "Bob Loader",
-            username : "@BLnigger",
-            img : coverImage
-        },
-        {
-            name : "Dee Snuts",
-            username : "@DjNutter",
-            img : coverImage
-        }
-    ]
+    const dispatch = useAppDispatch();
+    const followers = useAppSelector((state) => state.getFollower.followers);
+
+    useEffect(() => {
+        dispatch(getFollowersCall());
+    }, [dispatch]);
+    
+
+    //     const fetchedProfile = [
+    //     {
+    //         name : "Ivanka James",
+    //         username : "@ivankajames",
+    //         img : coverImage
+    //     },
+    //     {
+    //         name : "Big Bundah Girl",
+    //         username : "@bigBgirl",
+    //         img : coverImage2 
+    //     },
+    //     {
+    //         name : "GlizzyGobbler",
+    //         username : "@GZperiod",
+    //         img : coverImage
+    //     },
+    //     {
+    //         name : "Tiny Weenie",
+    //         username : "@teeniweeni",
+    //         img : coverImage    
+    //     },
+    //     {
+    //         name : "Bob Loader",
+    //         username : "@BLnigger",
+    //         img : coverImage
+    //     },
+    //     {
+    //         name : "Dee Snuts",
+    //         username : "@DjNutter",
+    //         img : coverImage
+    //     }
+    // ]
     
     return(
         <div style={{
@@ -204,10 +211,10 @@ function Followers(){
             scrollbarWidth: "none",
             msOverflowStyle: "none"
         }}>
-            {fetchedProfile.map((value, index) => (
+            {followers.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img.src} style={{position : "relative" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img} style={{position : "relative" }}/>
                         <Flex vertical>
                             <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
                             <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
@@ -222,23 +229,32 @@ function Followers(){
 
 function Following(){
 
-        const fetchedProfile = [
-        {
-            name : "Ivanka James",
-            username : "@ivankajames",
-            img : coverImage
-        },
-        {
-            name : "Big Bundah Girl",
-            username : "@bigBgirl",
-            img : coverImage2 
-        },
-        {
-            name : "GlizzyGobbler",
-            username : "@GZperiod",
-            img : coverImage
-        },
-    ]
+    const dispatch = useAppDispatch();
+    // const { followers, following, status, error } = useAppSelector((state) => state.);
+    const following = useAppSelector((state) => state.getFollower.following);
+
+    useEffect(() => {
+        dispatch(getFollowingCall());
+    }, [dispatch]);
+
+
+    // const fetchedProfile = [
+    //     {
+    //         name : "Ivanka James",
+    //         username : "@ivankajames",
+    //         img : coverImage
+    //     },
+    //     {
+    //         name : "Big Bundah Girl",
+    //         username : "@bigBgirl",
+    //         img : coverImage2 
+    //     },
+    //     {
+    //         name : "GlizzyGobbler",
+    //         username : "@GZperiod",
+    //         img : coverImage
+    //     },
+    // ]
 
     return(
         <div style={{
@@ -248,10 +264,10 @@ function Following(){
             scrollbarWidth: "none",
             msOverflowStyle: "none"
         }}>
-            {fetchedProfile.map((value, index) => (
+            {following.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img.src} style={{position : "relative"}}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img} style={{position : "relative"}}/>
                         <Flex vertical>
                             <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
                             <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>

@@ -10,7 +10,7 @@ export interface CommentState {
   relativeTime: string;
 }
 
-export interface PostState {
+export interface ProfilePostState {
   getPostStatus: "success" | "loading" | "failed";
   error: string | null;
   postId: number;
@@ -27,7 +27,7 @@ export interface PostState {
   comments: CommentState[];
 }
 
-const initialState: PostState[] = [
+const initialState: ProfilePostState[] = [
   {
     getPostStatus: "success",
     error: null,
@@ -96,20 +96,20 @@ const initialState: PostState[] = [
   },
 ];
 
-export const fetchHomePost = createAsyncThunk<
-  PostState[],
+export const getProfilePost = createAsyncThunk<
+  ProfilePostState[],
   { userId: string },
   { rejectValue: string }
 >("post/getHomePosts", async ({ userId }, { rejectWithValue }) => {
   try {
     const response = await fetch(
-      "http://ec2-13-211-131-193.ap-southeast-2.compute.amazonaws.com:3000/getPosts",
+      "http://ec2-13-211-131-193.ap-southeast-2.compute.amazonaws.com:3000/getPostsById",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ id: userId }),
       }
     );
 
@@ -124,18 +124,18 @@ export const fetchHomePost = createAsyncThunk<
   }
 });
 
-export const getHomePostSlice = createSlice({
+export const getProfilePostSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomePost.pending, (state) => {
+      .addCase(getProfilePost.pending, (state) => {
         state.forEach((post) => (post.getPostStatus = "loading"));
       })
       .addCase(
-        fetchHomePost.fulfilled,
-        (state, action: PayloadAction<PostState[]>) => {
+        getProfilePost.fulfilled,
+        (state, action: PayloadAction<ProfilePostState[]>) => {
           return action.payload.map((post) => ({
             ...post,
             getPostStatus: "success",
@@ -143,7 +143,7 @@ export const getHomePostSlice = createSlice({
           }));
         }
       )
-      .addCase(fetchHomePost.rejected, (state, action) => {
+      .addCase(getProfilePost.rejected, (state, action) => {
         state.forEach((post) => {
           post.getPostStatus = "failed";
           post.error = action.payload ?? "An unknown error occurred";
@@ -152,4 +152,4 @@ export const getHomePostSlice = createSlice({
   },
 });
 
-export default getHomePostSlice.reducer;
+export default getProfilePostSlice.reducer;

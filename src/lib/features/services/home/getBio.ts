@@ -5,11 +5,12 @@ export interface BioState {
   error: string | null;
   bio: string;
   username: string;
-  firstName: string;
+  firstname: string;
   lastname: string;
+  noOfPosts: string;
   noOfFollowers: string;
   noOfFollowing: string;
-  Avatar: string;
+  avatar: string;
 }
 
 const initialState: BioState = {
@@ -17,20 +18,32 @@ const initialState: BioState = {
   error: null,
   bio: "Hey there! I'm Vibhor, a huge food enthusiast.",
   username: "@vibhorphalke",
-  firstName: "Vibhor",
+  firstname: "Vibhor",
   lastname: "Phalke",
   noOfFollowers: "5000",
   noOfFollowing: "13",
-  Avatar: "Avatar S3 hosted url",
+  noOfPosts: "3",
+  avatar:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRashZFbk3gWJknbzmcAOKCoNuyHUAMX2brHA&s",
 };
 
 export const fetchBioState = createAsyncThunk<
   BioState,
-  void,
+  { userId: string },
   { rejectValue: string }
->("bio/getBio", async (_, { rejectWithValue }) => {
+>("bio/getBio", async ({ userId }, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://localhost:3010/getBio");
+    console.log("check User ID:", userId);
+    const response = await fetch(
+      "http://ec2-13-211-131-193.ap-southeast-2.compute.amazonaws.com:3000/getProfileBio",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Id: userId }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

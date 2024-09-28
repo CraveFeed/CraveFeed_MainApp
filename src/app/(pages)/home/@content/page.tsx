@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { use } from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
@@ -12,20 +12,19 @@ import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import avatar from "../../../assets/avatar.jpg";
-import elonPost from "../../../assets/elon_food_post.jpeg"
-import startship from "../../../assets/starship.jpeg"
-import foodPost2 from "../../../assets/food_post2.jpeg"
-import foodPost3 from "../../../assets/food_post3.jpeg"
-import foodPost4 from "../../../assets/food_post4.jpeg"
-import profilePic2 from "../../../assets/profilePic2.jpg"
-import profilePic3 from "../../../assets/lavelisProPic.jpg"
-import profilePic4 from "../../../assets/profilePic4.jpg"
+// import elonPost from "../../../../assets/elon_food_post.jpeg"
+// import startship from "../../../../assets/starship.jpeg"
+// import foodPost2 from "../../../../assets/food_post2.jpeg"
+// import foodPost3 from "../../../../assets/food_post3.jpeg"
+// import foodPost4 from "../../../../assets/food_post4.jpeg"
+// import profilePic2 from "../../../../assets/profilePic2.jpg"
+// import profilePic3 from "../../../../assets/lavelisProPic.jpg"
+// import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
-import CreatePost from "../../../Components/CreatePost"
-import ShareFood from "../../../Components/ShareFood";
+import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -34,47 +33,57 @@ const formatter: StatisticProps['formatter'] = (value) => (
 const { TextArea } = Input;
 
 export default function Content(){
-    
+  
+    const userId = useAppSelector(state => state.global.userId);
+
+    useEffect(() => {
+        if (userId) {
+            dispatch(fetchHomePost({ userId }));
+        } else {
+            console.error("User ID is null");
+        }
+    },[]);
+
     const [commentContent , setCommentContent ] = useState<string>("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [liked , setLiked] = useState<boolean>(false);
     const [ id , setId ] = useState<number>();
-    const [data, setData] = useState([
-                {
-            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            avatar: profilePic3.src,
-            content: (
-                <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure), to help people create their product prototypes beautifully and
-                efficiently.
-            </p>
-            ),
-            datetime: (
-                <Tooltip title="2016-11-22 11:22:33">
-                <span>8 hours ago</span>
-            </Tooltip>
-            ),
-        },
-        {
-            author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            avatar: startship.src,
-            content: (
-                <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure), to help people create their product prototypes beautifully and
-                efficiently.
-            </p>
-            ),
-            datetime: (
-                <Tooltip title="2016-11-22 10:22:33">
-                <span>9 hours ago</span>
-            </Tooltip>
-            ),
-        },
-    ]);
+    // const [data, setData] = useState([
+    //             {
+    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+    //         avatar: profilePic3.src,
+    //         content: (
+    //             <p>
+    //             We supply a series of design principles, practical patterns and high quality design
+    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
+    //             efficiently.
+    //         </p>
+    //         ),
+    //         datetime: (
+    //             <Tooltip title="2016-11-22 11:22:33">
+    //             <span>8 hours ago</span>
+    //         </Tooltip>
+    //         ),
+    //     },
+    //     {
+    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+    //         avatar: startship.src,
+    //         content: (
+    //             <p>
+    //             We supply a series of design principles, practical patterns and high quality design
+    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
+    //             efficiently.
+    //         </p>
+    //         ),
+    //         datetime: (
+    //             <Tooltip title="2016-11-22 10:22:33">
+    //             <span>9 hours ago</span>
+    //         </Tooltip>
+    //         ),
+    //     },
+    // ]);
     const dispatch = useAppDispatch();
     // add Comment State
     const content = useAppSelector(state => state.addComment.content);
@@ -87,23 +96,23 @@ export default function Content(){
         </Form.Item>
         <Form.Item>
         <Button type="primary" onClick={() => {
-            dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
-            let newComment = {
-                author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-                avatar: profilePic3.src,
-                content: (
-                    <p>
-                        {commentContent}
-                    </p>
-                ),
-                datetime: (
-                    <Tooltip title="2016-11-22 11:22:33">
-                        <span>8 hours ago</span>
-                    </Tooltip>
-                ),    
-            };
-            setData(prevData => [newComment , ...prevData]);
-            setAddComment(false);
+            // dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
+            // let newComment = {
+            //     author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+            //     avatar: profilePic3.src,
+            //     content: (
+            //         <p>
+            //             {commentContent}
+            //         </p>
+            //     ),
+            //     datetime: (
+            //         <Tooltip title="2016-11-22 11:22:33">
+            //             <span>8 hours ago</span>
+            //         </Tooltip>
+            //     ),    
+            // };
+            // setData(prevData => [newComment , ...prevData]);
+            // setAddComment(false);
         }}>
             Add Comment
         </Button>
@@ -111,8 +120,6 @@ export default function Content(){
     </>
     );
     
-    
-    // Comments array
     
     const items: MenuProps['items'] = [
         {
@@ -145,47 +152,49 @@ export default function Content(){
             ),
         },
     ];
+
+    const postData = useAppSelector(state => state.getHomePost);
     
-    const postData = [
-        {
-            id: 1,
-            name: 'Elon Musk',
-            time: 'Few minutes ago',
-            tag: 'Business',
-            content: 'Ice cream is an amazing invention',
-            location : "",
-            profilePeopleSrc: startship.src,
-            postImage: elonPost.src,
-            likeCount : 112893
-        },
-        {
-            id: 2,
-            name: 'Maison Longan',
-            time: '2 hrs ago',
-            content: 'I love shrek pizza',
-            profilePeopleSrc: profilePic2.src,
-            postImage: foodPost2.src ,
-            likeCount : 12000
-        },
-        {
-            id: 3,
-            name: 'lavelis',
-            time: '22 hrs ago',
-            content: 'She found everything but Vietnamese food I’m in tears',
-            profilePeopleSrc: profilePic3.src,
-            postImage: foodPost3.src ,
-            likeCount : 1341
-        },
-        {
-            id: 4,
-            name: 'Vedant Samaiya(Modi ka Parivar)',
-            time: '5 mon ago',
-            content: 'Gujarati people to food cuisine',
-            profilePeopleSrc: profilePic4.src,
-            postImage: foodPost4.src ,
-            likeCount : 12
-        },
-    ];
+    // const postData = [
+    //     {
+    //         id: 1,
+    //         name: 'Elon Musk',
+    //         time: 'Few minutes ago',
+    //         tag: 'Business',
+    //         content: 'Ice cream is an amazing invention',
+    //         location : "",
+    //         profilePeopleSrc: startship.src,
+    //         postImage: elonPost.src,
+    //         likeCount : 112893
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'Maison Longan',
+    //         time: '2 hrs ago',
+    //         content: 'I love shrek pizza',
+    //         profilePeopleSrc: profilePic2.src,
+    //         postImage: foodPost2.src ,
+    //         likeCount : 12000
+    //     },
+    //     {
+    //         id: 3,
+    //         name: 'lavelis',
+    //         time: '22 hrs ago',
+    //         content: 'She found everything but Vietnamese food I’m in tears',
+    //         profilePeopleSrc: profilePic3.src,
+    //         postImage: foodPost3.src ,
+    //         likeCount : 1341
+    //     },
+    //     {
+    //         id: 4,
+    //         name: 'Vedant Samaiya(Modi ka Parivar)',
+    //         time: '5 mon ago',
+    //         content: 'Gujarati people to food cuisine',
+    //         profilePeopleSrc: profilePic4.src,
+    //         postImage: foodPost4.src ,
+    //         likeCount : 12
+    //     },
+    // ];
     
     const MenuItems = [
         {
@@ -239,9 +248,9 @@ export default function Content(){
                 </Flex>
                 <Flex align="center" justify="start" style={{ paddingLeft : "7%"}}>
                     <Space size="large">
-                        <ShareFood/>
+                        <Button className="upload-buttons"><RestFilled style={{ fontSize : "19px" , color : "#20D997"}}/>Share Food</Button>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                       <CreatePost/>
+                        <Button className="upload-buttons"><PlusCircleFilled style={{marginTop : "1px" , fontSize : "19px" , color : "#FF6B6B"}}/>Create Post</Button>
                     </Space>
                 </Flex>
             </Card>
@@ -266,19 +275,19 @@ export default function Content(){
             <FloatButton icon={<PlusOutlined />} className="home-mobile" />
             {postData.map((item) => (
                 <Card
-                key={item.id}
+                key={item.postId}
                 bodyStyle={{ padding: 0 }}
                 style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
                 className="card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
                     <Flex gap={3}>
-                        <Avatar src={item.profilePeopleSrc} className="post_profile_pic" />
+                        <Avatar src={item.userAvatar} className="post_profile_pic" />
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
                                 <Typography.Title className="post-name" level={2}>{item.name}</Typography.Title>
-                                <Typography.Text className="post_time">{item.time}</Typography.Text>
+                                <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>
@@ -291,23 +300,23 @@ export default function Content(){
                 </Flex>
                 <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
                     <Typography.Paragraph className="post_description">
-                        {item.content}
+                        {item.description}
                     </Typography.Paragraph>
                 </Flex>
                 <Flex wrap style={{ marginInline: '25%' }}>
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.postImage} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
                     ></Card>
                 </Flex>
                 <Flex className="likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
                         <RestFilled className="likes_comments_comment" />
-                        <Statistic className="custom-statistic" value={item.likeCount} formatter={formatter} />
+                        <Statistic className="custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => {setShowComments(!showComments) , setId(item.id)}}>{data.length} comments</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
                     <Button className="post-action-button">
@@ -346,33 +355,36 @@ export default function Content(){
                     </Button>
                 </Flex>
                 {/* // Comments */}
-                {showComments && id == item.id && (
-                    <List
+                {showComments && (id == item.postId) && (
+                     <List
                         className="comment-list"
-                        header={ <span style={{ color : "#4991FD"}}>{data.length} comments</span>}
+                        header={<span style={{ color: "#4991FD" }}>{item.comments.length} comments</span>}
                         itemLayout="horizontal"
-                        dataSource={data}
-                        renderItem={item => (
-                        <li>
+                        dataSource={item.comments}
+                        renderItem={(comment) => (
+                            <li>
                             <Comment
-                                style={{ backgroundColor : "#1B2730" , color : "white"}}
-                                author={item.author}
-                                avatar={item.avatar}
-                                content={item.content}
-                                // datetime={item.datetime}
+                                style={{ backgroundColor: "#1B2730", color: "white" }}
+                                author={<span style={{ color: "ghostwhite" }}>{comment.author}</span>}
+                                avatar={comment.avatar}
+                                content={<p>{comment.content}</p>}
+                                datetime={
+                                <span style={{ color : "gray"}} title={comment.fullDateTime}>
+                                    {comment.relativeTime}
+                                </span>
+                                }
                             />
-                        </li>
+                            </li>
                         )}
-                    />
-                )}
+                        />
+                    )}
 
                     <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
                         <Comment
                             style={{ backgroundColor : "#1B2730" , color : "white"}}
                             avatar={<Avatar src={avatar.src} alt="Han Solo" />}
                             content={
-                            <Editor
-                            />
+                            <Editor/>
                             }
                         />
                     </Modal>
