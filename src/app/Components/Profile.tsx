@@ -164,9 +164,12 @@ function Followers(){
 
     const dispatch = useAppDispatch();
     const followers = useAppSelector((state) => state.getFollower.followers);
+    const userId = useAppSelector((state) => state.global.userId);
 
     useEffect(() => {
-        dispatch(getFollowersCall());
+        if (userId) {
+            dispatch(getFollowersCall(userId));
+        }
     }, [dispatch]);
     
 
@@ -211,13 +214,13 @@ function Followers(){
             scrollbarWidth: "none",
             msOverflowStyle: "none"
         }}>
-            {followers.map((value, index) => (
+            {followers?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img} style={{position : "relative" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative" }}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>
@@ -230,12 +233,14 @@ function Followers(){
 function Following(){
 
     const dispatch = useAppDispatch();
-    // const { followers, following, status, error } = useAppSelector((state) => state.);
     const following = useAppSelector((state) => state.getFollower.following);
+    const userId = useAppSelector((state) => state.global.userId);
 
     useEffect(() => {
-        dispatch(getFollowingCall());
-    }, [dispatch]);
+        if (userId) {
+            dispatch(getFollowingCall(userId));
+        }
+    }, [dispatch, userId]);
 
 
     // const fetchedProfile = [
@@ -264,13 +269,13 @@ function Following(){
             scrollbarWidth: "none",
             msOverflowStyle: "none"
         }}>
-            {following.map((value, index) => (
+            {following?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.img} style={{position : "relative"}}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative"}}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>

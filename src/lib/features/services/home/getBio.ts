@@ -35,7 +35,7 @@ export const fetchBioState = createAsyncThunk<
   try {
     console.log("check User ID:", userId);
     const response = await fetch(
-      "http://ec2-13-211-131-193.ap-southeast-2.compute.amazonaws.com:3000/getProfileBio",
+      "http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/getProfileBio",
       {
         method: "POST",
         headers: {
