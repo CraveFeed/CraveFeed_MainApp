@@ -30,6 +30,10 @@ export default function Signup() {
   const [longitude, setLongitude] = React.useState(null);
   const [cityName, setCityName] = React.useState("");
 
+  // Upload
+
+
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyC1qpx2DBSIsvLYbFpYvS9Md0y-E",
     libraries,
