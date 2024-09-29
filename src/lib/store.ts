@@ -10,6 +10,7 @@ import { getHotPostSlice } from "./features/services/home/getHotPost";
 import { getFollowerSlice } from "./features/services/profile/getFollowersAndFollowing";
 import { globalSlice } from "./features/services/global";
 import { getProfilePostSlice } from "./features/services/profile/getProfilePosts";
+import { recommentUserSlice } from "./features/services/home/recommendedUsers";
 
 export const makeStore = () => {
   return configureStore({
@@ -21,6 +22,7 @@ export const makeStore = () => {
       getHomePost: getHomePostSlice.reducer,
       getExplorePost: getExplorePostSlice.reducer,
       getHotPost: getHotPostSlice.reducer,
+      recommendedUsers: recommentUserSlice.reducer,
 
       addComment: addCommentSlice.reducer,
       global: globalSlice.reducer,
