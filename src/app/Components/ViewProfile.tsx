@@ -4,8 +4,8 @@ import { useAppSelector , useAppDispatch } from "@/lib/hooks"
 import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
 import { fetchBioState } from "@/lib/features/services/home/getBio"
 import { useEffect, useState } from "react"
-import PostSkeleton from "./PostSkeleton"
 import { getFollowersCall , getFollowingCall } from "@/lib/features/services/profile/getFollowersAndFollowing"
+import ViewPostSkeleton from "./ViewProfileSkeleton"
 
 const { Paragraph } = Typography;
 
@@ -133,7 +133,7 @@ export default function ViewProfileComponent(){
                     <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>
                 </Flex>
                 <div className="profile-widthDiv">
-                    {active === "POSTS" && <PostSkeleton/>}
+                    {active === "POSTS" && <ViewPostSkeleton/>}
                     {active === "FOLLOWERS" && <Followers/>}
                     {active === "FOLLOWING" && <Following/>}
                 </div>

@@ -3,148 +3,128 @@ import React from "react";
 import { Tooltip } from "antd";
 
 export interface CommentState {
-  author: string;
-  avatar: string;
+  name: string;
+  userAvatar: string;
   content: string;
-  fullDateTime: string;
+  commentTime: string;
   relativeTime: string;
 }
 
-export interface PostState {
+export interface ExplorePostState {
   getPostStatus: "success" | "loading" | "failed";
   error: string | null;
-  id: number;
+  postId: number;
   name: string;
-  time: string;
+  userAvatar: string;
+  timeDescription: string;
   tag: string;
-  content: string;
+  description: string;
   location: string;
   profilePeopleSrc: string;
-  postImage: string;
-  likeCount: number;
+  pictures: string;
+  userId: string;
+  likes: number;
   comments: CommentState[];
+  longitude: string;
+  latitude: string;
 }
 
-const initialState: PostState[] = [
+const initialState: ExplorePostState[] = [
   {
     getPostStatus: "success",
     error: null,
-    id: 0,
-    name: "Exploring Sherrr",
-    time: "2 hours ago",
+    userAvatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTyAd5BNld8pgb66ngEhStNvODKYpUHhZgdQ&s",
+    postId: 0, // Changed `id` to `postId`
+    name: "Sherrr",
+    timeDescription: "2 hours ago",
     tag: "Business",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.", // Changed `content` to `description`
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
-    postImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR40BXNDynBHxykm-xvrGOJ1vJayZa_JgUxEw&s",
-    likeCount: 2210,
+    pictures:
+      "https://img.buzzfeed.com/buzzfeed-static/static/2018-02/27/16/tmp/buzzfeed-prod-fastlane-03/f8295fefe149198bd27788278a9e098b-0.jpg?crop=625:313;0,0%26downsize=1250:*",
+    likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
-        author: "Supporter Sherrrr",
-        avatar:
+        name: "Supporter Sherrrr",
+        userAvatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport",
-        fullDateTime: "2023-05-10 09:22:33",
+        commentTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
       {
-        author: "Sherrr1",
-        avatar:
+        name: "Sherrr1",
+        userAvatar:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
         content: "Vaah Bhai",
-        fullDateTime: "2023-05-09 21:22:33",
+        commentTime: "2023-05-09 21:22:33",
         relativeTime: "22 hours ago",
       },
     ],
+    latitude: "40.7128",
+    longitude: "-74.0060",
+    userId: "user1",
   },
   {
     getPostStatus: "success",
     error: null,
-    id: 1,
+    postId: 1,
+    userAvatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsuVlEFGYuDv8K6UULQoMhvyxo_1EwR205Jw&s",
     name: "Sherrr1",
-    time: "2 hours ago",
+    timeDescription: "2 hours ago",
     tag: "Business",
-    content:
+    description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
-    postImage:
+    pictures:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwpkud_BqL_JvbLUuYFUxNq2m44WfsbFpGGw&s",
-    likeCount: 1200,
+    likes: 1200,
     comments: [
       {
-        author: "Supporter Sherrrr",
-        avatar:
+        name: "Supporter Sherrrr",
+        userAvatar:
           "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
         content: "Sherrr bahi full suport bahi bahi",
-        fullDateTime: "2023-05-10 09:22:33",
+        commentTime: "2023-05-10 09:22:33",
         relativeTime: "10 hours ago",
       },
     ],
-  },
-  {
-    getPostStatus: "success",
-    error: null,
-    id: 2,
-    name: "Sherrr2",
-    time: "2 hours ago",
-    tag: "Business",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
-    location: "New York",
-    profilePeopleSrc:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZSmH-03LJvl8U3fquWNPXJ1CijPyxiMPIzFV-HvslmoSZpleUlg4QwWt22htQM6xYq7k&usqp=CAU",
-    postImage:
-      "https://www.shutterstock.com/image-photo/relax-time-sport-fast-food-260nw-2030231213.jpg",
-    likeCount: 1320,
-    comments: [
-      {
-        author: "Supporter Sherrrr",
-        avatar:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        content: "Hahaha",
-        fullDateTime: "2023-05-10 09:22:33",
-        relativeTime: "10 hours ago",
-      },
-    ],
-  },
-  {
-    getPostStatus: "success",
-    error: null,
-    id: 3,
-    name: "Sherrr3",
-    time: "2 hours ago",
-    tag: "Business",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
-    location: "New York",
-    profilePeopleSrc:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
-    postImage:
-      "https://media.tenor.com/B1pB8zJBiSIAAAAe/eating-cat-suspicious.png",
-    likeCount: 122212,
-    comments: [],
+    latitude: "40.7128",
+    longitude: "-74.0060",
+    userId: "user2",
   },
 ];
 
 export const fetchExplorePost = createAsyncThunk<
-  PostState[],
-  void,
+  ExplorePostState[],
+  { userId: string },
   { rejectValue: string }
->("post/getHomePosts", async (_, { rejectWithValue }) => {
+>("post/getExplorePosts", async ({ userId }, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://localhost:3010/getHomePost");
+    const response = await fetch(
+      "http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/getRecommendation",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: userId }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
-
+    console.log("recommended \n", data);
     return data;
   } catch (error: any) {
     return rejectWithValue(error.message || "An unknown error occurred");
@@ -162,7 +142,7 @@ export const getExplorePostSlice = createSlice({
       })
       .addCase(
         fetchExplorePost.fulfilled,
-        (state, action: PayloadAction<PostState[]>) => {
+        (state, action: PayloadAction<ExplorePostState[]>) => {
           return action.payload.map((post) => ({
             ...post,
             getPostStatus: "success",

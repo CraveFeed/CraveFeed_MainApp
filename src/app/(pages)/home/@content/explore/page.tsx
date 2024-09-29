@@ -24,7 +24,7 @@ import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../../styles/content.css";
-import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
+import { fetchExplorePost } from "@/lib/features/services/home/getExplorePost";
 import ShareFood from "@/app/Components/ShareFood";
 import CreatePost from "@/app/Components/CreatePost";
 
@@ -40,7 +40,7 @@ export default function Content(){
 
     useEffect(() => {
         if (userId) {
-            dispatch(fetchHomePost({ userId }));
+            dispatch(fetchExplorePost({ userId }));
         } else {
             console.error("User ID is null");
         }
@@ -161,7 +161,7 @@ export default function Content(){
         },
     ];
 
-    const postData = useAppSelector(state => state.getHomePost);
+    const postData = useAppSelector(state => state.getExplorePost);
     
     // const postData = [
     //     {

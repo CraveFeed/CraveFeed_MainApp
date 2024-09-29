@@ -109,7 +109,7 @@ export const fetchHomePost = createAsyncThunk<
 >("post/getHomePosts", async ({ userId }, { rejectWithValue }) => {
   try {
     const response = await fetch(
-      "http://ec2-3-27-104-150.ap-southeast-2.compute.amazonaws.com:3000/getPosts",
+      "http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/getPosts",
       {
         method: "POST",
         headers: {
