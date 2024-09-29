@@ -11,7 +11,7 @@ import background from "../../../assets/coverImage.jpeg"
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { fetchBioState} from "@/lib/features/services/home/getBio";
 import { useRouter } from "next/navigation";
-
+import { fetchRecommendedUsers } from "@/lib/features/services/home/recommendedUsers";
 
 export default function Bio() {
   
@@ -31,9 +31,11 @@ export default function Bio() {
   useEffect(() => {
     if (userId) {
       dispatch(fetchBioState({ userId }));
+      dispatch(fetchRecommendedUsers({ userId }));
     } else {
       console.error("User ID is null");
     }
+
     console.log(bio , username , firstName , lastname , noOfFollowers , noOfFollowing , getBioStatus)
   },[])
 
@@ -69,11 +71,13 @@ export default function Bio() {
     backgroundColor: "transparent",
   };
 
-  const userData = [
-    { id: 1, avatarSrc: tiger, name: 'Shashwat Singh', handle: '@ShashwatPS1' },
-    { id: 2, avatarSrc: background, name: 'Day Dreamer', handle: '@AnotherHandle' },
-    { id: 2, avatarSrc: background, name: 'Harshit Shrivastava', handle: '@harshitST' },
-];
+  const userData = useAppSelector(state => state.recommendedUsers.users);
+
+//   const userData = [
+//     { id: 1, avatarSrc: tiger, name: 'Shashwat Singh', handle: '@ShashwatPS1' },
+//     { id: 2, avatarSrc: background, name: 'Day Dreamer', handle: '@AnotherHandle' },
+//     { id: 2, avatarSrc: background, name: 'Harshit Shrivastava', handle: '@harshitST' },
+// ];
 
   return (
     <Flex vertical align="center">
@@ -116,8 +120,8 @@ export default function Bio() {
       <Card style={outerCard2Style} bodyStyle={{ padding: 0 }}>
           <Flex vertical align="center" justify="center" style={{ paddingBottom : "10px" , overflow : "hidden"}}>
                 {userData.map(user => (
-                <Flex className="suggested-parent-Flex" key={user.id} align="center" justify="space-between" style={{ width: "90%",  marginBottom: "7px" }}>
-                    <Avatar className="suggested-avatar" src={user.avatarSrc.src} style={{ overflow: "hidden", textOverflow: "ellipsis"}}/>
+                <Flex className="suggested-parent-Flex" key={user.userId} align="center" justify="space-between" style={{ width: "90%",  marginBottom: "7px" }}>
+                    <Avatar className="suggested-avatar" src={user.avatar} style={{ overflow: "hidden", textOverflow: "ellipsis"}}/>
                     <Flex vertical align="center" justify="start">
                          <Typography.Title className="suggested-mobile-title" style={{
                         color: "#c7c7c7",
@@ -135,7 +139,7 @@ export default function Bio() {
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                             maxWidth: "160px"
-                        }}>{user.handle}</Typography.Text>
+                        }}>{user.username}</Typography.Text>
                     </Flex>
                     <Button className="suggested-button" style={{ backgroundColor: "white", color: "black", borderRadius: "20px" }}>Follow</Button>
                 </Flex>
