@@ -171,13 +171,11 @@ export default function CreatePost() {
         <Form style={{ marginTop: "20px" }}>
           <Input
             placeholder="Create Title"
-            className="custom-input"
             style={{
               backgroundColor: "#051017",
               color: "#c7c7c7",
               border: "none",
               height: "50px",
-              fontSize: "25px",
               marginTop: "10px",
             }}
           ></Input>
