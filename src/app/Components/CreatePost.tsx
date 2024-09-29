@@ -160,6 +160,7 @@ export default function CreatePost() {
               display: CityTag,
               marginRight: "20px",
               marginTop: "10px",
+              
               backgroundColor: "transparent",
             }}
           >
@@ -177,6 +178,7 @@ export default function CreatePost() {
               border: "none",
               height: "50px",
               marginTop: "10px",
+              fontSize:"16px"
             }}
           ></Input>
          

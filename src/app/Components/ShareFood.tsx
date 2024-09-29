@@ -85,7 +85,7 @@ export default function ShareFood() {
             color: '#c7c7c7',
             border: 'none',
             height: '50px',
-            fontSize: '25px',
+           
             marginTop: '20px',
           }}
         />
