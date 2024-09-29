@@ -2,14 +2,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React from "react";
-import { Button, Form, Input, Modal, Space, Upload } from "antd";
+import { Button, Form, Input, Modal, Select, Space, Upload } from "antd";
 import "../styles/CreatePost.css";
+
 import {
   EnvironmentOutlined,
   FileImageOutlined,
   GifOutlined,
   MehOutlined,
 } from "@ant-design/icons";
+import CustomRemoveIcon from "@ant-design/icons";
+import CustomClearIcon from "@ant-design/icons";
 import {
   PlusCircleFilled,
   DownloadOutlined,
@@ -22,6 +25,8 @@ import {
 } from "@ant-design/icons";
 import { Image, Typography } from "antd";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { RateOptions, TypeOptions } from "./InputValues";
+
 require("dotenv").config();
 
 const { Text } = Typography;
@@ -176,18 +181,7 @@ export default function CreatePost() {
               marginTop: "10px",
             }}
           ></Input>
-          <Input
-            placeholder="RestaurantID"
-            className="custom-input"
-            style={{
-              backgroundColor: "#051017",
-              color: "#c7c7c7",
-              border: "none",
-              height: "40px",
-              fontSize: "20px",
-              marginTop: "10px",
-            }}
-          ></Input>
+         
           <Input.TextArea
             className="custom-input2"
             placeholder="Write description"
@@ -200,6 +194,56 @@ export default function CreatePost() {
               marginTop: "10px",
             }}
           />
+            
+           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{marginTop:"10px"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+              <Space >
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label ant-select-selector ant-select-outline"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
+          </Form.Item>
+           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{marginTop:"-10px"}} mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+              <Space >
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
+          </Form.Item>
+           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{marginTop:"-10px"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+              <Space >
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
+          </Form.Item>
+
+          {/* rating options */}
+
+          <div  style={{display:"flex" , justifyContent:"space-between" , marginTop:"30px"}} >
+
+             <Form.Item name="Spiciness"   rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{width:"6rem"}} mode="tags" placeholder="Spiciness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }}   allowClear={{ clearIcon: <CustomClearIcon /> }} className="custom-select " removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+          <Form.Item name="Sourness"   rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{width:"6rem"}} mode="tags" placeholder="Sourness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }}  allowClear={{ clearIcon: <CustomClearIcon /> }} className="custom-select " removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+          <Form.Item name="Sweetness"   rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{width:"6rem"}} mode="tags" placeholder="Sweetness" options={RateOptions} optionRender={(option) => (
+              <Space>
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" className="custom-select " dropdownStyle={{ backgroundColor: 'black' }}   allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />}/>
+          </Form.Item>
+          </div>
+         
           <div
             style={{
               display: displayImage,

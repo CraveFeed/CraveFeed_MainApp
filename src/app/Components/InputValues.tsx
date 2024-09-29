@@ -262,3 +262,44 @@ export const RateOptions: SelectProps['options'] = [
   { label: '5', value: '5', desc: '5' },
   
 ];
+export const DishOptions: SelectProps['options'] = [
+  { label: 'Samosa', value: 'samosa', desc: 'Snack' },
+  { label: 'Biryani', value: 'biryani', desc: 'Main Course' },
+  { label: 'Spring Rolls', value: 'spring_rolls', desc: 'Appetizer' },
+  { label: 'Pasta', value: 'pasta', desc: 'Main Course' },
+  { label: 'Nachos', value: 'nachos', desc: 'Snack' },
+  { label: 'Ice Cream', value: 'ice_cream', desc: 'Dessert' },
+  { label: 'Caesar Salad', value: 'caesar_salad', desc: 'Salad' },
+  { label: 'Garlic Bread', value: 'garlic_bread', desc: 'Appetizer' },
+  { label: 'Cupcake', value: 'cupcake', desc: 'Dessert' },
+  { label: 'Fries', value: 'fries', desc: 'Snack' },
+];
+export const CuisineOptions: SelectProps['options'] = [
+  { label: 'Pizza', value: 'pizza', desc: 'Italian' },
+  { label: 'Sushi', value: 'sushi', desc: 'Japanese' },
+  { label: 'Tacos', value: 'tacos', desc: 'Mexican' },
+  { label: 'Curry', value: 'curry', desc: 'Indian' },
+  { label: 'Dim Sum', value: 'dimsum', desc: 'Chinese' },
+];
+export const AllergenOptions: SelectProps['options'] = [
+  { label: 'Peanuts', value: 'peanuts', desc: 'Peanut Allergy' },
+  { label: 'Tree Nuts', value: 'tree_nuts', desc: 'Tree Nut Allergy' },
+  { label: 'Dairy', value: 'dairy', desc: 'Dairy Allergy' },
+  { label: 'Gluten', value: 'gluten', desc: 'Gluten Allergy' },
+  { label: 'Soy', value: 'soy', desc: 'Soy Allergy' },
+  { label: 'Eggs', value: 'eggs', desc: 'Egg Allergy' },
+  { label: 'Shellfish', value: 'shellfish', desc: 'Shellfish Allergy' },
+  { label: 'Fish', value: 'fish', desc: 'Fish Allergy' },
+  { label: 'Wheat', value: 'wheat', desc: 'Wheat Allergy' },
+  { label: 'Sesame', value: 'sesame', desc: 'Sesame Allergy' },
+  { label: 'Mustard', value: 'mustard', desc: 'Mustard Allergy' },
+  { label: 'Celery', value: 'celery', desc: 'Celery Allergy' },
+  { label: 'Sulphites', value: 'sulphites', desc: 'Sulphite Sensitivity' },
+  { label: 'Lupin', value: 'lupin', desc: 'Lupin Allergy' },
+  { label: 'Corn', value: 'corn', desc: 'Corn Allergy' },
+  { label: 'Gelatin', value: 'gelatin', desc: 'Gelatin Allergy' },
+  { label: 'Fruit', value: 'fruit', desc: 'Fruit Allergy (e.g., citrus)' },
+  { label: 'Chocolate', value: 'chocolate', desc: 'Chocolate Allergy' },
+  { label: 'Legumes', value: 'legumes', desc: 'Legume Allergy (e.g., lentils, peas)' },
+];
+

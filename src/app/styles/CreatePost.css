@@ -26,5 +26,43 @@
   color:white;
 }
 
+.ant-select-selector{
+  width: 100px;
+  background-color: #09151d;
+ 
+}
+.ratingoption{
+   width: 100px;
+   height: 40px;
+   background: rgb(5, 16, 23);
+}
+.custom-select .ant-select-selector {
+  background-color: rgb(5, 16, 23) !important; /* Change to your desired background color */
+  padding: 0.53rem;
+  border:2px solid rgb(5, 16, 23);
+ 
+  
+}
+
+.ant-select-selector{
+  width: 100%;
+}
+
+.ant-select-outline{
+  border:none;
+}
+
+
+
+
+::placeholder {
+  color: gray !important;
+  opacity: 1;
+}
+
+.ant-select ::placeholder{
+  color:grey;
+}
+
 
 

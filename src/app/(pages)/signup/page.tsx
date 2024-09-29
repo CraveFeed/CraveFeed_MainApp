@@ -3,7 +3,7 @@ import React from 'react';
 import "../../styles/signup.css";
 import { Avatar, Button, Card, Form, Input, Select, Space, Steps } from 'antd';
 import { CloseCircleOutlined, CloseOutlined, EyeOutlined, UserOutlined, SolutionOutlined, SecurityScanOutlined, SmileOutlined, ProfileOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
-import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions, TypeOptions } from '../../Components/InputValues';
+import { options, sweetenerOptions, fatOilOptions, seasoningOptions, RateOptions, TypeOptions, AllergenOptions } from '../../Components/InputValues';
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { useRouter } from 'next/navigation';
@@ -190,6 +190,9 @@ export default function Signup() {
           <Form.Item name={"NickName"} rules={[{ required: true }]} style={{ marginTop: "30px" }}>
             <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="UserName" />
           </Form.Item>
+          <Form.Item name={"Bio"} rules={[{ required: true }]} style={{ marginTop: "30px" }}>
+            <Input style={{ backgroundColor: "#051017", color: "white",width:"20rem" }} placeholder="Bio" />
+          </Form.Item>
           <div className='button-align'>
             <Button className='button-inner' type='primary' onClick={goPrevious} style={{ marginRight: '8px' }}>Previous</Button>
             <Button className='button-inner' type='primary' htmlType='submit'>Next</Button>
@@ -216,6 +219,13 @@ export default function Signup() {
 
           <Form.Item  name="Types" label="Types" rules={[{ required: true, message: 'Please input your choice' }]}>
             <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+              <Space >
+                <span style={{ color: "white" }}>{option.data.desc}</span>
+              </Space>
+            )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
+          </Form.Item>
+          <Form.Item  name="Allergens" label="Allergens" rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{width:"30rem"}}  mode="multiple"  placeholder="Allergens" options={AllergenOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
