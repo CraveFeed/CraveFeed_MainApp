@@ -5,7 +5,6 @@ import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } fro
 import { fetchBioState } from "@/lib/features/services/home/getBio"
 import { useEffect, useState } from "react"
 import PostSkeleton from "./PostSkeleton"
-import EditProfile from "./EditProfile"
 import { getFollowersCall , getFollowingCall } from "@/lib/features/services/profile/getFollowersAndFollowing"
 
 const { Paragraph } = Typography;
@@ -14,7 +13,6 @@ export default function ViewProfileComponent(){
 
     
     const [viewProfileImage , setViewProfileState] = useState<boolean>(false);
-    // const [editProfile , setEditProfile] = useState<boolean>(false)
     const [active , setActive] = useState<string>("POSTS")
     const firstName = useAppSelector((state) => state.getBio.firstname);
     const lastName = useAppSelector((state) => state.getBio.lastname);
@@ -25,14 +23,14 @@ export default function ViewProfileComponent(){
     const avatar = useAppSelector((state) => state.getBio.avatar);
     const username = useAppSelector((state) => state.getBio.username);
     
-    const userId = useAppSelector((state) => state.global.userId);
+    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (userId) {
-            dispatch(fetchBioState({ userId }))
+        if (viewingUserId) {
+            dispatch(fetchBioState({ "userId" : viewingUserId }));
         }
-    },[userId])
+    },[viewingUserId])
 
     const imageStyle = {
         height : "30vh" ,
@@ -164,11 +162,11 @@ function Followers(){
 
     const dispatch = useAppDispatch();
     const followers = useAppSelector((state) => state.getFollower.followers);
-    const userId = useAppSelector((state) => state.global.userId);
-
+    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
+    
     useEffect(() => {
-        if (userId) {
-            dispatch(getFollowersCall(userId));
+        if (viewingUserId) {
+            dispatch(getFollowersCall(viewingUserId));
         }
     }, [dispatch]);
     
@@ -234,13 +232,14 @@ function Following(){
 
     const dispatch = useAppDispatch();
     const following = useAppSelector((state) => state.getFollower.following);
-    const userId = useAppSelector((state) => state.global.userId);
+    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
+    
 
     useEffect(() => {
-        if (userId) {
-            dispatch(getFollowingCall(userId));
+        if (viewingUserId) {
+            dispatch(getFollowingCall(viewingUserId));
         }
-    }, [dispatch, userId]);
+    }, [dispatch, viewingUserId]);
 
 
     // const fetchedProfile = [

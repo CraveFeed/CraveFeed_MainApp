@@ -57,7 +57,7 @@ export const getFollowersCall = createAsyncThunk(
   async (userId: string, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/getFollowers",
+        "http://ec2-3-27-104-150.ap-southeast-2.compute.amazonaws.com:3000/getFollowers",
         {
           method: "POST",
           headers: {
@@ -81,7 +81,7 @@ export const getFollowingCall = createAsyncThunk(
   async (userId: string, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://ec2-3-107-8-69.ap-southeast-2.compute.amazonaws.com:3000/getFollowing",
+        "http://ec2-3-27-104-150.ap-southeast-2.compute.amazonaws.com:3000/getFollowing",
         {
           method: "POST",
           headers: {

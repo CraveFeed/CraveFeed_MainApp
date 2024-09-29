@@ -11,7 +11,7 @@ import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton , 
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
-import avatar from "../../../assets/avatar.jpg";
+import { setViewUserId } from "@/lib/features/services/global";
 // import elonPost from "../../../../assets/elon_food_post.jpeg"
 // import startship from "../../../../assets/starship.jpeg"
 // import foodPost2 from "../../../../assets/food_post2.jpeg"
@@ -46,7 +46,7 @@ export default function Content(){
         }
     },[]);
 
-    const [commentContent , setCommentContent ] = useState<string>("");
+    const [commentContent , setCommentContent ] = useState("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -93,34 +93,39 @@ export default function Content(){
     const router = useRouter();    
     
     const Editor = () => (
-        <>
-        <Form.Item>
-        <TextArea rows={4} value={commentContent} onChange={(e) => { setCommentContent(e.target.value)}} />
-        </Form.Item>
-        <Form.Item>
-        <Button type="primary" onClick={() => {
-            // dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
-            // let newComment = {
-            //     author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-            //     avatar: profilePic3.src,
-            //     content: (
-            //         <p>
-            //             {commentContent}
-            //         </p>
-            //     ),
-            //     datetime: (
-            //         <Tooltip title="2016-11-22 11:22:33">
-            //             <span>8 hours ago</span>
-            //         </Tooltip>
-            //     ),    
-            // };
-            // setData(prevData => [newComment , ...prevData]);
-            // setAddComment(false);
-        }}>
-            Add Comment
-        </Button>
-        </Form.Item>
-    </>
+        <Form>
+            <Form.Item>
+                <TextArea
+                    value={commentContent}
+                    onChange={(e) => setCommentContent(e.target.value)}
+                    placeholder="Controlled autosize"
+                    autoSize={{ minRows: 3, maxRows: 5 }}
+                />
+            </Form.Item>
+            <Form.Item>
+            <Button type="primary" onClick={() => {
+                // dispatch(addCommentCall({postId : "1" , userId : "1" , content : commentContent}));
+                // let newComment = {
+                //     author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
+                //     avatar: profilePic3.src,
+                //     content: (
+                //         <p>
+                //             {commentContent}
+                //         </p>
+                //     ),
+                //     datetime: (
+                //         <Tooltip title="2016-11-22 11:22:33">
+                //             <span>8 hours ago</span>
+                //         </Tooltip>
+                //     ),    
+                // };
+                // setData(prevData => [newComment , ...prevData]);
+                // setAddComment(false);
+            }}>
+                Add Comment
+            </Button>
+            </Form.Item>
+        </Form>
     );
     
     
@@ -289,7 +294,7 @@ export default function Content(){
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title className="post-name" level={2}>{item.name}</Typography.Title>
+                                <Typography.Title onClick={() => { dispatch(setViewUserId(item.userId)); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
                                 <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
