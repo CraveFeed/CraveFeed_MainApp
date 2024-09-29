@@ -14,7 +14,7 @@ export default function Component() {
   
   const handleSignIn = async () => {
     try {
-      const response = await fetch('http://ec2-3-27-104-150.ap-southeast-2.compute.amazonaws.com:3000/signIn', {
+      const response = await fetch('http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
