@@ -11,7 +11,7 @@ import {
   RestFilled,
 } from '@ant-design/icons';
 import { FileImageOutlined } from '@ant-design/icons';
-import { RateOptions, TypeOptions } from './InputValues';
+import { CuisineOptions, DishOptions, RateOptions, TypeOptions } from './InputValues';
 import CustomRemoveIcon from "@ant-design/icons";
 import CustomClearIcon from "@ant-design/icons";
 
@@ -97,15 +97,15 @@ export default function ShareFood() {
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label ant-select-selector ant-select-outline"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
-           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  style={{marginTop:"-10px"}} mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+           <Form.Item  name="Dishs"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{marginTop:"-10px"}} mode="multiple"  placeholder="Dishs" options={DishOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
-           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{marginTop:"-10px"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+           <Form.Item  name="Cuisine"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{marginTop:"-10px"}}  mode="multiple"  placeholder="Cuisine" options={CuisineOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>

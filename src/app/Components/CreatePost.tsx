@@ -25,7 +25,7 @@ import {
 } from "@ant-design/icons";
 import { Image, Typography } from "antd";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { RateOptions, TypeOptions } from "./InputValues";
+import { CuisineOptions, DishOptions, RateOptions, TypeOptions } from "./InputValues";
 
 require("dotenv").config();
 
@@ -202,15 +202,15 @@ export default function CreatePost() {
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label ant-select-selector ant-select-outline"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
-           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select  style={{marginTop:"-10px"}} mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+           <Form.Item  name="Dish"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select  style={{marginTop:"-10px"}} mode="multiple"  placeholder="Dish" options={DishOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>
             )} popupClassName="custom-dropdown" dropdownStyle={{ backgroundColor: 'black' }} className="custom-select custom-selected-label"  allowClear={{ clearIcon: <CustomClearIcon /> }}  removeIcon={<CustomRemoveIcon />} />
           </Form.Item>
-           <Form.Item  name="Types"  rules={[{ required: true, message: 'Please input your choice' }]}>
-            <Select style={{marginTop:"-10px"}}  mode="multiple"  placeholder="Types" options={TypeOptions} optionRender={(option) => (
+           <Form.Item  name="Cuisin"  rules={[{ required: true, message: 'Please input your choice' }]}>
+            <Select style={{marginTop:"-10px"}}  mode="multiple"  placeholder="Cuisions" options={CuisineOptions} optionRender={(option) => (
               <Space >
                 <span style={{ color: "white" }}>{option.data.desc}</span>
               </Space>

@@ -263,17 +263,18 @@ export const RateOptions: SelectProps['options'] = [
   
 ];
 export const DishOptions: SelectProps['options'] = [
-  { label: 'Samosa', value: 'samosa', desc: 'Snack' },
-  { label: 'Biryani', value: 'biryani', desc: 'Main Course' },
-  { label: 'Spring Rolls', value: 'spring_rolls', desc: 'Appetizer' },
-  { label: 'Pasta', value: 'pasta', desc: 'Main Course' },
-  { label: 'Nachos', value: 'nachos', desc: 'Snack' },
-  { label: 'Ice Cream', value: 'ice_cream', desc: 'Dessert' },
-  { label: 'Caesar Salad', value: 'caesar_salad', desc: 'Salad' },
-  { label: 'Garlic Bread', value: 'garlic_bread', desc: 'Appetizer' },
-  { label: 'Cupcake', value: 'cupcake', desc: 'Dessert' },
-  { label: 'Fries', value: 'fries', desc: 'Snack' },
+  { label: 'Samosa', value: 'samosa', desc: 'samosa' },
+  { label: 'Biryani', value: 'biryani', desc: 'biryani' },
+  { label: 'Spring Rolls', value: 'spring_rolls', desc: 'spring_rolls' },
+  { label: 'Pasta', value: 'pasta', desc: 'pasta' },
+  { label: 'Nachos', value: 'nachos', desc: 'nachos' },
+  { label: 'Ice Cream', value: 'ice_cream', desc: 'ice_cream' },
+  { label: 'Caesar Salad', value: 'caesar_salad', desc: 'caesar_salad' },
+  { label: 'Garlic Bread', value: 'garlic_bread', desc: 'garlic_bread' },
+  { label: 'Cupcake', value: 'cupcake', desc: 'cupcake' },
+  { label: 'Fries', value: 'fries', desc: 'fries' },
 ];
+
 export const CuisineOptions: SelectProps['options'] = [
   { label: 'Pizza', value: 'pizza', desc: 'Italian' },
   { label: 'Sushi', value: 'sushi', desc: 'Japanese' },

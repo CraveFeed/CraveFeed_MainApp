@@ -64,5 +64,39 @@
   color:grey;
 }
 
+.custom-select .ant-select-selection-placeholder {
+  color: gray !important;  /* Set your desired placeholder color */
+}
+
+/* Style for the placeholder text */
+.custom-select .ant-select-selection-placeholder {
+  color: gray !important;  /* Change placeholder color */
+}
+
+/* Remove the border from the select input */
+.custom-select .ant-select-selector {
+  border: none !important;  /* Remove border */
+  background-color: transparent; /* Set transparent background */
+}
+
+/* Style the selected tags */
+.custom-select .ant-select-selection-item {
+  background-color: black !important;  /* Background for selected tags */
+  color: white !important;  /* White color for selected tags text */
+
+}
+
+/* Remove hover effects on the selected tags if necessary */
+.custom-select .ant-select-selection-item:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* Style the dropdown list items */
+.custom-dropdown .ant-select-item-option-content {
+  color: white !important; /* White color for dropdown items */
+}
+
+
 
 
