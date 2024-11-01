@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
 import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
 import ShareFood from "@/app/Components/ShareFood";
-import CreatePost from "@/app/Components/CreatePost";
+// import CreatePost from "@/app/Components/CreatePost";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -258,7 +258,7 @@ export default function Content(){
                     <Space size="large">
                         <ShareFood/>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                       <CreatePost/>
+                       {/* <CreatePost/> */}
                     </Space>
                 </Flex>
             </Card>
