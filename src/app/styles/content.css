@@ -130,8 +130,6 @@ color : "#5D6A77" */
     padding-inline: 90px;
     margin-bottom: 20px;
 }
- 
- /* Like and Comment Count section  */
 
 .post-action-button{
     height: 45px;
@@ -449,13 +447,13 @@ color : "#5D6A77" */
 
     .post-action-button-like {
         margin-top: -15px;
-        margin-left: -50px;
+        margin-left: 20px;
         transform: scale(0.334);
     }
     
     .post-action-button-textLike{
-        margin-top: -20px;
-        margin-left: -40px !important;
+        margin-top: -25px;
+        margin-left: -10px !important;
     }
 
 
@@ -488,7 +486,7 @@ color : "#5D6A77" */
     .post-action-button-mainDiv {
         margin-top: 10px;
         padding-inline: 0px;
-        margin-right: 20px;
+        margin-right: 10px !important;
         margin-bottom: 20px;
     }
 
