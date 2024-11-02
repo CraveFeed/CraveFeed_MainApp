@@ -171,6 +171,17 @@ export default function Content(){
         }
     }, [postData]);
 
+    const handleLikeToggle = (postId: number) => {
+        setLikePosts((prevLikePosts) => ({
+            ...prevLikePosts,
+            [postId]: {
+                ...prevLikePosts[postId],
+                isLiked: !prevLikePosts[postId]?.isLiked,
+            },
+        }));
+    };
+
+
     const MenuItems = [
         {
             key: 1,
@@ -201,17 +212,6 @@ export default function Content(){
         setSelectedIndex(index);
         console.log(selectedIndex);
     }
-
-    const handleLikeToggle = (postId: number) => {
-        setLikePosts((prevLikePosts) => ({
-            ...prevLikePosts,
-            [postId]: {
-                ...prevLikePosts[postId],
-                isLiked: !prevLikePosts[postId]?.isLiked,
-            },
-        }));
-    };
-
     return (
         <Flex 
             vertical 
@@ -276,7 +276,11 @@ export default function Content(){
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
+                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>
+                                    <Flex justify="center" align="center">
+                                        {item.tag}
+                                    </Flex>
+                                </Tag>)}
                                 <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=${item.latitude},${item.longitude}`);}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
@@ -292,7 +296,7 @@ export default function Content(){
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
                     ></Card>
                 </Flex>
                 <Flex className="likes_comments" align="center" justify="space-between">

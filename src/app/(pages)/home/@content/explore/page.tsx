@@ -161,7 +161,33 @@ export default function Content(){
         },
     ];
 
+    interface likePost {
+        isLiked : Boolean,
+        postId : number,
+    }
+
     const postData = useAppSelector(state => state.getExplorePost);
+    const [likePosts, setLikePosts] = useState<Record<number, likePost>>({});
+
+    useEffect(() => {
+        if (postData) {
+            const likePostMap = postData.reduce((acc, post) => {
+                acc[post.postId] = { isLiked: post.isLiked, postId: post.postId };
+                return acc;
+            }, {} as Record<number, likePost>);
+            setLikePosts(likePostMap);
+        }
+    }, [postData]);
+
+    const handleLikeToggle = (postId: number) => {
+        setLikePosts((prevLikePosts) => ({
+            ...prevLikePosts,
+            [postId]: {
+                ...prevLikePosts[postId],
+                isLiked: !prevLikePosts[postId]?.isLiked,
+            },
+        }));
+    };
     
     // const postData = [
     //     {
@@ -327,11 +353,10 @@ export default function Content(){
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
-                    <Button className="post-action-button" onClick={() => {setLiked(!liked)}}>
-                        <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
+                    <Button className="post-action-button" key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                        <Flex style={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}>
                             <div className="post-action-button-likeBg">
-                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`}>
-                                </div>
+                                <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
                             </div>
                             <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>
                         </Flex>
