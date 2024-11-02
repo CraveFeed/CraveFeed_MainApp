@@ -327,16 +327,10 @@ export default function Content(){
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
-                    <Button className="post-action-button">
+                    <Button className="post-action-button" onClick={() => {setLiked(!liked)}}>
                         <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
                             <div className="post-action-button-likeBg">
-                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`} onClick={() => {
-                                    if(liked){
-                                        setLiked(false)
-                                    } 
-                                    else {
-                                        setLiked(true)
-                                    }}}>
+                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`}>
                                 </div>
                             </div>
                             <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>

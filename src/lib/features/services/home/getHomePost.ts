@@ -27,6 +27,7 @@ export interface PostState {
   comments: CommentState[];
   longitude: string;
   latitude: string;
+  isLiked: boolean;
 }
 
 const initialState: PostState[] = [
@@ -68,6 +69,7 @@ const initialState: PostState[] = [
     latitude: "40.7128",
     longitude: "-74.0060",
     userId: "user1",
+    isLiked: false,
   },
   {
     getPostStatus: "success",
@@ -99,6 +101,7 @@ const initialState: PostState[] = [
     latitude: "40.7128",
     longitude: "-74.0060",
     userId: "user2",
+    isLiked: true,
   },
 ];
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use } from "react";
+import React from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
@@ -12,21 +12,13 @@ import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
-// import elonPost from "../../../../assets/elon_food_post.jpeg"
-// import startship from "../../../../assets/starship.jpeg"
-// import foodPost2 from "../../../../assets/food_post2.jpeg"
-// import foodPost3 from "../../../../assets/food_post3.jpeg"
-// import foodPost4 from "../../../../assets/food_post4.jpeg"
-// import profilePic2 from "../../../../assets/profilePic2.jpg"
-// import profilePic3 from "../../../../assets/lavelisProPic.jpg"
-// import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
 import "../../../styles/content.css";
 import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
 import ShareFood from "@/app/Components/ShareFood";
-// import CreatePost from "@/app/Components/CreatePost";
+import CreatePost from "@/app/Components/CreatePost";
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -136,7 +128,7 @@ export default function Content(){
                 <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <FacebookShare
                         windowHeight={20}
-                        url={"https://nextjs.org/"}
+                        url={"https://crave-feed-main-app-fork2.vercel.app/home"}
                         title={'Share your views on what else should I try CraveFeed'}
                         hashtag={'#cravefeed'}
                         className="share-button"
@@ -151,7 +143,7 @@ export default function Content(){
                 <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <WhatsappShare
                         windowHeight={20}
-                        url={"https://nextjs.org/"}
+                        url={"https://crave-feed-main-app-fork2.vercel.app/home"}
                         title={'Share your views on what else should I try on CraveFeed'}
                         className="share-button"
                         >
@@ -161,49 +153,24 @@ export default function Content(){
         },
     ];
 
+    interface likePost {
+        isLiked : Boolean,
+        postId : number,
+    }
+
     const postData = useAppSelector(state => state.getHomePost);
-    
-    // const postData = [
-    //     {
-    //         id: 1,
-    //         name: 'Elon Musk',
-    //         time: 'Few minutes ago',
-    //         tag: 'Business',
-    //         content: 'Ice cream is an amazing invention',
-    //         location : "",
-    //         profilePeopleSrc: startship.src,
-    //         postImage: elonPost.src,
-    //         likeCount : 112893
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Maison Longan',
-    //         time: '2 hrs ago',
-    //         content: 'I love shrek pizza',
-    //         profilePeopleSrc: profilePic2.src,
-    //         postImage: foodPost2.src ,
-    //         likeCount : 12000
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'lavelis',
-    //         time: '22 hrs ago',
-    //         content: 'She found everything but Vietnamese food I’m in tears',
-    //         profilePeopleSrc: profilePic3.src,
-    //         postImage: foodPost3.src ,
-    //         likeCount : 1341
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Vedant Samaiya(Modi ka Parivar)',
-    //         time: '5 mon ago',
-    //         content: 'Gujarati people to food cuisine',
-    //         profilePeopleSrc: profilePic4.src,
-    //         postImage: foodPost4.src ,
-    //         likeCount : 12
-    //     },
-    // ];
-    
+    const [likePosts, setLikePosts] = useState<Record<number, likePost>>({});
+
+    useEffect(() => {
+        if (postData) {
+            const likePostMap = postData.reduce((acc, post) => {
+                acc[post.postId] = { isLiked: post.isLiked, postId: post.postId };
+                return acc;
+            }, {} as Record<number, likePost>);
+            setLikePosts(likePostMap);
+        }
+    }, [postData]);
+
     const MenuItems = [
         {
             key: 1,
@@ -235,6 +202,16 @@ export default function Content(){
         console.log(selectedIndex);
     }
 
+    const handleLikeToggle = (postId: number) => {
+        setLikePosts((prevLikePosts) => ({
+            ...prevLikePosts,
+            [postId]: {
+                ...prevLikePosts[postId],
+                isLiked: !prevLikePosts[postId]?.isLiked,
+            },
+        }));
+    };
+
     return (
         <Flex 
             vertical 
@@ -258,7 +235,7 @@ export default function Content(){
                     <Space size="large">
                         <ShareFood/>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                       {/* <CreatePost/> */}
+                       <CreatePost/>
                     </Space>
                 </Flex>
             </Card>
@@ -327,17 +304,10 @@ export default function Content(){
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
                 <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
-                    <Button className="post-action-button">
-                        <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
+                    <Button className="post-action-button" key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                        <Flex style={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}>
                             <div className="post-action-button-likeBg">
-                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`} onClick={() => {
-                                    if(liked){
-                                        setLiked(false)
-                                    } 
-                                    else {
-                                        setLiked(true)
-                                    }}}>
-                                </div>
+                                <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
                             </div>
                             <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>
                         </Flex>
