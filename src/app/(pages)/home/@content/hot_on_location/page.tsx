@@ -7,7 +7,7 @@ import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
-import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
+import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu , ConfigProvider } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
@@ -311,7 +311,7 @@ interface likePost {
                 <Card
                 key={item.postId}
                 bodyStyle={{ padding: 0 }}
-                style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
+                style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingBlock: '10px' , marginTop : "20px" }}
                 className="card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
@@ -332,18 +332,32 @@ interface likePost {
                     </Flex>
                         <Button className="post_follow_btn">Follow</Button>
                 </Flex>
-                <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
+                <Flex wrap style={{ marginInline: '0.5%', marginTop: '10px' }}>
                     <Typography.Paragraph className="post_description">
                         {item.description}
                     </Typography.Paragraph>
                 </Flex>
-                <Flex wrap style={{ marginInline: '25%' }}>
+
+
+                {/* DeskTop View*/}
+            
+                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
                     ></Card>
                 </Flex>
+
+                {/* Mobile View */}
+                <Flex className="display-500px">
+                    <Card
+                    bodyStyle={{ padding: 0 }}
+                    style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
+                    ></Card>
+                </Flex>
+
                 <Flex className="likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
@@ -352,7 +366,9 @@ interface likePost {
                     </Flex>
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
-                <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
+                                {/* DeskTop And Tab View */}
+
+                <Flex gap={20} className="post-action-button-mainDiv display-all" align="center" justify="space-between">
                     <Button className="post-action-button" key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
                         <Flex style={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}>
                             <div className="post-action-button-likeBg">
@@ -381,6 +397,38 @@ interface likePost {
                         </Space>
                     </Button>
                 </Flex>
+
+                {/* Mobile View */}
+
+                <Flex gap={20} className="post-action-button-mainDiv display-500px" align="center" justify="center">
+                    <ConfigProvider wave={{ disabled: true }}>
+                        <Button className="post-action-button" style={{ width : "40px"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                            <Flex>
+                                <div className="post-action-button-likeBg">
+                                    <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
+                                </div>
+                            </Flex>
+                        </Button>
+                    </ConfigProvider>
+                    <Button className="post-action-button">
+                        <Space size="small">
+                            <PullRequestOutlined className="post-action-button-icon"/>
+                        </Space>
+                    </Button>
+                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
+                        <Space size="small" onClick={() => {}} >
+                            <MessageFilled className="post-action-button-icon"/>
+                        </Space>
+                    </Button>
+                    <Button className="post-upload-button">
+                        <Space size="small">
+                            <Dropdown menu={{ items }}>
+                                <UploadOutlined className="post-upload-button-icon"/>
+                            </Dropdown>
+                        </Space>
+                    </Button>
+                </Flex>
+
                 {/* // Comments */}
                 {showComments && (id == item.postId) && (
                      <List
