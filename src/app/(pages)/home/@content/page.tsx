@@ -42,45 +42,12 @@ export default function Content(){
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [liked , setLiked] = useState<boolean>(false);
+    
     const [ id , setId ] = useState<number>();
     const avatar = useAppSelector(state => state.getBio.avatar);
-    // const [data, setData] = useState([
-    //             {
-    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-    //         avatar: profilePic3.src,
-    //         content: (
-    //             <p>
-    //             We supply a series of design principles, practical patterns and high quality design
-    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
-    //             efficiently.
-    //         </p>
-    //         ),
-    //         datetime: (
-    //             <Tooltip title="2016-11-22 11:22:33">
-    //             <span>8 hours ago</span>
-    //         </Tooltip>
-    //         ),
-    //     },
-    //     {
-    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-    //         avatar: startship.src,
-    //         content: (
-    //             <p>
-    //             We supply a series of design principles, practical patterns and high quality design
-    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
-    //             efficiently.
-    //         </p>
-    //         ),
-    //         datetime: (
-    //             <Tooltip title="2016-11-22 10:22:33">
-    //             <span>9 hours ago</span>
-    //         </Tooltip>
-    //         ),
-    //     },
-    // ]);
+
     const dispatch = useAppDispatch();
-    // add Comment State
+
     const content = useAppSelector(state => state.addComment.content);
     const router = useRouter();    
     
@@ -272,7 +239,7 @@ export default function Content(){
                         <Flex >
                             <Flex gap={25} >
                                 <Typography.Title onClick={() => { dispatch(setViewUserId(item.userId)); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
-                                <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
+                                <Typography.Text style={{ whiteSpace: "pre-line" }} className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>

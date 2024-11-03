@@ -24,7 +24,7 @@ const initialState: BioState = {
   noOfFollowing: "13",
   noOfPosts: "3",
   avatar:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRashZFbk3gWJknbzmcAOKCoNuyHUAMX2brHA&s",
+    "https://media.licdn.com/dms/image/v2/D4D03AQGTntx-N5e2lw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1676827911193?e=1736380800&v=beta&t=QL9g0XW1DlsXbL2GFQ7cl7hL7l73uE1fLdyueImtC8k",
 };
 
 export const fetchBioState = createAsyncThunk<

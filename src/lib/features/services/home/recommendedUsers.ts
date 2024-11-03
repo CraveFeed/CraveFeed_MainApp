@@ -17,15 +17,17 @@ const initialState: UserState = {
   users: [
     {
       userId: "user1",
-      name: "John Doe",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-      username: "johndoe",
+      name: "Sanjeev Kapoor",
+      avatar:
+        "https://images.forbesindia.com/media/images/2018/Jun/img_106499_chefsanjeevkapoor3.jpg",
+      username: "@sanjeevkapoor",
     },
     {
       userId: "user2",
-      name: "Jane Smith",
-      avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-      username: "janesmith",
+      name: "David Chang",
+      avatar:
+        "https://static01.nyt.com/images/2024/04/05/multimedia/05chile-trademark1-vblc/05chile-trademark1-vblc-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
+      username: "@davidchang",
     },
     {
       userId: "user3",

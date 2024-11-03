@@ -449,12 +449,12 @@ color : "#5D6A77" */
     .post-action-button-like {
         margin-top: -15px;
         margin-left: 20px;
-        transform: scale(0.334);
+        transform: scale(0.634);
     }
     
     .post-action-button-textLike{
         margin-top: -25px;
-        margin-left: -10px !important;
+        margin-left: 0px !important;
     }
 
 
@@ -492,16 +492,26 @@ color : "#5D6A77" */
         margin-bottom: 20px;
     }
 
+    .post-action-button-likeBg{
+        border-radius: 50%;
+        margin-top: -10px; 
+        margin-left: -40px;  
+        height: 60px;
+        width: 60px;
+    }
+
     .post-action-button-icon {
-        font-size: 10.5px;
+        font-size: 18px;
     }
     
     .post-action-button-text {
-        font-size: 10.5px;
+        font-size: 0px;
+        display: none;
     }
 
     .post-action-button {
         height: 30px;
+        width: auto;
     }
 
     .post-upload-button {
