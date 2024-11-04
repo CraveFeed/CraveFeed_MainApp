@@ -447,6 +447,13 @@ color : "#5D6A77" */
         width: 40px;
         height: 40px;
     }
+
+    .home-mobile-menu{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        padding-inline: 40px;
+    }
 }
 
 @media screen and (max-width : 500px) {
@@ -557,6 +564,7 @@ color : "#5D6A77" */
         font-size: 12px;
         color: #5D6A77;
         cursor: pointer !important;
+        margin-right: 20px;
     }
 
 
@@ -597,5 +605,12 @@ color : "#5D6A77" */
 
     .display-all{
         display: none;
+    }
+
+    .home-mobile-menu{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        padding-inline: 40px;
     }
 }
