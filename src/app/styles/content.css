@@ -466,8 +466,7 @@ color : "#5D6A77" */
     .card-container {
         padding-inline: 2%;
         width: 100%;
-        max-width: 350px;
-        margin: 0 auto;
+        margin: -10px auto;
     }
 
     .custom-statistic .ant-statistic-content {
@@ -564,7 +563,7 @@ color : "#5D6A77" */
     .post-name {
         margin-top: 23px;
         margin-bottom: 10px !important;
-        font-size: 14px !important;
+        font-size: 17px !important;
     }
 
     .post_time {
