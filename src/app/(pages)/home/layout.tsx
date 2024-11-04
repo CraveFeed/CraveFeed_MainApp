@@ -40,7 +40,7 @@ export default function HomeLayout({
       </Content>
         
         <Content className='home-mobile' style={{ backgroundColor: "#051017" , paddingTop : "10px" }}>
-          <Flex vertical justify='center'align='center' >
+          <Flex vertical justify='center'align='center'>
               {/* <Space >
                   {misc}
                   <></>

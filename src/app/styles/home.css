@@ -15,7 +15,7 @@ xxl: '1600px', */
         --lightButton: #28343E;
         --darkButton: #1B2730;
         --darkButtonBorder: #26333D;
-        --highlightedText: #29a7f6;
+        --highlightedText: #29a7f600;
 }
 
 .ant-menu.ant-menu-dark .ant-menu-item-selected {
@@ -62,7 +62,7 @@ xxl: '1600px', */
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
     .mobile-hidden {
         display: none;
     }
@@ -100,9 +100,9 @@ xxl: '1600px', */
 
 @media screen and (max-width: 1830px) {
     .suggested-mobile-title {
-            font-size: 15px !important;
-            max-width: 80px !important;
-        }
+        font-size: 15px !important;
+        max-width: 80px !important;
+    }
 
     .suggested-mobile-text {
         font-size: 12px !important;
@@ -170,6 +170,7 @@ xxl: '1600px', */
 .bio-profile-pic{
     height: 85px;
     width:  85px;
+    /* color: #f1f1f17c; */
 }
 
 @media screen and (max-width: 1400px) {
@@ -217,4 +218,8 @@ xxl: '1600px', */
     .home-mobile {
         display: block;
     }
+}
+
+.ant-select-item-option-content{
+    background-color: var(--highlightedText);
 }

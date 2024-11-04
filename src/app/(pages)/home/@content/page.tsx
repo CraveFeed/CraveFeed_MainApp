@@ -1,25 +1,18 @@
 "use client"
 
-import React, { use } from "react";
+import React from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
+import { ConfigProvider } from 'antd';
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
-// import elonPost from "../../../../assets/elon_food_post.jpeg"
-// import startship from "../../../../assets/starship.jpeg"
-// import foodPost2 from "../../../../assets/food_post2.jpeg"
-// import foodPost3 from "../../../../assets/food_post3.jpeg"
-// import foodPost4 from "../../../../assets/food_post4.jpeg"
-// import profilePic2 from "../../../../assets/profilePic2.jpg"
-// import profilePic3 from "../../../../assets/lavelisProPic.jpg"
-// import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -50,45 +43,12 @@ export default function Content(){
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [liked , setLiked] = useState<boolean>(false);
+    
     const [ id , setId ] = useState<number>();
     const avatar = useAppSelector(state => state.getBio.avatar);
-    // const [data, setData] = useState([
-    //             {
-    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-    //         avatar: profilePic3.src,
-    //         content: (
-    //             <p>
-    //             We supply a series of design principles, practical patterns and high quality design
-    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
-    //             efficiently.
-    //         </p>
-    //         ),
-    //         datetime: (
-    //             <Tooltip title="2016-11-22 11:22:33">
-    //             <span>8 hours ago</span>
-    //         </Tooltip>
-    //         ),
-    //     },
-    //     {
-    //         author: <span style={{ color : "ghostwhite" }}>Han Solo</span>,
-    //         avatar: startship.src,
-    //         content: (
-    //             <p>
-    //             We supply a series of design principles, practical patterns and high quality design
-    //             resources (Sketch and Axure), to help people create their product prototypes beautifully and
-    //             efficiently.
-    //         </p>
-    //         ),
-    //         datetime: (
-    //             <Tooltip title="2016-11-22 10:22:33">
-    //             <span>9 hours ago</span>
-    //         </Tooltip>
-    //         ),
-    //     },
-    // ]);
+
     const dispatch = useAppDispatch();
-    // add Comment State
+
     const content = useAppSelector(state => state.addComment.content);
     const router = useRouter();    
     
@@ -136,7 +96,7 @@ export default function Content(){
                 <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <FacebookShare
                         windowHeight={20}
-                        url={"https://nextjs.org/"}
+                        url={"https://crave-feed-main-app-fork2.vercel.app/home"}
                         title={'Share your views on what else should I try CraveFeed'}
                         hashtag={'#cravefeed'}
                         className="share-button"
@@ -151,7 +111,7 @@ export default function Content(){
                 <Space style={{ borderRadius : "200px" , overflow : "hidden" , height: "60px" , width : "60px"}}>
                     <WhatsappShare
                         windowHeight={20}
-                        url={"https://nextjs.org/"}
+                        url={"https://crave-feed-main-app-fork2.vercel.app/home"}
                         title={'Share your views on what else should I try on CraveFeed'}
                         className="share-button"
                         >
@@ -161,49 +121,35 @@ export default function Content(){
         },
     ];
 
+    interface likePost {
+        isLiked : Boolean,
+        postId : number,
+    }
+
     const postData = useAppSelector(state => state.getHomePost);
-    
-    // const postData = [
-    //     {
-    //         id: 1,
-    //         name: 'Elon Musk',
-    //         time: 'Few minutes ago',
-    //         tag: 'Business',
-    //         content: 'Ice cream is an amazing invention',
-    //         location : "",
-    //         profilePeopleSrc: startship.src,
-    //         postImage: elonPost.src,
-    //         likeCount : 112893
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Maison Longan',
-    //         time: '2 hrs ago',
-    //         content: 'I love shrek pizza',
-    //         profilePeopleSrc: profilePic2.src,
-    //         postImage: foodPost2.src ,
-    //         likeCount : 12000
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'lavelis',
-    //         time: '22 hrs ago',
-    //         content: 'She found everything but Vietnamese food I’m in tears',
-    //         profilePeopleSrc: profilePic3.src,
-    //         postImage: foodPost3.src ,
-    //         likeCount : 1341
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Vedant Samaiya(Modi ka Parivar)',
-    //         time: '5 mon ago',
-    //         content: 'Gujarati people to food cuisine',
-    //         profilePeopleSrc: profilePic4.src,
-    //         postImage: foodPost4.src ,
-    //         likeCount : 12
-    //     },
-    // ];
-    
+    const [likePosts, setLikePosts] = useState<Record<number, likePost>>({});
+
+    useEffect(() => {
+        if (postData) {
+            const likePostMap = postData.reduce((acc, post) => {
+                acc[post.postId] = { isLiked: post.isLiked, postId: post.postId };
+                return acc;
+            }, {} as Record<number, likePost>);
+            setLikePosts(likePostMap);
+        }
+    }, [postData]);
+
+    const handleLikeToggle = (postId: number) => {
+        setLikePosts((prevLikePosts) => ({
+            ...prevLikePosts,
+            [postId]: {
+                ...prevLikePosts[postId],
+                isLiked: !prevLikePosts[postId]?.isLiked,
+            },
+        }));
+    };
+
+
     const MenuItems = [
         {
             key: 1,
@@ -234,7 +180,6 @@ export default function Content(){
         setSelectedIndex(index);
         console.log(selectedIndex);
     }
-
     return (
         <Flex 
             vertical 
@@ -263,10 +208,10 @@ export default function Content(){
                 </Flex>
             </Card>
             <Menu
-                style={{backgroundColor : "#1B2730" , padding : "20px" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
+                style={{backgroundColor : "#1B2730" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
                 mode="horizontal"
                 defaultSelectedKeys={['1']}
-                className="menu-bar home-mobile"
+                className="menu-bar home-mobile-menu"
                 selectedKeys={[String(selectedIndex + 1)]}
             >
             {MenuItems?.map((item, index) => (
@@ -285,7 +230,7 @@ export default function Content(){
                 <Card
                 key={item.postId}
                 bodyStyle={{ padding: 0 }}
-                style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingInline: '6%', paddingBlock: '10px' , marginTop : "20px" }}
+                style={{width: '100%', backgroundColor: '#1B2730', border: 'none', borderRadius: '20px', paddingBlock: '10px' , marginTop : "20px" }}
                 className="card-container"
                 >
                 <Flex gap={6} align="center" justify="space-between">
@@ -295,29 +240,46 @@ export default function Content(){
                         <Flex >
                             <Flex gap={25} >
                                 <Typography.Title onClick={() => { dispatch(setViewUserId(item.userId)); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
-                                <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
+                                <Typography.Text style={{ whiteSpace: "pre-line" }} className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>{item.tag}</Tag>)}
+                                {item.tag && (<Tag className="user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>
+                                    <Flex justify="center" align="center">
+                                        {item.tag}
+                                    </Flex>
+                                </Tag>)}
                                 <Tag className="user-tags" onClick={() => {window.open(`https://www.google.com/maps/search/?api=1&query=${item.latitude},${item.longitude}`);}} icon={<EnvironmentFilled />} color="#55616b" style={{ marginTop: '-10px' , cursor : "pointer" , borderRadius : "10px" }}>Locate</Tag>
                             </Flex>
                         </Flex>
                     </Flex>
                         <Button className="post_follow_btn">Follow</Button>
                 </Flex>
-                <Flex wrap style={{ marginInline: '8.5%', marginTop: '10px' }}>
+                <Flex wrap style={{ marginInline: '0.5%', marginTop: '10px' }}>
                     <Typography.Paragraph className="post_description">
                         {item.description}
                     </Typography.Paragraph>
                 </Flex>
-                <Flex wrap style={{ marginInline: '25%' }}>
+
+                {/* DeskTop View*/}
+            
+                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
                     ></Card>
                 </Flex>
+
+                {/* Mobile View */}
+                <Flex className="display-500px">
+                    <Card
+                    bodyStyle={{ padding: 0 }}
+                    style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
+                    cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
+                    ></Card>
+                </Flex>
+
                 <Flex className="likes_comments" align="center" justify="space-between">
                     <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
@@ -326,18 +288,14 @@ export default function Content(){
                     </Flex>
                     <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
                 </Flex>
-                <Flex gap={20} className="post-action-button-mainDiv" align="center" justify="space-between">
-                    <Button className="post-action-button">
-                        <Flex style={{ display : "flex" , alignContent : "center" , justifyContent : "center" , alignItems : "center"}}>
+
+                {/* DeskTop And Tab View */}
+
+                <Flex gap={20} className="post-action-button-mainDiv display-all" align="center" justify="space-between">
+                    <Button className="post-action-button" key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                        <Flex style={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}>
                             <div className="post-action-button-likeBg">
-                                <div className={`post-action-button-like ${liked ? 'liked' : ' '}`} onClick={() => {
-                                    if(liked){
-                                        setLiked(false)
-                                    } 
-                                    else {
-                                        setLiked(true)
-                                    }}}>
-                                </div>
+                                <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
                             </div>
                             <Typography.Text className="post-action-button-text post-action-button-textLike">Like</Typography.Text>
                         </Flex>
@@ -362,6 +320,39 @@ export default function Content(){
                         </Space>
                     </Button>
                 </Flex>
+
+                {/* Mobile View */}
+
+                <Flex gap={20} className="post-action-button-mainDiv display-500px" align="center" justify="center">
+                    <ConfigProvider wave={{ disabled: true }}>
+                        <Button className="post-action-button" style={{ width : "40px"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                            <Flex>
+                                <div className="post-action-button-likeBg">
+                                    <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
+                                </div>
+                            </Flex>
+                        </Button>
+                    </ConfigProvider>
+                    <Button className="post-action-button">
+                        <Space size="small">
+                            <PullRequestOutlined className="post-action-button-icon"/>
+                        </Space>
+                    </Button>
+                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
+                        <Space size="small" onClick={() => {}} >
+                            <MessageFilled className="post-action-button-icon"/>
+                        </Space>
+                    </Button>
+                    <Button className="post-upload-button">
+                        <Space size="small">
+                            <Dropdown menu={{ items }}>
+                                <UploadOutlined className="post-upload-button-icon"/>
+                            </Dropdown>
+                        </Space>
+                    </Button>
+                </Flex>
+
+
                 {/* // Comments */}
                 {showComments && (id == item.postId) && (
                      <List

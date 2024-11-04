@@ -18,9 +18,9 @@ const SharePost: React.FC = () => {
       <p>content</p>
 
       {/* Facebook Share Button */}
-      <FacebookShare url={"https://CraveFeeed.com"} title={'react-share-kit - social share buttons for next & react apps.'}   hashtag={'#react-share-kit'}/>
+      <FacebookShare url={"https://crave-feed-main-app-fork2.vercel.app/home"} title={'react-share-kit - social share buttons for next & react apps.'}   hashtag={'#react-share-kit'}/>
       <WhatsappShare
-            url={'https://github.com/ayda-tech/react-share-kit'}
+            url={'https://crave-feed-main-app-fork2.vercel.app/home'}
             title={'react-share-kit - social share buttons for next & react apps.'}
             separator=":: "
         />

@@ -34,19 +34,19 @@ const initialState: ProfilePostState[] = [
     getPostStatus: "success",
     error: null,
     userAvatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTyAd5BNld8pgb66ngEhStNvODKYpUHhZgdQ&s",
+      "https://media.licdn.com/dms/image/v2/D4D03AQGTntx-N5e2lw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1676827911193?e=1736380800&v=beta&t=QL9g0XW1DlsXbL2GFQ7cl7hL7l73uE1fLdyueImtC8k",
     postId: 0, // Changed `id` to `postId`
-    name: "Sherrr",
-    timeDescription: "2 hours ago",
-    tag: "Business",
+    name: "Vibhor Phalke",
+    timeDescription: "12 days ago",
+    tag: "Personal",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.", // Changed `content` to `description`
-    location: "New York",
+      "🍻 Beer tasting at Effingut with the crew! Tried a bunch of different brews, and every sip was better than the last. Nothing like good drinks, good laughs, and great company. Cheers to more nights like this! 🍺✨#Effingut #BeerTasting #GoodVibes #FriendsAndBrews #Cheers", // Changed `content` to `description`
+    location: "Delhi",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
     pictures:
-      "https://img.buzzfeed.com/buzzfeed-static/static/2018-02/27/16/tmp/buzzfeed-prod-fastlane-03/f8295fefe149198bd27788278a9e098b-0.jpg?crop=625:313;0,0%26downsize=1250:*",
-    likes: 2210, // Changed `likeCount` to `likes`
+      "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730654842/effing_gut_beer_x0j2sp.jpg",
+    likes: 420, // Changed `likeCount` to `likes`
     comments: [
       {
         author: "Supporter Sherrrr",
@@ -74,18 +74,18 @@ const initialState: ProfilePostState[] = [
     error: null,
     postId: 1,
     userAvatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsuVlEFGYuDv8K6UULQoMhvyxo_1EwR205Jw&s",
-    name: "Sherrr1",
-    timeDescription: "2 hours ago",
-    tag: "Business",
+      "https://media.licdn.com/dms/image/v2/D4D03AQGTntx-N5e2lw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1676827911193?e=1736380800&v=beta&t=QL9g0XW1DlsXbL2GFQ7cl7hL7l73uE1fLdyueImtC8k",
+    name: "Vibhor Phalke",
+    timeDescription: "1 month ago",
+    tag: "Personal",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
-    location: "New York",
+      "🍜 Found the perfect udon bowl in Delhi! So tasty, I’m still thinking about it. Can’t wait to dig into this again next time! 😋#DelhiEats #UdonLove #SoGood #FoodieAdventures",
+    location: "Mumbai",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
     pictures:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwpkud_BqL_JvbLUuYFUxNq2m44WfsbFpGGw&s",
-    likes: 1200,
+      "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730655361/udon_cjf3ac.jpg",
+    likes: 6969,
     comments: [
       {
         author: "Supporter Sherrrr",

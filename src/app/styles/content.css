@@ -19,6 +19,14 @@ xxl: '1600px', */
     --highlightedText: #29a7f6;
 }
 
+.home-mobile-menu{
+    display: none;
+}
+
+.display-500px{
+    display: none;
+}
+
 .input {
     background-color: var(--secondaryCardButtonBackground);
     border: none;
@@ -61,6 +69,7 @@ xxl: '1600px', */
 
 .post_time{
     margin-top: 19px;
+    margin-left: -10px;
     color: #6D7B88;
 }
 
@@ -314,6 +323,7 @@ color : "#5D6A77" */
 /* Mobile responsive */
 .card-container {
     width: 100%;
+    padding-inline: 6%;
     /* max-width: 300px; */
     margin: 0 auto;
 }
@@ -441,6 +451,21 @@ color : "#5D6A77" */
         width: 40px;
         height: 40px;
     }
+
+    .home-mobile-menu{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        padding-inline: 40px;
+    }
+
+    .nav-buttons-icons{
+        font-size: 14px !important;
+    }
+
+    .nav-buttons-text {
+        font-size: 14px !important;
+    }
 }
 
 @media screen and (max-width : 500px) {
@@ -448,25 +473,25 @@ color : "#5D6A77" */
     .post-action-button-like {
         margin-top: -15px;
         margin-left: 20px;
-        transform: scale(0.334);
+        transform: scale(0.634);
     }
     
     .post-action-button-textLike{
         margin-top: -25px;
-        margin-left: -10px !important;
+        margin-left: 0px !important;
     }
 
 
     .card-container {
+        padding-inline: 2%;
         width: 100%;
-        max-width: 350px;
-        margin: 0 auto;
+        margin: -10px auto;
     }
 
     .custom-statistic .ant-statistic-content {
-        font-size: 10px !important;
+        font-size: 12px !important;
         color: white !important;
-        margin-top: 12px !important;
+        margin-top: 11px !important;
     }
 
     .nav-buttons-icons{
@@ -478,28 +503,39 @@ color : "#5D6A77" */
     }
 
     .user-tags {
-        font-size: 5px;
-        height: 16px;
+        /* font-size: 4px; */
+        /* height: 16px; */
         border-radius: 10px;
     }
 
     .post-action-button-mainDiv {
+        margin-left: -16px;
         margin-top: 10px;
         padding-inline: 0px;
         margin-right: 10px !important;
         margin-bottom: 20px;
+        /* border: 2px solid salmon; */
+    }
+
+    .post-action-button-likeBg{
+        border-radius: 50%;
+        margin-top: -10px; 
+        margin-left:  -20px;  
+        height: 60px;
     }
 
     .post-action-button-icon {
-        font-size: 8.5px;
+        font-size: 18px;
     }
     
     .post-action-button-text {
-        font-size: 8.5px;
+        font-size: 0px;
+        display: none;
     }
 
     .post-action-button {
         height: 30px;
+        width: auto;
     }
 
     .post-upload-button {
@@ -520,8 +556,9 @@ color : "#5D6A77" */
     .likes_comments_heart {
         margin-top: 12px;
         border: 3px solid #c70700;
-        font-size: 7px;
-        height: 14px;
+        font-size: 10px;
+        height: 16px;
+        width: auto;
         border-radius: 50%;
     }
 
@@ -529,35 +566,36 @@ color : "#5D6A77" */
     .likes_comments_comment {
         margin-top: 12px;
         border: 3px solid #4681f4;
-        font-size: 7px;
-        height: 14px;
+        font-size: 10px;
+        height: 16px;     
         border-radius: 50%;
     }
 
     .comment-count {
         margin-top: 20px;
-        font-size: 9px;
+        font-size: 12px;
         color: #5D6A77;
         cursor: pointer !important;
+        margin-right: 20px;
     }
 
 
     .post-name {
         margin-top: 23px;
         margin-bottom: 10px !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
     }
 
     .post_time {
-        font-size: 6.5px;
-        margin-top: 30px;
+        font-size: 9px;
+        margin-top: 26px;
         color: #6D7B88;
     }
 
     .post_description {
-        font-weight: bolder;
-        font-size: 10px;
-        color: #C6D0D2;
+        font-weight: 300;
+        font-size: 15px;
+        color: #e9e9e9;
     }
 
     .post_follow_btn {
@@ -569,7 +607,22 @@ color : "#5D6A77" */
 
     .post_profile_pic {
         margin-top: 20px;
-        width: 35px;
-        height: 35px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .display-500px{
+        display: flex;
+    }
+
+    .display-all{
+        display: none;
+    }
+
+    .home-mobile-menu{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        padding-inline: 40px;
     }
 }
