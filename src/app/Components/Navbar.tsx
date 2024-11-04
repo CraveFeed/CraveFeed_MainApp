@@ -51,7 +51,7 @@ export default function Navbar(){
         <>
             <Flex align="center" justify="space-between" className="mobile-hidden" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "100px" , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "100px" , marginTop : "10px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
@@ -64,7 +64,10 @@ export default function Navbar(){
                         <EnvironmentFilled onClick={() => { router.push("/home/hot_on_location")}} style={{ fontSize : "22px"}} />
                         <FireFilled onClick={() => { router.push("/home/explore")}} style={{ fontSize : "22px"}} />
                     </Space>
-                        <Dropdown menu={{ items }}>
+                        <Dropdown 
+                            menu={{ items }}
+                            overlayStyle={{ backgroundColor: "blue"}}
+                            >
                             <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
                             <BellFilled style={{ fontSize : "22px"}} />
                             <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
@@ -79,16 +82,18 @@ export default function Navbar(){
                 </Space>
             </Flex>
 
+            {/* Mobile and Tablet */}
+
             <Flex align="center" justify="space-between" className="mobile-visible" style={{ width : "100%"}}>
                 <Space size="middle">
-                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "80px"  , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "80px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
                 <Space size="middle"> 
                         <Dropdown menu={{ items }}>
-                            <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
-                            <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
+                            <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px" }} type="vertical"/>}>
+                            <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , marginTop : "15px" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                 <Space>
                                     <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
                                     <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
@@ -97,53 +102,56 @@ export default function Navbar(){
                             </Button>
                             </Space>
                         </Dropdown>
-                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/>
+                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "25px" }}/>
                 </Space>
             </Flex>
 
+            {/* Extra-small-mobile */}
+
             <Flex align="center" justify="space-between" className="extra-small-mobile" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <Image preview={false} src={logo.src} style={{fontSize : "40px" , width : "70px" , marginTop : "20px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "70px" , marginTop : "0px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
                 <Space size="middle"> 
                         <Dropdown menu={{ items }}>
                             <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
-                                <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
+                                <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-0px" }}></Avatar>
                             </Space>
                         </Dropdown>
-                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "10px" }}/>
+                    <MenuOutlined onClick={showDrawer} style={{ fontSize : "22px" , marginTop : "25px" }}/>
                 </Space>
             </Flex>
 
             <Drawer
                 title={<span style={{ color: '#fff' }}>Navigate to Pages</span>}
                 onClose={onClose}
+                onClick={onClose}
                 open={open}
-                style={{ backgroundColor: '#141414', color: '#fff' }}
-                bodyStyle={{ backgroundColor: '#141414', color: '#fff' }}
-                headerStyle={{ backgroundColor: '#000', color: '#fff' }}
+                style={{ backgroundColor: '#0510177c', color: '#fff'}}
+                bodyStyle={{ backgroundColor: '#0510177c', color: '#fff'}}
+                headerStyle={{ backgroundColor: '#0510177c', color: '#fff' ,  borderColor : "#fd7077"}}
                 >
                 <Space 
                     style={{ display: "inline-block", width: "100%" }}
-                     split={<div style={{ height: "10px" }}></div>}
+                     split={<div style={{ height: "4px" }}></div>}
                 >
                     <Button 
                     onClick={() => { router.push("/home") }} 
-                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    style={{ width: "100%", border: "1px solid #f1f1f17c", borderRadius: "20px", color: "whitesmoke" , backgroundColor : "#051017" }}
                     >
                     Home
                     </Button>
                     <Button 
                     onClick={() => { router.push("/home/explore") }} 
-                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    style={{ width: "100%", border: "1px solid #f1f1f17c", borderRadius: "20px", color: "whitesmoke" , backgroundColor : "#051017" }}
                     >
                     Explore
                     </Button>
                     <Button 
                     onClick={() => { router.push("/home/hot_on_location") }} 
-                    style={{ width: "100%", border: "1px solid black", borderRadius: "20px", color: "black" }}
+                    style={{ width: "100%", border: "1px solid #f1f1f17c", borderRadius: "20px", color: "whitesmoke" , backgroundColor : "#051017" }}
                     >
                     For You
                     </Button>

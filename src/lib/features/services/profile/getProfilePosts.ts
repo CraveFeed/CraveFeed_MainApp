@@ -36,7 +36,7 @@ const initialState: ProfilePostState[] = [
     userAvatar:
       "https://media.licdn.com/dms/image/v2/D4D03AQGTntx-N5e2lw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1676827911193?e=1736380800&v=beta&t=QL9g0XW1DlsXbL2GFQ7cl7hL7l73uE1fLdyueImtC8k",
     postId: 0, // Changed `id` to `postId`
-    name: "Vibhot Phalke",
+    name: "Vibhor Phalke",
     timeDescription: "12 days ago",
     tag: "Personal",
     description:

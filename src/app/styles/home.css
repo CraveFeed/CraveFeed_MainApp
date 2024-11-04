@@ -170,6 +170,7 @@ xxl: '1600px', */
 .bio-profile-pic{
     height: 85px;
     width:  85px;
+    /* color: #f1f1f17c; */
 }
 
 @media screen and (max-width: 1400px) {
@@ -217,4 +218,8 @@ xxl: '1600px', */
     .home-mobile {
         display: block;
     }
+}
+
+.ant-select-item-option-content{
+    background-color: var(--highlightedText);
 }

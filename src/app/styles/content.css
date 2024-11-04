@@ -458,6 +458,14 @@ color : "#5D6A77" */
         justify-content: space-between;
         padding-inline: 40px;
     }
+
+    .nav-buttons-icons{
+        font-size: 14px !important;
+    }
+
+    .nav-buttons-text {
+        font-size: 14px !important;
+    }
 }
 
 @media screen and (max-width : 500px) {
