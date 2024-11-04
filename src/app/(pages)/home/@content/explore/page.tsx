@@ -289,10 +289,10 @@ export default function Content(){
                 </Flex>
             </Card>
             <Menu
-                style={{backgroundColor : "#1B2730" , padding : "20px" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
+                style={{backgroundColor : "#1B2730" , borderRadius : "20px" ,  height : "auto" , width : "100%" , color : "white"}}
                 mode="horizontal"
                 defaultSelectedKeys={['1']}
-                className="menu-bar home-mobile"
+                className="menu-bar home-mobile-menu"
                 selectedKeys={[String(selectedIndex + 1)]}
             >
             {MenuItems?.map((item, index) => (

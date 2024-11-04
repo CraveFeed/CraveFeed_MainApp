@@ -19,6 +19,10 @@ xxl: '1600px', */
     --highlightedText: #29a7f6;
 }
 
+.home-mobile-menu{
+    display: none;
+}
+
 .display-500px{
     display: none;
 }
