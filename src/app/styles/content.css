@@ -19,6 +19,21 @@ xxl: '1600px', */
     --highlightedText: #29a7f6;
 }
 
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color:transparent;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10;
+}
+
 .home-mobile-menu{
     display: none;
 }

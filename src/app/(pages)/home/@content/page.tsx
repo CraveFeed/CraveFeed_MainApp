@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
+import { Dock } from "@/app/Components/Dock";
 import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
@@ -352,7 +353,6 @@ export default function Content(){
                     </Button>
                 </Flex>
 
-
                 {/* // Comments */}
                 {showComments && (id == item.postId) && (
                      <List
@@ -389,6 +389,9 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav">
+                <Dock/>
+            </div>
         </Flex>
     )
 }
