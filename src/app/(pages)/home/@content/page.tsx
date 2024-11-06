@@ -3,7 +3,6 @@
 import React from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { Dock } from "@/app/Components/Dock";
-import { addCommentCall } from "@/lib/features/services/addComment";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
@@ -13,7 +12,7 @@ import Carousel from "@/app/Components/Carousal";
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
-import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
+import { RestFilled , ReadFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
@@ -403,7 +402,7 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
-            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px" style={{height  :  "40px"}}>
                 <Dock/>
             </div>
         </Flex>

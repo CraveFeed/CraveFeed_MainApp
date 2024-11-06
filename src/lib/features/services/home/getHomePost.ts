@@ -44,7 +44,7 @@ const initialState: PostState[] = [
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
-    pictures: ["https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627408/biryani_kota_htatqb.jpg" , "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627652/gwalior_bedai_pp907k.jpg"] ,
+    pictures: ["https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627408/biryani_kota_htatqb.jpg" , "https://images.jdmagicbox.com/comp/kota-rajasthan/b3/9999px744.x744.181026212823.s2b3/catalogue/shakahari-restaurant-dadabari-kota-rajasthan-restaurants-t2ujo1f00j.jpg"] ,
     likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
