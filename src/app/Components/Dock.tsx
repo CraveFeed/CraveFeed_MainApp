@@ -17,11 +17,11 @@ export const Dock = () => {
   ];
   const [active, setActive] = useState(0);
   return (
-    <div className="max-h-[2.4rem] px-6 rounded-t-xl" style={{ backgroundColor : "#051017" ,  border : "2px  solid #4C5965"}}>
+    <div className="max-h-[2.4rem] px-6 rounded-t-xl deck-mobile-width" style={{ backgroundColor : "#051017" ,  border : "2px  solid #4C5965"}}>
       <ul className="flex relative">
         <span
           className={`bg-rose-600 duration-500 ${Menus[active].dis} border-4 border-gray-900 h-10 w-10 absolute
-         -top-5 rounded-full`} style={{ backgroundColor : "#fd7077"  ,  left : "14.5px"}}>
+         -top-5 rounded-full`} style={{ backgroundColor : "white"  ,  left : "12px"}}>
           {/* <span
             className="w-3.5 h-3.5 bg-transparent absolute top-4 -left-[18px] 
           rounded-tr-[11px] shadow-myShadow1"
