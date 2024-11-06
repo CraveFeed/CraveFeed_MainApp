@@ -31,10 +31,18 @@ export default function Carousel({
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides.map((img, index) => (
-          <img key={index} src={img} alt="" />
+          <img
+            key={index}
+            src={img}
+            alt=""
+            style={{
+              width: '100%',
+              objectFit: 'contain', // Adjust as needed: 'cover' fills the container, 'contain' maintains aspect ratio
+            }}
+          />
         ))}
       </div>
-      
+            
       {/* Show buttons only if there are multiple slides */}
       {slides.length > 1 && (
         <div className="absolute inset-0 flex items-center justify-between p-4">

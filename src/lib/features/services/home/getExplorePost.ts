@@ -21,7 +21,7 @@ export interface ExplorePostState {
   description: string;
   location: string;
   profilePeopleSrc: string;
-  pictures: string;
+  pictures: string[];
   userId: string;
   likes: number;
   comments: CommentState[];
@@ -35,18 +35,20 @@ const initialState: ExplorePostState[] = [
     getPostStatus: "success",
     error: null,
     userAvatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTyAd5BNld8pgb66ngEhStNvODKYpUHhZgdQ&s",
+      "https://images.forbesindia.com/media/images/2018/Jun/img_106499_chefsanjeevkapoor3.jpg",
     postId: 0, // Changed `id` to `postId`
-    name: "Sherrr",
+    name: "Sanjeev Kapoor",
     timeDescription: "2 hours ago",
     tag: "Business",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.", // Changed `content` to `description`
     location: "New York",
     profilePeopleSrc:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
+      "https://images.forbesindia.com/media/images/2018/Jun/img_106499_chefsanjeevkapoor3.jpg",
     pictures:
-      "https://img.buzzfeed.com/buzzfeed-static/static/2018-02/27/16/tmp/buzzfeed-prod-fastlane-03/f8295fefe149198bd27788278a9e098b-0.jpg?crop=625:313;0,0%26downsize=1250:*",
+      ["https://i.ytimg.com/vi/PaeA_LDjNFs/maxresdefault.jpg" ,
+        "https://curlytales.com/wp-content/uploads/2024/05/sanjeev-kapoor.jpg"
+      ],
     likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
@@ -76,17 +78,17 @@ const initialState: ExplorePostState[] = [
     error: null,
     postId: 1,
     userAvatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsuVlEFGYuDv8K6UULQoMhvyxo_1EwR205Jw&s",
-    name: "Sherrr1",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqFzLzdKwtfxu_Ze4RTGa6oT3d0j94Gmr4TA&s",
+    name: "Uncle Roger",
     timeDescription: "2 hours ago",
     tag: "Business",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.",
     location: "New York",
     profilePeopleSrc:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
+      "https://static.wikia.nocookie.net/uncle-roger/images/6/68/UncleRoger.png/revision/latest?cb=20201220214854",
     pictures:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwpkud_BqL_JvbLUuYFUxNq2m44WfsbFpGGw&s",
+      ["https://i.ytimg.com/vi/b9rs3Aznrt0/maxresdefault.jpg", "https://i.ytimg.com/vi/bGtR3l_JeUo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCejx91Dtf7ZnEo2JLiYAbhHMZqQw", "https://images.lifestyleasia.com/wp-content/uploads/sites/7/2024/09/18115540/whatsapp-image-2024-09-12-at-8-34-17-pm-806x605-1.jpeg"],
     likes: 1200,
     comments: [
       {

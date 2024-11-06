@@ -3,6 +3,7 @@
 import React, { use } from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
 import { addCommentCall } from "@/lib/features/services/addComment";
+import Carousel from "@/app/Components/Carousal";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
@@ -343,20 +344,22 @@ interface likePost {
                 {/* DeskTop View*/}
             
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
-                    <Card
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
-                    ></Card>
+                    ></Card> */}
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 {/* Mobile View */}
                 <Flex className="display-500px">
-                    <Card
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
-                    ></Card>
+                    ></Card> */}
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 <Flex className="likes_comments" align="center" justify="space-between">
