@@ -21,7 +21,7 @@ export interface PostState {
   description: string;
   location: string;
   profilePeopleSrc: string;
-  pictures: string;
+  pictures: string[];
   userId: string;
   likes: number;
   comments: CommentState[];
@@ -44,8 +44,7 @@ const initialState: PostState[] = [
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
-    pictures:
-      "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627408/biryani_kota_htatqb.jpg",
+    pictures: ["https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627408/biryani_kota_htatqb.jpg" , "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627652/gwalior_bedai_pp907k.jpg"] ,
     likes: 2210, // Changed `likeCount` to `likes`
     comments: [
       {
@@ -85,7 +84,7 @@ const initialState: PostState[] = [
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
     pictures:
-      "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730629335/chipotle_cw1j61.jpg",
+      ["https://res.cloudinary.com/dpuzfcod1/image/upload/v1730629335/chipotle_cw1j61.jpg"],
     likes: 1200,
     comments: [
       {
@@ -117,7 +116,7 @@ const initialState: PostState[] = [
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
     pictures:
-      "https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627652/gwalior_bedai_pp907k.jpg",
+      ["https://res.cloudinary.com/dpuzfcod1/image/upload/v1730627652/gwalior_bedai_pp907k.jpg"],
     likes: 8,
     comments: [
       {

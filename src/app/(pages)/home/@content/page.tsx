@@ -9,6 +9,7 @@ import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
 import { ConfigProvider } from 'antd';
+import Carousel from "@/app/Components/Carousal";
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
@@ -30,6 +31,16 @@ const { TextArea } = Input;
 
 export default function Content(){
   
+    const contentStyle: React.CSSProperties = {
+        margin: 0,
+        height: '160px',
+        color: '#fff',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#364d79',
+        zIndex : "100"
+      };
+
     const userId = useAppSelector(state => state.global.userId);
 
     useEffect(() => {
@@ -265,20 +276,23 @@ export default function Content(){
                 {/* DeskTop View*/}
             
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
-                    <Card
+
+                    <Carousel slides={item.pictures}/>
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
-                    ></Card>
+                    ></Card> */}
                 </Flex>
 
                 {/* Mobile View */}
                 <Flex className="display-500px">
-                    <Card
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
-                    ></Card>
+                    ></Card> */}
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 <Flex className="likes_comments" align="center" justify="space-between">

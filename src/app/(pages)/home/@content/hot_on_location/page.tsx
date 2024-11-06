@@ -10,6 +10,7 @@ import { Tooltip, List } from 'antd';
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu , ConfigProvider } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
+import { Dock } from "@/app/Components/Dock";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
 // import elonPost from "../../../../assets/elon_food_post.jpeg"
@@ -465,6 +466,9 @@ interface likePost {
                     </Modal>
             </Card>
             ))}
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
+                <Dock/>
+            </div>
         </Flex>
     )
 }

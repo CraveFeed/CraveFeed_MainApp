@@ -7,6 +7,7 @@ import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
+import { Dock } from "@/app/Components/Dock";
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu , ConfigProvider } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
@@ -337,8 +338,8 @@ export default function Content(){
                         {item.description}
                     </Typography.Paragraph>
                 </Flex>
+
                 {/* DeskTop View*/}
-            
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
                     <Card
                     bodyStyle={{ padding: 0 }}
@@ -462,6 +463,9 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
+                <Dock/>
+            </div>
         </Flex>
     )
 }
