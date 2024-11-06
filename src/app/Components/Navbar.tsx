@@ -51,7 +51,7 @@ export default function Navbar(){
         <>
             <Flex align="center" justify="space-between" className="mobile-hidden" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "100px" , marginTop : "10px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "100px" , marginTop : "28px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
@@ -72,9 +72,9 @@ export default function Navbar(){
                             <BellFilled style={{ fontSize : "22px"}} />
                             <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                 <Space>
-                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
-                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
-                                    <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "-5px"}} />
+                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white"}}></Avatar>
+                                    <p style={{ fontWeight : "bold" }}>{firstname} {lastname} </p>
+                                    <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "5px"}} />
                             </Space>
                                 </Button>
                             </Space>
@@ -86,7 +86,7 @@ export default function Navbar(){
 
             <Flex align="center" justify="space-between" className="mobile-visible" style={{ width : "100%"}}>
                 <Space size="middle">
-                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "80px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "80px" , marginTop : "20px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
@@ -95,9 +95,9 @@ export default function Navbar(){
                             <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px" }} type="vertical"/>}>
                             <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , marginTop : "15px" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                 <Space>
-                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" , marginTop : "-12px" }}></Avatar>
-                                    <p style={{ marginTop : "6px" , fontWeight : "bold" }}>{firstname} {lastname} </p>
-                                    <CaretDownOutlined style={{ fontSize : "25px" , marginTop : "-5px"}} />
+                                    <Avatar src={avatar} style={{ border : "black",  verticalAlign: 'middle' , backgroundColor : "white" }}></Avatar>
+                                    <p style={{ fontWeight : "bold" }}>{firstname} {lastname} </p>
+                                    <CaretDownOutlined style={{ fontSize : "23px" , marginTop : "2px"}} />
                             </Space>
                             </Button>
                             </Space>
@@ -110,7 +110,7 @@ export default function Navbar(){
 
             <Flex align="center" justify="space-between" className="extra-small-mobile" style={{ width : "100%" }}>
                 <Space size="middle">
-                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "70px" , marginTop : "0px"}} className='logo'/>
+                    <Image preview={false} onClick={()=>{ router.push("/home")}} src={logo.src} style={{fontSize : "40px" , width : "70px" , marginTop : "25px"}} className='logo'/>
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
