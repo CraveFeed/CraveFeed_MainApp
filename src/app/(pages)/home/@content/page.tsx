@@ -389,7 +389,7 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
-            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav">
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
                 <Dock/>
             </div>
         </Flex>

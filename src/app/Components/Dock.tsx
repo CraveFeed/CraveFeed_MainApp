@@ -17,7 +17,7 @@ export const Dock = () => {
   ];
   const [active, setActive] = useState(0);
   return (
-    <div className="max-h-[2.4rem] px-6 rounded-t-xl" style={{ backgroundColor : "#051017" , borderRadius : "40%" ,  border : "2px  solid #4C5965"}}>
+    <div className="max-h-[2.4rem] px-6 rounded-t-xl" style={{ backgroundColor : "#051017" ,  border : "2px  solid #4C5965"}}>
       <ul className="flex relative">
         <span
           className={`bg-rose-600 duration-500 ${Menus[active].dis} border-4 border-gray-900 h-10 w-10 absolute

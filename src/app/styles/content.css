@@ -41,6 +41,10 @@ xxl: '1600px', */
     display: none;
 }
 
+.display-1000px {
+    display: none;
+}
+
 .input {
     background-color: var(--secondaryCardButtonBackground);
     border: none;
@@ -350,6 +354,10 @@ color : "#5D6A77" */
 }
 
 @media screen and (max-width : 1000px) {
+
+    .display-1000px {
+        display: flex;
+    }
 
     .post-action-button-like {
         margin-top: -15px;
