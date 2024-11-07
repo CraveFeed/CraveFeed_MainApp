@@ -203,7 +203,8 @@ export default function Content(){
                 overflowY: "scroll",
                 WebkitOverflowScrolling: "touch",
                 scrollbarWidth: "none",
-                msOverflowStyle: "none"
+                msOverflowStyle: "none",
+                paddingBottom : "75px"
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
