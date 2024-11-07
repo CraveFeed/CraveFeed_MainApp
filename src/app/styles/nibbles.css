@@ -1,0 +1,123 @@
+:root {
+    --backgroundColor: #051017;
+    --cardBackGroundColor: #1B2730;
+    --secondaryCardButtonBackground : #28343E;
+    --mainTextColor: #c7c7c7;
+    --subMainTxtColor: #55616b;
+    --dimTextColor: #4C5965;
+    --lightButton: #28343E;
+    --darkButton: #1B2730;
+    --darkButtonBorder: #26333D;
+    --highlightedText: #29a7f6;
+}
+
+html{
+    scroll-snap-type: y mandatory;
+}
+
+.app{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+
+.app_reels{
+    position: relative;
+    height : 93vh;
+    background-color: white;
+    width: 100%;
+    max-width: 500px;
+    border-bottom: 20px;
+    max-height: 1200px;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    border-radius: 20px;
+}
+
+/* For Chrome,Safari, Opera */
+.app_reels::-webkit-scrollbar{
+    display: none;
+}
+
+.app_reels{
+    -ms-overflow-style: none; /*IE and firefox*/
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* All about video */
+
+.videocard{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.videoplayer{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+ /* Video Header  */
+
+ .videoHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    color: white;
+    padding: 15px;
+}
+
+/* Video Footer */
+
+.videoFooter{
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    bottom: -10px;
+}
+
+.videoFooter-text{
+    position : absolute;
+    bottom : 0;
+    color: white;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.videoFooter-text > h3{
+    margin-left: 10px;
+    padding-bottom: 20px;
+}
+
+.videoFooter-actions{
+    position: absolute;
+    right: 20px;
+    bottom: 80px;
+}
+
+/* .videoFooter-actions{
+    display: flex;
+    position: absolute;
+    width: 95%;
+    color: white;
+    justify-content: space-between;
+}
+
+.videoFooter-actionsLeft{
+    padding: 0 10px;
+}
+
+.videoFooter-actionsRight{
+    display: flex;
+}
+
+.videoFooter-stat{
+    align-items: center;
+    margin-right: 10px;
+} */
