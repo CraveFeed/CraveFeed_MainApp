@@ -147,3 +147,17 @@ html{
 .ant-drawer {
     z-index: 9999;  /* Ensure the drawer appears on top */
 }
+
+.display-500px{
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .display-500px{
+        display: flex;
+    }
+
+    .videoplayer{
+        height: 98%;
+    }
+}

@@ -276,22 +276,11 @@ export default function Content(){
                 {/* DeskTop View*/}
             
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
-
                     <Carousel slides={item.pictures}/>
-                    {/* <Card
-                    bodyStyle={{ padding: 0 }}
-                    style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
-                    ></Card> */}
                 </Flex>
 
                 {/* Mobile View */}
                 <Flex className="display-500px">
-                    {/* <Card
-                    bodyStyle={{ padding: 0 }}
-                    style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
-                    ></Card> */}
                     <Carousel slides={item.pictures}/>
                 </Flex>
 
@@ -340,7 +329,7 @@ export default function Content(){
 
                 <Flex gap={20} className="post-action-button-mainDiv display-500px" align="center" justify="center">
                     <ConfigProvider wave={{ disabled: true }}>
-                        <Button className="post-action-button" style={{ width : "40px"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                        <Button className="post-action-button" style={{ width : "40px" , border : "none"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
                             <Flex>
                                 <div className="post-action-button-likeBg">
                                     <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
@@ -404,7 +393,7 @@ export default function Content(){
             </Card>
             ))}
             <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px" style={{height  :  "40px"}}>
-                <Dock/>
+                <Dock index={2}/>
             </div>
         </Flex>
     )

@@ -2,8 +2,9 @@
 
 import { Layout } from 'antd';
 import Navbar from '@/app/Components/Navbar';
-import "../../styles/home.css";
+import "../../styles/nibbles.css";
 import { ReactNode } from 'react';
+import { Dock } from '@/app/Components/Dock';
 
 const { Header, Content, Footer } = Layout;
 
@@ -28,6 +29,19 @@ export default function HomeLayout({
             this is  mobile content
           </Flex>
         </Content> */}
+        <div
+                style={{
+                    position: "fixed",
+                    bottom: 0,
+                    left: 0,
+                    width: "100%",
+                    backgroundColor: "#051017",
+                    zIndex: 1000, // Ensure it stays on top
+                    height: "50px",
+                }}
+            >
+                <Dock index={3} />
+            </div>
     </Layout>
   );
 }

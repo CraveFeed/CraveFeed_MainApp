@@ -6,8 +6,9 @@ import { Dropdown } from 'antd';
 import { Avatar , Drawer } from 'antd';
 import { useRouter } from "next/navigation";
 import Logout from "./Logout"
-import { FireFilled , HomeFilled , MenuOutlined , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
+import { FireFilled , HomeFilled , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
 import "../styles/home.css"
+import chefIcon from "../assets/icons8-chef-hat-30.png"
 import logo from "../assets/cravefeed_logo.png"
 import { useAppSelector } from "@/lib/hooks";
 
@@ -47,19 +48,19 @@ export default function Navbar(){
                 </Space>
 
                 <Space size="middle"> 
-                    <Button style={{ borderRadius : "20px" }} onClick={() => { router.push("/home") }}>
+                    <Button style={{ borderRadius : "20px"  , display:  "flex" , alignItems: "center" }} onClick={() => { router.push("/home") }}>
                         <HomeFilled className='logo'/>
                         <span style={{ color : "#051017"}}>Home</span>
                     </Button>
                     <Space size="large" style={{ marginRight : "20px"}}>
-                        <EnvironmentFilled onClick={() => { router.push("/home/hot_on_location")}} style={{ fontSize : "22px"}} />
-                        <FireFilled onClick={() => { router.push("/home/explore")}} style={{ fontSize : "22px"}} />
+                        <img src={chefIcon.src} onClick={() => {router.push("/nibbles")}} style={{ width : "24px",marginLeft : "20px" , color : "white" }} />
+                        <FireFilled onClick={() => { router.push("/home/explore")}} style={{ fontSize : "22px" , marginTop : "24px"}} />
                     </Space>
                         <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
-                            <BellFilled style={{ fontSize : "22px"}} />
+                            <BellFilled onClick={() => {router.push("/home/notifications")}} style={{ fontSize : "22px"}} />
                             <Dropdown 
                                 menu={{ items }}
-                                overlayStyle={{ backgroundColor: "blue"}}
+                                // overlayStyle={{ backgroundColor: "blue"}}
                                 >
                                 <Button style={{ borderRadius : "20px" , height : "40px"  , backgroundColor: "#44505c" , border : "none" , display : "flex" , flexDirection : "row" , color : "lightgrey"}}>
                                     <Space>

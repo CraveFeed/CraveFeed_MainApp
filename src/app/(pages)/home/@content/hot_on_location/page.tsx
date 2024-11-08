@@ -471,7 +471,7 @@ interface likePost {
             </Card>
             ))}
             <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
-                <Dock/>
+                <Dock index={2}/>
             </div>
         </Flex>
     )

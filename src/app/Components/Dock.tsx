@@ -9,15 +9,19 @@ import chefIcon from "../assets/icons8-chef-hat-30.png";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export const Dock = () => {
+interface DockProps {
+  index: number;
+}
+
+export const Dock = ({index} : DockProps) => {
     const Menus = [
-    { name: "Ping", path : "" , icon: <BellOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-0" },
-    { name: "Chat", path : "" , icon: <MessageOutlined style={{ fontSize : "18px"}}  />, dis: "translate-x-16" },
-    { name: "Home", path : "/home" , icon: <HomeOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-32" },
-    { name: "Nibbles", path : "/nibbles" , icon: <img src={chefIcon.src} style={{ width : "24px",marginLeft : "20px" , color : "white" , marginBottom : "5px"}} />, dis: "translate-x-48" },
-    { name: "Settings", path : "" , icon: <SettingOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-64" },
+    { name: "Ping", path : "/notifications" , icon: <BellOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-0" },
+    { name: "Chat", path : "" , icon: <MessageOutlined style={{ fontSize : "18px"  , color : "white"}}  />, dis: "translate-x-16" },
+    { name: "Home", path : "/home" , icon: <HomeOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-32" },
+    { name: "Nibbles", path : "/nibbles" , icon: <img src={chefIcon.src} style={{ width : "24px" , marginLeft : "20px" , color : "white" , marginBottom : "5px"}} />, dis: "translate-x-48" },
+    { name: "Settings", path : "" , icon: <SettingOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-64" },
   ];
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(index);
   const router = useRouter();
   useEffect(() => {
     const path = window.location.pathname;
@@ -25,6 +29,8 @@ export const Dock = () => {
       setActive(2);
     } else if (path === "/nibbles") {
       setActive(3);
+    }else if(path ==="/notifications"){
+      setActive(0);
     }
   }, []);
 
