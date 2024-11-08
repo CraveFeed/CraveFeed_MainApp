@@ -87,12 +87,15 @@ html{
     bottom : 0;
     color: white;
     display: flex;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-direction: column;
 }
 
 .videoFooter-text > h3{
-    margin-left: 10px;
-    padding-bottom: 20px;
+    margin-left: 50px;
+    padding-bottom: 10px;
     font-size: 16px;
 }
 
@@ -102,7 +105,7 @@ html{
     align-items: center;
     position: absolute;
     right: 0px;
-    bottom: 80px; /* Adjusted positioning */
+    bottom: 120px; /* Adjusted positioning */
 }
 
 
@@ -117,10 +120,10 @@ html{
 }
 
 .nibble-action-button-like {
-    height: 75px; /* Updated size */
-    width: 75px; /* Updated size */
+    height: 93px; /* Updated size */
+    width: 93px; /* Updated size */
     z-index: 5;
-    top : -25px;
+    margin-bottom: -30px;
     background: url("../assets/heart.png") no-repeat left;
     background-size: cover;
     transform: scale(1); /* Optional: adjust scale if needed */

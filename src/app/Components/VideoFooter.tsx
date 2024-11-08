@@ -10,6 +10,7 @@ interface VideoCardProps {
     url: string;
     likes: number;
     shares: number;
+    title : string;
 }
 
 export default function VideoFooter(props: VideoCardProps) {
@@ -35,28 +36,31 @@ export default function VideoFooter(props: VideoCardProps) {
     return (
         <div className="videoFooter">
             <div className="videoFooter-text">
-                <Avatar src={props.avatarSrc} />
-                <h3>
-                    {props.channel} •{" "}
-                    <Button
-                        style={{
-                            color: "white",
-                            backgroundColor: "transparent",
-                            borderRadius: "20px",
-                            fontSize: "10px",
-                            paddingInline: "20px",
-                            height: "25px",
-                            textTransform: "inherit"
-                        }}
-                    >
-                        Follow
-                    </Button>
-                </h3>
+                <Flex justify="center" align="center">
+                    <Avatar style={{ width :"55px" , height : "55px" ,  marginRight : "5px"}} src={props.avatarSrc} />
+                    <h3 style={{  fontSize :  "16px"}}>
+                        {props.channel} •{" "}
+                        <Button
+                            style={{
+                                color: "white",
+                                backgroundColor: "transparent",
+                                borderRadius: "20px",
+                                fontSize: "13px",
+                                paddingInline: "20px",
+                                height: "29px",
+                                textTransform: "inherit"
+                            }}
+                        >
+                            Follow
+                        </Button>
+                    </h3>
+                </Flex>
+                <h3 style={{ marginTop : "-10px"}}>{props.title}</h3>
             </div>
             <div className="videoFooter-actions">
-                <Flex justify="space-between" vertical align="center" style={{ height: "147px" }}>
-                    <Flex vertical justify="center" align="center">
-                        <Button
+                <Flex justify="space-between" vertical align="center" style={{ height: "200px" }}>
+                    <Flex vertical align="center">
+                        <button
                             className="nibble-action-button"
                             onFocus={(e) => e.target.blur()}>
                             <div className="nibble-action-button-likeBg" >
@@ -64,7 +68,7 @@ export default function VideoFooter(props: VideoCardProps) {
                                 setLikePosts(!likePosts);
                             }}  className={`nibble-action-button-like ${likePosts ? "liked" : ""}`} />
                             </div>
-                        </Button>
+                        </button>
                         <h2>{props.likes}</h2>
                     </Flex>
                     <Flex
@@ -73,10 +77,10 @@ export default function VideoFooter(props: VideoCardProps) {
                         align="center"
                         onClick={showDrawer}
                     >
-                        <CommentOutlined style={{ fontSize: "24px" }} />
+                        <CommentOutlined style={{ fontSize: "30px" }} />
                         <h2>{props.shares}</h2>
                     </Flex>
-                    <SendOutlined style={{ fontSize: "24px" }} />
+                    <SendOutlined style={{ fontSize: "28px" }} />
                 </Flex>
             </div>
 

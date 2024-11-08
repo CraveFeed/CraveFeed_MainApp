@@ -1,6 +1,9 @@
+"use client"
+
 import { Flex } from "antd";
 import "../../styles/nibbles.css";
 import VideoCard from "@/app/Components/VideoCard";
+import { Dock } from "@/app/Components/Dock";
 
 export default function ChefsCorner() {
     // Array of video card data
@@ -12,6 +15,7 @@ export default function ChefsCorner() {
             url: "https://res.cloudinary.com/dpuzfcod1/video/upload/v1731029062/hiihhe95y9tqfkwfydmv.mp4",
             likes: 100,
             shares: 20,
+            title : "Uncle Roger with Aunt Meme"
         },
         {
             channel: "Snehal Saurabh",
@@ -20,6 +24,7 @@ export default function ChefsCorner() {
             url: "https://res.cloudinary.com/dpuzfcod1/video/upload/v1731029364/z4emh5nevszwrjcyewx7.mp4",
             likes: 200,
             shares: 30,
+            title : "Avocado Macasnono"
         },
         {
             channel: "douuud57",
@@ -28,11 +33,13 @@ export default function ChefsCorner() {
             url: "https://res.cloudinary.com/dpuzfcod1/video/upload/v1731029811/jd3dpd2v3zjwt28ky6bo.mp4",
             likes: 12234,
             shares: 233,
+            title : "Chinch Fucca"
         },
         // Add more objects for additional VideoCards
     ];
 
     return (
+        <>
         <Flex justify="center" >
             <div className="app_reels" style={{ color: "white" }}>
                 {videoData?.map((data, index) => (
@@ -44,9 +51,11 @@ export default function ChefsCorner() {
                         url={data.url}
                         likes={data.likes}
                         shares={data.shares}
+                        title={data.title}
                     />
                 ))}
             </div>
         </Flex>
+        </>
     );
 }
