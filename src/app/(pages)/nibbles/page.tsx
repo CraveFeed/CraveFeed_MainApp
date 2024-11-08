@@ -21,6 +21,14 @@ export default function ChefsCorner() {
             likes: 200,
             shares: 30,
         },
+        {
+            channel: "douuud57",
+            avatarSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8vLRigYzD9al6y-B-BMFT_WEH-KTkh56asA&s",
+            song: "song2  dshf;alsd   s';dlkjf;lk jsdfd",
+            url: "https://res.cloudinary.com/dpuzfcod1/video/upload/v1731029811/jd3dpd2v3zjwt28ky6bo.mp4",
+            likes: 12234,
+            shares: 233,
+        },
         // Add more objects for additional VideoCards
     ];
 
