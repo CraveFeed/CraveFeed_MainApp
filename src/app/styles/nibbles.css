@@ -24,7 +24,7 @@ html{
 
 .app_reels{
     position: relative;
-    height : 93vh;
+    height : 90vh;
     background-color: white;
     width: 100%;
     max-width: 500px;
@@ -93,31 +93,51 @@ html{
 .videoFooter-text > h3{
     margin-left: 10px;
     padding-bottom: 20px;
+    font-size: 16px;
 }
 
-.videoFooter-actions{
-    position: absolute;
-    right: 20px;
-    bottom: 80px;
-}
-
-/* .videoFooter-actions{
+.videoFooter-actions {
     display: flex;
-    position: absolute;
-    width: 95%;
-    color: white;
-    justify-content: space-between;
-}
-
-.videoFooter-actionsLeft{
-    padding: 0 10px;
-}
-
-.videoFooter-actionsRight{
-    display: flex;
-}
-
-.videoFooter-stat{
+    flex-direction: column;
     align-items: center;
-    margin-right: 10px;
-} */
+    position: absolute;
+    right: 0px;
+    bottom: 80px; /* Adjusted positioning */
+}
+
+
+ /* Action like */
+ .nibble-action-button {
+    position: relative;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+}
+
+.nibble-action-button-like {
+    height: 75px; /* Updated size */
+    width: 75px; /* Updated size */
+    z-index: 5;
+    top : -25px;
+    background: url("../assets/heart.png") no-repeat left;
+    background-size: cover;
+    transform: scale(1); /* Optional: adjust scale if needed */
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.nibble-action-button-like.liked {
+    animation: like 0.7s steps(28) forwards;
+}
+
+@keyframes like {
+    to {
+        background-position: right;
+    }
+}
+
+.ant-drawer {
+    z-index: 9999;  /* Ensure the drawer appears on top */
+}

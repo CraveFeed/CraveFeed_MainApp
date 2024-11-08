@@ -158,11 +158,10 @@ color : "#5D6A77" */
 }
 
 .post-action-button{
-    height: 45px;
     width: 200px;
     border-radius: 15px;
     background-color: #28343E;
-    border: none;
+    border: 2px solid red;
 }
 
 .post-action-button-textLike {

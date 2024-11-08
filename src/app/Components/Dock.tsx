@@ -6,16 +6,29 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import chefIcon from "../assets/icons8-chef-hat-30.png";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const Dock = () => {
     const Menus = [
-    { name: "Ping", icon: <BellOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-0" },
-    { name: "Chat", icon: <MessageOutlined style={{ fontSize : "18px"}}  />, dis: "translate-x-16" },
-    { name: "Home", icon: <HomeOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-32" },
-    { name: "Chef'sCorner", icon: <img src={chefIcon.src} style={{ width : "24px",marginLeft : "20px" , color : "white" , marginBottom : "5px"}} />, dis: "translate-x-48" },
-    { name: "Settings", icon: <SettingOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-64" },
+    { name: "Ping", path : "" , icon: <BellOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-0" },
+    { name: "Chat", path : "" , icon: <MessageOutlined style={{ fontSize : "18px"}}  />, dis: "translate-x-16" },
+    { name: "Home", path : "/home" , icon: <HomeOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-32" },
+    { name: "Nibbles", path : "/nibbles" , icon: <img src={chefIcon.src} style={{ width : "24px",marginLeft : "20px" , color : "white" , marginBottom : "5px"}} />, dis: "translate-x-48" },
+    { name: "Settings", path : "" , icon: <SettingOutlined style={{ fontSize : "18px"}} />, dis: "translate-x-64" },
   ];
   const [active, setActive] = useState(2);
+  const router = useRouter();
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === "/home") {
+      setActive(2);
+    } else if (path === "/nibbles") {
+      setActive(3);
+    }
+  }, []);
+
+  
   return (
     <div className="max-h-70 px-6 rounded-t-xl deck-mobile-width" style={{ backgroundColor : "#051017" , height : "70px" ,  border : "2px  solid #1B2730"}}>
       <ul className="flex relative">
@@ -35,7 +48,7 @@ export const Dock = () => {
           <li key={i} className="w-16">
             <a
               className="flex flex-col text-center pt-6"
-              onClick={() => setActive(i)}
+              onClick={() => {setActive(i) , router.push(menu.path)}}
             >
               <span
                 className={`text-xl cursor-pointer duration-500 -mt-5 ${

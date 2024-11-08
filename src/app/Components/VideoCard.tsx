@@ -37,7 +37,7 @@ export default function VideoCard(props: VideoCardProps){
                 onClick={onVideoPress}
                 ref={videoRef}
                 className="videoplayer"
-                src="https://static.vecteezy.com/system/resources/previews/045/366/067/mp4/industrial-machine-in-room-with-green-lighting-video.mp4"
+                src={props.url}
                 autoPlay loop
                 />
             <VideoFooter {...props}/>
