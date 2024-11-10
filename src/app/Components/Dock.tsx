@@ -16,7 +16,7 @@ interface DockProps {
 export const Dock = ({index} : DockProps) => {
     const Menus = [
     { name: "Ping", path : "/notifications" , icon: <BellOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-0" },
-    { name: "Chat", path : "" , icon: <MessageOutlined style={{ fontSize : "18px"  , color : "white"}}  />, dis: "translate-x-16" },
+    { name: "Chat", path : "/chat" , icon: <MessageOutlined style={{ fontSize : "18px"  , color : "white"}}  />, dis: "translate-x-16" },
     { name: "Home", path : "/home" , icon: <HomeOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-32" },
     { name: "Nibbles", path : "/nibbles" , icon: <img src={chefIcon.src} style={{ width : "24px" , marginLeft : "20px" , color : "white" , marginBottom : "5px"}} />, dis: "translate-x-48" },
     { name: "Settings", path : "" , icon: <SettingOutlined style={{ fontSize : "18px"  , color : "white"}} />, dis: "translate-x-64" },

@@ -152,6 +152,17 @@ html{
     display: none;
 }
 
+.display-1000px{
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .display-1000px{
+        display: flex;
+        justify-content: center !important;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .display-500px{
         display: flex;

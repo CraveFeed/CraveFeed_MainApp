@@ -23,26 +23,21 @@ export default function HomeLayout({
       <Content style={{ backgroundColor: "#051017" }}>
         {children}
       </Content>
-        
-        {/* <Content className='home-mobile' style={{ backgroundColor: "#051017" , paddingTop : "10px" , color :  "white"}}>
-          <Flex vertical justify='center'align='center'>
-            this is  mobile content
-          </Flex>
-        </Content> */}
-        <div
+
+        {/* <div
                 style={{
                     position: "fixed",
                     bottom: 0,
                     left: 0,
                     width: "100%",
-                    backgroundColor: "#051017",
-                    zIndex: 1000, // Ensure it stays on top
+                    backgroundColor: "transparent",
+                    zIndex: 1000,
                     height: "50px",
                 }}
                 className='display-1000px'
             >
                 <Dock index={3} />
-            </div>
+            </div> */}
     </Layout>
   );
 }

@@ -6,7 +6,7 @@ import { Dropdown } from 'antd';
 import { Avatar , Drawer } from 'antd';
 import { useRouter } from "next/navigation";
 import Logout from "./Logout"
-import { FireFilled , HomeFilled , CaretDownOutlined , BellFilled , EnvironmentFilled } from '@ant-design/icons';
+import { HomeFilled , CaretDownOutlined , BellFilled , MessageOutlined } from '@ant-design/icons';
 import "../styles/home.css"
 import chefIcon from "../assets/icons8-chef-hat-30.png"
 import logo from "../assets/cravefeed_logo.png"
@@ -54,7 +54,7 @@ export default function Navbar(){
                     </Button>
                     <Space size="large" style={{ marginRight : "20px"}}>
                         <img src={chefIcon.src} onClick={() => {router.push("/nibbles")}} style={{ width : "24px",marginLeft : "20px" , color : "white" }} />
-                        <FireFilled onClick={() => { router.push("/home/explore")}} style={{ fontSize : "22px" , marginTop : "24px"}} />
+                        <MessageOutlined onClick={() => { router.push("/chat")}} style={{ fontSize : "22px" , marginTop : "24px"}} />
                     </Space>
                         <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
                             <BellFilled onClick={() => {router.push("/home/notifications")}} style={{ fontSize : "22px"}} />
