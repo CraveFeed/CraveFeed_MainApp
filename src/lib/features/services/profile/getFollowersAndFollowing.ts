@@ -17,36 +17,36 @@ const initialState: FollowerState = {
   status: "idle",
   followers: [
     {
-      Name: "John Doe",
-      Username: "@johndoe",
+      Name: "Viraj Patel",
+      Username: "@viraj332",
       AvatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbSIbfes4K5CLLIAnBoKhAUGptxjtHQ9IKWQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqcVXIgWCvTbb55lDj91N_g2rd0F3rma21CA&s",
     },
     {
-      Name: "Jane Smith",
-      Username: "@janesmith",
+      Name: "Alina Kane",
+      Username: "@alineK",
       AvatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPgyKrZsZ62qhHtdx_yB4S9Eg97-2Hb1S9bw&s",
+        "https://media.istockphoto.com/id/1191193169/photo/portrait-of-a-confident-young-woman-at-the-park.jpg?b=1&s=612x612&w=0&k=20&c=StRxOnMZGBl3714zvEc2vHKJStEkgIfAcpo3zZ8UZ08=",
     },
     {
-      Name: "Alice Johnson",
-      Username: "@alicej",
+      Name: "Rina Das",
+      Username: "@RiDas",
       AvatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1mU63yEwB_pIVB0bo8yoH34s2H8F3GzC-MA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLn0qwpafUMBcMtwFTP-IKb4mfQ_1niJHU-w&s",
     },
   ],
   following: [
     {
-      Name: "Bob Wilson",
-      Username: "@bobwilson",
+      Name: "Vira Patel",
+      Username: "@viraj332",
       AvatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1mU63yEwB_pIVB0bo8yoH34s2H8F3GzC-MA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqcVXIgWCvTbb55lDj91N_g2rd0F3rma21CA&s",
     },
     {
-      Name: "Emma Brown",
-      Username: "@emmab",
+      Name: "Shashwat Singh",
+      Username: "@ShashwatPS",
       AvatarUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbSIbfes4K5CLLIAnBoKhAUGptxjtHQ9IKWQ&s",
+        "https://pbs.twimg.com/profile_images/1851275784570478592/lYT2fIG8_400x400.jpg",
     },
   ],
   error: null,
