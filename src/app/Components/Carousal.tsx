@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Image } from "antd";
 
 export default function Carousel({
   autoSlide = false,
@@ -25,17 +24,17 @@ export default function Carousel({
     if (!autoSlide) return;
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
-  }, [autoSlide, autoSlideInterval, next]);
+  }, [autoSlide, autoSlideInterval]);
 
   // Handle drag start
-  const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
-    setStartX(e.clientX); // Save the starting X position
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    setStartX(e.type === "touchstart" ? (e as React.TouchEvent).touches[0].clientX : (e as React.MouseEvent).clientX);
     setIsDragging(true);
   };
 
   // Handle drag end
-  const handleDragEnd = (e: React.MouseEvent<HTMLDivElement>) => {
-    const endX = e.clientX; // Get the end X position
+  const handleDragEnd = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    const endX = e.type === "touchend" ? (e as React.TouchEvent).changedTouches[0].clientX : (e as React.MouseEvent).clientX;
     const distance = endX - startX;
 
     if (Math.abs(distance) > 50) { // Adjust threshold as needed
@@ -54,7 +53,9 @@ export default function Carousel({
       className="overflow-hidden relative"
       onMouseDown={handleDragStart}
       onMouseUp={handleDragEnd}
-      onMouseLeave={() => isDragging && handleDragEnd} // In case user drags out of the component
+      onTouchStart={handleDragStart} // Handle touch start
+      onTouchEnd={handleDragEnd} // Handle touch end
+      onMouseLeave={() => isDragging && handleDragEnd} // Handle mouse leave for dragging
     >
       <div
         className="flex transition-transform ease-out duration-500"
@@ -68,6 +69,7 @@ export default function Carousel({
             style={{
               width: '100%',
               objectFit: 'contain',
+              borderRadius: '15px',
               pointerEvents: isDragging ? 'none' : 'auto', // Disable pointer events while dragging
             }}
           />

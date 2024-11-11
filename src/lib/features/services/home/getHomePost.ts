@@ -40,7 +40,7 @@ const initialState: PostState[] = [
     name: "Snehal Saurabh",
     timeDescription: "2 hours ago",
     tag: "Business",
-    description: `🍛 Egg Biryani bliss at MultiCuisine, Kota! 🌆Perfectly spiced, loaded with flavor, and that egg on top just ties it all together. If you’re in Kota and craving some comfort food, this place knows how to do biryani right! 😋🥄#EggBiryani #KotaEats #FoodieAdventures #MultiCuisineKota #BiryaniLovers`, // Changed `content` to `description`
+    description: `🍛 Egg Biryani bliss at MultiCuisine, Kota! 🌆Perfectly spiced, loaded with flavor, and that egg on top just ties it all together.\n\nIf you’re in Kota and craving some comfort food, this place knows how to do biryani right! 😋🥄\n#EggBiryani #KotaEats #FoodieAdventures #MultiCuisineKota #BiryaniLovers`,
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi_BzB5dE8is3SerSeaykxuTvjZikAX5l8k4Y54fKnP7MnnwfuQE7iG-TSm6Fyb6kjqPk&usqp=CAU",
@@ -79,7 +79,7 @@ const initialState: PostState[] = [
     timeDescription: "2 hours ago",
     tag: "Business",
     description:
-      "🌯 Burrito heaven at Quattro Ristorante in Mumbai! 🌆🔥\nThis one’s loaded with all the good stuff – cheesy, spicy, and just the right amount of messy. If you’re around and craving something seriously satisfying, this spot hits the mark. 🌮💯\n\n#MumbaiEats #BurritoLove #QuattroRistorante #FoodieFinds",
+      "🌯 Burrito heaven at Quattro Ristorante in Mumbai! 🌆🔥\n\nThis one’s loaded with all the good stuff – cheesy, spicy, and just the right amount of messy. If you’re around and craving something seriously satisfying, this spot hits the mark. 🌮💯\n\n#MumbaiEats #BurritoLove #QuattroRistorante #FoodieFinds",
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",
@@ -111,7 +111,7 @@ const initialState: PostState[] = [
     timeDescription: "1 day ago",
     tag: "Business",
     description:
-      "☀️ Morning vibes with my favorites and the best bedai in town! Stopped by Gwalior Railway Station with friends (and our awesome faculty!) for that perfect crispy bedai and spicy aloo sabzi. Nothing like sharing good food and laughs together. 😊🍛#GwaliorDiaries #BedaiLove #RailwayStationEats #GoodTimes #FoodAndFriends",
+      "☀️ Morning vibes with my favorites and the best bedai in town! Stopped by Gwalior Railway Station with friends (and our awesome faculty!) for that perfect crispy bedai and spicy aloo sabzi. Nothing like sharing good food and laughs together. \n\n😊🍛#GwaliorDiaries #BedaiLove #RailwayStationEats #GoodTimes #FoodAndFriends",
     location: "New York",
     profilePeopleSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjwiMtrJ0c-y_p3qXbssdwPLP9VFp95aJMw&s",

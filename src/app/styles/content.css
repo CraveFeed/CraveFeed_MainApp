@@ -94,6 +94,7 @@ xxl: '1600px', */
     font-weight: bolder;
     font-size: 18px;
     color : #C6D0D2;
+    white-space: pre-wrap;
 }
 
 .post_follow_btn{

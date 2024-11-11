@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { Flex, Space , Input , Button , Divider , Image} from "antd"
 import type { MenuProps } from "antd";
 import { Dropdown } from 'antd';
@@ -47,11 +46,7 @@ export default function Navbar(){
                     <Input placeholder="#  Explore" className='input' />
                 </Space>
 
-                <Space size="middle"> 
-                    <Button style={{ borderRadius : "20px"  , display:  "flex" , alignItems: "center" }} onClick={() => { router.push("/home") }}>
-                        <HomeFilled className='logo'/>
-                        <span style={{ color : "#051017"}}>Home</span>
-                    </Button>
+                <Space size="middle">
                     <Space size="large" style={{ marginRight : "20px"}}>
                         <img src={chefIcon.src} onClick={() => {router.push("/nibbles")}} style={{ width : "24px",marginLeft : "20px" , color : "white" }} />
                         <MessageOutlined onClick={() => { router.push("/chat")}} style={{ fontSize : "22px" , marginTop : "24px"}} />
