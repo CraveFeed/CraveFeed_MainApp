@@ -2,16 +2,17 @@
 
 import React from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
-import { addCommentCall } from "@/lib/features/services/addComment";
+import { Dock } from "@/app/Components/Dock";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
 import { ConfigProvider } from 'antd';
+import Carousel from "@/app/Components/Carousal";
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
-import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
+import { RestFilled , ReadFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
@@ -29,6 +30,16 @@ const { TextArea } = Input;
 
 export default function Content(){
   
+    const contentStyle: React.CSSProperties = {
+        margin: 0,
+        height: '160px',
+        color: '#fff',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#364d79',
+        zIndex : "100"
+      };
+
     const userId = useAppSelector(state => state.global.userId);
 
     useEffect(() => {
@@ -192,7 +203,8 @@ export default function Content(){
                 overflowY: "scroll",
                 WebkitOverflowScrolling: "touch",
                 scrollbarWidth: "none",
-                msOverflowStyle: "none"
+                msOverflowStyle: "none",
+                paddingBottom : "75px"
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
@@ -264,20 +276,12 @@ export default function Content(){
                 {/* DeskTop View*/}
             
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
-                    <Card
-                    bodyStyle={{ padding: 0 }}
-                    style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
-                    ></Card>
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 {/* Mobile View */}
                 <Flex className="display-500px">
-                    <Card
-                    bodyStyle={{ padding: 0 }}
-                    style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
-                    ></Card>
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 <Flex className="likes_comments" align="center" justify="space-between">
@@ -325,7 +329,7 @@ export default function Content(){
 
                 <Flex gap={20} className="post-action-button-mainDiv display-500px" align="center" justify="center">
                     <ConfigProvider wave={{ disabled: true }}>
-                        <Button className="post-action-button" style={{ width : "40px"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
+                        <Button className="post-action-button" style={{ width : "40px" , border : "none"}} key={item.postId} onClick={() => handleLikeToggle(item.postId)}>
                             <Flex>
                                 <div className="post-action-button-likeBg">
                                     <div className={`post-action-button-like ${likePosts[item.postId]?.isLiked ? 'liked' : ''}`} />
@@ -351,7 +355,6 @@ export default function Content(){
                         </Space>
                     </Button>
                 </Flex>
-
 
                 {/* // Comments */}
                 {showComments && (id == item.postId) && (
@@ -389,6 +392,9 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px" style={{height  :  "40px"}}>
+                <Dock index={2}/>
+            </div>
         </Flex>
     )
 }

@@ -19,11 +19,28 @@ xxl: '1600px', */
     --highlightedText: #29a7f6;
 }
 
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color:transparent;
+    color: #fff;
+    display: flex;
+    align-content: center;
+    z-index: 10;
+}
+
 .home-mobile-menu{
     display: none;
 }
 
 .display-500px{
+    display: none;
+}
+
+.display-1000px {
     display: none;
 }
 
@@ -77,6 +94,7 @@ xxl: '1600px', */
     font-weight: bolder;
     font-size: 18px;
     color : #C6D0D2;
+    white-space: pre-wrap;
 }
 
 .post_follow_btn{
@@ -141,21 +159,21 @@ color : "#5D6A77" */
 }
 
 .post-action-button{
-    height: 45px;
     width: 200px;
     border-radius: 15px;
     background-color: #28343E;
     border: none;
+    height: 40px;
 }
 
 .post-action-button-textLike {
-    margin-top: -10px;
+    margin-top: -15px;
     margin-left: -5px !important;
 }
 
 .post-action-button-likeBg{
     border-radius: 50%;
-    margin-top: -10px; 
+    margin-top: -13px; 
     margin-left: -40px;  
     height: 60px;
     width: 60px;
@@ -337,6 +355,10 @@ color : "#5D6A77" */
 
 @media screen and (max-width : 1000px) {
 
+    .display-1000px {
+        display: flex;
+    }
+
     .post-action-button-like {
         margin-top: -15px;
         margin-left: -10px;
@@ -465,6 +487,15 @@ color : "#5D6A77" */
 
     .nav-buttons-text {
         font-size: 14px !important;
+    }
+
+    .post-action-button-likeBg{
+        margin-top: -10px; 
+        margin-left:  -25px;  
+    }
+
+    .post-action-button-textLike {
+        margin-top: -23px;
     }
 }
 
@@ -624,5 +655,11 @@ color : "#5D6A77" */
         align-content: center;
         justify-content: space-between;
         padding-inline: 40px;
+    }
+
+    .deck-mobile-width{
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 }

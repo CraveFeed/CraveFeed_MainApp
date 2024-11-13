@@ -2,11 +2,12 @@
 
 import React, { use } from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
-import { addCommentCall } from "@/lib/features/services/addComment";
+import Carousel from "@/app/Components/Carousal";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { Tooltip, List } from 'antd';
+import { Dock } from "@/app/Components/Dock";
 import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton ,  Form,  Dropdown , Modal , Menu , ConfigProvider } from "antd";
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
@@ -273,7 +274,8 @@ export default function Content(){
                 overflowY: "scroll",
                 WebkitOverflowScrolling: "touch",
                 scrollbarWidth: "none",
-                msOverflowStyle: "none"
+                msOverflowStyle: "none",
+                paddingBottom : "75px"
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
@@ -337,23 +339,25 @@ export default function Content(){
                         {item.description}
                     </Typography.Paragraph>
                 </Flex>
+
                 {/* DeskTop View*/}
-            
                 <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
-                    <Card
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '20px' }} />}
-                    ></Card>
+                    ></Card> */}
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 {/* Mobile View */}
                 <Flex className="display-500px">
-                    <Card
+                    {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ width: '100%', borderRadius: '10px' , border : 'black' }}
                     cover={<Image src={item.pictures} style={{ borderRadius: '10px' }} />}
-                    ></Card>
+                    ></Card> */}
+                    <Carousel slides={item.pictures}/>
                 </Flex>
                 
                 <Flex className="likes_comments" align="center" justify="space-between">
@@ -462,6 +466,9 @@ export default function Content(){
                     </Modal>
             </Card>
             ))}
+            <div className="h-screen flex justify-center items-center bg-gray-900 bottom-nav display-1000px">
+                <Dock index={2}/>
+            </div>
         </Flex>
     )
 }

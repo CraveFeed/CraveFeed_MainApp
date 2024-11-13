@@ -1,0 +1,174 @@
+:root {
+    --backgroundColor: #051017;
+    --cardBackGroundColor: #1B2730;
+    --secondaryCardButtonBackground : #28343E;
+    --mainTextColor: #c7c7c7;
+    --subMainTxtColor: #55616b;
+    --dimTextColor: #4C5965;
+    --lightButton: #28343E;
+    --darkButton: #1B2730;
+    --darkButtonBorder: #26333D;
+    --highlightedText: #29a7f6;
+}
+
+html{
+    scroll-snap-type: y mandatory;
+}
+
+.app{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+
+.app_reels{
+    position: relative;
+    height : 90vh;
+    background-color: white;
+    width: 100%;
+    max-width: 500px;
+    border-bottom: 20px;
+    max-height: 1200px;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    border-radius: 20px;
+}
+
+/* For Chrome,Safari, Opera */
+.app_reels::-webkit-scrollbar{
+    display: none;
+}
+
+.app_reels{
+    -ms-overflow-style: none; /*IE and firefox*/
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* All about video */
+
+.videocard{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.videoplayer{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+ /* Video Header  */
+
+ .videoHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    color: white;
+    padding: 15px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Video Footer */
+
+.videoFooter{
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    bottom: -10px;
+}
+
+.videoFooter-text{
+    position : absolute;
+    bottom : 0;
+    color: white;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 55px;
+    flex-direction: column;
+}
+
+.videoFooter-text > h3{
+    margin-left: 50px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.videoFooter-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    font-weight: 700;
+    right: 0px;
+    bottom: 120px; /* Adjusted positioning */
+}
+
+ .nibble-action-button {
+    position: relative;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.nibble-action-button-like {
+    height: 93px; /* Updated size */
+    width: 93px; /* Updated size */
+    z-index: 5;
+    margin-bottom: -30px;
+    background: url("../assets/heart.png") no-repeat left;
+    background-size: cover;
+    transform: scale(1); /* Optional: adjust scale if needed */
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.nibble-action-button-like.liked {
+    animation: like 0.7s steps(28) forwards;
+}
+
+@keyframes like {
+    to {
+        background-position: right;
+    }
+}
+
+.ant-drawer {
+    z-index: 9999;  /* Ensure the drawer appears on top */
+}
+
+.display-500px{
+    display: none;
+}
+
+.display-1000px{
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .display-1000px{
+        display: flex;
+        justify-content: center !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .display-500px{
+        display: flex;
+    }
+
+    .videoplayer{
+        height: 98%;
+    }
+}

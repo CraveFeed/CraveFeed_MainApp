@@ -48,6 +48,13 @@ export default function ProfileComponent(){
         backgroundColor: "transparent" ,
     };
 
+    const buttonStyle = (buttonName: string) => ({
+        backgroundColor: active === buttonName ? "#2b3b47" : "#1d262e",
+        border: "1px solid black",
+        borderRadius: "10px",
+        color: active === buttonName ? "#ffffff" : "#c7c7c7",
+    });
+
     return(
         <Card style={{ backgroundColor : "#051017" , border : "none"}}>
             <Flex vertical align="center" justify="center">
@@ -72,7 +79,7 @@ export default function ProfileComponent(){
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
                                             <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfPosts}`}</Typography.Text>
-                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder"}}>Posts</Typography.Text>
+                                            <Typography.Text className="profile-plain-text" style={{ color : "#5c6165" , fontWeight : "bolder" }}>Posts</Typography.Text>
                                         </Flex>
                                         <Flex align="center" justify="center">
                                             <Typography.Text className="profile-bold-text" style={{ color : "white" , margin : "10px" , fontWeight : "bolder"}}>{`${noOfFollowing}`}</Typography.Text>
@@ -87,7 +94,7 @@ export default function ProfileComponent(){
                                 <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>{bio}</Paragraph>
                             </Flex>
                             </Space>
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
+                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px" , border : "none" , fontWeight : "600" , backgroundColor : "#fd7077" , color : "black"}}>Edit Profile</Button>
                         </Space>
                     </div>
 
@@ -123,15 +130,33 @@ export default function ProfileComponent(){
                             </Space>
                         </Space>
                         <Flex align="center" justify="center">
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px"}}>Edit Profile</Button>
+                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px" , fontWeight : "600" , backgroundColor : "#fd7077" , color : "black" , border : "none"}}>Edit Profile</Button>
                         </Flex>
                     </div>
 
                 </Card>
                 <Flex align="center" justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px"}}>
-                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("POSTS")}}>Posts</Button>
-                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWERS")}}>Followers</Button>
-                    <Button className="profile-toggle-button" style={{ background : "transparent" , borderRadius : "10px" , color : "white"}} onClick={() => { setActive("FOLLOWING")}}>Following</Button>
+                    <Button
+                        className="profile-toggle-button"
+                        style={buttonStyle("POSTS")}
+                        onClick={() => setActive("POSTS")}
+                    >
+                        Posts
+                    </Button>
+                    <Button
+                        className="profile-toggle-button"
+                        style={buttonStyle("FOLLOWERS")}
+                        onClick={() => setActive("FOLLOWERS")}
+                    >
+                        Followers
+                    </Button>
+                    <Button
+                        className="profile-toggle-button"
+                        style={buttonStyle("FOLLOWING")}
+                        onClick={() => setActive("FOLLOWING")}
+                    >
+                        Following
+                    </Button>
                 </Flex>
                 <div className="profile-widthDiv">
                     {active === "POSTS" && <PostSkeleton/>}
@@ -171,40 +196,6 @@ function Followers(){
         }
     }, [dispatch]);
     
-
-    //     const fetchedProfile = [
-    //     {
-    //         name : "Ivanka James",
-    //         username : "@ivankajames",
-    //         img : coverImage
-    //     },
-    //     {
-    //         name : "Big Bundah Girl",
-    //         username : "@bigBgirl",
-    //         img : coverImage2 
-    //     },
-    //     {
-    //         name : "GlizzyGobbler",
-    //         username : "@GZperiod",
-    //         img : coverImage
-    //     },
-    //     {
-    //         name : "Tiny Weenie",
-    //         username : "@teeniweeni",
-    //         img : coverImage    
-    //     },
-    //     {
-    //         name : "Bob Loader",
-    //         username : "@BLnigger",
-    //         img : coverImage
-    //     },
-    //     {
-    //         name : "Dee Snuts",
-    //         username : "@DjNutter",
-    //         img : coverImage
-    //     }
-    // ]
-    
     return(
         <div style={{
             height: "60vh",
@@ -240,25 +231,6 @@ function Following(){
             dispatch(getFollowingCall(userId));
         }
     }, [dispatch, userId]);
-
-
-    // const fetchedProfile = [
-    //     {
-    //         name : "Ivanka James",
-    //         username : "@ivankajames",
-    //         img : coverImage
-    //     },
-    //     {
-    //         name : "Big Bundah Girl",
-    //         username : "@bigBgirl",
-    //         img : coverImage2 
-    //     },
-    //     {
-    //         name : "GlizzyGobbler",
-    //         username : "@GZperiod",
-    //         img : coverImage
-    //     },
-    // ]
 
     return(
         <div style={{
