@@ -11,33 +11,30 @@ export default function Carousel({
   slides: string[];
 }) {
   const [curr, setCurr] = useState(0);
-  const [startX, setStartX] = useState(0); // Track the starting X position of drag
-  const [isDragging, setIsDragging] = useState(false); // Track if dragging is active
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const prev = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
   const next = () =>
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
-  // Auto-slide functionality
   useEffect(() => {
     if (!autoSlide) return;
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
   }, [autoSlide, autoSlideInterval]);
 
-  // Handle drag start
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     setStartX(e.type === "touchstart" ? (e as React.TouchEvent).touches[0].clientX : (e as React.MouseEvent).clientX);
     setIsDragging(true);
   };
 
-  // Handle drag end
   const handleDragEnd = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const endX = e.type === "touchend" ? (e as React.TouchEvent).changedTouches[0].clientX : (e as React.MouseEvent).clientX;
     const distance = endX - startX;
 
-    if (Math.abs(distance) > 50) { // Adjust threshold as needed
+    if (Math.abs(distance) > 50) {
       if (distance > 0) {
         prev();
       } else {
@@ -53,9 +50,9 @@ export default function Carousel({
       className="overflow-hidden relative"
       onMouseDown={handleDragStart}
       onMouseUp={handleDragEnd}
-      onTouchStart={handleDragStart} // Handle touch start
-      onTouchEnd={handleDragEnd} // Handle touch end
-      onMouseLeave={() => isDragging && handleDragEnd} // Handle mouse leave for dragging
+      onTouchStart={handleDragStart}
+      onTouchEnd={handleDragEnd}
+      onMouseLeave={() => isDragging && handleDragEnd}
     >
       <div
         className="flex transition-transform ease-out duration-500"
@@ -70,13 +67,12 @@ export default function Carousel({
               width: '1000px',
               borderRadius: '15px',
               border : "2px solid #28343E",
-              pointerEvents: isDragging ? 'none' : 'auto', // Disable pointer events while dragging
+              pointerEvents: isDragging ? 'none' : 'auto',
             }}
           />
         ))}
       </div>
 
-      {/* Show buttons only if there are multiple slides */}
       {slides.length > 1 && (
         <div className="absolute inset-0 flex items-center justify-between px-4">
           <button
