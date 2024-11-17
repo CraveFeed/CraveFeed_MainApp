@@ -450,9 +450,6 @@ export default function Content(){
                             overflowY: 'auto',
                             scrollbarWidth: 'none', // Firefox
                             msOverflowStyle: 'none', // IE and Edge
-                            '&::-webkit-scrollbar': { // Chrome, Safari, newer versions of Opera
-                                display: 'none'
-                            }
                         }}
                         header={
                             <Flex vertical gap={10} style={{ position: 'sticky', top: 0, backgroundColor: '#1B2730', zIndex: 1, padding: '10px 0' }}>
@@ -479,13 +476,6 @@ export default function Content(){
                                                         color: "white",
                                                         padding: '8px 12px',
                                                         fontSize: '14px',
-                                                        '&::placeholder': {
-                                                            color: '#6c757d'
-                                                        },
-                                                        '&:focus': {
-                                                            borderColor: '#4991FD',
-                                                            boxShadow: '0 0 0 2px rgba(73, 145, 253, 0.2)'
-                                                        }
                                                     }}
                                                 />
                                                 <Button 
@@ -518,9 +508,6 @@ export default function Content(){
                                         backgroundColor: "#1B2730", 
                                         color: "white",
                                         transition: 'background-color 0.2s',
-                                        '&:hover': {
-                                            backgroundColor: '#253541'
-                                        }
                                     }}
                                     author={<span style={{ color: "ghostwhite", fontWeight: 500 }}>{comment.name}</span>}
                                     avatar={comment.userAvatar}
