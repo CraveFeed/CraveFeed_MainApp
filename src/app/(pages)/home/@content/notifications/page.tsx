@@ -10,7 +10,7 @@ interface Notification {
     timestamp: string;
 }
 
-export default function Notifications() {
+export default function Content() {
     const notifications: Notification[] = [
         {
             id: 1,

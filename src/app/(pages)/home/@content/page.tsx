@@ -204,7 +204,8 @@ export default function Content(){
                 WebkitOverflowScrolling: "touch",
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
-                paddingBottom : "75px"
+                paddingBottom : "75px",
+                paddingInline : "5px"
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
@@ -275,7 +276,7 @@ export default function Content(){
 
                 {/* DeskTop View*/}
             
-                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
+                <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
                     <Carousel slides={item.pictures}/>
                 </Flex>
 

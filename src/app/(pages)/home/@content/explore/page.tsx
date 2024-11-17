@@ -341,7 +341,7 @@ export default function Content(){
                 </Flex>
 
                 {/* DeskTop View*/}
-                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
+                <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
                     {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}

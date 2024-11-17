@@ -2,7 +2,6 @@
 
 import React, { use } from "react";
 import { useAppDispatch , useAppSelector } from "@/lib/hooks";
-import { addCommentCall } from "@/lib/features/services/addComment";
 import Carousel from "@/app/Components/Carousal";
 import { useState  , useEffect} from "react";
 import type { MenuProps } from "antd";
@@ -14,14 +13,6 @@ import { Tag , Image , Statistic } from "antd";
 import { Dock } from "@/app/Components/Dock";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
 import { setViewUserId } from "@/lib/features/services/global";
-// import elonPost from "../../../../assets/elon_food_post.jpeg"
-// import startship from "../../../../assets/starship.jpeg"
-// import foodPost2 from "../../../../assets/food_post2.jpeg"
-// import foodPost3 from "../../../../assets/food_post3.jpeg"
-// import foodPost4 from "../../../../assets/food_post4.jpeg"
-// import profilePic2 from "../../../../assets/profilePic2.jpg"
-// import profilePic3 from "../../../../assets/lavelisProPic.jpg"
-// import profilePic4 from "../../../../assets/profilePic4.jpg"
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -344,7 +335,7 @@ interface likePost {
 
                 {/* DeskTop View*/}
             
-                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
+                <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
                     {/* <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}

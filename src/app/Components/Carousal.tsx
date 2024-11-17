@@ -67,9 +67,9 @@ export default function Carousel({
             src={img}
             alt=""
             style={{
-              width: '100%',
-              objectFit: 'contain',
+              width: '1000px',
               borderRadius: '15px',
+              border : "2px solid #28343E",
               pointerEvents: isDragging ? 'none' : 'auto', // Disable pointer events while dragging
             }}
           />
@@ -78,18 +78,22 @@ export default function Carousel({
 
       {/* Show buttons only if there are multiple slides */}
       {slides.length > 1 && (
-        <div className="absolute inset-0 flex items-center justify-between p-4">
+        <div className="absolute inset-0 flex items-center justify-between px-4">
           <button
             onClick={prev}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+            className="flex items-center justify-center w-8 h-8 transform -translate-x-2 rounded-full bg-white/20 border border-white/70 shadow-lg transition-all duration-300 hover:scale-110 backdrop-blur-sm"
           >
-            <LeftOutlined size={40} />
+            <LeftOutlined 
+              className="text-white text-xs" 
+            />
           </button>
           <button
             onClick={next}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+            className="flex items-center justify-center w-8 h-8 transform translate-x-2 rounded-full bg-white/20 border border-white/70 shadow-lg transition-all duration-300 hover:scale-110 backdrop-blur-sm"
           >
-            <RightOutlined size={40} />
+            <RightOutlined 
+              className="text-white text-xs" 
+            />
           </button>
         </div>
       )}
