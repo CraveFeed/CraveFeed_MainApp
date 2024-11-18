@@ -333,7 +333,6 @@ export default function Content(){
                     </Typography.Paragraph>
                 </Flex>
 
-                {/* DeskTop View*/}
                 <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
                     {/* <Card
                     bodyStyle={{ padding: 0 }}

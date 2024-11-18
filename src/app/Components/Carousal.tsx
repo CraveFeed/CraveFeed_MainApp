@@ -90,6 +90,7 @@ export default function Carousel({
             <RightOutlined 
               className="text-white text-xs" 
             />
+
           </button>
         </div>
       )}

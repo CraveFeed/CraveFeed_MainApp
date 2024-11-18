@@ -278,6 +278,7 @@ export default function Content(){
                 {/* DeskTop View*/}
             
                 <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
+
                     <Carousel slides={item.pictures}/>
                 </Flex>
 

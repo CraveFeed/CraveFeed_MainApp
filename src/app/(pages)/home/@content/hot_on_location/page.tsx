@@ -336,7 +336,6 @@ interface likePost {
 
 
                 {/* DeskTop View*/}
-            
                 <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
                     {/* <Card
                     bodyStyle={{ padding: 0 }}

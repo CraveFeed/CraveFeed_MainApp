@@ -18,6 +18,7 @@ interface VideoCardProps {
 export default function VideoCard(props: VideoCardProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
     const [isManualPause, setIsManualPause] = useState(false);
 
     useEffect(() => {
