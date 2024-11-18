@@ -16,7 +16,7 @@
 
 "@ant-design/compatible@^5.1.3":
   version "5.1.3"
-  resolved "https://registry.npmjs.org/@ant-design/compatible/-/compatible-5.1.3.tgz"
+  resolved "https://registry.yarnpkg.com/@ant-design/compatible/-/compatible-5.1.3.tgz#5ede26392defae43f54e19f604fdb44eb9859816"
   integrity sha512-uLvjwENnpY/1gxYb5m8L2k+WmBpBHqH45fO76+4J+WUDKTUKpmwbEW3OG/in2mSO2HI6h3Mcp57+tAMr18ZkgQ==
   dependencies:
     classnames "^2.2.6"

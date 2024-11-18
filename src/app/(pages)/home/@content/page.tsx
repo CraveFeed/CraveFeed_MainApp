@@ -21,6 +21,7 @@ import "../../../styles/content.css";
 import { fetchHomePost } from "@/lib/features/services/home/getHomePost";
 import ShareFood from "@/app/Components/ShareFood";
 import CreatePost from "@/app/Components/CreatePost";
+import { SendOutlined } from '@ant-design/icons';
 
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -204,7 +205,8 @@ export default function Content(){
                 WebkitOverflowScrolling: "touch",
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
-                paddingBottom : "75px"
+                paddingBottom : "75px",
+                paddingInline : "10px"
             }}>
             <Card className="home-desktop" style={{width : "100%" , backgroundColor : "#1B2730" , border : "none" , borderRadius : "20px" , height : "auto" , marginBottom : "10px"}}>
                 <Flex style={{marginBottom : "20px"}}>
@@ -268,14 +270,15 @@ export default function Content(){
                         <Button className="post_follow_btn">Follow</Button>
                 </Flex>
                 <Flex wrap style={{ marginInline: '0.5%', marginTop: '10px' }}>
-                    <Typography.Paragraph className="post_description">
+                    <Typography.Paragraph className="post_description" style={{ fontWeight : "normal" }}>
                         {item.description}
                     </Typography.Paragraph>
                 </Flex>
 
                 {/* DeskTop View*/}
             
-                <Flex className="display-all" wrap style={{ marginInline: '25%' }}>
+                <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
+
                     <Carousel slides={item.pictures}/>
                 </Flex>
 
@@ -285,12 +288,12 @@ export default function Content(){
                 </Flex>
 
                 <Flex className="likes_comments" align="center" justify="space-between">
-                    <Flex gap={4} style={{ marginInline : "10%" , marginTop : "20px"}}>
+                    <Flex gap={4} style={{ marginInline : "1%" , marginTop : "20px"}}>
                         <HeartFilled className="likes_comments_heart"/>
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}} onClick={() => { if(item.postId == id){setShowComments(!showComments)}; setId(item.postId)}}>{item.comments?.length ?? 0} comments</Typography.Text>
+                    <Typography.Text className="impression-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
                 </Flex>
 
                 {/* DeskTop And Tab View */}
@@ -310,8 +313,24 @@ export default function Content(){
                             <Typography.Text className="post-action-button-text">Repost</Typography.Text>
                         </Space>
                     </Button>
-                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
+                    {/* <Button onClick={() => { setAddComment(true)}} className="post-action-button">
                         <Space size="small" onClick={() => {}} >
+                            <MessageFilled className="post-action-button-icon"/>
+                            <Typography.Text className="post-action-button-text">Comment</Typography.Text>
+                        </Space>
+                    </Button> */}
+                    <Button 
+                        onClick={() => { 
+                            if(item.postId == id) {
+                                setShowComments(!showComments)
+                            } else {
+                                setShowComments(true)
+                            }
+                            setId(item.postId)
+                        }} 
+                        className="post-action-button"
+                    >
+                        <Space size="small">
                             <MessageFilled className="post-action-button-icon"/>
                             <Typography.Text className="post-action-button-text">Comment</Typography.Text>
                         </Space>
@@ -342,8 +361,17 @@ export default function Content(){
                             <PullRequestOutlined className="post-action-button-icon"/>
                         </Space>
                     </Button>
-                    <Button onClick={() => { setAddComment(true)}} className="post-action-button">
-                        <Space size="small" onClick={() => {}} >
+                    <Button className="post-action-button"
+                        onClick={() => { 
+                            if(item.postId == id) {
+                                setShowComments(!showComments)
+                            } else {
+                                setShowComments(true)
+                            }
+                            setId(item.postId)
+                        }} 
+                    >
+                        <Space size="small">
                             <MessageFilled className="post-action-button-icon"/>
                         </Space>
                     </Button>
@@ -358,28 +386,88 @@ export default function Content(){
 
                 {/* // Comments */}
                 {showComments && (id == item.postId) && (
-                     <List
+                    <List
                         className="comment-list"
-                        header={<span style={{ color: "#4991FD" }}>{item.comments.length} comments</span>}
+                        style={{
+                            maxHeight: '400px',
+                            overflowY: 'auto',
+                            scrollbarWidth: 'none', // Firefox
+                            msOverflowStyle: 'none', // IE and Edge
+                        }}
+                        header={
+                            <Flex vertical gap={10} style={{ position: 'sticky', top: 0, backgroundColor: '#1B2730', zIndex: 1, padding: '10px 0' }}>
+                                <span style={{ color: "#4991FD" }}>{item.comments.length} comments</span>
+                                <Comment
+                                    style={{ 
+                                        backgroundColor: "#1B2730", 
+                                        color: "white",
+                                        borderRadius: '12px',
+                                    }}
+                                    avatar={<Avatar src={avatar} alt="User" />}
+                                    content={
+                                        <Form style={{ width: '100%' }}>
+                                            <Form.Item style={{ marginBottom: '12px' }}>
+                                                <TextArea
+                                                    value={commentContent}
+                                                    onChange={(e) => setCommentContent(e.target.value)}
+                                                    placeholder="Write a comment..."
+                                                    autoSize={{ minRows: 2, maxRows: 4 }}
+                                                    style={{ 
+                                                        backgroundColor: "#253541",
+                                                        border: "1px solid #364d79",
+                                                        borderRadius: '8px',
+                                                        color: "white",
+                                                        padding: '8px 12px',
+                                                        fontSize: '14px',
+                                                    }}
+                                                />
+                                                <Button 
+                                                    type="text"
+                                                    style={{
+                                                        position: 'absolute',
+                                                        right: '8px',
+                                                        bottom: '8px',
+                                                        color: '#4991FD',
+                                                        padding: '4px',
+                                                        height: 'auto'
+                                                    }}
+                                                    onClick={() => {
+                                                        // Your comment submission logic
+                                                        setCommentContent("");
+                                                    }}
+                                                    icon={<SendOutlined />}
+                                                />
+                                            </Form.Item>
+                                        </Form>
+                                    }
+                                />
+                            </Flex>
+                        }
                         itemLayout="horizontal"
                         dataSource={item.comments}
                         renderItem={(comment) => (
-                            <li>
-                            <Comment
-                                style={{ backgroundColor: "#1B2730", color: "white" }}
-                                author={<span style={{ color: "ghostwhite" }}>{comment.name}</span>}
-                                avatar={comment.userAvatar}
-                                content={<p>{comment.content}</p>}
-                                datetime={
-                                <span style={{ color : "gray"}} title={comment.commentTime}>
-                                    {comment.relativeTime}
-                                </span>
-                                }
-                            />
-                            </li>
+                                <Comment
+                                    style={{ 
+                                        backgroundColor: "#1B2730", 
+                                        color: "white",
+                                        transition: 'background-color 0.2s',
+                                    }}
+                                    author={<span style={{ color: "ghostwhite", fontWeight: 500 }}>{comment.name}</span>}
+                                    avatar={comment.userAvatar}
+                                    content={<p style={{ color: '#e1e1e1'}}>{comment.content}</p>}
+                                    datetime={
+                                        <span style={{ 
+                                            color: "gray", 
+                                            fontSize: '12px'
+                                        }} 
+                                        title={comment.commentTime}>
+                                            {comment.relativeTime}
+                                        </span>
+                                    }
+                                />
                         )}
-                        />
-                    )}
+                    />
+                )}
 
                     <Modal footer={null} bodyStyle={{ padding: 0 }} open={addComment} onCancel={() => { setAddComment(false)}} className="custom-modal">
                         <Comment
