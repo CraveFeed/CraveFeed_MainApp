@@ -12,7 +12,7 @@ import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton , 
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
-import { setViewUserId } from "@/lib/features/services/global";
+import { setTokenAndId } from "@/lib/features/services/global";
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -252,7 +252,6 @@ export default function Content(){
 
     const handleMenuClick = (index: number) => {
         setSelectedIndex(index);
-        console.log(selectedIndex);
     }
 
     return (
@@ -315,7 +314,7 @@ export default function Content(){
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title onClick={() => { dispatch(setViewUserId(item.userId)); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
+                                <Typography.Title onClick={() => { dispatch(setTokenAndId({ token : null , userId : null})); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
                                 <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
@@ -467,7 +466,7 @@ export default function Content(){
                                                     value={commentContent}
                                                     onChange={(e) => setCommentContent(e.target.value)}
                                                     placeholder="Write a comment..."
-                                                    autoSize={{ minRows: 2, maxRows: 4 }}
+                                                    autoSize={{ minRows: 1, maxRows: 4 }}
                                                     style={{ 
                                                         backgroundColor: "#253541",
                                                         border: "1px solid #364d79",

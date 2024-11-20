@@ -273,13 +273,52 @@ color : "#5D6A77" */
 }
 
 .ant-input-textarea-show-count-suffix {
-    color: #ffcc00 !important;
+    color: #004cd8 !important;
     font-size: 12px;
     font-weight: bold;
 }
 
+.profile-menu-div-700px{
+    display: none;
+}
+
+.profile-menu-button{
+    margin-top: 20px;
+}
+
+.display-500px{
+    display: none;
+}
+
+.profile-comment-list {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background-color: transparent !important;
+}
+
+.profile-comment-list::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-comment-list .ant-list-header {
+    background-color: transparent;
+    padding: 12px 0;
+    border-bottom: none;
+}
+
+.profile-comment-list .ant-list-items {
+    background-color: transparent;
+}
+
 @media screen and (max-width : 1350px) {
     
+    .profile-menu-button{
+        margin-top: 0px;
+    }
+    
+
     .profile-widthDiv{
         width: 700px;
     }
@@ -426,6 +465,14 @@ color : "#5D6A77" */
 
 @media screen and (max-width : 700px) {
 
+    .profile-menu-div-desktop{
+        display: none;
+    }
+
+    .profile-menu-div-700px{
+        display: flex;
+    }
+
     .profile-widthDiv{
         width: 500px;
     }
@@ -495,6 +542,14 @@ color : "#5D6A77" */
 
 @media screen and (max-width : 500px) {
 
+    .display-all{
+        display: none;
+    }
+
+    .display-500px{
+        display: flex;
+    }
+
     .profile-user-tags {
         font-size: 5px;
         height: 16px;
@@ -523,7 +578,8 @@ color : "#5D6A77" */
     }
 
     .profile_description {
-        font-size: 10px;
+        font-size: 15px;
+        font-weight: normal;
     }
 
     .profile_follow_btn {
@@ -667,7 +723,7 @@ color : "#5D6A77" */
         border-radius: 20px;
         font-size: 12px;
         height: 25px;
-        background-color: rgb(253, 112, 119);
+        background-color: rgb(193, 193, 193);
     }
 
     /* ************* EDIT MODAL *************** */

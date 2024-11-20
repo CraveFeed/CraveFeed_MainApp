@@ -1,22 +1,24 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
+
 export interface BioState {
   getBioStatus: "success" | "loading" | "failed";
   error: string | null;
-  bio: string;
+  bio: string | null;
   username: string;
   firstname: string;
   lastname: string;
   noOfPosts: string;
   noOfFollowers: string;
   noOfFollowing: string;
-  avatar: string;
+  avatar: string | null;
 }
 
 const initialState: BioState = {
   getBioStatus: "success",
   error: null,
-  bio: "Hey there! I'm Vibhor, a huge food enthusiast.",
+  bio: null,
   username: "@vibhorphalke",
   firstname: "Vibhor",
   lastname: "Phalke",
@@ -29,28 +31,40 @@ const initialState: BioState = {
 
 export const fetchBioState = createAsyncThunk<
   BioState,
-  { userId: string },
+  { userId: string; token: string },
   { rejectValue: string }
->("bio/getBio", async ({ userId }, { rejectWithValue }) => {
+>("bio/getBio", async ({ userId, token }, { rejectWithValue }) => {
   try {
-    console.log("check User ID:", userId);
-    const response = await fetch(
-      "http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/getProfileBio",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ Id: userId }),
-      }
-    );
+    console.log("check User ID:", userId , "token : ", token);
+    const response = await fetch(`${API_URL}/public/getUserProfileSummary`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userId: userId }),
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const data = await response.json();
-    return data as BioState;
+    const { profileData } = await response.json();
+
+    console.log("profileData:- ", profileData);
+
+    return {
+      bio: profileData.bio,
+      username: profileData.username,
+      firstname: profileData.firstName,
+      lastname: profileData.lastName,
+      noOfPosts: profileData._count.posts.toString(),
+      noOfFollowers: profileData._count.followers.toString(),
+      noOfFollowing: profileData._count.following.toString(),
+      avatar: profileData.avatar,
+      getBioStatus: "success",
+      error: null,
+    };
   } catch (error: any) {
     return rejectWithValue(error.message || "An unknown error occurred");
   }

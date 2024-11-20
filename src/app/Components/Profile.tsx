@@ -1,12 +1,13 @@
 import "../styles/profile.css"
 import coverImage2 from "../assets/lavelisProPic.jpg"
 import { useAppSelector , useAppDispatch } from "@/lib/hooks"
-import { Card , Flex , Image, Avatar , Modal , Space , Button , Typography } from "antd"
+import { Card , Flex , Image, Avatar, Space , Button , Typography } from "antd"
 import { fetchBioState } from "@/lib/features/services/home/getBio"
 import { useEffect, useState } from "react"
 import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
 import { getFollowersCall , getFollowingCall } from "@/lib/features/services/profile/getFollowersAndFollowing"
+import veg from "../assets/veg-removebg-preview.png"
 
 const { Paragraph } = Typography;
 
@@ -25,12 +26,12 @@ export default function ProfileComponent(){
     const avatar = useAppSelector((state) => state.getBio.avatar);
     const username = useAppSelector((state) => state.getBio.username);
     
-    const userId = useAppSelector((state) => state.global.userId);
+    const {token , userId } = useAppSelector((state) => state.global);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (userId) {
-            dispatch(fetchBioState({ userId }))
+        if (userId && token) {
+            dispatch(fetchBioState({ token, userId }))
         }
     },[userId])
 
@@ -135,7 +136,7 @@ export default function ProfileComponent(){
                     </div>
 
                 </Card>
-                <Flex align="center" justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px"}}>
+                <Flex align="center" gap={20} justify="space-between" className="profile-toggle-button-mainDiv" style={{ backgroundColor: 'transparent', height : "80px"  , border : "none" , borderRadius : "20px"}}>
                     <Button
                         className="profile-toggle-button"
                         style={buttonStyle("POSTS")}
@@ -157,15 +158,23 @@ export default function ProfileComponent(){
                     >
                         Following
                     </Button>
+                    <Button
+                        className="profile-toggle-button"
+                        style={buttonStyle("MENU")}
+                        onClick={() => setActive("MENU")}
+                    >
+                        Menu
+                    </Button>
                 </Flex>
                 <div className="profile-widthDiv">
                     {active === "POSTS" && <PostSkeleton/>}
                     {active === "FOLLOWERS" && <Followers/>}
                     {active === "FOLLOWING" && <Following/>}
+                    {active === "MENU" && <Menu/>}
                 </div>
             </Flex>
             <EditProfile editProfile={editProfile} setEditProfile={setEditProfile}/>
-            <Modal 
+            {/* <Modal 
                 footer={null} 
                 bodyStyle={{ padding: 0 }} 
                 open={viewProfileImage} 
@@ -179,7 +188,7 @@ export default function ProfileComponent(){
                     preview={true}
                     style={{ display: 'block', width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
                 />
-            </Modal>
+            </Modal> */}
         </Card>
     )
 }
@@ -188,11 +197,11 @@ function Followers(){
 
     const dispatch = useAppDispatch();
     const followers = useAppSelector((state) => state.getFollower.followers);
-    const userId = useAppSelector((state) => state.global.userId);
+    const { token , userId } = useAppSelector((state) => state.global);
 
     useEffect(() => {
-        if (userId) {
-            dispatch(getFollowersCall(userId));
+        if (userId && token) {
+            dispatch(getFollowersCall({userId , token}));
         }
     }, [dispatch]);
     
@@ -207,10 +216,10 @@ function Followers(){
             {followers?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.avatar} style={{position : "relative" }}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.firstName + " " + value.lastName}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>
@@ -220,17 +229,198 @@ function Followers(){
     )
 }
 
+function Menu() {
+    return (
+        <>
+        <div
+             className="profile-menu-div-desktop"
+            style={{
+                height: "60vh",
+                overflowY: "scroll",
+                WebkitOverflowScrolling: "touch",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                padding: "10px",
+            }}
+        >
+            <Flex
+                style={{
+                    marginBottom: "30px",
+                    backgroundColor: "#1B2730",
+                    borderRadius: "20px",
+                }}
+            >
+                <Image
+                    style={{
+                        height: "auto",
+                        width: "250px",
+                        objectFit: "cover",
+                        borderEndStartRadius: "15px",
+                        borderStartStartRadius: "15px",
+                    }}
+                    src="https://res.cloudinary.com/dpuzfcod1/image/upload/v1730629335/chipotle_cw1j61.jpg"
+                />
+                <Flex
+                    vertical
+                    align="start"
+                    justify="start"
+                    style={{ padding: "0 15px", flex: 1 }}
+                >
+                    <Flex align="center" justify="space-between" style={{ width: "100%" }}>
+                        <Typography.Text
+                            style={{
+                                color: "#c7c7c7",
+                                fontWeight: "bolder",
+                                fontSize: "24px",
+                            }}
+                        >
+                            Burrito
+                        </Typography.Text>
+                        <Image
+                            style={{
+                                height: "22px",
+                                width: "22px",
+                            }}
+                            preview={false}
+                            src={veg.src}
+                        />
+                    </Flex>
+                    <Typography.Text
+                        style={{
+                            color: "white",
+                            fontSize: "18px",
+                            marginTop: "5px",
+                        }}
+                    >
+                        ₹800
+                    </Typography.Text>
+                    <Typography.Text
+                        style={{
+                            color: "#b0b0b0",
+                            fontSize: "16px",
+                            marginTop: "10px",
+                        }}
+                    >
+                        A delightful mix of paneer chunks tossed in a spicy chilli sauce, perfect for a cozy evening.
+                    </Typography.Text>
+                    <Button
+                        className="profile-menu-button"
+                        style={{
+                            backgroundColor: "white",
+                            color: "black",
+                            borderRadius: "20px",
+                            alignSelf: "flex-end",
+                        }}
+                    >
+                        Order Now
+                    </Button>
+                </Flex>
+            </Flex>
+        </div>
+        
+        <div
+        className="profile-menu-div-700px"
+        style={{
+            height: "auto",
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            marginBottom : "60px"
+        }}
+    >
+        <Flex
+            style={{
+                marginBottom: "30px",
+                backgroundColor: "#1B2730",
+                borderRadius: "20px",
+                flexDirection: "column", // Vertical layout
+                alignItems: "center",
+                padding: "5px",
+            }}
+        >
+            <Image
+                style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    borderRadius: "15px",
+                    marginBottom: "15px",
+                }}
+                src="https://res.cloudinary.com/dpuzfcod1/image/upload/v1730629335/chipotle_cw1j61.jpg"
+            />
+            <Typography.Text
+                style={{
+                    color: "#c7c7c7",
+                    fontWeight: "bolder",
+                    fontSize: "24px",
+                    textAlign: "center",
+                }}
+            >
+                Burrito
+            </Typography.Text>
+            <Flex
+                align="center"
+                justify="center"
+                style={{ margin: "10px 0" }}
+            >
+                <Image
+                    style={{
+                        height: "20px",
+                        width: "20px",
+                        marginRight: "5px",
+                    }}
+                    preview={false}
+                    src={veg.src}
+                />
+                <Typography.Text
+                    style={{
+                        color: "white",
+                        fontSize: "18px",
+                    }}
+                >
+                    ₹800
+                </Typography.Text>
+            </Flex>
+            <Typography.Text
+                style={{
+                    color: "#b0b0b0",
+                    fontSize: "16px",
+                    margin: "10px 0",
+                    textAlign: "center",
+                }}
+            >
+                A delightful mix of paneer chunks tossed in a spicy chilli sauce, perfect for a cozy evening.
+            </Typography.Text>
+            <Button
+                style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "20px",
+                    marginTop: "15px",
+                    marginBottom : "20px"
+                }}
+            >
+                Order Now
+            </Button>
+        </Flex>
+    </div>
+    </>
+    )
+}
+
 function Following(){
 
     const dispatch = useAppDispatch();
     const following = useAppSelector((state) => state.getFollower.following);
-    const userId = useAppSelector((state) => state.global.userId);
+    const { token , userId } = useAppSelector((state) => state.global);
 
     useEffect(() => {
-        if (userId) {
-            dispatch(getFollowingCall(userId));
+        if (userId && token) {
+            dispatch(getFollowingCall({userId , token}));
         }
-    }, [dispatch, userId]);
+    }, [dispatch]);
+
+    console.log(following);
 
     return(
         <div style={{
@@ -243,10 +433,10 @@ function Following(){
             {following?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative"}}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.avatar} style={{position : "relative"}}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.firstName + " " + value.lastName}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>

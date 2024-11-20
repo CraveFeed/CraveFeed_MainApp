@@ -129,7 +129,6 @@ export const fetchExplorePost = createAsyncThunk<
     }
 
     const data = await response.json();
-    console.log("recommended \n", data);
     return data;
   } catch (error: any) {
     return rejectWithValue(error.message || "An unknown error occurred");
