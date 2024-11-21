@@ -314,6 +314,10 @@ color : "#5D6A77" */
 
 @media screen and (max-width : 1350px) {
     
+    .profile-pff-mainDiv{
+        width: 350px;
+    }
+
     .profile-menu-button{
         margin-top: 0px;
     }
@@ -461,9 +465,17 @@ color : "#5D6A77" */
         width: 170px;
         height: 35px;
     }
+
+    .edit-buttons{
+        flex-direction: column;
+    }
  }
 
 @media screen and (max-width : 700px) {
+
+    .profile-pff-mainDiv{
+        width: 250px;
+    }
 
     .profile-menu-div-desktop{
         display: none;

@@ -12,7 +12,7 @@ import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { Dock } from "@/app/Components/Dock";
 import { RestFilled , ReadFilled , PlusCircleFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
-import { setTokenAndId } from "@/lib/features/services/global";
+import { setTokenAndId, UserType } from "@/lib/features/services/global";
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -315,7 +315,7 @@ interface likePost {
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title onClick={() => { dispatch(setTokenAndId({ token : null  , userId : null })); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
+                                <Typography.Title onClick={() => { dispatch(setTokenAndId({ token : null  , userId : null , type : UserType.BUSINESS })); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
                                 <Typography.Text className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>

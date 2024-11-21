@@ -99,7 +99,6 @@ const uniqueData = (data: FollowerData[]): FollowerData[] =>
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("Followers API Response:", data);
 
         return data.followers.map((item: any) => ({
           id: item.follower.id,
@@ -138,7 +137,6 @@ export const getFollowingCall = createAsyncThunk(
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log("Following API Response:", data);
 
       return data.following.map((item: any) => ({
         id: item.following.id,

@@ -8,6 +8,8 @@ import PostSkeleton from "./PostSkeleton"
 import EditProfile from "./EditProfile"
 import { getFollowersCall , getFollowingCall } from "@/lib/features/services/profile/getFollowersAndFollowing"
 import veg from "../assets/veg-removebg-preview.png"
+import { StoreIcon } from "lucide-react"
+import { getProfilePost , getPostComments} from "@/lib/features/services/profile/getProfilePosts"
 
 const { Paragraph } = Typography;
 
@@ -25,15 +27,45 @@ export default function ProfileComponent(){
     const bio = useAppSelector((state) => state.getBio.bio);
     const avatar = useAppSelector((state) => state.getBio.avatar);
     const username = useAppSelector((state) => state.getBio.username);
+    const Type = useAppSelector((state) => state.getBio.Type);
     
-    const {token , userId } = useAppSelector((state) => state.global);
+    const {token , userId , type } = useAppSelector((state) => state.global);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
         if (userId && token) {
             dispatch(fetchBioState({ token, userId }))
         }
-    },[userId])
+    },[userId , dispatch])
+
+    useEffect(() => {
+        if (userId && token) {
+            dispatch(getFollowingCall({userId , token}));
+        }
+    }, [token , dispatch]);
+
+    useEffect(() => {
+        if (userId && token) {
+            dispatch(getFollowersCall({userId , token}));
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (userId && token) {
+            dispatch(getProfilePost({userId , token}));
+        }
+    }, [userId , token , dispatch]);
+    
+    const postData = useAppSelector(state => state.getProfilePost.posts);
+
+    useEffect(() => {
+        postData.forEach(post => {
+            if(token){
+                dispatch(getPostComments({ postId: post.postId, token }));
+            }
+        });
+      }, [postData, dispatch, token]);
+
 
     const imageStyle = {
         height : "30vh" ,
@@ -56,6 +88,24 @@ export default function ProfileComponent(){
         color: active === buttonName ? "#ffffff" : "#c7c7c7",
     });
 
+    const BusinessIndicator = () => (
+        <Space className="business-indicator" style={{ 
+            backgroundColor: '#2b3b47',
+            padding: '4px 12px',
+            borderRadius: '16px',
+            margin: '4px 0'
+        }}>
+            <StoreIcon size={16} color="#348feb"/>
+            <Typography.Text style={{ 
+                color: '#348feb',
+                fontSize: '14px',
+                fontWeight: '500'
+            }}>
+                {Type === 'PERSONAL' ? 'Restaurant' : 'Restaurant'} Account
+            </Typography.Text>
+        </Space>
+    );
+
     return(
         <Card style={{ backgroundColor : "#051017" , border : "none"}}>
             <Flex vertical align="center" justify="center">
@@ -76,6 +126,11 @@ export default function ProfileComponent(){
                                 <Space direction="vertical">
                                     <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>{username}</Button>
                                 </Space>
+                                {type === "BUSINESS" && (
+                                    <Space style={{ marginTop: '4px' }}>
+                                        <BusinessIndicator />
+                                    </Space>
+                                )}
                                 <Flex className="profile-pff-mainDiv" align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
@@ -95,7 +150,24 @@ export default function ProfileComponent(){
                                 <Paragraph className="profile-bio" style={{ color : "#adacac" , marginLeft : "-20px"}}>{bio}</Paragraph>
                             </Flex>
                             </Space>
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px" , border : "none" , fontWeight : "600" , backgroundColor : "#fd7077" , color : "black"}}>Edit Profile</Button>
+                            <div className="flex edit-buttons flex-row gap-2 sm:gap-3 w-full">
+                                <Button 
+                                    onClick={() => setEditProfile(true)}
+                                    className="w-full sm:w-auto rounded-full bg-neutral-100 hover:bg-neutral-200 text-black font-semibold"
+                                >
+                                    Edit Profile
+                                </Button>
+                                
+                                {type === "BUSINESS" && (
+                                    <Button 
+                                    onClick={() => setEditProfile(true)}
+                                    className="w-full sm:w-auto rounded-full border-neutral-100 text-white"
+                                    style={{ backgroundColor : 'transparent'}}
+                                    >
+                                    Add Menu
+                                    </Button>
+                                )}
+                            </div>
                         </Space>
                     </div>
 
@@ -110,6 +182,9 @@ export default function ProfileComponent(){
                                 <Space direction="vertical">
                                     <Button className="profile-username" style={{ backgroundColor : "transparent" , border : "none" , color : "#55616b"}}>{username}</Button>
                                 </Space>
+                                {type === "BUSINESS" && (
+                                    <BusinessIndicator />
+                                )}
                                 <Flex className="profile-pff-mainDiv-500px" align="center" justify="center">
                                     <Space style={{ width : "100%"  , display : "flex" , alignContent : "center" , justifyContent : "space-between" , paddingBottom : "10px"}}>
                                         <Flex align="center" justify="center">
@@ -130,8 +205,13 @@ export default function ProfileComponent(){
                             </Flex>
                             </Space>
                         </Space>
-                        <Flex align="center" justify="center">
-                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px" , fontWeight : "600" , backgroundColor : "#fd7077" , color : "black" , border : "none"}}>Edit Profile</Button>
+                        <Flex align="center" justify="center" gap={10}>
+                            <Button className="profile-editProfile" onClick={() => {setEditProfile(true)}} style={{ borderRadius : "20px" , fontWeight : "600" , backgroundColor : "#f4f4f4" , color : "black" , border : "none"}}>Edit Profile</Button>
+                            {type === "BUSINESS" && (
+                                <Button className="profile-editProfile" onClick={() => setEditProfile(true)} style={{color : "#f4f4f4" , border : "1px solid white" , borderRadius : "20px" , fontWeight : "600" , backgroundColor : "transparent"}}>
+                                   Add Menu
+                                </Button>
+                            )}
                         </Flex>
                     </div>
 
@@ -158,13 +238,15 @@ export default function ProfileComponent(){
                     >
                         Following
                     </Button>
-                    <Button
-                        className="profile-toggle-button"
-                        style={buttonStyle("MENU")}
-                        onClick={() => setActive("MENU")}
-                    >
-                        Menu
-                    </Button>
+                    {type === "BUSINESS" && (
+                        <Button
+                            className="profile-toggle-button"
+                            style={buttonStyle("MENU")}
+                            onClick={() => setActive("MENU")}
+                        >
+                            Menu
+                        </Button>
+                    )}
                 </Flex>
                 <div className="profile-widthDiv">
                     {active === "POSTS" && <PostSkeleton/>}
@@ -194,17 +276,8 @@ export default function ProfileComponent(){
 }
 
 function Followers(){
-
-    const dispatch = useAppDispatch();
     const followers = useAppSelector((state) => state.getFollower.followers);
-    const { token , userId } = useAppSelector((state) => state.global);
 
-    useEffect(() => {
-        if (userId && token) {
-            dispatch(getFollowersCall({userId , token}));
-        }
-    }, [dispatch]);
-    
     return(
         <div style={{
             height: "60vh",
@@ -412,15 +485,6 @@ function Following(){
 
     const dispatch = useAppDispatch();
     const following = useAppSelector((state) => state.getFollower.following);
-    const { token , userId } = useAppSelector((state) => state.global);
-
-    useEffect(() => {
-        if (userId && token) {
-            dispatch(getFollowingCall({userId , token}));
-        }
-    }, [dispatch]);
-
-    console.log(following);
 
     return(
         <div style={{

@@ -45,18 +45,11 @@ const Editor = () => (
 export default function PostSkeleton(){
 
     const dispatch = useAppDispatch();
-    const {token , userId } = useAppSelector(state => state.global);
-
-    useEffect(() => {
-        if (userId && token) {
-            dispatch(getProfilePost({userId}));
-        }
-    }, [userId]);
 
     const [commentContent , setCommentContent ] = useState("");
     const [showComments ,setShowComments] = useState<boolean>(false);
     const [ addComment , setAddComment ] = useState<boolean>(false);
-    const [ id , setId ] = useState<number>();
+    const [ id , setId ] = useState<string>();
 
 
     const data = [
@@ -133,7 +126,8 @@ export default function PostSkeleton(){
 
     // const postData
 
-    const postData = useAppSelector(state => state.getProfilePost);
+    const postData = useAppSelector(state => state.getProfilePost.posts);
+    console.log("post data :-    " ,  postData);
 
     // const postData = [
     //     {
@@ -187,7 +181,7 @@ export default function PostSkeleton(){
                             </Flex>
                         </Flex>
                             <Flex>
-                                {item.tag && (<Tag className="profile-user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>
+                                {item.tag === "Business" && (<Tag className="profile-user-tags" color="#55616b" style={{ marginTop: '-10px' , borderRadius : "10px" }}>
                                     <Flex justify="center" align="center">
                                         {item.tag}
                                     </Flex>
@@ -205,11 +199,11 @@ export default function PostSkeleton(){
                 </Flex>
 
                 <Flex className="display-all" wrap style={{ marginInline: '20%' }}>
-                    <Carousel slides={[item.pictures]}/>
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 <Flex className="display-500px">
-                    <Carousel slides={[item.pictures]}/>
+                    <Carousel slides={item.pictures}/>
                 </Flex>
 
                 <Flex className="profile-likes_comments" align="center" justify="space-between">
@@ -357,7 +351,6 @@ export default function PostSkeleton(){
                                                         height: 'auto'
                                                     }}
                                                     onClick={() => {
-                                                        // Your comment submission logic
                                                         setCommentContent("");
                                                     }}
                                                     icon={<SendOutlined />}

@@ -40,7 +40,7 @@ export default function ShareFood() {
 //   };
 
 //   const onDownload = () => {
-//     console.log(imageUrl);
+//     .log(imageUrl);
 //     fetch(imageUrl)
 //       .then((response) => response.blob())
 //       .then((blob) => {

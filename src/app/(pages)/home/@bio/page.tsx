@@ -26,17 +26,19 @@ export default function Bio() {
   const getBioStatus = useAppSelector(state => state.getBio.getBioStatus);
   const avatar = useAppSelector(state => state.getBio.avatar);
 
-  const userId = useAppSelector(state => state.global.userId);
+  const {userId , token } = useAppSelector(state => state.global);
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchBioState({ userId }));
+      if (token) {
+        dispatch(fetchBioState({ userId, token }));
+      } else {
+        console.error("Token is null");
+      }
       dispatch(fetchRecommendedUsers({ userId }));
     } else {
       console.error("User ID is null");
     }
-
-    console.log(bio , username , firstName , lastname , noOfFollowers , noOfFollowing , getBioStatus)
   },[])
 
 
