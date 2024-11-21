@@ -49,7 +49,6 @@ const EditProfile: React.FC<EditProfileProps> = ({ editProfile, setEditProfile }
   
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setBio(e.target.value);
-    ('Change:', e.target.value);
   };
 
   const handleChange: UploadProps['onChange'] = (info) => {

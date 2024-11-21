@@ -20,7 +20,6 @@ export default function Component() {
   const [password, setPassword] = useState('');
   const [api, contextHolder] = notification.useNotification();
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(state => state.global.token);
   const router = useRouter();
   
   const [isChecked, setIsChecked] = useState(false);  
@@ -40,7 +39,8 @@ export default function Component() {
       if (signIn.fulfilled.match(resultAction)) {
         const token = resultAction.payload.token;
         const userId = resultAction.payload.userId;
-        dispatch(setTokenAndId({token , userId} ));
+        const type = resultAction.payload.type;
+        dispatch(setTokenAndId({token , userId , type} ));
       }
       router.push('/home');
     } else {
