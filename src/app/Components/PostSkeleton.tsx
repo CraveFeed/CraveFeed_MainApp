@@ -212,7 +212,7 @@ export default function PostSkeleton(){
                         <RestFilled className="profile-likes_comments_comment" />
                         <Statistic className="profile-custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="profile-comment-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
+                    <Typography.Text className="profile-comment-count" style={{ cursor : "pointer" , marginRight : "20px"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
                 </Flex>
 
                 {/* DeskTop And Tab View */}
@@ -369,7 +369,7 @@ export default function PostSkeleton(){
                                         backgroundColor: "transparent", 
                                         color: "white",
                                         transition: 'background-color 0.2s',
-                                        marginTop : "-30px",
+                                        marginTop : "-10px",
                                     }}
                                     author={<span style={{ color: "ghostwhite", fontWeight: 500 }}>{comment.author}</span>}
                                     avatar={comment.avatar}

@@ -213,9 +213,11 @@ export default function Content(){
                 </Flex>
                 <Flex align="center" justify="start" style={{ paddingLeft : "7%"}}>
                     <Space size="large">
-                        <ShareFood/>
+                        {/* <ShareFood/> */}
+                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#49fd9a"}}/> Create Post</Button>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                       <CreatePost/>
+                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#fd4982"}}/> Share Food</Button>
+                       {/* <CreatePost/> */}
                     </Space>
                 </Flex>
             </Card>
@@ -290,7 +292,7 @@ export default function Content(){
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="impression-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
                 </Flex>
 
                 {/* DeskTop And Tab View */}

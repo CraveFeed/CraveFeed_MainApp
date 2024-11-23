@@ -11,6 +11,7 @@ import { getFollowerSlice } from "./features/services/profile/getFollowersAndFol
 import { globalSlice } from "./features/services/global";
 import { getProfilePostSlice } from "./features/services/profile/getProfilePosts";
 import { recommentUserSlice } from "./features/services/home/recommendedUsers";
+import { notificationsSlice } from "./features/services/notification/notification";
 
 export const makeStore = () => {
   return configureStore({
@@ -31,6 +32,8 @@ export const makeStore = () => {
       getProfile: getProfileSlice.reducer,
       getFollower: getFollowerSlice.reducer,
       getProfilePost: getProfilePostSlice.reducer,
+      
+      notificationsSlice: notificationsSlice.reducer,
     },
   });
 };

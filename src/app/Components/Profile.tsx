@@ -61,11 +61,11 @@ export default function ProfileComponent(){
     useEffect(() => {
         postData.forEach(post => {
             if(token){
+                console.log("top Comment : " , token)
                 dispatch(getPostComments({ postId: post.postId, token }));
             }
         });
       }, [postData, dispatch, token]);
-
 
     const imageStyle = {
         height : "30vh" ,

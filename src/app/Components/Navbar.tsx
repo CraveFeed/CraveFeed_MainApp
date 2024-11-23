@@ -1,3 +1,5 @@
+"use cleint";
+
 import React from "react";
 import { Flex, Space , Input , Button , Divider , Image} from "antd"
 import type { MenuProps } from "antd";
@@ -5,19 +7,58 @@ import { Dropdown } from 'antd';
 import { Avatar , Drawer } from 'antd';
 import { useRouter } from "next/navigation";
 import Logout from "./Logout"
-import { HomeFilled , CaretDownOutlined , BellFilled , MessageOutlined } from '@ant-design/icons';
+import { HomeFilled , CaretDownOutlined , BellFilled , MessageOutlined , UserOutlined } from '@ant-design/icons';
 import "../styles/home.css"
 import chefIcon from "../assets/icons8-chef-hat-30.png"
 import logo from "../assets/cravefeed_logo.png"
 import { useAppSelector } from "@/lib/hooks";
-
+import { Badge } from "antd";
+import { useEffect, useState } from "react";
 const gridStyle: React.CSSProperties = {
   width: '25%',
   textAlign: 'center',
 };
 
 export default function Navbar(){
-    
+    const [notificationCount, setNotificationCount] = useState(0);
+    const token = useAppSelector( state => state.global.token);
+    useEffect(() => {
+        if(token){
+            const wsUrl = "ws://ec2-13-127-122-96.ap-south-1.compute.amazonaws.com:3000";
+                const ws = new WebSocket(wsUrl, token);
+        
+            ws.onopen = () => {
+            console.log("WebSocket connected");
+            };
+        
+            ws.onmessage = (event) => {
+            console.log("WebSocket message:", event.data);
+            try {
+                const data = JSON.parse(event.data);
+                if (data.type === "notification" && data.count) {
+                setNotificationCount(data.count);
+                }
+            } catch (error) {
+                console.error("Error parsing WebSocket message:", error);
+            }
+            };
+        
+            ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            };
+        
+            ws.onclose = () => {
+            console.log("WebSocket connection closed");
+            };
+        
+            // Cleanup on component unmount
+            return () => {
+            ws.close();
+            };
+        }
+      }, []);
+
+
     const avatar = useAppSelector((state) => state.getBio.avatar);
     const firstname = useAppSelector((state) => state.getBio.firstname);
     const lastname = useAppSelector((state) => state.getBio.lastname);
@@ -52,7 +93,9 @@ export default function Navbar(){
                         <MessageOutlined onClick={() => { router.push("/chat")}} style={{ fontSize : "22px" , marginTop : "24px"}} />
                     </Space>
                         <Space split={<Divider style={{ backgroundColor : "#113852" , height : "30px"}} type="vertical"/>}>
-                            <BellFilled onClick={() => {router.push("/home/notifications")}} style={{ fontSize : "22px"}} />
+                            <Badge count={notificationCount} overflowCount={99}>
+                                <BellFilled onClick={() => {router.push("/home/notifications")}} style={{ fontSize : "22px" , color : "white"}} />
+                            </Badge>
                             <Dropdown 
                                 menu={{ items }}
                                 // overlayStyle={{ backgroundColor: "blue"}}
