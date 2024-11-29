@@ -13,7 +13,7 @@ import { Avatar, Card , Space , Flex , Input, Button, Typography, FloatButton , 
 import type { StatisticProps } from 'antd';
 import { Tag , Image , Statistic } from "antd";
 import { RestFilled , ReadFilled , PlusOutlined , FireFilled , CompassFilled , HomeFilled , EnvironmentFilled , HeartFilled , UploadOutlined , PullRequestOutlined , MessageFilled } from "@ant-design/icons";
-import { setViewUserId } from "@/lib/features/services/global";
+import { setTokenAndId, UserType } from "@/lib/features/services/global";
 import { FacebookShare , WhatsappShare } from 'react-share-kit';
 import CountUp from 'react-countup';
 import { useRouter } from "next/navigation";
@@ -41,8 +41,7 @@ export default function Content(){
         zIndex : "100"
       };
 
-    const userId = useAppSelector(state => state.global.userId);
-
+    const {token , userId} = useAppSelector(state => state.global);
     useEffect(() => {
         if (userId) {
             dispatch(fetchHomePost({ userId }));
@@ -190,7 +189,6 @@ export default function Content(){
 
     const handleMenuClick = (index: number) => {
         setSelectedIndex(index);
-        console.log(selectedIndex);
     }
     return (
         <Flex 
@@ -215,9 +213,11 @@ export default function Content(){
                 </Flex>
                 <Flex align="center" justify="start" style={{ paddingLeft : "7%"}}>
                     <Space size="large">
-                        <ShareFood/>
+                        {/* <ShareFood/> */}
+                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#49fd9a"}}/> Create Post</Button>
                         <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#4991FD"}}/> Share Recipe</Button>
-                       <CreatePost/>
+                        <Button className="upload-buttons"><ReadFilled style={{marginTop : "1px" ,  fontSize : "19px" , color : "#fd4982"}}/> Share Food</Button>
+                       {/* <CreatePost/> */}
                     </Space>
                 </Flex>
             </Card>
@@ -253,7 +253,7 @@ export default function Content(){
                         <Flex vertical>
                         <Flex >
                             <Flex gap={25} >
-                                <Typography.Title onClick={() => { dispatch(setViewUserId(item.userId)); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
+                                <Typography.Title onClick={() => { dispatch(setTokenAndId({ token : null , userId : null , type : UserType.BUSINESS})); router.push("/view_profile") }} className="post-name" style={{ cursor : "pointer" }} level={2}>{item.name}</Typography.Title>
                                 <Typography.Text style={{ whiteSpace: "pre-line" }} className="post_time">{item.timeDescription}</Typography.Text>
                             </Flex>
                         </Flex>
@@ -277,8 +277,7 @@ export default function Content(){
 
                 {/* DeskTop View*/}
             
-                <Flex className="display-all" wrap style={{ marginInline: '5%' }}>
-
+                <Flex className="display-all" wrap style={{ marginInline: '20%' }}>
                     <Carousel slides={item.pictures}/>
                 </Flex>
 
@@ -293,7 +292,7 @@ export default function Content(){
                         <RestFilled className="likes_comments_comment" />
                         <Statistic className="custom-statistic" value={item.likes} formatter={formatter} />
                     </Flex>
-                    <Typography.Text className="impression-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
+                    <Typography.Text className="comment-count" style={{ cursor : "pointer"}}>{item.comments?.length ?? 0} impressions</Typography.Text>
                 </Flex>
 
                 {/* DeskTop And Tab View */}
@@ -411,7 +410,7 @@ export default function Content(){
                                                     value={commentContent}
                                                     onChange={(e) => setCommentContent(e.target.value)}
                                                     placeholder="Write a comment..."
-                                                    autoSize={{ minRows: 2, maxRows: 4 }}
+                                                    autoSize={{ minRows: 1, maxRows: 4 }}
                                                     style={{ 
                                                         backgroundColor: "#253541",
                                                         border: "1px solid #364d79",

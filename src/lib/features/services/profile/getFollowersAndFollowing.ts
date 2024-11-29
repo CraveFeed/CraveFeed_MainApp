@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const API_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
+
 export interface FollowerState {
   status: "idle" | "loading" | "succeeded" | "failed";
   followers: FollowerData[];
@@ -8,84 +10,125 @@ export interface FollowerState {
 }
 
 interface FollowerData {
-  Name: string;
-  Username: string;
-  AvatarUrl: string;
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  avatar: string | null;
+  type: string;
 }
 
 const initialState: FollowerState = {
   status: "idle",
   followers: [
     {
-      Name: "Viraj Patel",
-      Username: "@viraj332",
-      AvatarUrl:
+      id: "1",
+      firstName: "Viraj",
+      lastName: "Kadam",
+      username: "@viraj332",
+      avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqcVXIgWCvTbb55lDj91N_g2rd0F3rma21CA&s",
-    },
+      type : "PERSONAL"
+      },
     {
-      Name: "Alina Kane",
-      Username: "@alineK",
-      AvatarUrl:
+      id: "2",
+      firstName: "Alina",
+      lastName: "Kane",
+      username: "@AlinaKane",
+      avatar:
         "https://media.istockphoto.com/id/1191193169/photo/portrait-of-a-confident-young-woman-at-the-park.jpg?b=1&s=612x612&w=0&k=20&c=StRxOnMZGBl3714zvEc2vHKJStEkgIfAcpo3zZ8UZ08=",
-    },
+      type : "BUSINESS"
+      },
     {
-      Name: "Rina Das",
-      Username: "@RiDas",
-      AvatarUrl:
+      id: "3",
+      firstName: "Rina",
+      lastName: "Das",
+      username: "@RiDas",
+      avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLn0qwpafUMBcMtwFTP-IKb4mfQ_1niJHU-w&s",
+      type: "PERSONAL",
     },
   ],
   following: [
     {
-      Name: "Vira Patel",
-      Username: "@viraj332",
-      AvatarUrl:
+      id : "1",
+      firstName: "Viraj",
+      lastName : "Kadam",
+      username: "@viraj332",
+      avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqcVXIgWCvTbb55lDj91N_g2rd0F3rma21CA&s",
-    },
+      type : "PERSONAL"
+      },
     {
-      Name: "Shashwat Singh",
-      Username: "@ShashwatPS",
-      AvatarUrl:
+      id: "2",
+      firstName: "Shashwat",
+      lastName : "Singh",
+      username: "@ShashwatPS",
+      avatar:
         "https://pbs.twimg.com/profile_images/1851275784570478592/lYT2fIG8_400x400.jpg",
+      type : "BUSINESS"  
     },
   ],
   error: null,
 };
 
-export const getFollowersCall = createAsyncThunk(
-  "followers/getFollowers",
-  async (userId: string, { rejectWithValue }) => {
-    try {
-      const response = await fetch(
-        "http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/getFollowers",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: userId }),
+const uniqueData = (data: FollowerData[]): FollowerData[] =>
+  data.filter(
+    (item, index, self) => index === self.findIndex((t) => t.id === item.id)
+  );
+
+  export const getFollowersCall = createAsyncThunk(
+    "followers/getFollowers",
+    async (
+      { userId, token }: { userId: string; token: string },
+      { rejectWithValue }
+    ) => {
+      try {
+        const response = await fetch(
+          `${API_URL}/public/getUserFollowers?page=1&limit=10`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ id: userId }),
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const data = await response.json();
+
+        return data.followers.map((item: any) => ({
+          id: item.follower.id,
+          username: item.follower.username,
+          firstName: item.follower.firstName,
+          lastName: item.follower.lastName,
+          avatar: item.follower.avatar,
+          type: item.follower.Type,
+        }));
+      } catch (error) {
+        return rejectWithValue((error as Error).message);
       }
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue((error as Error).message);
     }
-  }
-);
+  );
+  
 
 export const getFollowingCall = createAsyncThunk(
   "followers/getFollowing",
-  async (userId: string, { rejectWithValue }) => {
+  async (
+    { userId, token }: { userId: string; token: string },
+    { rejectWithValue }
+  ) => {
     try {
       const response = await fetch(
-        "http://ec2-3-107-106-246.ap-southeast-2.compute.amazonaws.com:3000/getFollowing",
+        `${API_URL}/public/getUserFollowing?page=1&limit=10`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ id: userId }),
         }
@@ -93,7 +136,16 @@ export const getFollowingCall = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return await response.json();
+      const data = await response.json();
+
+      return data.following.map((item: any) => ({
+        id: item.following.id,
+        username: item.following.username,
+        firstName: item.following.firstName,
+        lastName: item.following.lastName,
+        avatar: item.following.avatar,
+        type: item.following.Type,
+      }));
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -118,7 +170,7 @@ export const getFollowerSlice = createSlice({
       )
       .addCase(getFollowersCall.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message ?? "Failed to fetch followers";
+        state.error = action.payload as string;
       })
       .addCase(getFollowingCall.pending, (state) => {
         state.status = "loading";
@@ -132,7 +184,7 @@ export const getFollowerSlice = createSlice({
       )
       .addCase(getFollowingCall.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message ?? "Failed to fetch following";
+        state.error = action.payload as string;
       });
   },
 });

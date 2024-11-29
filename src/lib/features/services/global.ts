@@ -1,35 +1,40 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
+export enum UserType {
+  PERSONAL = "PERSONAL",
+  BUSINESS = "BUSINESS",
+}
+
+export interface UserState {
+  token: string | null;
   userId: string | null;
-  viewUserId: string | null;
+  type : UserType;
 }
 
 const initialState: UserState = {
+  token: null,
   userId: null,
-  viewUserId: null,
+  type : UserType.BUSINESS,
 };
 
 export const globalSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserId: (state, action: PayloadAction<string>) => {
-      state.userId = action.payload;
+    setTokenAndId: (state, action: PayloadAction<UserState>) => {
+      state.token = action.payload.token;
+      state.userId = action.payload.userId;
+      state.type = action.payload.type;
     },
-    clearUserId: (state) => {
+    clearTokenAndId: (state) => {
+      state.token = null;
       state.userId = null;
-    },
-    setViewUserId: (state, action: PayloadAction<string>) => {
-      state.viewUserId = action.payload;
-    },
-    clearViewUserId: (state) => {
-      state.viewUserId = null;
+      state.type = UserType.BUSINESS;
     },
   },
 });
 
-export const { setUserId, clearUserId, setViewUserId, clearViewUserId } =
+export const { setTokenAndId, clearTokenAndId } =
   globalSlice.actions;
 
 export default globalSlice.reducer;

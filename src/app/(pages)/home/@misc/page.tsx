@@ -41,7 +41,6 @@ export default function Misc() {
 
     const handleMenuClick = (index: number) => {
         setSelectedIndex(index);
-        console.log(selectedIndex);
     }
 
     const data = [

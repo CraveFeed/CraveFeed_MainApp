@@ -46,11 +46,11 @@ export default function ViewPostSkeleton(){
 
     const dispatch = useAppDispatch();
     // const userId = useAppSelector(state => state.global.userId) ?? '';
-    const viewingUserId = useAppSelector(state => state.global.viewUserId) ?? '';
+    const { userId : viewingUserId , token } = useAppSelector(state => state.global);
 
     useEffect(() => {
-        if (viewingUserId) {
-            dispatch(getProfilePost({ "userId" : viewingUserId }));
+        if (viewingUserId && token) {
+            dispatch(getProfilePost({ userId : viewingUserId , token }));
         }
     }, [viewingUserId]);
 
@@ -134,7 +134,7 @@ export default function ViewPostSkeleton(){
 
     // const postData
 
-    const postData = useAppSelector(state => state.getProfilePost);
+    const postData = useAppSelector(state => state.getProfilePost.posts);
 
     // const postData = [
     //     {
@@ -204,7 +204,7 @@ export default function ViewPostSkeleton(){
                     <Card
                     bodyStyle={{ padding: 0 }}
                     style={{ border : "4px solid #3f474f" , width: '100%', backgroundColor: '#1B2730', borderRadius: '30px' }}
-                    cover={<Image src={item.pictures} style={{ borderRadius: '30px' }} />}
+                    cover={<Image src="{item.pictures}" style={{ borderRadius: '30px' }} />}
                     ></Card>
                 </Flex>
                 <Flex className="profile-likes_comments" align="center" justify="space-between">

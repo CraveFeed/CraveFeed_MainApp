@@ -2,50 +2,65 @@
 
 import { Avatar, Flex, Button } from "antd";
 import { formatDistanceToNow, isToday, isThisWeek, isThisMonth, parseISO } from 'date-fns';
+import { fetchNotifications } from "@/lib/features/services/notification/notification";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useEffect } from "react";
 import { Dock } from "@/app/Components/Dock";
 
-interface Notification {
-    id: number;
-    name: string;
-    action: string;
-    category: "like" | "follow" | "comment";
-    avatar: string;
-    timestamp: string;
-}
+import { Notification as ImportedNotification } from "@/lib/features/services/notification/notification";
+
+type Notification = ImportedNotification;
 
 export default function Notifications() {
+
+
+
+    const dispatch = useAppDispatch();
+    const token = useAppSelector(state => state.global.token);
+    const Notifications = useAppSelector(state => state.notificationsSlice.notifications)
+    useEffect(() => {
+        if(token){
+            dispatch(fetchNotifications(token));
+        }
+    }, [dispatch]);
+
+    console.log("NONOTI Fications :- " , Notifications);
     const notifications: Notification[] = [
         {
-            id: 1,
+            id: "1",
             name: "Shashwat Singh",
             action: "liked your post",
             category: "like",
             avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            timestamp: "2024-11-09T00:00:00Z"
+            timestamp: "2024-11-09T00:00:00Z",
+            read: false,
         },
         {
-            id: 2,
+            id: "2",
             name: "Shashwat Singh",
             action: "liked your post",
             category: "like",
             avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            timestamp: "2024-11-07T10:00:00Z"
+            timestamp: "2024-11-07T10:00:00Z",
+            read: false,
         },
         {
-            id: 3,
+            id: "3",
             name: "Ritika Verma",
             action: "started following you",
             category: "follow",
             avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            timestamp: "2024-10-29T12:30:00Z"
+            timestamp: "2024-10-29T12:30:00Z",
+            read: false,
         },
         {
-            id: 4,
+            id: "4",
             name: "John Doe",
             action: "commented on your post",
             category: "comment",
             avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            timestamp: "2024-09-10T15:20:00Z"
+            timestamp: "2024-09-10T15:20:00Z",
+            read: true,
         },
     ];
 
@@ -56,15 +71,16 @@ export default function Notifications() {
         return "A Few Months Ago";
     };
 
-    // Group notifications by time category and then by action category
-    const groupedNotifications = notifications.reduce<Record<string, Record<string, Notification[]>>>((acc, notification) => {
-        const date = parseISO(notification.timestamp); // Convert timestamp string to Date object
+    const groupedNotifications = Notifications.reduce<Record<string, Record<string, Notification[]>>>((acc, notification) => {
+        const date = parseISO(notification.timestamp);
         const timeCategory = getTimeCategory(date);
         if (!acc[timeCategory]) acc[timeCategory] = {};
         if (!acc[timeCategory][notification.category]) acc[timeCategory][notification.category] = [];
         acc[timeCategory][notification.category].push(notification);
         return acc;
     }, {});
+
+    const unreadNotifications = Notifications.filter((n) => !n.read);
 
     return (
         <>
@@ -79,11 +95,41 @@ export default function Notifications() {
                     WebkitOverflowScrolling: "touch",
                     scrollbarWidth: "none",
                     msOverflowStyle: "none",
-                    msOverflowX: "hidden",
                     paddingLeft: "30px",
-                    paddingBottom: "50px" // Ensures there's space above the Dock component
+                    paddingBottom: "50px"
                 }}
             >
+                {unreadNotifications.length > 0 && (
+                    <div style={{ marginBottom: "20px" }}>
+                        <h2 style={{ color: "#f31277", fontWeight: "bold", marginTop: "20px" , paddingBottom : "15px"}}>Unread Notifications</h2>
+                        {unreadNotifications.map((notification) => (
+                            <Flex style={{backgroundColor: "#1d2a36", marginBottom : "5px" , borderRadius : "20px"}} align="center" justify="space-between" key={notification.id}>
+                                <Flex
+                                    style={{
+                                        color: "white",
+                                        marginBottom: "15px",
+                                        borderRadius: "8px",
+                                        padding: "5px",
+                                    }}
+                                    align="center"
+                                >
+                                    <Avatar size={55} src={notification.avatar} />
+                                    <div style={{ marginLeft: "6px" }}>
+                                        <Flex>
+                                            <h1 style={{ marginRight: "5px", fontWeight: "bold", fontSize: "13px", color: "#f31277" }}>{notification.name}</h1>
+                                            <p style={{ margin: 0 }}>{notification.action}</p>
+                                        </Flex>
+                                        <small style={{ color: "#aaa" }}>
+                                            {formatDistanceToNow(parseISO(notification.timestamp), { addSuffix: true })}
+                                        </small>
+                                    </div>
+                                </Flex>
+                                <Button style={{ marginRight: "10px", marginTop: "-20px", borderRadius: "20px", fontSize: "10px" }}>Follow</Button>
+                            </Flex>
+                        ))}
+                    </div>
+                )}
+
                 {Object.entries(groupedNotifications).map(([timeCategory, actions]) => (
                     <div key={timeCategory} style={{ marginBottom: "20px" }}>
                         <h2 style={{ color: "#ccc", fontWeight: "bold", marginTop: "20px" }}>{timeCategory}</h2>
@@ -101,7 +147,7 @@ export default function Notifications() {
                                             <Avatar size={55} src={notification.avatar} />
                                             <div style={{ marginLeft: "6px" }}>
                                                 <Flex>
-                                                    <h1 style={{ marginRight: "5px", fontWeight: "bold"  , fontSize :"13px" }}>{notification.name}</h1>
+                                                    <h1 style={{ marginRight: "5px", fontWeight: "bold", fontSize: "13px" }}>{notification.name}</h1>
                                                     <p style={{ margin: 0 }}>{notification.action}</p>
                                                 </Flex>
                                                 <small style={{ color: "#aaa" }}>
@@ -109,7 +155,7 @@ export default function Notifications() {
                                                 </small>
                                             </div>
                                         </Flex>
-                                        <Button style={{ marginRight: "10px", marginTop: "-20px", borderRadius: "20px", fontSize :  "10px" }}>Follow</Button>
+                                        <Button style={{ marginRight: "10px", marginTop: "-20px", borderRadius: "20px", fontSize: "10px" }}>Follow</Button>
                                     </Flex>
                                 ))}
                             </div>
@@ -118,7 +164,6 @@ export default function Notifications() {
                 ))}
             </Flex>
 
-            {/* Dock Component Positioned Absolutely at the Bottom */}
             <div
                 style={{
                     position: "fixed",
@@ -126,11 +171,11 @@ export default function Notifications() {
                     left: 0,
                     width: "100%",
                     backgroundColor: "#051017",
-                    zIndex: 1000, // Ensure it stays on top
+                    zIndex: 1000,
                     height: "50px",
                 }}
             >
-                <Dock index={0} />
+                <Dock index={0}/>
             </div>
         </>
     );

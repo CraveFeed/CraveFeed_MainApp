@@ -23,12 +23,12 @@ export default function ViewProfileComponent(){
     const avatar = useAppSelector((state) => state.getBio.avatar);
     const username = useAppSelector((state) => state.getBio.username);
     
-    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
+    const { userId : viewingUserId , token } = useAppSelector((state) => state.global);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (viewingUserId) {
-            dispatch(fetchBioState({ "userId" : viewingUserId }));
+        if (viewingUserId && token) {
+            dispatch(fetchBioState({ userId : viewingUserId , token }));
         }
     },[viewingUserId])
 
@@ -149,7 +149,7 @@ export default function ViewProfileComponent(){
                 width="auto"
                 >
                 <Image 
-                    src={avatar} 
+                    src={avatar?.toString()} 
                     preview={true}
                     style={{ display: 'block', width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
                 />
@@ -162,11 +162,11 @@ function Followers(){
 
     const dispatch = useAppDispatch();
     const followers = useAppSelector((state) => state.getFollower.followers);
-    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
+    const {userId : viewingUserId , token } = useAppSelector((state) => state.global);
     
     useEffect(() => {
-        if (viewingUserId) {
-            dispatch(getFollowersCall(viewingUserId));
+        if (viewingUserId && token) {
+            dispatch(getFollowersCall({userId : viewingUserId , token}));
         }
     }, [dispatch]);
     
@@ -215,10 +215,10 @@ function Followers(){
             {followers?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative" }}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.avatar} style={{position : "relative" }}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.firstName}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>
@@ -232,12 +232,14 @@ function Following(){
 
     const dispatch = useAppDispatch();
     const following = useAppSelector((state) => state.getFollower.following);
-    const viewingUserId = useAppSelector((state) => state.global.viewUserId);
+    const { userId : viewingUserId , token } = useAppSelector((state) => state.global);
     
 
     useEffect(() => {
         if (viewingUserId) {
-            dispatch(getFollowingCall(viewingUserId));
+            if(token){
+                dispatch(getFollowingCall({ userId: viewingUserId, token }));
+            }
         }
     }, [dispatch, viewingUserId]);
 
@@ -271,10 +273,10 @@ function Following(){
             {following?.map((value, index) => (
                 <Flex align="center" justify="space-between" style={{ marginBottom : "30px" , paddingInline : "20px" , backgroundColor : "#1B2730" , paddingBlock : "10px" , borderRadius : "30px"}}>
                     <Space>
-                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.AvatarUrl} style={{position : "relative"}}/>
+                        <Avatar className="profile-ff-avatar" alt="Profile Pic" src={value.avatar} style={{position : "relative"}}/>
                         <Flex vertical>
-                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.Name}</Typography.Text>
-                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.Username}</Typography.Text>
+                            <Typography.Text className="profile-ff-name" style={{ color : "#c7c7c7" , fontWeight : "bolder"}}>{value.firstName} {value.lastName}</Typography.Text>
+                            <Typography.Text className="profile-ff-username" style={{ color : "#55616b"}}>{value.username}</Typography.Text>
                         </Flex>
                     </Space>
                     <Button className="profile-ff-button">Remove</Button>
